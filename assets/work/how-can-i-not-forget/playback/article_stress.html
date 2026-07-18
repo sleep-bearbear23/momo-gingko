@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stress-Induced Perception Disturbances — Healthline</title>
+  <link rel="stylesheet" href="shared.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
+    rel="stylesheet">
+  <style>
+    html,
+    body {
+      overflow: hidden
+    }
+
+    .page-content {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      background: #fff;
+      position: relative
+    }
+
+    /* Site header */
+    .site-header {
+      background: #fff;
+      border-bottom: 1px solid #e0e0e0;
+      position: relative
+    }
+
+    .header-inner-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 11px 40px;
+      border-bottom: 1px solid #e0e0e0
+    }
+
+    .site-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 25px;
+      font-weight: 700;
+      color: #1c7c54;
+      text-decoration: none
+    }
+
+    .header-search-bar {
+      display: flex;
+      gap: 7px;
+      align-items: center;
+      background: #f7f7f7;
+      border: 1px solid #e0e0e0;
+      border-radius: 100px;
+      padding: 7px 15px;
+      font-size: 13px;
+      color: #aaa;
+      cursor: text;
+      width: 240px;
+      transition: border-color .2s
+    }
+
+    .header-search-bar:hover {
+      border-color: #1c7c54
+    }
+
+    .header-search-bar svg {
+      width: 13px;
+      height: 13px;
+      flex-shrink: 0
+    }
+
+    .h-nav {
+      display: flex;
+      gap: 0
+    }
+
+    .h-nav-item {
+      padding: 8px 15px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #545454;
+      cursor: pointer;
+      transition: color .2s;
+      text-decoration: none
+    }
+
+    .h-nav-item.active,
+    .h-nav-item:hover {
+      color: #1c7c54
+    }
+
+    .breadcrumb {
+      padding: 9px 40px;
+      font-size: 12px;
+      color: #aaa;
+      background: #f7f7f7;
+      border-bottom: 1px solid #e0e0e0;
+      display: flex;
+      gap: 6px;
+      align-items: center
+    }
+
+    .breadcrumb a {
+      color: #1c7c54;
+      text-decoration: none
+    }
+
+    .breadcrumb a:hover {
+      text-decoration: underline
+    }
+
+    .page-wrapper {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 30px 40px;
+      display: flex;
+      gap: 46px
+    }
+
+    .article-col {
+      flex: 1;
+      min-width: 0;
+      max-width: 720px
+    }
+
+    .sidebar-col {
+      width: 275px;
+      flex-shrink: 0
+    }
+
+    .article-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #e8f5f0;
+      color: #1c7c54;
+      border-radius: 100px;
+      padding: 4px 13px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 13px
+    }
+
+    .article-label::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: #1c7c54;
+      border-radius: 50%
+    }
+
+    .article-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1.25;
+      color: #1a1a1a;
+      margin-bottom: 13px
+    }
+
+    .article-deck {
+      font-size: 17px;
+      color: #545454;
+      line-height: 1.65;
+      margin-bottom: 20px
+    }
+
+    .author-bar {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 13px 0;
+      border-top: 1px solid #e0e0e0;
+      border-bottom: 1px solid #e0e0e0;
+      margin-bottom: 22px
+    }
+
+    .author-avatar {
+      width: 37px;
+      height: 37px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #a8d5c2, #7bbda4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0
+    }
+
+    .author-details {
+      flex: 1
+    }
+
+    .author-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #1c7c54
+    }
+
+    .author-cred {
+      font-size: 12px;
+      color: #aaa
+    }
+
+    .meta-right {
+      text-align: right;
+      font-size: 12px;
+      color: #aaa;
+      line-height: 1.55
+    }
+
+    .fact-check-bar {
+      background: #edf5f2;
+      border: 1px solid rgba(28, 124, 84, .18);
+      border-radius: 8px;
+      padding: 11px 15px;
+      margin-bottom: 22px;
+      display: flex;
+      gap: 11px;
+      align-items: flex-start
+    }
+
+    .fc-text {
+      font-size: 12px;
+      color: #545454;
+      line-height: 1.5
+    }
+
+    .fc-text strong {
+      color: #1c7c54
+    }
+
+    .hero-img {
+      width: 100%;
+      aspect-ratio: 16/8;
+      background: linear-gradient(135deg, #c8e8d8, #b8d4c8 50%, #c0d8e4);
+      border-radius: 8px;
+      margin-bottom: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      color: rgba(20, 60, 40, .35);
+      font-style: italic;
+      text-align: center;
+      padding: 18px
+    }
+
+    .img-credit {
+      font-size: 11px;
+      color: #aaa;
+      margin-bottom: 22px
+    }
+
+    .key-takeaways {
+      background: #edf5f2;
+      border-left: 4px solid #1c7c54;
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin-bottom: 26px
+    }
+
+    .kt-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: #1c7c54;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: .06em
+    }
+
+    .kt-list {
+      list-style: none
+    }
+
+    .kt-list li {
+      font-size: 13.5px;
+      color: #545454;
+      line-height: 1.65;
+      margin-bottom: 7px;
+      display: flex;
+      gap: 9px
+    }
+
+    .kt-list li::before {
+      content: '✓';
+      color: #1c7c54;
+      font-weight: 700;
+      flex-shrink: 0
+    }
+
+    .article-body {
+      line-height: 1.8;
+      font-family: 'Nunito', sans-serif
+    }
+
+    .article-body p {
+      font-size: 16px;
+      color: #1a1a1a;
+      line-height: 1.85;
+      margin-bottom: 20px
+    }
+
+    .article-body h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 23px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin: 34px 0 13px
+    }
+
+    .article-body h3 {
+      font-size: 17px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin: 22px 0 9px
+    }
+
+    .article-body ul {
+      padding-left: 21px;
+      margin-bottom: 20px
+    }
+
+    .article-body li {
+      font-size: 15px;
+      color: #545454;
+      line-height: 1.7;
+      margin-bottom: 7px
+    }
+
+    .callout {
+      background: #edf5f2;
+      border: 1px solid rgba(28, 124, 84, .18);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 26px 0
+    }
+
+    .callout-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: #1c7c54;
+      margin-bottom: 7px
+    }
+
+    .callout p {
+      font-size: 13.5px;
+      color: #1a4a35;
+      line-height: 1.7;
+      margin-bottom: 7px
+    }
+
+    .callout p:last-child {
+      margin-bottom: 0
+    }
+
+    .data-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 13px;
+      margin: 22px 0
+    }
+
+    .data-cell {
+      background: #f7f7f7;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 14px 16px;
+      text-align: center
+    }
+
+    .data-number {
+      font-size: 26px;
+      font-weight: 700;
+      color: #1c7c54;
+      font-family: 'Playfair Display', serif
+    }
+
+    .data-label {
+      font-size: 12px;
+      color: #aaa;
+      margin-top: 3px;
+      line-height: 1.4
+    }
+
+    .medical-note {
+      background: #f7f7f7;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin-top: 34px;
+      font-size: 12.5px;
+      color: #aaa;
+      line-height: 1.6
+    }
+
+    .medical-note strong {
+      color: #545454
+    }
+
+    .sidebar-widget {
+      margin-bottom: 22px
+    }
+
+    .widget-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: #545454;
+      padding-bottom: 7px;
+      border-bottom: 2px solid #1c7c54;
+      margin-bottom: 13px
+    }
+
+    .related-card {
+      padding: 11px 0;
+      border-bottom: 1px solid #e0e0e0;
+      display: flex;
+      gap: 11px;
+      align-items: flex-start;
+      cursor: pointer
+    }
+
+    .related-card:last-child {
+      border-bottom: none
+    }
+
+    .related-card-img {
+      width: 58px;
+      height: 46px;
+      border-radius: 6px;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, #c8e8d8, #b4d4c0)
+    }
+
+    .related-card-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #1a1a1a;
+      line-height: 1.4;
+      transition: color .2s
+    }
+
+    .related-card:hover .related-card-title {
+      color: #1c7c54
+    }
+
+    .related-card-meta {
+      font-size: 11px;
+      color: #aaa;
+      margin-top: 3px
+    }
+
+    .newsletter-widget {
+      background: #1c7c54;
+      color: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center
+    }
+
+    .newsletter-widget h4 {
+      font-size: 15px;
+      margin-bottom: 7px
+    }
+
+    .newsletter-widget p {
+      font-size: 13px;
+      opacity: .85;
+      margin-bottom: 13px;
+      line-height: 1.5
+    }
+
+    .newsletter-widget input {
+      width: 100%;
+      padding: 8px 11px;
+      border: none;
+      border-radius: 6px;
+      font-size: 13px;
+      margin-bottom: 7px;
+      font-family: 'Nunito', sans-serif
+    }
+
+    .newsletter-widget button {
+      width: 100%;
+      background: rgba(255, 255, 255, .2);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, .4);
+      padding: 8px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'Nunito', sans-serif
+    }
+
+    .ad-box {
+      background: #f7f7f7;
+      border: 1px dashed #e0e0e0;
+      border-radius: 6px;
+      padding: 26px;
+      text-align: center;
+      font-size: 11px;
+      color: #aaa
+    }
+
+    .resource-card {
+      background: #f7f7f7;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 14px 16px;
+      font-size: 13px;
+      color: #545454;
+      line-height: 1.75
+    }
+
+    .resource-card a {
+      color: #1c7c54;
+      display: block;
+      margin-bottom: 4px
+    }
+  </style>
+</head>
+
+<body>
+  <div class="browser-window">
+    <div class="browser-chrome">
+      <div class="chrome-left">
+        <div class="traffic-lights">
+          <div class="tl tl-red"></div>
+          <div class="tl tl-yellow"></div>
+          <div class="tl tl-green"></div>
+        </div>
+        <button class="nav-btn" onclick="history.back()"><svg viewBox="0 0 14 14" fill="none">
+            <path d="M9 2L4 7L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg></button>
+        <button class="nav-btn disabled"><svg viewBox="0 0 14 14" fill="none">
+            <path d="M5 2L10 7L5 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg></button>
+      </div>
+      <div class="url-bar">
+        <svg class="url-lock" viewBox="0 0 12 14" fill="none">
+          <rect x="1" y="6" width="10" height="7" rx="1.5" stroke="currentColor" stroke-width="1.2" />
+          <path d="M3.5 6V4a2.5 2.5 0 015 0v2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
+        </svg>
+        <div class="url-text">healthline.com / <span>mental-health › stress-induced-perception-disturbances</span></div>
+      </div>
+      <div class="chrome-right">
+        <div class="b-icon"><svg viewBox="0 0 15 15" fill="none">
+            <path d="M5 7.5H2a1 1 0 00-1 1V13a1 1 0 001 1h11a1 1 0 001-1V8.5a1 1 0 00-1-1h-3M7.5 1v8M5 3.5L7.5 1 10 3.5"
+              stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg></div>
+        <div class="b-icon"><svg viewBox="0 0 13 15" fill="none">
+            <path d="M1 1h11v13L6.5 10 1 14V1z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg></div>
+      </div>
+    </div>
+
+    <div class="page-content">
+      <header class="site-header">
+        <div class="header-inner-bar">
+          <a class="site-logo" href="#">Healthline</a>
+          <div class="header-search-bar"><svg viewBox="0 0 13 13" fill="none">
+              <circle cx="5.5" cy="5.5" r="4" stroke="#aaa" stroke-width="1.2" />
+              <line x1="8.5" y1="8.5" x2="12" y2="12" stroke="#aaa" stroke-width="1.2" stroke-linecap="round" />
+            </svg>Search health topics…</div>
+          <nav class="h-nav">
+            <a class="h-nav-item" href="#">Health Topics</a>
+            <a class="h-nav-item active" href="#">Mental Health</a>
+            <a class="h-nav-item" href="#">Nutrition</a>
+            <a class="h-nav-item" href="#">Wellness</a>
+          </nav>
+        </div>
+      </header>
+
+      <div class="breadcrumb">
+        <a href="results_voices.html">← Search results</a> ›
+        <a href="#">Mental Health</a> › <a href="#">Stress &amp; Trauma</a> ›
+        <span>Stress-Induced Perception Disturbances</span>
+      </div>
+
+      <div class="page-wrapper">
+        <article class="article-col">
+          <div class="article-label">Stress &amp; Trauma</div>
+          <h1 class="article-title">Stress-Induced Perception Disturbances: When the Mind Misreads Reality</h1>
+          <p class="article-deck">Under conditions of extreme stress, the brain can generate sensory experiences —
+            sounds, voices, sensations — that feel entirely real. Here's what's happening, why it happens, and when to
+            seek help.</p>
+
+          <div class="author-bar">
+            <div class="author-avatar">SK</div>
+            <div class="author-details">
+              <div class="author-name">Sunita Kapoor, MD</div>
+              <div class="author-cred">Board-Certified Psychiatrist · Medically reviewed by Dr. Elena Reyes, PhD</div>
+            </div>
+            <div class="meta-right">Updated: January 22, 2029<br>8 minute read</div>
+          </div>
+
+          <div class="fact-check-bar">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink:0;margin-top:1px">
+              <circle cx="8" cy="8" r="7" stroke="#1c7c54" stroke-width="1.2" />
+              <path d="M5 8.5l2 2 4-4" stroke="#1c7c54" stroke-width="1.2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+            <div class="fc-text"><strong>Medically reviewed and fact-checked.</strong> All Healthline content undergoes
+              rigorous medical review to ensure accuracy. See our <u>editorial standards</u>.</div>
+          </div>
+
+          <img src="healthline_hero.png" alt="Overhead shot of hands resting on a white desk, soft natural window light"
+            style="width:100%;aspect-ratio:2/1;object-fit:cover;border-radius:8px;margin-bottom:7px;display:block;">
+          <div class="img-credit">Photo: Healthline Illustration Team</div>
+
+          <div class="key-takeaways">
+            <div class="kt-title">Key Takeaways</div>
+            <ul class="kt-list">
+              <li>Under extreme stress, the brain can generate auditory experiences including voices, sounds, or echoes
+              </li>
+              <li>This is called stress-induced perception disturbance and is distinct from psychosis</li>
+              <li>It most commonly occurs following traumatic events, sudden loss, or prolonged severe stress</li>
+              <li>Most cases resolve naturally as stress decreases; persistent cases warrant professional evaluation
+              </li>
+            </ul>
+          </div>
+
+          <div class="article-body">
+            <p>The human brain is not a passive recorder of reality. It is an active prediction machine, constantly
+              constructing experience from a combination of incoming sensory data and deeply held internal models of the
+              world. Under normal circumstances, this process is seamless. Under extreme stress, it can break down —
+              producing perceptions that feel entirely real but have no external source.</p>
+            <p>This phenomenon, which clinicians have begun calling <strong>stress-induced perception disturbance
+                (SIPD)</strong>, is more common than most people realize — and better understood than ever before.</p>
+
+            <h2>What Are Stress-Induced Perception Disturbances?</h2>
+            <p>Stress-induced perception disturbances are temporary alterations in how the brain processes sensory
+              input, occurring specifically in the context of extreme psychological stress, trauma, or acute grief. They
+              can take a number of forms:</p>
+            <ul>
+              <li>Hearing voices, sounds, or ambient noise connected to a traumatic event</li>
+              <li>Hearing the voice of a deceased person, especially a family member</li>
+              <li>Perceiving sounds (sirens, crowds, voices) that intrude on waking consciousness</li>
+              <li>Difficulty distinguishing between memory and present perception</li>
+              <li>Heightened sensitivity to sounds, interpreting neutral sounds as threatening</li>
+            </ul>
+
+            <div class="data-grid">
+              <div class="data-cell">
+                <div class="data-number">1 in 3</div>
+                <div class="data-label">trauma survivors experience some auditory perception disturbance</div>
+              </div>
+              <div class="data-cell">
+                <div class="data-number">80%</div>
+                <div class="data-label">of cases resolve within 3–6 months without formal treatment</div>
+              </div>
+              <div class="data-cell">
+                <div class="data-number">62%</div>
+                <div class="data-label">of bereaved individuals report hearing the voice of the deceased</div>
+              </div>
+              <div class="data-cell">
+                <div class="data-number">~6 wks</div>
+                <div class="data-label">average duration of post-traumatic auditory intrusions</div>
+              </div>
+            </div>
+
+            <h2>Why Does This Happen?</h2>
+            <p>The answer lies in the intersection of the brain's stress response and its sensory architecture. When the
+              amygdala detects extreme threat or loss, it floods the system with stress hormones — cortisol and
+              norepinephrine — that increase sensory sensitivity and lower the threshold at which internally generated
+              neural activity is perceived as external. In plain terms: a brain under extreme stress is primed to
+              perceive, and it may perceive things that aren't there.</p>
+
+            <h3>The Role of Memory Intrusion</h3>
+            <p>Traumatic memories are encoded with greater emotional intensity and less temporal context than ordinary
+              memories — meaning they can be activated without the usual cues that tell the brain "this is a memory,"
+              and may intrude into present awareness as if occurring now. This is the mechanism underlying flashbacks,
+              but it also applies to auditory components of traumatic scenes.</p>
+
+            <div class="callout">
+              <div class="callout-title">A Note on Hearing a Lost Person's Voice</div>
+              <p>One specific type of SIPD deserves special mention: hearing the voice of someone who has recently died.
+                This is reported by the majority of bereaved individuals and is not a sign of psychiatric disorder.</p>
+              <p>It is the brain reaching for a pattern it has spent years learning — a pattern so deeply encoded that
+                even after the source is gone, the neural template remains, and under stress, may activate.</p>
+            </div>
+
+            <h2>Is This the Same as Psychosis?</h2>
+            <p>No. Stress-induced perception disturbances share the surface feature of hallucination with psychotic
+              conditions, but they differ in almost every other respect. They are contextual (occurring after
+              identifiable trauma), temporally limited (diminishing as stress decreases), non-commanding (not issuing
+              instructions), and not accompanied by other features of psychosis such as disorganized thinking or
+              paranoid delusions.</p>
+
+            <h2>What Can Help</h2>
+            <p>For most people, SIPD resolves as the underlying stress decreases — particularly when the person has
+              support and is processing grief appropriately. Specific approaches include:</p>
+            <ul>
+              <li>Trauma-focused cognitive behavioral therapy (TF-CBT)</li>
+              <li>EMDR (Eye Movement Desensitization and Reprocessing)</li>
+              <li>Somatic approaches and body-based therapy</li>
+              <li>Sleep hygiene and stress reduction</li>
+              <li>Grief counseling if bereavement is a component</li>
+            </ul>
+          </div>
+
+          <div class="medical-note"><strong>Medical disclaimer:</strong> This article is for informational purposes only
+            and is not a substitute for professional medical advice, diagnosis, or treatment. If you are experiencing
+            persistent or distressing symptoms, please consult a licensed healthcare provider.</div>
+        </article>
+
+        <aside class="sidebar-col">
+          <div class="sidebar-widget">
+            <div class="widget-title">Related Articles</div>
+            <div class="related-card" onclick="window.location.href='article_ptsd.html'">
+              <img src="thumbONE.jpg" alt="Brain MRI scan on a lightbox" class="related-card-img"
+                style="width:58px;height:46px;object-fit:cover;border-radius:6px;flex-shrink:0;">
+              <div>
+                <div class="related-card-title">Cortisol and the Brain: How Chronic Stress Alters Neural Structure</div>
+                <div class="related-card-meta">Neurology Review</div>
+              </div>
+            </div>
+            <div class="related-card" onclick="window.location.href='article_grief.html'">
+              <img src="thumbTWO.jpg" alt="Person sitting alone by a rain-streaked window" class="related-card-img"
+                style="width:58px;height:46px;object-fit:cover;border-radius:6px;flex-shrink:0;">
+              <div>
+                <div class="related-card-title">Anxiety After Accident: Recognizing PTSD Before It Takes Hold</div>
+                <div class="related-card-meta">Psychology Spot</div>
+              </div>
+            </div>
+            <div class="related-card">
+              <img src="thumbTHREE.jpg" alt="Open journal with a pen resting across it" class="related-card-img"
+                style="width:58px;height:46px;object-fit:cover;border-radius:6px;flex-shrink:0;">
+              <div>
+                <div class="related-card-title">Burnout vs. Trauma: How to Tell the Difference</div>
+                <div class="related-card-meta">Healthline</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="newsletter-widget">
+            <h4>Mental Health Newsletter</h4>
+            <p>Evidence-based mental health content delivered weekly</p><input type="email"
+              placeholder="Your email address"><button>Subscribe — Free</button>
+          </div>
+
+          <div class="sidebar-widget" style="margin-top:4px">
+            <img src="ad_three.png" alt="Advertisement"
+              style="width:100%;height:120px;object-fit:cover;border-radius:6px;display:block;">
+          </div>
+
+          <div class="sidebar-widget">
+            <div class="widget-title">Find Help Now</div>
+            <div class="resource-card">
+              <a href="#">Crisis Text Line: Text HOME to 741741 →</a>
+              <a href="#">NAMI Helpline: 1-800-950-6264 →</a>
+              <a href="#">Find a trauma-informed therapist →</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+  <script src="shared.js"></script>
+</body>
+
+</html>

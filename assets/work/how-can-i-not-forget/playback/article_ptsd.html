@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Post-Traumatic Auditory Hallucinations — Neurology Review</title>
+  <link rel="stylesheet" href="shared.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;600&display=swap"
+    rel="stylesheet">
+  <style>
+    html,
+    body {
+      overflow: hidden
+    }
+
+    .page-content {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      background: #f8f7f4;
+      position: relative
+    }
+
+    /* Article-specific palette */
+    .art {
+      --accent: #1a6b4a;
+      --accent-light: #e8f5ef;
+      --link: #1a5c8a
+    }
+
+    .site-header {
+      background: #fff;
+      border-bottom: 2px solid #1a6b4a
+    }
+
+    .site-header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 40px;
+      border-bottom: 1px solid #e2dfd8
+    }
+
+    .site-logo {
+      font-family: 'Lora', serif;
+      font-size: 21px;
+      font-weight: 700;
+      color: #1a1917;
+      text-decoration: none
+    }
+
+    .site-logo span {
+      color: #1a6b4a
+    }
+
+    .site-nav {
+      display: flex;
+      gap: 22px;
+      align-items: center
+    }
+
+    .site-nav a {
+      font-size: 13px;
+      color: #6b6760;
+      text-decoration: none
+    }
+
+    .site-nav a:hover {
+      color: #1a6b4a
+    }
+
+    .site-sections {
+      display: flex;
+      overflow-x: auto;
+      padding: 0 40px
+    }
+
+    .site-section {
+      padding: 10px 16px;
+      font-size: 13px;
+      color: #6b6760;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all .2s;
+      white-space: nowrap;
+      text-decoration: none
+    }
+
+    .site-section.active,
+    .site-section:hover {
+      color: #1a6b4a;
+      border-bottom-color: #1a6b4a
+    }
+
+    .breadcrumb {
+      padding: 10px 40px;
+      font-size: 12px;
+      color: #b0ada8;
+      background: #f2f0ec;
+      border-bottom: 1px solid #e2dfd8;
+      display: flex;
+      gap: 6px;
+      align-items: center
+    }
+
+    .breadcrumb a {
+      color: #1a5c8a;
+      text-decoration: none
+    }
+
+    .breadcrumb a:hover {
+      text-decoration: underline
+    }
+
+    .article-wrapper {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 36px 40px;
+      display: flex;
+      gap: 52px
+    }
+
+    .article-main {
+      flex: 1;
+      min-width: 0;
+      max-width: 700px
+    }
+
+    .article-sidebar {
+      width: 260px;
+      flex-shrink: 0
+    }
+
+    .article-category {
+      display: inline-block;
+      background: #e8f5ef;
+      color: #1a6b4a;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 4px;
+      margin-bottom: 16px
+    }
+
+    .article-title {
+      font-family: 'Lora', serif;
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1.25;
+      color: #1a1917;
+      margin-bottom: 14px
+    }
+
+    .article-subtitle {
+      font-size: 17px;
+      color: #6b6760;
+      line-height: 1.6;
+      margin-bottom: 22px;
+      font-weight: 300
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 0;
+      border-top: 1px solid #e2dfd8;
+      border-bottom: 1px solid #e2dfd8;
+      margin-bottom: 26px
+    }
+
+    .author-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #c8e0d4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      color: #2d6b4a;
+      font-weight: 600;
+      flex-shrink: 0
+    }
+
+    .author-info {
+      flex: 1
+    }
+
+    .author-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #1a5c8a
+    }
+
+    .author-title {
+      font-size: 12px;
+      color: #b0ada8
+    }
+
+    .article-date {
+      font-size: 12px;
+      color: #b0ada8
+    }
+
+    .share-row {
+      display: flex;
+      gap: 8px
+    }
+
+    .share-btn {
+      background: #f2f0ec;
+      border: 1px solid #e2dfd8;
+      border-radius: 6px;
+      padding: 5px 12px;
+      font-size: 12px;
+      color: #6b6760;
+      cursor: pointer;
+      font-family: 'Source Sans 3', sans-serif
+    }
+
+    .share-btn:hover {
+      border-color: #1a6b4a;
+      color: #1a6b4a
+    }
+
+    .article-body {
+      line-height: 1.8
+    }
+
+    .article-body p {
+      font-size: 16px;
+      color: #1a1917;
+      margin-bottom: 20px;
+      line-height: 1.85
+    }
+
+    .article-body h2 {
+      font-family: 'Lora', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #1a1917;
+      margin: 34px 0 13px;
+      padding-top: 6px
+    }
+
+    .article-body h3 {
+      font-size: 17px;
+      font-weight: 600;
+      color: #1a1917;
+      margin: 24px 0 10px
+    }
+
+    .article-body blockquote {
+      border-left: 3px solid #1a6b4a;
+      padding: 13px 20px;
+      background: #e8f5ef;
+      margin: 26px 0;
+      border-radius: 0 8px 8px 0
+    }
+
+    .article-body blockquote p {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      color: #1a6b4a;
+      font-size: 16px;
+      margin: 0
+    }
+
+    .article-body blockquote cite {
+      display: block;
+      margin-top: 7px;
+      font-size: 12px;
+      color: #6b9080;
+      font-style: normal
+    }
+
+    .article-body ul {
+      padding-left: 22px;
+      margin-bottom: 20px
+    }
+
+    .article-body li {
+      font-size: 15px;
+      color: #1a1917;
+      line-height: 1.75;
+      margin-bottom: 7px
+    }
+
+    .info-box {
+      background: #f2f0ec;
+      border: 1px solid #e2dfd8;
+      border-radius: 10px;
+      padding: 18px 22px;
+      margin: 26px 0
+    }
+
+    .info-box-title {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: #1a6b4a;
+      margin-bottom: 10px
+    }
+
+    .info-box p {
+      font-size: 14px;
+      color: #6b6760;
+      line-height: 1.7;
+      margin-bottom: 7px
+    }
+
+    .info-box p:last-child {
+      margin-bottom: 0
+    }
+
+    .article-img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, #d4e8e0, #c8dbe8);
+      border-radius: 10px;
+      margin: 22px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-size: 14px;
+      color: rgba(30, 60, 50, .38);
+      text-align: center;
+      padding: 20px
+    }
+
+    .img-caption {
+      font-size: 12px;
+      color: #b0ada8;
+      margin-top: -14px;
+      margin-bottom: 18px;
+      text-align: center
+    }
+
+    .references {
+      margin-top: 44px;
+      padding-top: 22px;
+      border-top: 2px solid #e2dfd8
+    }
+
+    .references h3 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 11px;
+      color: #6b6760
+    }
+
+    .reference-item {
+      font-size: 12px;
+      color: #b0ada8;
+      line-height: 1.6;
+      margin-bottom: 7px;
+      padding-left: 18px;
+      text-indent: -18px
+    }
+
+    /* sidebar */
+    .sidebar-section {
+      margin-bottom: 26px
+    }
+
+    .sidebar-heading {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: #b0ada8;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #1a6b4a;
+      margin-bottom: 13px
+    }
+
+    .related-article {
+      display: block;
+      padding: 11px 0;
+      border-bottom: 1px solid #e2dfd8;
+      cursor: pointer;
+      text-decoration: none
+    }
+
+    .related-article:last-child {
+      border-bottom: none
+    }
+
+    .related-article-title {
+      font-size: 13.5px;
+      color: #1a1917;
+      line-height: 1.4;
+      font-weight: 500;
+      margin-bottom: 3px
+    }
+
+    .related-article:hover .related-article-title {
+      color: #1a5c8a
+    }
+
+    .related-article-meta {
+      font-size: 11px;
+      color: #b0ada8
+    }
+
+    .ad-placeholder {
+      background: #f2f0ec;
+      border: 1px dashed #e2dfd8;
+      border-radius: 8px;
+      padding: 22px;
+      text-align: center;
+      font-size: 11px;
+      color: #b0ada8;
+      margin-bottom: 22px
+    }
+
+    .cme-badge {
+      background: #e8f5ef;
+      border: 1px solid rgba(26, 107, 74, .18);
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 6px
+    }
+
+    .cme-badge div:first-child {
+      font-size: 11px;
+      font-weight: 600;
+      color: #1a6b4a;
+      margin-bottom: 6px
+    }
+
+    .cme-badge div:last-child {
+      font-size: 12px;
+      color: #2d6b4a;
+      line-height: 1.5
+    }
+  </style>
+</head>
+
+<body>
+  <div class="browser-window art">
+    <div class="browser-chrome">
+      <div class="chrome-left">
+        <div class="traffic-lights">
+          <div class="tl tl-red"></div>
+          <div class="tl tl-yellow"></div>
+          <div class="tl tl-green"></div>
+        </div>
+        <button class="nav-btn" onclick="history.back()"><svg viewBox="0 0 14 14" fill="none">
+            <path d="M9 2L4 7L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg></button>
+        <button class="nav-btn disabled"><svg viewBox="0 0 14 14" fill="none">
+            <path d="M5 2L10 7L5 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg></button>
+      </div>
+      <div class="url-bar">
+        <svg class="url-lock" viewBox="0 0 12 14" fill="none">
+          <rect x="1" y="6" width="10" height="7" rx="1.5" stroke="currentColor" stroke-width="1.2" />
+          <path d="M3.5 6V4a2.5 2.5 0 015 0v2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
+        </svg>
+        <div class="url-text">neurologyreview.net / <span>trauma › auditory-hallucinations-after-trauma</span></div>
+      </div>
+      <div class="chrome-right">
+        <div class="b-icon"><svg viewBox="0 0 15 15" fill="none">
+            <path d="M5 7.5H2a1 1 0 00-1 1V13a1 1 0 001 1h11a1 1 0 001-1V8.5a1 1 0 00-1-1h-3M7.5 1v8M5 3.5L7.5 1 10 3.5"
+              stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg></div>
+        <div class="b-icon"><svg viewBox="0 0 13 15" fill="none">
+            <path d="M1 1h11v13L6.5 10 1 14V1z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg></div>
+      </div>
+    </div>
+
+    <div class="page-content">
+      <header class="site-header">
+        <div class="site-header-top">
+          <a class="site-logo" href="#">Neurology<span>Review</span></a>
+          <nav class="site-nav">
+            <a href="#">Subscribe</a>
+            <a href="#">Sign In</a>
+            <a href="#"
+              style="background:#1a6b4a;color:#fff;padding:6px 14px;border-radius:6px;font-size:12px;font-weight:600">Search
+              Archive</a>
+          </nav>
+        </div>
+        <div class="site-sections">
+          <a class="site-section" href="#">News</a>
+          <a class="site-section active" href="#">Research</a>
+          <a class="site-section" href="#">Clinical Practice</a>
+          <a class="site-section" href="#">Trauma &amp; Injury</a>
+          <a class="site-section" href="#">Mental Health</a>
+          <a class="site-section" href="#">Neuroscience</a>
+          <a class="site-section" href="#">CME</a>
+        </div>
+      </header>
+
+      <div class="breadcrumb">
+        <a href="results_voices.html">← Search results</a> ›
+        <a href="#">Research</a> › <a href="#">Trauma &amp; Injury</a> ›
+        <span>Post-Traumatic Auditory Hallucinations</span>
+      </div>
+
+      <div class="article-wrapper">
+        <article class="article-main">
+          <div class="article-category">Trauma · Perception</div>
+          <h1 class="article-title">Post-Traumatic Auditory Hallucinations: Causes, Symptoms, and What to Expect</h1>
+          <p class="article-subtitle">After a traumatic event, survivors commonly report hearing voices — especially of
+            loved ones lost in the incident. Clinicians increasingly recognize this as part of the brain's normal, if
+            distressing, processing of unbearable experience.</p>
+          <div class="article-meta">
+            <div class="author-avatar">RY</div>
+            <div class="author-info">
+              <div class="author-name">Dr. Rachel Yuen, MD, PhD</div>
+              <div class="author-title">Dept. of Neuropsychiatry, UCSF Medical Center</div>
+            </div>
+            <div class="article-date">March 14, 2029 · 8 min read</div>
+            <div class="share-row">
+              <div class="share-btn">Save</div>
+              <div class="share-btn">Share</div>
+            </div>
+          </div>
+
+          <div class="article-body">
+            <p>When survivors of catastrophic events describe hearing the voices of people they have lost, a common
+              clinical instinct is to reach for a psychiatric diagnosis. But a growing body of research suggests that
+              post-traumatic auditory hallucinations — hearing voices, ambient sounds, or vocal memories following
+              severe trauma — are not only common but may represent an adaptive, if painful, feature of how the human
+              brain processes and integrates traumatic loss.</p>
+
+            <img src="neurologyReview_hero.jpg" alt="Neural pathways diagram — limbic-auditory cortex feedback loop"
+              style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:10px;margin:22px 0 0;display:block;">
+            <div class="img-caption">Fig. 1 — Diagram of the limbic-auditory cortex feedback loop implicated in
+              post-traumatic auditory experiences. (Illustration: NR)</div>
+
+            <p>Studies conducted over the past decade estimate that between 30 and 50 percent of individuals who survive
+              traumatic accidents — particularly those involving the death of a companion — will experience some form of
+              intrusive auditory perception in the weeks following the event. These experiences range from faint,
+              ambient sounds associated with the traumatic scene, to clear and recognizable vocal hallucinations in the
+              voice of the deceased.</p>
+
+            <blockquote>
+              <p>"The brain is not malfunctioning when it produces these experiences. It is doing exactly what brains
+                do: attempting to complete an interaction that was never allowed to finish."</p>
+              <cite>— Dr. Marcus Chen, University of Edinburgh Centre for Grief Studies, 2028</cite>
+            </blockquote>
+
+            <h2>The Neuroscience of Auditory Intrusion</h2>
+            <p>The mechanism underlying post-traumatic auditory hallucinations is now fairly well understood. The
+              amygdala — the brain's emotional alarm system — encodes traumatic memories with unusual intensity, often
+              at the expense of the prefrontal cortex's ability to contextualize or suppress them. When a traumatic
+              memory is activated, the brain can replay associated sensory data, including voices and sounds, as if they
+              were occurring in real time.</p>
+            <p>This is distinct from the chronic, command-type hallucinations associated with psychotic disorders such
+              as schizophrenia. Post-traumatic auditory experiences are typically:</p>
+            <ul>
+              <li>Temporally linked to a specific memory or loss</li>
+              <li>Recognizable in content and voice (usually a known person)</li>
+              <li>Diminishing in frequency over weeks to months</li>
+              <li>Accompanied by other recognizable PTSD symptoms</li>
+              <li>Non-commanding — the voices do not issue instructions</li>
+            </ul>
+
+            <h2>Grief-Related Auditory Phenomena</h2>
+            <p>A related but distinct phenomenon occurs specifically in the context of bereavement. Post-bereavement
+              hallucinations — sometimes called sensory bonds — have been documented across cultures and throughout
+              history. A landmark study published in the <em>Journal of Nervous and Mental Disease</em> in 2026 found
+              that 62% of respondents who had lost a close family member reported hearing their voice on at least one
+              occasion within the first three months of bereavement.</p>
+
+            <div class="info-box">
+              <div class="info-box-title">Key Statistics</div>
+              <p>30–50% of trauma survivors report some form of post-traumatic auditory experience within 6 weeks of the
+                event.</p>
+              <p>62% of bereaved individuals report hearing the voice of the deceased within 3 months of loss.</p>
+              <p>Symptoms resolve without clinical intervention in the majority of cases within 3–6 months.</p>
+              <p>Persistent hallucinations beyond 3 months warrant evaluation for PTSD or complicated grief disorder.
+              </p>
+            </div>
+
+            <h2>When to Seek Medical Attention</h2>
+            <p>Post-traumatic auditory experiences warrant clinical evaluation if any of the following apply:</p>
+            <ul>
+              <li>The voices persist for more than six weeks without improvement</li>
+              <li>The voices are commanding, instructional, or threatening</li>
+              <li>The experiences are accompanied by significant deterioration in daily functioning</li>
+              <li>The individual cannot distinguish between the auditory experience and external reality</li>
+              <li>The experiences are accompanied by other perceptual disturbances</li>
+            </ul>
+            <p>Effective treatments include trauma-focused cognitive behavioral therapy (TF-CBT), EMDR (Eye Movement
+              Desensitization and Reprocessing), and in some cases pharmacological support. For grief-related auditory
+              experiences specifically, structured grief therapy has demonstrated strong outcomes.</p>
+
+            <h3>A Note on Stigma</h3>
+            <p>One of the most important clinical roles a provider can play is normalizing these experiences. Patients
+              often delay seeking help because they fear being labeled as psychotic or "going crazy." In the context of
+              recent trauma and loss, hearing a familiar voice is almost ordinary. Offering that reassurance is itself
+              therapeutic.</p>
+
+            <div class="references">
+              <h3>References</h3>
+              <div class="reference-item">1. Chen M, et al. "Auditory Intrusions in Acute Trauma: Prevalence and
+                Phenomenology." <em>Journal of Traumatic Stress</em>, 41(3), 2028.</div>
+              <div class="reference-item">2. Yuen R, Nakamura S. "Limbic Encoding of Acoustic Traumatic Memory."
+                <em>Neuropsychiatry</em>, 18(2), 2029.
+              </div>
+              <div class="reference-item">3. Bennett L, et al. "Post-Bereavement Hallucinations: A Systematic Review."
+                <em>Journal of Nervous and Mental Disease</em>, 214(1), 2026.
+              </div>
+              <div class="reference-item">4. WHO. "Post-Traumatic Stress Disorder: Clinical Guidelines." 4th ed., 2027.
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <aside class="article-sidebar">
+          <div class="sidebar-section">
+            <img src="ad_one.png" alt="Advertisement"
+              style="width:100%;height:120px;object-fit:cover;border-radius:8px;display:block;">
+          </div>
+          <div class="sidebar-section">
+            <div class="sidebar-heading">Related Articles</div>
+            <a class="related-article" href="article_grief.html">
+              <div class="related-article-title">When the Body Remembers: Somatic Symptoms After Traumatic Loss</div>
+              <div class="related-article-meta">Psychology Spot · 2028</div>
+            </a>
+            <a class="related-article" href="article_stress.html">
+              <div class="related-article-title">The Neuroscience of Hypervigilance: Why Trauma Keeps You on Alert</div>
+              <div class="related-article-meta">Healthline · 2029</div>
+            </a>
+            <a class="related-article" href="#">
+              <div class="related-article-title">EMDR and Trauma: What the Latest Research Shows</div>
+              <div class="related-article-meta">Neurology Review · 2029</div>
+            </a>
+            <a class="related-article" href="#">
+              <div class="related-article-title">Dissociation After Injury: Recognizing the Signs</div>
+              <div class="related-article-meta">Neurology Review · 2028</div>
+            </a>
+          </div>
+          <div class="cme-badge">
+            <div>CME Credits Available</div>
+            <div>This article qualifies for 0.5 AMA PRA Category 1 Credits.</div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+  <script src="shared.js"></script>
+</body>
+
+</html>

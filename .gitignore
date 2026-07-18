@@ -1,0 +1,11 @@
+# working files — large / private, never deploy
+cue/
+_originals/
+
+# dev tooling & internal notes
+.claude/
+CLAUDE.md
+
+# OS cruft
+.DS_Store
+**/.DS_Store

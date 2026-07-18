@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Concept &amp; Illustration — 默默 GINGKO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;600&family=Spline+Sans:wght@400;500&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css"/>
+<script src="content.js"></script>
+</head>
+<body data-page="menu" data-title="concept &amp; illustration" data-title-img="title-concept-illustration.png" data-parent="index.html">
+<main class="view-root">
+  <div class="filters" role="group" aria-label="Filter by type">
+    <button data-cat="all" aria-pressed="true">All</button>
+    <button data-cat="illustration" aria-pressed="false">Illustration</button>
+    <button data-cat="concept" aria-pressed="false">Concept Design</button>
+    <button data-cat="environment" aria-pressed="false">Environment Design</button>
+    <button data-cat="character" aria-pressed="false">Character Design</button>
+    <button data-cat="story" aria-pressed="false">Story Art</button>
+    <button data-cat="3d" aria-pressed="false">3D</button>
+    <button data-cat="motion" aria-pressed="false">Motion Graphics</button>
+  </div>
+
+  <div class="gallery g3" id="grid"></div>
+
+  <script>
+  (async function(){
+    if(window.GKcontent) await GKcontent.renderCI(document.getElementById('grid'));   // shuffled, groups kept together
+    const grid=document.getElementById('grid');
+    const fbtns=[...document.querySelectorAll('.filters button')];   // shell OR standalone (filters may be relocated)
+    const allBtn=fbtns.find(b=>b.dataset.cat==='all');
+    function apply(){
+      const showAll=allBtn.getAttribute('aria-pressed')==='true';
+      const cats=new Set(fbtns.filter(b=>b!==allBtn && b.getAttribute('aria-pressed')==='true').map(b=>b.dataset.cat));
+      grid.querySelectorAll('.tile').forEach(t=>{
+        const tags=(t.getAttribute('data-tags')||'').split(' ').filter(Boolean);
+        t.hidden = !(showAll || tags.some(tag=>cats.has(tag)));
+      });
+      if(window.GKcontent) GKcontent.layoutCI(grid);   // re-pack without the hidden tiles
+    }
+    allBtn.addEventListener('click',()=>{ fbtns.forEach(x=>x.setAttribute('aria-pressed', x===allBtn)); apply(); });
+    fbtns.filter(b=>b!==allBtn).forEach(b=>b.addEventListener('click',()=>{
+      b.setAttribute('aria-pressed', b.getAttribute('aria-pressed')!=='true');
+      allBtn.setAttribute('aria-pressed','false');
+      if(!fbtns.some(x=>x!==allBtn && x.getAttribute('aria-pressed')==='true')) allBtn.setAttribute('aria-pressed','true');
+      apply();
+    }));
+  })();
+  </script>
+</main>
+<script src="mobile.js"></script>
+</body>
+</html>

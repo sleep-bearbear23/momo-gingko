@@ -1,0 +1,1072 @@
+body {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+    min-height: 100vh;
+    /* Allow large margins */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background: black;
+    /* border: white 2px solid; */
+    cursor: url('cursor/vintage.cur'), auto;
+}
+
+* {
+    /* font-family: "VT323", monospace;
+    font-weight: 400;
+    font-style: normal; */
+    /* color: rgb(44, 44, 45); */
+    user-select: none;
+    -webkit-user-select: none;
+    /* Safari */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* IE/Edge */
+    /* border: magenta solid 1px; */
+}
+
+a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+table {
+    border-collapse: collapse;
+    /* Merges borders for a clean grid */
+    /* border: 2px solid rgb(169, 163, 155); */
+    /* Sets border for the table */
+    /* background-color: rgb(205, 199, 199); */
+}
+
+th,
+td {
+    /* border: 2px solid rgb(169, 163, 155); */
+    padding: 2px;
+    height: 10px;
+}
+
+.scroll {
+    overflow-y: auto;
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and older Edge */
+}
+
+input:focus {
+    outline: none;
+}
+
+
+/*||||||||||||||||||||||||||||||||||||||||||||||||||
+LAYOUT SECTION BELOW
+||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+
+/* .lay {
+    border: 0.2px solid #ffffff;
+} */
+
+.full-container {
+    /* margin-top: 2px; */
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    /* background-color: rgb(169, 163, 155); */
+    /* border: 2px solid white; */
+}
+
+#browser-bar {
+    height: 25px;
+    width: calc(100% - 14px);
+    background: linear-gradient(to right, #193687, #c3cadd);
+    display: flex;
+    padding-right: 10px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: solid 2px #d4cfcb;
+    /* border-radius: 9px 9px 0px 0px; */
+}
+
+.top-bar {
+    width: 100%;
+    height: 40px;
+    background-color: #d4cfcb;
+    /* border-top: 1px solid rgb(239, 237, 233);
+    border-bottom: 1px solid rgb(169, 163, 155); */
+    padding-left: 15px;
+    display: flex;
+    flex-direction: row;
+    /* justify-content: left;
+    align-items: top; */
+}
+
+.content {
+    width: 100%;
+    height: calc(100% - 65px);
+    margin: 0 0 0 0;
+    /* border: 2px green solid; */
+    display: flex;
+    flex-direction: row;
+    background-color: #d4cfcb;
+}
+
+.left-column {
+    height: 100%;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+}
+
+.left-panel {
+    height: 100%;
+    width: calc(100% - 8px);
+    margin: 0px 0px 0px 0px;
+    display: flex;
+    flex-direction: column;
+    padding: 2px;
+    border-top: 2px solid rgb(244, 241, 238);
+    border-right: 2px solid rgb(90, 89, 92);
+    border-left: 2px solid rgb(244, 241, 238);
+    border-bottom: 2px solid rgb(90, 89, 92);
+    border-radius: 2px;
+}
+
+#patient-info-container {
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+    margin: auto auto auto auto;
+    border-bottom: 1.5px solid rgb(244, 241, 238);
+    border-left: 1.5px solid rgb(90, 89, 92);
+    border-right: 1.5px solid rgb(244, 241, 238);
+    border-top: 1.5px solid rgb(90, 89, 92);
+    display: flex;
+    flex-direction: column;
+    background: rgb(244, 241, 238);
+}
+
+.photo-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    /* margin-bottom: 20px; */
+    /* border: magenta 1px solid; */
+}
+
+.patient-info-box {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30px;
+    /* border: magenta 1px solid; */
+}
+
+.middle-column {
+    height: calc(100% - 3px);
+    width: calc(53% - 3px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: top;
+    padding: 2px;
+    border-top: 2px solid rgb(244, 241, 238);
+    border-right: 2px solid rgb(90, 89, 92);
+    border-left: 2px solid rgb(244, 241, 238);
+    border-bottom: 2px solid rgb(90, 89, 92);
+    border-radius: 2px;
+}
+
+.diagram-tabs {
+    height: 40px;
+    width: calc(100% - 7px);
+    display: flex;
+    flex-direction: row;
+    padding-left: 5px;
+}
+
+.dna-panel {
+    width: calc(100% - 7px);
+    height: calc(77% - 40px);
+    border-radius: 2px;
+    border-top: 1.5px solid rgb(244, 241, 238);
+    border-right: 1.5px solid rgb(90, 89, 92);
+    border-left: 1.5px solid rgb(244, 241, 238);
+    border-bottom: 1.5px solid rgb(90, 89, 92);
+    display: flex;
+    flex-direction: row;
+    margin: 0px auto 0px auto;
+}
+
+.diagram-info {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin: 0px 0px auto 20px;
+}
+
+.diagram-outer-frame {
+    height: calc(100% - 30px);
+    width: auto;
+    margin: 20px auto auto auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    align-items: left;
+    border-bottom: 1.5px solid rgb(225, 220, 215);
+    border-left: 1.5px solid rgb(147, 146, 150);
+    border-right: 1.5px solid rgb(225, 220, 215);
+    border-top: 1.5px solid rgb(147, 146, 150);
+}
+
+.diagram-inner-frame {
+    height: calc(100% - 4px);
+    width: 32vw;
+    display: flex;
+    /* flex-direction: row;
+    justify-content: center; */
+    align-items: center;
+    border-top: 1.5px solid rgb(225, 220, 215);
+    border-right: 1.5px solid rgb(147, 146, 150);
+    border-left: 1.5px solid rgb(225, 220, 215);
+    border-bottom: 1.5px solid rgb(147, 146, 150);
+}
+
+.dna-diagram-container {
+    height: calc(100% - 50px);
+    width: calc(100% - 60px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+    margin: auto 0px auto auto;
+    border-bottom: 2px solid rgb(244, 241, 238);
+    border-left: 2px solid rgb(90, 89, 92);
+    border-right: 2px solid rgb(244, 241, 238);
+    border-top: 2px solid rgb(90, 89, 92);
+    padding: 3px;
+}
+
+.dia-scrollBar {
+    height: calc(100% - 50px);
+    width: 15px;
+    margin: auto auto auto 0px;
+    border-bottom: 2px solid rgb(244, 241, 238);
+    border-left: 2px solid rgb(90, 89, 92);
+    border-right: 2px solid rgb(244, 241, 238);
+    border-top: 2px solid rgb(90, 89, 92);
+    padding-top: 3px;
+    padding-bottom: 3px;
+    background: rgb(225, 220, 215);
+    display: flex;
+    flex-direction: column;
+}
+
+.dia-scrollThumb-container {
+    width: 100%;
+    height: calc(100% - 20px);
+    margin: 0px;
+}
+
+.dia-scrollThumb {
+    border-top: 2px solid rgb(244, 241, 238);
+    border-right: 2px solid rgb(90, 89, 92);
+    border-left: 2px solid rgb(244, 241, 238);
+    border-bottom: 2px solid rgb(90, 89, 92);
+    width: calc(100% - 4px);
+    cursor: pointer;
+    background: #d4cfcb;
+}
+
+.dia-scrollButton-top,
+.dia-scrollButton-bottom {
+    border-top: 2px solid rgb(244, 241, 238);
+    border-right: 2px solid rgb(90, 89, 92);
+    border-left: 2px solid rgb(244, 241, 238);
+    border-bottom: 2px solid rgb(90, 89, 92);
+    width: calc(100% - 4px);
+    height: 10px;
+    cursor: pointer;
+    background: #d4cfcb;
+    font-size: 7px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.dia-scrollButton-top:active,
+.dia-scrollButton-bottom:active {
+    border-bottom: 2px solid rgb(244, 241, 238);
+    border-left: 2px solid rgb(90, 89, 92);
+    border-right: 2px solid rgb(244, 241, 238);
+    border-top: 2px solid rgb(90, 89, 92);
+    background: rgb(147, 146, 150);
+    color: white;
+}
+
+.dia-scrollButton-top {
+    margin-top: 0px;
+}
+
+.dia-scrollButton-bottom {
+    margin: auto auto 0px auto;
+}
+
+.sequence-info-container {
+    height: calc(23% - 25px);
+    width: calc(100% - 7px);
+    display: flex;
+    flex-direction: column;
+    margin: auto auto 0px auto;
+    border-top: 1.5px solid rgb(244, 241, 238);
+    border-right: 1.5px solid rgb(90, 89, 92);
+    border-left: 1.5px solid rgb(244, 241, 238);
+    border-bottom: 1.5px solid rgb(90, 89, 92);
+}
+
+.right-column {
+    height: 100%;
+    width: 27%;
+    display: flex;
+    flex-direction: column;
+    padding: 2px;
+    border-top: 2px solid rgb(244, 241, 238);
+    border-right: 2px solid rgb(90, 89, 92);
+    border-left: 2px solid rgb(244, 241, 238);
+    border-bottom: 2px solid rgb(90, 89, 92);
+    border-radius: 2px;
+}
+
+.dna-control-container {
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.diagnosis {
+    width: 100%;
+}
+
+.diagnosis-outer-frame {
+    height: auto;
+    width: 95%;
+    margin: 20px auto auto auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    align-items: left;
+    border-bottom: 1.5px solid rgb(225, 220, 215);
+    border-left: 1.5px solid rgb(147, 146, 150);
+    border-right: 1.5px solid rgb(225, 220, 215);
+    border-top: 1.5px solid rgb(147, 146, 150);
+}
+
+.diagnosis-inner-frame {
+    height: calc(100% - 4px);
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-top: 1.5px solid rgb(225, 220, 215);
+    border-right: 1.5px solid rgb(147, 146, 150);
+    border-left: 1.5px solid rgb(225, 220, 215);
+    border-bottom: 1.5px solid rgb(147, 146, 150);
+    padding: 20px 0px;
+}
+
+.chromatogram-container {
+    height: 25%;
+    width: 100%;
+}
+
+/*\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+BROWSER BAR
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
+
+#browser-title {
+    font-family: "Tektur", sans-serif;
+    height: 80%;
+    margin: auto auto auto 10px;
+    font-size: 18px;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    /* border: 1px solid white; */
+    align-items: center;
+}
+
+.sub-browser {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 17px;
+    margin: auto auto auto 10px;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    /* border: 1px solid white; */
+    align-items: center;
+}
+
+.browser-button {
+    cursor: pointer;
+    margin: auto 0px auto 3px;
+    width: 15px;
+    height: 12px;
+    background-color: #d4cfcb;
+    border-top: 1.5px solid rgb(244, 241, 238);
+    border-right: 1.5px solid rgb(90, 89, 92);
+    border-left: 1.5px solid rgb(244, 241, 238);
+    border-bottom: 1.5px solid rgb(90, 89, 92);
+    border-radius: 2px;
+    font-size: 12px;
+}
+
+/*\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+INTERFACE BAR
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
+
+.menu-item {
+    margin: auto 0px 7px 0px;
+    border-left: 1px solid rgb(169, 163, 155);
+    border-right: 1px solid rgb(239, 237, 233);
+    font-size: 14px;
+    color: rgb(41, 45, 63);
+    padding-left: 10px;
+    padding-right: 11px;
+    /* border: red solid 1px; */
+}
+
+#account {
+    margin: auto 20px auto auto;
+    font-size: 15px;
+}
+
+#sign-out {
+    width: auto;
+    margin: auto 30px auto 0px;
+    font-size: 13px;
+    color: #0066cc;
+    cursor: pointer;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+/*\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+LEFT COLUMN
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
+
+.profile-picture {
+    width: 80%;
+    height: auto;
+    margin: 10px auto auto auto;
+    border: 1px rgb(90, 89, 92) solid;
+}
+
+.patient-info-box table {
+    width: 70%;
+    height: auto;
+}
+
+.patient-info-box table tr {
+    height: 20px;
+    font-size: 14px;
+}
+
+#patient-info tr td {
+    height: 25px;
+    text-align: left;
+    vertical-align: top;
+    font-size: 11px;
+    /* width: 35px; */
+    border: 1px rgb(90, 89, 92) solid;
+}
+
+.p-info-item {
+    font-weight: bold;
+}
+
+
+/*\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+MIDDLE COLUMN
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
+
+.tabs,
+.tabs-selected {
+    width: auto;
+    height: 90%;
+    background-color: #d4cfcb;
+    border-top: solid 2px rgb(244, 241, 238);
+    border-right: solid 2px rgb(90, 89, 92);
+    margin-top: 0.3%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: black;
+    /* padding-left: 5px; */
+    cursor: pointer;
+    border-radius: 6px 6px 0 0;
+}
+
+.tabs-selected {
+    background-color: #d4cfcb;
+    z-index: 500;
+    height: calc(90% + 3px);
+}
+
+.tab-font {
+    font-size: 14px;
+    /* width: 80%; */
+    margin: auto 17px auto 10px;
+    color: rgb(41, 45, 63);
+}
+
+.tab-exit {
+    font-size: 14px;
+    margin: auto 10px auto auto;
+    color: rgb(41, 45, 63);
+}
+
+.diagram-tb-container {
+    margin-top: 1px;
+    width: 100%;
+    height: calc(100% - 20px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid black;
+    /* padding: 0.5px; */
+}
+
+.section-title {
+    position: absolute;
+    /* top: 30px; */
+}
+
+.section-title-text {
+    margin: -9px auto auto 15px;
+    padding-left: 6px;
+    padding-right: 6px;
+    background: #d4cfcb;
+    color: black;
+    font-size: 15px;
+}
+
+.diagram {
+    width: 100%;
+    font-size: 14px;
+    border: none;
+    margin: 0px;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+#tableBody {}
+
+.diagram thead tr {
+    height: 12px;
+}
+
+.diagram thead tr th {
+    background: rgb(41, 45, 63);
+    color: rgb(244, 241, 238);
+    border: solid 1px rgb(244, 241, 238);
+    text-align: left;
+    font-weight: normal;
+    cursor: default;
+    padding: 2px;
+}
+
+.diagram tr {
+    height: 16px;
+
+}
+
+.diagram tbody tr {
+    background-color: rgb(244, 241, 238);
+    border-bottom: 1px solid black;
+    font-size: 14px;
+}
+
+.diagram tbody tr td {
+    /* border: 1px solid rgb(41, 45, 63); */
+    text-align: left;
+    padding: none;
+    padding: 2px;
+}
+
+.diagram tr:hover {
+    background-color: #d4cfcb;
+    color: black;
+}
+
+.diagram tbody tr.selected {
+    background-color: #0066cc;
+    color: white;
+}
+
+.diagram tbody:has(.selected) tr:not(.selected):hover {
+    background-color: #d4cfcb;
+    color: inherit;
+}
+
+.nm-left,
+.nm-right {
+    width: 10px;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 10px;
+    z-index: -1;
+    font-family: "Lexend", sans-serif;
+    font-weight: bold;
+    justify-content: center;
+    padding: 0px 2px;
+    z-index: 100;
+    margin: 0px 5px;
+}
+
+.nm-left {
+    align-items: right;
+}
+
+
+.nu-g {
+    color: white;
+    background: linear-gradient(to right, #ab273f, #e65441);
+    border-top: 1.5px solid white;
+    border-right: 1.5px solid rgb(41, 45, 63);
+    border-left: 1.5px solid white;
+    border-bottom: 1.5px solid rgb(41, 45, 63);
+}
+
+.nu-t {
+    color: white;
+    background: linear-gradient(to right, #274fab, #3e88a5);
+    border-top: 1.5px solid white;
+    border-right: 1.5px solid rgb(41, 45, 63);
+    border-left: 1.5px solid white;
+    border-bottom: 1.5px solid rgb(41, 45, 63);
+}
+
+.nu-a {
+    color: rgb(41, 45, 63);
+    background: linear-gradient(to right, #f4c25d, #ffe1c7);
+    border-top: 1.5px solid white;
+    border-right: 1.5px solid rgb(41, 45, 63);
+    border-left: 1.5px solid white;
+    border-bottom: 1.5px solid rgb(41, 45, 63);
+}
+
+.nu-c {
+    color: rgb(41, 45, 63);
+    background: linear-gradient(to right, #32bb60, #ade076);
+    border-top: 1.5px solid white;
+    border-right: 1.5px solid rgb(41, 45, 63);
+    border-left: 1.5px solid white;
+    border-bottom: 1.5px solid rgb(41, 45, 63);
+}
+
+.dia-c1 {
+    width: 15px;
+    padding-left: 3px;
+    font-size: 10px;
+    /* display: flex;
+    flex-direction: column; */
+    text-align: center;
+}
+
+.mismatch-holder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    pointer-events: none;
+}
+
+.dia-c2 {
+    width: 70px;
+    border-left: 1px solid black;
+}
+
+.l-mark-container,
+.r-mark-container {
+    width: auto;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    vertical-align: center;
+    align-items: center;
+    pointer-events: none;
+}
+
+.l-mark-container {
+    justify-content: right;
+}
+
+.r-mark-container {
+    justify-content: left;
+}
+
+.nucleotide-label {
+    border-left: 1px solid black;
+    width: 100px;
+    align-items: center;
+    text-align: center;
+}
+
+.diagram tbody tr.selected td .nm-left,
+.diagram tbody tr.selected td .nm-right {
+    color: white;
+    background: rgb(41, 45, 63);
+    border-top: 1.5px solid white;
+    border-left: 1.5px solid white;
+    border-bottom: 1.5px solid rgb(41, 45, 63);
+    border-right: 1.5px solid rgb(41, 45, 63);
+}
+
+.sequence-info {
+    width: 80%;
+    margin: 2% auto 2% 2%;
+    font-size: 12px;
+    /* border: 1px solid blue; */
+}
+
+.si-item {
+    width: 30%;
+    text-align: left;
+    /* font-weight: bold; */
+    background-color: none;
+}
+
+.si-input {
+    width: 70%;
+    text-align: left;
+    background-color: none;
+}
+
+#chromatogram-holder {
+    background: rgb(244, 241, 238);
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+    margin: auto auto auto auto;
+    border-top: solid 2px rgb(147, 146, 150);
+    border-left: solid 2px rgb(147, 146, 150);
+    border-right: solid 2px rgb(244, 241, 238);
+    border-bottom: solid 2px rgb(244, 241, 238);
+}
+
+
+
+/*\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+RIGHT COLUMN
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
+
+
+
+.cp-section-outer {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    align-items: left;
+    border-bottom: 1.5px solid rgb(225, 220, 215);
+    border-left: 1.5px solid rgb(147, 146, 150);
+    border-right: 1.5px solid rgb(225, 220, 215);
+    border-top: 1.5px solid rgb(147, 146, 150);
+    margin-top: 20px;
+}
+
+.cp-section-inner {
+    width: calc(100% - 9px);
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-top: 1.5px solid rgb(225, 220, 215);
+    border-right: 1.5px solid rgb(147, 146, 150);
+    border-left: 1.5px solid rgb(225, 220, 215);
+    border-bottom: 1.5px solid rgb(147, 146, 150);
+    padding: 3px;
+    justify-content: top;
+}
+
+#control-panel,
+#cp-greyout {
+    width: 100%;
+    font-size: 12px;
+    text-align: left;
+    margin: 20px auto 30px auto;
+}
+
+#control-panel tr,
+#cp-greyout tr {
+    height: 10px;
+    /* border: red solid 1px; */
+}
+
+#control-panel tr td,
+#cp-greyout tr td {
+    width: calc(100% / 6);
+
+}
+
+#edit-button-container {
+    align-items: right;
+}
+
+.edit-link,
+#edit-button-grey {
+    height: 25px;
+    width: 40px;
+    background: #d4cfcb;
+    margin-right: 20px;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.edit-link {
+    border-top: 2px solid rgb(244, 241, 238);
+    border-right: 2px solid rgb(90, 89, 92);
+    border-left: 2px solid rgb(244, 241, 238);
+    border-bottom: 2px solid rgb(90, 89, 92);
+    cursor: pointer;
+}
+
+.edit-link:active {
+    border-bottom: 2px solid rgb(244, 241, 238);
+    border-left: 2px solid rgb(90, 89, 92);
+    border-right: 2px solid rgb(244, 241, 238);
+    border-top: 2px solid rgb(90, 89, 92);
+    background: rgb(147, 146, 150);
+    color: white;
+}
+
+#edit-button-grey {
+    color: rgb(147, 146, 150);
+    /* z-index: -50; */
+    border-bottom: 2px solid rgb(225, 220, 215);
+    border-left: 2px solid rgb(147, 146, 150);
+    border-right: 2px solid rgb(225, 220, 215);
+    border-top: 2px solid rgb(147, 146, 150);
+    cursor: default;
+}
+
+.popup {
+    display: none;
+    flex-direction: column;
+    width: 80%;
+    height: auto;
+    /* border: red solid 1px; */
+    margin: 30px auto auto auto;
+    text-align: left;
+}
+
+.popup label {
+    font-size: 12px;
+}
+
+.popup input {
+    border-top: 2px solid rgb(90, 89, 92);
+    border-right: 2px solid rgb(244, 241, 238);
+    border-left: 2px solid rgb(90, 89, 92);
+    border-bottom: 2px solid rgb(244, 241, 238);
+    background: white;
+    vertical-align: top;
+    text-transform: uppercase;
+}
+
+.popup-buttons {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+}
+
+.popup-buttons button {
+    height: 32px;
+    width: 67px;
+    border-top: 2px solid rgb(244, 241, 238);
+    border-right: 2px solid rgb(90, 89, 92);
+    border-left: 2px solid rgb(244, 241, 238);
+    border-bottom: 2px solid rgb(90, 89, 92);
+    background: #d4cfcb;
+    cursor: pointer;
+    text-align: center;
+    margin-left: 10px;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.popup-buttons button:active {
+    border-bottom: 2px solid rgb(244, 241, 238);
+    border-left: 2px solid rgb(90, 89, 92);
+    border-right: 2px solid rgb(244, 241, 238);
+    border-top: 2px solid rgb(90, 89, 92);
+    background: rgb(147, 146, 150);
+    color: white;
+}
+
+#nucleotideSelect,
+#edit-note,
+#g-nucleotide {
+    margin-top: 5px;
+}
+
+#edit-note {
+    height: 100px;
+}
+
+#popup-greyout {
+    display: flex;
+    color: rgb(147, 146, 150);
+}
+
+#popup-greyout input {
+    background: #d4cfcb;
+    border-bottom: 2px solid rgb(225, 220, 215);
+    border-left: 2px solid rgb(147, 146, 150);
+    border-right: 2px solid rgb(225, 220, 215);
+    border-top: 2px solid rgb(147, 146, 150);
+}
+
+#popup-greyout button {
+    color: rgb(147, 146, 150);
+    background: #d4cfcb;
+    /* z-index: -50; */
+    border-bottom: 2px solid rgb(225, 220, 215);
+    border-left: 2px solid rgb(147, 146, 150);
+    border-right: 2px solid rgb(225, 220, 215);
+    border-top: 2px solid rgb(147, 146, 150);
+    cursor: default;
+}
+
+.diagnosis-visual {
+    background: rgb(244, 241, 238);
+    height: 500px;
+    width: calc(100% - 40px);
+    margin: 20px auto auto auto;
+    border-top: solid 2px rgb(147, 146, 150);
+    border-left: solid 2px rgb(147, 146, 150);
+    border-right: solid 2px rgb(244, 241, 238);
+    border-bottom: solid 2px rgb(244, 241, 238);
+}
+
+.diag-item,
+.diag-input,
+.diag-gap {
+    text-align: left;
+    height: 15px;
+}
+
+.diag-item {
+    width: 20%;
+}
+
+.diag-input {
+    width: 25%;
+}
+
+.diag-gap {
+    width: 10%;
+}
+
+/* #diag-status {} */
+
+.diag-tallRow {
+    height: 35px;
+}
+
+.status-matched {
+    color: black;
+    font-weight: normal;
+}
+
+.status-mismatched {
+    color: red;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+#warning {
+    display: none;
+    position: fixed;
+    width: 400px;
+    height: 300px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: solid 1.5px rgb(90, 89, 92);
+    z-index: 1001;
+    background: none;
+}
+
+#warning-innerframe {
+    height: calc(100% - 5px);
+    width: calc(100% - 4px);
+    border-top: 2px solid rgb(244, 241, 238);
+    border-right: 2px solid rgb(90, 89, 92);
+    border-left: 2px solid rgb(244, 241, 238);
+    border-bottom: 2px solid rgb(90, 89, 92);
+    margin: auto auto auto auto;
+    background: rgb(225, 220, 215);
+    font-size: 14px;
+}
+
+.lighten-effect {
+    transition: filter 0.2s ease-in-out;
+}
+
+.lighten-animate {
+    animation: lighten 0.15s ease-in-out 3;
+    /* 3 cycles of 400ms each */
+}
+
+@keyframes lighten {
+    0% {
+        filter: brightness(100%);
+    }
+
+    50% {
+        filter: brightness(110%);
+    }
+
+    100% {
+        filter: brightness(100%);
+    }
+}
+
+#confirmButton,
+#warningCancel {
+    height: 32px;
+    width: 67px;
+    border-top: 2px solid rgb(244, 241, 238);
+    border-right: 2px solid rgb(90, 89, 92);
+    border-left: 2px solid rgb(244, 241, 238);
+    border-bottom: 2px solid rgb(90, 89, 92);
+    background: #d4cfcb;
+    cursor: pointer;
+    text-align: center;
+    margin-left: 10px;
+    font-size: 10px;
+    font-weight: bold;
+}

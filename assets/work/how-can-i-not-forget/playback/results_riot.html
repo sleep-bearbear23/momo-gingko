@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Los Angeles riot — ORION</title>
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    html,
+    body {
+      overflow: hidden;
+    }
+
+    .browser-window {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* scrollable page area */
+    .page-content {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      background: var(--bg);
+      position: relative;
+    }
+
+    /* sticky result header */
+    .result-header {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(238, 236, 232, 0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-mid);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      padding: 10px 28px;
+      gap: 20px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .logo-link {
+      flex-shrink: 0;
+      cursor: pointer;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+
+    #headerLogo {
+      display: block;
+    }
+
+    .header-search-wrap {
+      flex: 1;
+      max-width: 640px;
+      position: relative;
+    }
+
+    .header-search {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 9px 42px 9px 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.875rem;
+      color: var(--text);
+      outline: none;
+      box-shadow: var(--shadow-sm);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .header-search:focus {
+      border-color: var(--border-mid);
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.09);
+    }
+
+    .header-search-btn {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--text-dim);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+
+    .app-nav {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      margin-left: auto;
+      flex-shrink: 0;
+    }
+
+    .app-nav-btn {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 7px;
+      cursor: pointer;
+      transition: background 0.15s;
+      color: var(--text-dim);
+      border: none;
+      background: none;
+    }
+
+    .app-nav-btn:hover {
+      background: rgba(0, 0, 0, 0.06);
+      color: var(--text);
+    }
+
+    .app-nav-btn svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .tabs-row {
+      display: flex;
+      gap: 0;
+      padding: 0 28px;
+      border-bottom: 1px solid var(--border);
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .tab {
+      padding: 9px 16px;
+      font-size: 0.8125rem;
+      color: var(--text-dim);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.18s;
+      white-space: nowrap;
+    }
+
+    .tab.active {
+      color: var(--text);
+      border-bottom-color: var(--text);
+    }
+
+    .tab:hover:not(.active) {
+      color: var(--text);
+    }
+
+    /* main layout */
+    .main {
+      display: flex;
+      gap: 52px;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 28px 28px 100px;
+    }
+
+    .results-col {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .sidebar {
+      width: 272px;
+      flex-shrink: 0;
+    }
+
+    .results-meta {
+      font-size: 0.75rem;
+      color: var(--text-dimmer);
+      margin-bottom: 22px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .results-meta span {
+      color: var(--text-dim);
+    }
+
+    .filter-pill {
+      background: var(--surface);
+      border: 1px solid var(--border-mid);
+      border-radius: 100px;
+      padding: 3px 12px;
+      font-size: 0.69rem;
+      color: var(--text-dim);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .filter-pill.active {
+      background: var(--text);
+      color: #fff;
+      border-color: var(--text);
+    }
+
+    /* AI overview box */
+    .ai-answer {
+      background: var(--surface);
+      border: 1px solid var(--border-mid);
+      border-radius: 14px;
+      padding: 20px 24px;
+      margin-bottom: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ai-answer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(40, 38, 34, 0.55), rgba(40, 38, 34, 0.12));
+    }
+
+    .ai-label {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.6875rem;
+      color: var(--text-dim);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .ai-label-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--text-dim);
+      animation: pulse 2.2s ease infinite;
+    }
+
+    .ai-answer p {
+      font-size: 0.875rem;
+      color: var(--text-dim);
+      line-height: 1.75;
+    }
+
+    .ai-note {
+      margin-top: 12px;
+      font-size: 0.71rem;
+      color: var(--text-dimmer);
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      gap: 7px;
+      line-height: 1.6;
+    }
+
+    /* notice */
+    .notice {
+      background: rgba(0, 0, 0, 0.025);
+      border: 1px solid var(--border-mid);
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin-bottom: 24px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: 0.8125rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+
+    .notice strong {
+      color: var(--text);
+      display: block;
+      margin-bottom: 2px;
+      font-weight: 500;
+    }
+
+    /* result items */
+    .result-item {
+      margin-bottom: 28px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--border);
+      animation: fadeIn 0.35s ease both;
+    }
+
+    .result-item:last-child {
+      border-bottom: none;
+    }
+
+    .result-item:nth-child(2) {
+      animation-delay: .03s
+    }
+
+    .result-item:nth-child(3) {
+      animation-delay: .06s
+    }
+
+    .result-item:nth-child(4) {
+      animation-delay: .09s
+    }
+
+    .result-item:nth-child(5) {
+      animation-delay: .12s
+    }
+
+    .result-item:nth-child(6) {
+      animation-delay: .15s
+    }
+
+    .result-item:nth-child(7) {
+      animation-delay: .18s
+    }
+
+    .result-item:nth-child(8) {
+      animation-delay: .21s
+    }
+
+    .result-item:nth-child(9) {
+      animation-delay: .24s
+    }
+
+    .result-source {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 5px;
+    }
+
+    .result-favicon {
+      width: 16px;
+      height: 16px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      color: var(--text-dimmer);
+      flex-shrink: 0;
+      font-weight: 600;
+    }
+
+    .result-domain {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+    }
+
+    .result-title {
+      font-size: 1.0625rem;
+      color: var(--link);
+      text-decoration: none;
+      line-height: 1.4;
+      display: block;
+      margin-bottom: 5px;
+      cursor: pointer;
+      transition: color 0.15s;
+    }
+
+    .result-title:hover {
+      color: var(--link-hover);
+      text-decoration: underline;
+    }
+
+    .result-desc {
+      font-size: 0.84rem;
+      color: var(--text-dim);
+      line-height: 1.65;
+    }
+
+    .result-desc em {
+      font-style: normal;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .result-date {
+      font-size: 0.71rem;
+      color: var(--text-dimmer);
+      margin-top: 5px;
+    }
+
+    .section-divider {
+      font-size: 0.69rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-dimmer);
+      margin: 8px 0 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* sidebar */
+    .sidebar-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin-bottom: 14px;
+    }
+
+    .sidebar-title {
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-dimmer);
+      margin-bottom: 14px;
+    }
+
+    .related-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8125rem;
+      color: var(--link);
+      text-decoration: none;
+      padding: 7px 0;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: color 0.15s;
+    }
+
+    .related-link:last-child {
+      border-bottom: none;
+    }
+
+    .related-link:hover {
+      color: var(--link-hover);
+    }
+
+    .related-link::before {
+      content: '↗';
+      font-size: 10px;
+      color: var(--text-dimmer);
+      flex-shrink: 0;
+    }
+
+    .topic-img {
+      width: 100%;
+      height: 90px;
+      background: linear-gradient(135deg, #d8d4cc 0%, #c8c4bc 100%);
+      border-radius: 10px 10px 0 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: rgba(28, 26, 23, 0.28);
+      font-style: italic;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="browser-window">
+
+    <!-- Browser chrome -->
+    <div class="browser-chrome">
+      <div class="chrome-left">
+        <div class="traffic-lights">
+          <div class="tl tl-red"></div>
+          <div class="tl tl-yellow"></div>
+          <div class="tl tl-green"></div>
+        </div>
+        <button class="nav-btn" onclick="history.back()" title="Back">
+          <svg viewBox="0 0 14 14" fill="none">
+            <path d="M9 2L4 7L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </button>
+        <button class="nav-btn disabled" title="Forward">
+          <svg viewBox="0 0 14 14" fill="none">
+            <path d="M5 2L10 7L5 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </button>
+      </div>
+      <div class="url-bar">
+        <svg class="url-lock" viewBox="0 0 12 14" fill="none">
+          <rect x="1" y="6" width="10" height="7" rx="1.5" stroke="currentColor" stroke-width="1.2" />
+          <path d="M3.5 6V4a2.5 2.5 0 015 0v2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
+        </svg>
+        <div class="url-text">orion.search / <span id="urlQuery">results?q=Los+Angeles+riot</span></div>
+      </div>
+      <div class="chrome-right">
+        <div class="b-icon"><svg viewBox="0 0 15 15" fill="none">
+            <path d="M5 7.5H2a1 1 0 00-1 1V13a1 1 0 001 1h11a1 1 0 001-1V8.5a1 1 0 00-1-1h-3M7.5 1v8M5 3.5L7.5 1 10 3.5"
+              stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg></div>
+        <div class="b-icon"><svg viewBox="0 0 13 15" fill="none">
+            <path d="M1 1h11v13L6.5 10 1 14V1z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg></div>
+      </div>
+    </div>
+
+    <!-- Page content -->
+    <div class="page-content">
+      <div class="result-header">
+        <div class="header-inner">
+          <a class="logo-link" href="search.html"><canvas id="headerLogo"></canvas></a>
+          <div class="header-search-wrap">
+            <input class="header-search" id="searchBar" value="Los Angeles riot"
+              onkeydown="if(event.key==='Enter')doSearch()">
+            <button class="header-search-btn" onclick="doSearch()">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.4" />
+                <line x1="9.5" y1="9.5" x2="13" y2="13" stroke="currentColor" stroke-width="1.4"
+                  stroke-linecap="round" />
+              </svg>
+            </button>
+          </div>
+          <nav class="app-nav">
+            <button class="app-nav-btn" title="Sign in"><svg viewBox="0 0 16 16" fill="none">
+                <circle cx="8" cy="5.5" r="2.5" stroke="currentColor" stroke-width="1.3" />
+                <path d="M2.5 14c0-3.038 2.462-5.5 5.5-5.5s5.5 2.462 5.5 5.5" stroke="currentColor" stroke-width="1.3"
+                  stroke-linecap="round" />
+              </svg></button>
+            <button class="app-nav-btn" title="Settings"><svg viewBox="0 0 16 16" fill="none">
+                <line x1="2" y1="4.5" x2="14" y2="4.5" stroke="currentColor" stroke-width="1.3"
+                  stroke-linecap="round" />
+                <line x1="2" y1="11.5" x2="14" y2="11.5" stroke="currentColor" stroke-width="1.3"
+                  stroke-linecap="round" />
+                <circle cx="5.5" cy="4.5" r="1.8" fill="var(--bg)" stroke="currentColor" stroke-width="1.3" />
+                <circle cx="10.5" cy="11.5" r="1.8" fill="var(--bg)" stroke="currentColor" stroke-width="1.3" />
+              </svg></button>
+          </nav>
+        </div>
+        <div class="tabs-row">
+          <div class="tab active">All</div>
+          <div class="tab">News</div>
+          <div class="tab">Images</div>
+          <div class="tab">Video</div>
+          <div class="tab">Maps</div>
+          <div class="tab">More</div>
+        </div>
+      </div>
+
+      <div class="main">
+        <div class="results-col">
+
+          <div class="results-meta">
+            About <span>2,140,000</span> results
+            <span style="color:var(--text-dimmer);margin-right:4px">(0.38 s)</span>
+            <span class="filter-pill active">All time</span>
+            <span class="filter-pill">Past year</span>
+            <span class="filter-pill">Past month</span>
+          </div>
+
+          <div class="ai-answer">
+            <div class="ai-label">
+              <div class="ai-label-dot"></div>ORION Overview
+            </div>
+            <p>Los Angeles has a documented history of civil unrest — the 1965 Watts Uprising, the 1992 riots following
+              the Rodney King verdict, and significant protest activity in 2020. No verified riot or large-scale civil
+              disturbance matching this query has been indexed for the current period in Los Angeles County.</p>
+            <div class="ai-note">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="flex-shrink:0;margin-top:1px">
+                <circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1" />
+                <path d="M6 5v4M6 3.5v.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" />
+              </svg>
+              Search results are filtered for verified, published sources. Some local event coverage may be unavailable
+              during active content review periods.
+            </div>
+          </div>
+
+          <div class="notice">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+              style="flex-shrink:0;margin-top:1px;opacity:0.45">
+              <path d="M8 2L14.5 13H1.5L8 2z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" />
+              <path d="M8 6v3.5M8 11v.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
+            </svg>
+            <div><strong>No relevant results for this location and timeframe</strong>Results shown below are related
+              historical events and contextual coverage. Try adjusting your date range or browsing local news sources
+              directly.</div>
+          </div>
+
+          <div class="result-item">
+            <div class="result-source">
+              <div class="result-favicon">W</div>
+              <div class="result-domain">en.wakapedia.org › wiki › 1992_Los_Angeles_riots</div>
+            </div>
+            <a class="result-title">1992 Los Angeles riots — Wakapedia</a>
+            <div class="result-desc">The <em>1992 Los Angeles riots</em>, also known as the LA uprising, were a series
+              of civil disturbances beginning April 29, 1992. Six days of unrest resulted in 63 deaths, over 2,000
+              injuries, approximately 12,000 arrests, and roughly $1 billion in property damage — the deadliest riots in
+              American history since the 1967 Detroit riots, sparked by the acquittal of four LAPD officers who beat
+              Rodney King.</div>
+            <div class="result-date">Wakapedia · Continuously updated</div>
+          </div>
+
+          <div class="result-item">
+            <div class="result-source">
+              <div class="result-favicon">L</div>
+              <div class="result-domain">latimes.com › california › story</div>
+            </div>
+            <a class="result-title">Dodgers World Series celebration turns chaotic in downtown LA — Los Angeles
+              Times</a>
+            <div class="result-desc">Thousands flooded downtown streets after the Dodgers clinched the <em>2030 World
+                Series</em>. LAPD deployed crowd management units at 11 PM and declared an unlawful assembly after
+              midnight. Officials estimated over 80,000 people along Figueroa, with skirmishes at three locations.</div>
+            <div class="result-date">Los Angeles Times · October 31, 2030</div>
+          </div>
+
+          <div class="result-item">
+            <div class="result-source">
+              <div class="result-favicon">N</div>
+              <div class="result-domain">nbclosangeles.com › news › local</div>
+            </div>
+            <a class="result-title">History of major civil unrest in Los Angeles — NBC Los Angeles</a>
+            <div class="result-desc">A timeline of <em>civil unrest</em> in greater Los Angeles from 1943 to present.
+              Includes the Zoot Suit Riots, the 1965 Watts Uprising, the 1992 uprising, and 2020 protests following the
+              murder of George Floyd. Historians note recurring patterns of economic disenfranchisement preceding each
+              episode.</div>
+            <div class="result-date">NBC Los Angeles · Updated March 2030</div>
+          </div>
+
+          <div class="result-item">
+            <div class="result-source">
+              <div class="result-favicon">G</div>
+              <div class="result-domain">theguardian.com › us-news › los-angeles</div>
+            </div>
+            <a class="result-title">Riot preparedness: how American cities have rebuilt since 1992 — The Guardian</a>
+            <div class="result-desc">Thirty-eight years after the <em>Los Angeles riots</em>, urban planners and law
+              enforcement agencies examine evolving response protocols and community investment strategies. Changes
+              include mandatory de-escalation training, mental health diversion programs, and civilian oversight of
+              use-of-force investigations.</div>
+            <div class="result-date">The Guardian · February 14, 2030</div>
+          </div>
+
+          <div class="result-item">
+            <div class="result-source">
+              <div class="result-favicon">A</div>
+              <div class="result-domain">apnews.com › article › los-angeles-demonstrations</div>
+            </div>
+            <a class="result-title">Protests in Los Angeles: demonstration permits and your rights — AP News</a>
+            <div class="result-desc">California law requires permits for demonstrations exceeding 50 participants. LAPD
+              guidelines updated in 2029 outline new provisions for drone surveillance, acoustic crowd monitoring, and
+              mutual aid agreements with the LA County Sheriff's Department, alongside journalist protection provisions.
+            </div>
+            <div class="result-date">AP News · November 3, 2029</div>
+          </div>
+
+          <div class="result-item">
+            <div class="result-source">
+              <div class="result-favicon">P</div>
+              <div class="result-domain">politico.com › california › losangeles</div>
+            </div>
+            <a class="result-title">LA officials address public safety concerns ahead of 2030 Pacific Rim Summit —
+              Politico</a>
+            <div class="result-desc">Mayor Chen cited a 34% decline in violent crime since 2022 and expanded community
+              policing. Civil liberties critics challenged the figures, pointing to elevated non-violent arrest rates in
+              historically underserved South and East LA neighborhoods ahead of the international economic summit.</div>
+            <div class="result-date">Politico · September 9, 2030</div>
+          </div>
+
+          <div class="result-item">
+            <div class="result-source">
+              <div class="result-favicon">C</div>
+              <div class="result-domain">calmatters.org › politics › public-safety</div>
+            </div>
+            <a class="result-title">Public assembly laws in California: a guide to your rights — CalMatters</a>
+            <div class="result-desc">When police can legally order a crowd to disperse, what constitutes an <em>unlawful
+                assembly</em> under California Penal Code § 407, and individual rights during and after a protest.
+              Covers recent court rulings on crowd-control munitions and the 2028 Police Accountability Act amendments.
+            </div>
+            <div class="result-date">CalMatters · January 2030</div>
+          </div>
+
+          <div class="result-item">
+            <div class="result-source">
+              <div class="result-favicon">S</div>
+              <div class="result-domain">smithsonianmag.com › history</div>
+            </div>
+            <a class="result-title">The Watts Uprising of 1965: six days that changed Los Angeles — Smithsonian
+              Magazine</a>
+            <div class="result-desc">Six days of unrest in August 1965 left 34 dead, more than 1,000 injured, and over
+              $40 million in property damage. The uprising directly preceded the McCone Commission, which documented
+              systemic failures in housing, education, employment, and policing across South LA.</div>
+            <div class="result-date">Smithsonian Magazine · August 2025</div>
+          </div>
+
+          <div class="section-divider">Historical records</div>
+
+          <div class="result-item">
+            <div class="result-source">
+              <div class="result-favicon">U</div>
+              <div class="result-domain">usc.edu › dornsife › research</div>
+            </div>
+            <a class="result-title">Thirty years of displacement: housing instability following civil unrest in South LA
+              — USC Dornsife</a>
+            <div class="result-desc">A longitudinal study tracking residential displacement in neighborhoods affected by
+              the <em>1992 LA riots</em>. Researchers followed 412 households from 1993 to 2023, documenting cycles of
+              rebuilding and displacement with renewed policy relevance for contemporary urban centers under comparable
+              economic pressure.</div>
+            <div class="result-date">USC Dornsife · June 2024</div>
+          </div>
+
+          <div class="result-item">
+            <div class="result-source">
+              <div class="result-favicon">K</div>
+              <div class="result-domain">kcrw.com › news › politics</div>
+            </div>
+            <a class="result-title">How the LAPD has changed since 1992 — KCRW</a>
+            <div class="result-desc">A deep-dive into structural reforms at the LAPD over three decades: the Christopher
+              Commission, the consent decree with the DOJ, community policing initiatives, and ongoing debates about the
+              department's budget relative to social services. Interviews with current and former officers, community
+              leaders, and civil rights attorneys.</div>
+            <div class="result-date">KCRW · April 29, 2029</div>
+          </div>
+
+          <div class="result-item">
+            <div class="result-source">
+              <div class="result-favicon">H</div>
+              <div class="result-domain">history.com › topics › us-states</div>
+            </div>
+            <a class="result-title">Los Angeles riots of 1992 — HISTORY</a>
+            <div class="result-desc">Comprehensive overview of the causes, events, and aftermath of the <em>1992
+                riots</em>. Includes primary source materials, oral histories from participants and eyewitnesses, and a
+              detailed examination of the political context including the crack cocaine epidemic, economic recession,
+              and racial tensions that defined South Los Angeles in the early 1990s.</div>
+            <div class="result-date">History.com · Updated 2028</div>
+          </div>
+
+          <div class="result-item">
+            <div class="result-source">
+              <div class="result-favicon">A</div>
+              <div class="result-domain">aclu-sc.org › issues › police-practices</div>
+            </div>
+            <a class="result-title">LAPD use of force: a 2029 accountability report — ACLU Southern California</a>
+            <div class="result-desc">The ACLU of Southern California's annual report documents 1,847 use-of-force
+              incidents by LAPD officers in 2029, a 12% increase from the prior year. The report finds Black and Latino
+              residents are significantly overrepresented in force incidents relative to their share of the population
+              and calls for expanded independent oversight authority.</div>
+            <div class="result-date">ACLU SoCal · March 2030</div>
+          </div>
+
+          <div class="result-item">
+            <div class="result-source">
+              <div class="result-favicon">V</div>
+              <div class="result-domain">vox.com › policy-and-politics</div>
+            </div>
+            <a class="result-title">The long shadow of 1992: why Los Angeles never fully recovered — Vox</a>
+            <div class="result-desc">An analysis of economic and demographic data showing that neighborhoods most
+              affected by the 1992 riots continue to lag behind the rest of Los Angeles on key indicators including
+              median household income, homeownership rates, business density, and access to quality public schools, even
+              nearly four decades later.</div>
+            <div class="result-date">Vox · April 2030</div>
+          </div>
+
+          <div class="result-item">
+            <div class="result-source">
+              <div class="result-favicon">B</div>
+              <div class="result-domain">brookings.edu › research</div>
+            </div>
+            <a class="result-title">Urban unrest and its economic aftershocks: lessons from Los Angeles — Brookings
+              Institution</a>
+            <div class="result-desc">A Brookings Institution analysis examining how civil unrest events affect urban
+              economic trajectories. Using LA as a primary case study alongside Detroit, Newark, and Baltimore,
+              researchers identify the conditions under which cities recover — and those under which economic scarring
+              persists for multiple generations.</div>
+            <div class="result-date">Brookings Institution · 2027</div>
+          </div>
+
+          <div class="result-item">
+            <div class="result-source">
+              <div class="result-favicon">M</div>
+              <div class="result-domain">moca.org › learn › programs</div>
+            </div>
+            <a class="result-title">Witness: Photographs from the Los Angeles Uprising — MOCA Los Angeles</a>
+            <div class="result-desc">An ongoing exhibition at The Museum of Contemporary Art presenting documentary
+              photography from the 1992 Los Angeles uprising. Featuring work by more than 40 photographers, the
+              exhibition includes images from news archives, community photo albums, and previously unpublished private
+              collections. An accompanying catalog explores the visual politics of documenting civil unrest.</div>
+            <div class="result-date">MOCA Los Angeles · Ongoing through 2031</div>
+          </div>
+
+          <div class="section-divider">Social &amp; real-time</div>
+
+          <div class="result-item" style="opacity:0.5">
+            <div class="result-source">
+              <div class="result-favicon" style="color:var(--text-dimmer)">X</div>
+              <div class="result-domain" style="color:var(--text-dimmer)">x.com · platform sync paused</div>
+            </div>
+            <a class="result-title" style="color:var(--text-dimmer);cursor:default;font-size:0.875rem">⚠ Real-time
+              social results for this query are currently unavailable.</a>
+            <div class="result-desc" style="font-size:0.75rem">Platform content API sync is paused for verified-event
+              queries. Social results will resume once the topic has been independently confirmed by two or more
+              verified news organizations.</div>
+          </div>
+
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+          <div class="sidebar-card" style="padding:0;overflow:hidden;margin-bottom:14px;">
+            <div class="topic-img">Los Angeles civic history</div>
+            <div style="padding:14px 16px;">
+              <div style="font-size:0.875rem;font-weight:500;color:var(--text);margin-bottom:5px;">Civil unrest in Los
+                Angeles</div>
+              <div style="font-size:0.75rem;color:var(--text-dim);line-height:1.55;">Los Angeles has experienced major
+                episodes of civil unrest in 1943, 1965, 1992, and 2020 — each shaped by distinct social and political
+                conditions.</div>
+            </div>
+          </div>
+          <div class="sidebar-card">
+            <div class="sidebar-title">Related searches</div>
+            <a class="related-link">Los Angeles protest history</a>
+            <a class="related-link">1992 LA riots documentary</a>
+            <a class="related-link">Watts uprising 1965</a>
+            <a class="related-link">civil unrest California 2029</a>
+            <a class="related-link">LAPD crowd control policy 2030</a>
+            <a class="related-link">Dodgers celebration downtown LA</a>
+            <a class="related-link">public assembly rights California</a>
+          </div>
+          <div class="sidebar-card">
+            <div class="sidebar-title">Content note</div>
+            <p style="font-size:0.75rem;color:var(--text-dim);line-height:1.6;">Some results for this query are
+              currently under editorial review. ORION applies verification standards to searches involving recent civil
+              incidents in indexed regions.</p>
+          </div>
+          <div class="sidebar-card">
+            <div class="sidebar-title">Try refining</div>
+            <p style="font-size:0.75rem;color:var(--text-dim);line-height:1.65;">Add a specific year, neighborhood, or
+              event type. Use <strong style="color:var(--text);font-weight:500">quotes</strong> for exact phrases, or
+              <strong style="color:var(--text);font-weight:500">site:</strong> to limit to one publication.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <script src="shared.js"></script>
+  <script>
+    drawOrionLogo(document.getElementById('headerLogo'), 22);
+    const p = new URLSearchParams(window.location.search);
+    if (p.get('q')) {
+      document.getElementById('searchBar').value = p.get('q');
+      document.getElementById('urlQuery').textContent = 'results?q=' + encodeURIComponent(p.get('q'));
+    }
+    function doSearch() {
+      const q = document.getElementById('searchBar').value.trim();
+      if (!q) return;
+      // First result page always chains to massacre result page
+      window.location.href = 'results_massacre.html?q=' + encodeURIComponent(q);
+    }
+  </script>
+</body>
+
+</html>

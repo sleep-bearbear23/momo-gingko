@@ -1,0 +1,1979 @@
+{
+  "_note": "PD sub-menu galleries — curated per image, SEPARATELY from project pages (an image only appears here if you put it here). Each item = one image. The view sorts newest-first by year+month. `project` (a slug) links the item to a project page when that project is published; null = standalone asset. Per-image `caption` is the drafted description (editable). Managed by /gk-pd; safe to hand-edit.",
+  "elevations-previs": [
+    {
+      "src": "assets/work/before-sunrise/previs-01.jpg",
+      "thumb": "assets/work/before-sunrise/previs-01-thumb.jpg",
+      "aspect": "1800/1164",
+      "caption": "",
+      "project": "before-sunrise",
+      "year": "2025",
+      "month": "04"
+    },
+    {
+      "src": "assets/work/how-can-i-not-forget/D.jpg",
+      "thumb": "assets/work/how-can-i-not-forget/D-thumb.jpg",
+      "aspect": "1800/1350",
+      "caption": "Design - Cemetary",
+      "project": "how-can-i-not-forget",
+      "year": "2026",
+      "month": "04"
+    },
+    {
+      "src": "assets/work/how-can-i-not-forget/C.jpg",
+      "thumb": "assets/work/how-can-i-not-forget/C-thumb.jpg",
+      "aspect": "1800/1350",
+      "caption": "Design - Apartment Living Room",
+      "project": "how-can-i-not-forget",
+      "year": "2026",
+      "month": "04"
+    },
+    {
+      "src": "assets/work/how-can-i-not-forget/A.jpg",
+      "thumb": "assets/work/how-can-i-not-forget/A-thumb.jpg",
+      "aspect": "1800/1350",
+      "caption": "Design - Hospital Ward",
+      "project": "how-can-i-not-forget",
+      "year": "2026",
+      "month": "04"
+    },
+    {
+      "src": "assets/work/how-can-i-not-forget/E.jpg",
+      "thumb": "assets/work/how-can-i-not-forget/E-thumb.jpg",
+      "aspect": "1800/1350",
+      "caption": "Wardrobe - The Mourning Dress",
+      "project": "how-can-i-not-forget",
+      "year": "2026",
+      "month": "04"
+    },
+    {
+      "src": "assets/work/how-can-i-not-forget/L.jpg",
+      "thumb": "assets/work/how-can-i-not-forget/L-thumb.jpg",
+      "aspect": "1800/1350",
+      "caption": "Wardrobe - Nora's Costume",
+      "project": "how-can-i-not-forget",
+      "year": "2026",
+      "month": "04"
+    },
+    {
+      "src": "assets/work/how-can-i-not-forget/K.jpg",
+      "thumb": "assets/work/how-can-i-not-forget/K-thumb.jpg",
+      "aspect": "1800/1350",
+      "caption": "Previs - The Living Room",
+      "project": "how-can-i-not-forget",
+      "year": "2026",
+      "month": "04"
+    },
+    {
+      "src": "assets/work/how-can-i-not-forget/J.jpg",
+      "thumb": "assets/work/how-can-i-not-forget/J-thumb.jpg",
+      "aspect": "1800/1350",
+      "caption": "Previs - The Surgery Room",
+      "project": "how-can-i-not-forget",
+      "year": "2026",
+      "month": "04"
+    },
+    {
+      "src": "assets/work/sonata/P.jpg",
+      "thumb": "assets/work/sonata/P-thumb.jpg",
+      "aspect": "1800/1164",
+      "caption": "Set Design - Three-quarter View",
+      "project": "sonata",
+      "year": "2024",
+      "month": "07"
+    },
+    {
+      "src": "assets/work/sonata/Q.jpg",
+      "thumb": "assets/work/sonata/Q-thumb.jpg",
+      "aspect": "1800/1164",
+      "caption": "Set Design - Elevations",
+      "project": "sonata",
+      "year": "2024",
+      "month": "07"
+    },
+    {
+      "src": "assets/work/soup/AA.jpg",
+      "thumb": "assets/work/soup/AA-thumb.jpg",
+      "aspect": "1800/1440",
+      "caption": "The Wall - Construction Plan",
+      "project": "soup",
+      "year": "2025",
+      "month": "11"
+    },
+    {
+      "src": "assets/work/antidote/M.jpg",
+      "thumb": "assets/work/antidote/M-thumb.jpg",
+      "aspect": "1800/1536",
+      "caption": "Wardrobe — Lei",
+      "project": "antidote",
+      "year": "2025",
+      "month": "11"
+    },
+    {
+      "src": "assets/work/antidote/N.jpg",
+      "thumb": "assets/work/antidote/N-thumb.jpg",
+      "aspect": "1800/1622",
+      "caption": "Wardrobe — Lei",
+      "project": "antidote",
+      "year": "2025",
+      "month": "11"
+    },
+    {
+      "src": "assets/work/antidote/O.jpg",
+      "thumb": "assets/work/antidote/O-thumb.jpg",
+      "aspect": "1800/1007",
+      "caption": "Wardrobe — Blu",
+      "project": "antidote",
+      "year": "2025",
+      "month": "11"
+    },
+    {
+      "src": "assets/standalone/O.jpg",
+      "thumb": "assets/standalone/O-thumb.jpg",
+      "aspect": "1800/1164",
+      "caption": "Fitting Look Sheet",
+      "project": null,
+      "projectName": "",
+      "year": "2026",
+      "month": "05"
+    },
+    {
+      "src": "assets/standalone/P.jpg",
+      "thumb": "assets/standalone/P-thumb.jpg",
+      "aspect": "1800/1164",
+      "caption": "Fitting Look Sheet",
+      "project": null,
+      "projectName": "",
+      "year": "2026",
+      "month": "05"
+    },
+    {
+      "src": "assets/standalone/X.jpg",
+      "thumb": "assets/standalone/X-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "Wardrobe Concept",
+      "project": null,
+      "projectName": "",
+      "year": "2026",
+      "month": "05"
+    },
+    {
+      "src": "assets/standalone/Y.jpg",
+      "thumb": "assets/standalone/Y-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "Wardrobe Concept",
+      "project": null,
+      "projectName": "",
+      "year": "2026",
+      "month": "05"
+    },
+    {
+      "src": "assets/standalone/Z.jpg",
+      "thumb": "assets/standalone/Z-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "Wardrobe Concept",
+      "project": null,
+      "projectName": "",
+      "year": "2026",
+      "month": "05"
+    },
+    {
+      "src": "assets/standalone/AA.jpg",
+      "thumb": "assets/standalone/AA-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "Wardrobe Concept",
+      "project": null,
+      "projectName": "",
+      "year": "2026",
+      "month": "05"
+    },
+    {
+      "src": "assets/standalone/AB.jpg",
+      "thumb": "assets/standalone/AB-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "Wardrobe Concept",
+      "project": null,
+      "projectName": "",
+      "year": "2026",
+      "month": "05"
+    }
+  ],
+  "film-stills": [
+    {
+      "src": "assets/work/how-can-i-not-forget/N.jpg",
+      "thumb": "assets/work/how-can-i-not-forget/N-thumb.jpg",
+      "aspect": "1800/1275",
+      "caption": "",
+      "project": "how-can-i-not-forget",
+      "year": "2026",
+      "month": "04"
+    },
+    {
+      "src": "assets/work/how-can-i-not-forget/P.jpg",
+      "thumb": "assets/work/how-can-i-not-forget/P-thumb.jpg",
+      "aspect": "1800/1275",
+      "caption": "",
+      "project": "how-can-i-not-forget",
+      "year": "2026",
+      "month": "04"
+    },
+    {
+      "src": "assets/work/how-can-i-not-forget/G.jpg",
+      "thumb": "assets/work/how-can-i-not-forget/G-thumb.jpg",
+      "aspect": "1800/1349",
+      "caption": "",
+      "project": "how-can-i-not-forget",
+      "year": "2026",
+      "month": "04"
+    },
+    {
+      "src": "assets/work/mama-mv/N.jpg",
+      "thumb": "assets/work/mama-mv/N-thumb.jpg",
+      "aspect": "1800/1251",
+      "caption": "",
+      "project": "mama-mv",
+      "year": "2025",
+      "month": "02"
+    },
+    {
+      "src": "assets/work/mama-mv/M.jpg",
+      "thumb": "assets/work/mama-mv/M-thumb.jpg",
+      "aspect": "1800/1251",
+      "caption": "",
+      "project": "mama-mv",
+      "year": "2025",
+      "month": "02",
+      "pos": "50.7% 42.1%"
+    },
+    {
+      "src": "assets/work/mama-mv/I.jpg",
+      "thumb": "assets/work/mama-mv/I-thumb.jpg",
+      "aspect": "1800/1251",
+      "caption": "",
+      "project": "mama-mv",
+      "year": "2025",
+      "month": "02"
+    },
+    {
+      "src": "assets/work/mama-mv/L.jpg",
+      "thumb": "assets/work/mama-mv/L-thumb.jpg",
+      "aspect": "1800/1251",
+      "caption": "",
+      "project": "mama-mv",
+      "year": "2025",
+      "month": "02"
+    },
+    {
+      "src": "assets/work/mama-mv/E.jpg",
+      "thumb": "assets/work/mama-mv/E-thumb.jpg",
+      "aspect": "1800/1251",
+      "caption": "",
+      "project": "mama-mv",
+      "year": "2025",
+      "month": "02"
+    },
+    {
+      "src": "assets/work/ghost-mv/A.jpg",
+      "thumb": "assets/work/ghost-mv/A-thumb.jpg",
+      "aspect": "1800/949",
+      "caption": "The Bedroom",
+      "project": "ghost-mv",
+      "year": "2025",
+      "month": "09"
+    },
+    {
+      "src": "assets/work/ghost-mv/B.jpg",
+      "thumb": "assets/work/ghost-mv/B-thumb.jpg",
+      "aspect": "1800/949",
+      "caption": "The Living Room",
+      "project": "ghost-mv",
+      "year": "2025",
+      "month": "09",
+      "pos": "50.2% 23.1%"
+    },
+    {
+      "src": "assets/work/ghost-mv/C.jpg",
+      "thumb": "assets/work/ghost-mv/C-thumb.jpg",
+      "aspect": "1800/949",
+      "caption": "The Bedroom",
+      "project": "ghost-mv",
+      "year": "2025",
+      "month": "09"
+    },
+    {
+      "src": "assets/work/sonata/AK.jpg",
+      "thumb": "assets/work/sonata/AK-thumb.jpg",
+      "aspect": "1800/1200",
+      "caption": "The Dining Room",
+      "project": "sonata",
+      "year": "2024",
+      "month": "07"
+    },
+    {
+      "src": "assets/work/sonata/AG.jpg",
+      "thumb": "assets/work/sonata/AG-thumb.jpg",
+      "aspect": "1800/1200",
+      "caption": "The Living Room",
+      "project": "sonata",
+      "year": "2024",
+      "month": "07",
+      "pos": "52.3% 81.7%"
+    },
+    {
+      "src": "assets/work/sonata/AA.jpg",
+      "thumb": "assets/work/sonata/AA-thumb.jpg",
+      "aspect": "1800/1200",
+      "caption": "",
+      "project": "sonata",
+      "year": "2024",
+      "month": "07"
+    },
+    {
+      "src": "assets/work/sonata/N.jpg",
+      "thumb": "assets/work/sonata/N-thumb.jpg",
+      "aspect": "1800/1200",
+      "caption": "",
+      "project": "sonata",
+      "year": "2024",
+      "month": "07",
+      "pos": "49.9% 66.3%"
+    },
+    {
+      "src": "assets/work/soup/D.jpg",
+      "thumb": "assets/work/soup/D-thumb.jpg",
+      "aspect": "1800/1352",
+      "caption": "The Kitchen",
+      "project": "soup",
+      "year": "2025",
+      "month": "11"
+    },
+    {
+      "src": "assets/work/soup/L.jpg",
+      "thumb": "assets/work/soup/L-thumb.jpg",
+      "aspect": "1800/1089",
+      "caption": "The Liminal Space",
+      "project": "soup",
+      "year": "2025",
+      "month": "11"
+    },
+    {
+      "src": "assets/work/soup/S.jpg",
+      "thumb": "assets/work/soup/S-thumb.jpg",
+      "aspect": "1800/1345",
+      "caption": "The Apartment",
+      "project": "soup",
+      "year": "2025",
+      "month": "11"
+    },
+    {
+      "src": "assets/work/soup/V.jpg",
+      "thumb": "assets/work/soup/V-thumb.jpg",
+      "aspect": "1800/1345",
+      "caption": "The Kitchen",
+      "project": "soup",
+      "year": "2025",
+      "month": "11"
+    },
+    {
+      "src": "assets/work/antidote/B.jpg",
+      "thumb": "assets/work/antidote/B-thumb.jpg",
+      "aspect": "1800/1012",
+      "caption": "",
+      "project": "antidote",
+      "year": "2025",
+      "month": "11"
+    },
+    {
+      "src": "assets/work/antidote/J.jpg",
+      "thumb": "assets/work/antidote/J-thumb.jpg",
+      "aspect": "1800/1012",
+      "caption": "",
+      "project": "antidote",
+      "year": "2025",
+      "month": "11"
+    },
+    {
+      "src": "assets/work/antidote/L.jpg",
+      "thumb": "assets/work/antidote/L-thumb.jpg",
+      "aspect": "1800/1012",
+      "caption": "",
+      "project": "antidote",
+      "year": "2025",
+      "month": "11"
+    },
+    {
+      "src": "assets/work/antidote/E.jpg",
+      "thumb": "assets/work/antidote/E-thumb.jpg",
+      "aspect": "1800/1012",
+      "caption": "",
+      "project": "antidote",
+      "year": "2025",
+      "month": "11"
+    },
+    {
+      "src": "assets/work/on-the-river-bank/D.jpg",
+      "thumb": "assets/work/on-the-river-bank/D-thumb.jpg",
+      "aspect": "1800/1349",
+      "caption": "The Breakfast Table",
+      "project": "on-the-river-bank",
+      "year": "2025",
+      "month": "11"
+    },
+    {
+      "src": "assets/work/on-the-river-bank/I.jpg",
+      "thumb": "assets/work/on-the-river-bank/I-thumb.jpg",
+      "aspect": "1800/1349",
+      "caption": "The Mirror Space",
+      "project": "on-the-river-bank",
+      "year": "2025",
+      "month": "11"
+    },
+    {
+      "src": "assets/work/on-the-river-bank/K.jpg",
+      "thumb": "assets/work/on-the-river-bank/K-thumb.jpg",
+      "aspect": "1800/1349",
+      "caption": "The Lamp Path",
+      "project": "on-the-river-bank",
+      "year": "2025",
+      "month": "11"
+    },
+    {
+      "src": "assets/work/on-the-river-bank/M.jpg",
+      "thumb": "assets/work/on-the-river-bank/M-thumb.jpg",
+      "aspect": "1800/1349",
+      "caption": "The Lamp Path",
+      "project": "on-the-river-bank",
+      "year": "2025",
+      "month": "11"
+    },
+    {
+      "src": "assets/work/on-the-river-bank/T.jpg",
+      "thumb": "assets/work/on-the-river-bank/T-thumb.jpg",
+      "aspect": "1800/1349",
+      "caption": "The Mirror Space",
+      "project": "on-the-river-bank",
+      "year": "2025",
+      "month": "11"
+    },
+    {
+      "src": "assets/work/before-sunrise/film-still-01.jpg",
+      "thumb": "assets/work/before-sunrise/film-still-01-thumb.jpg",
+      "aspect": "3024/1586",
+      "caption": "",
+      "project": "before-sunrise",
+      "year": "2025",
+      "month": "04"
+    },
+    {
+      "src": "assets/work/before-sunrise/film-still-06.jpg",
+      "thumb": "assets/work/before-sunrise/film-still-06-thumb.jpg",
+      "aspect": "3024/1586",
+      "caption": "",
+      "project": "before-sunrise",
+      "year": "2025",
+      "month": "04"
+    },
+    {
+      "src": "assets/work/before-sunrise/film-still-13.jpg",
+      "thumb": "assets/work/before-sunrise/film-still-13-thumb.jpg",
+      "aspect": "3024/1586",
+      "caption": "",
+      "project": "before-sunrise",
+      "year": "2025",
+      "month": "04"
+    }
+  ],
+  "prop-design": [
+    {
+      "src": "assets/standalone/genesnip.jpg",
+      "thumb": "assets/standalone/genesnip-thumb.jpg",
+      "aspect": "1600/1000",
+      "caption": "",
+      "project": null,
+      "year": "2025",
+      "month": "07",
+      "page": "assets/standalone/genesnip/index.html",
+      "description": "GeneSnip is a lab workstation for a film about stem-cell research and cell duplication — a 2010s DNA-examination interface a technician uses to run a comparison test. It reads a reference strand against a patient's query strand, flags each mismatch, and scores the match: Hamming distance, error rate, percent identity. The comparison is interactive — you can hand-edit the query sequence and it re-scores the result against the reference."
+    },
+    {
+      "src": "assets/work/sonata/AM.jpg",
+      "thumb": "assets/work/sonata/AM-thumb.jpg",
+      "aspect": "1391/1800",
+      "caption": "",
+      "project": "sonata",
+      "year": "2024",
+      "month": "07"
+    },
+    {
+      "src": "assets/work/sonata/AO.jpg",
+      "thumb": "assets/work/sonata/AO-thumb.jpg",
+      "aspect": "1800/1391",
+      "caption": "",
+      "project": "sonata",
+      "year": "2024",
+      "month": "07"
+    },
+    {
+      "src": "assets/work/sonata/AR.jpg",
+      "thumb": "assets/work/sonata/AR-thumb.jpg",
+      "aspect": "1391/1800",
+      "caption": "",
+      "project": "sonata",
+      "year": "2024",
+      "month": "07"
+    },
+    {
+      "src": "assets/work/sonata/AS.jpg",
+      "thumb": "assets/work/sonata/AS-thumb.jpg",
+      "aspect": "1391/1800",
+      "caption": "",
+      "project": "sonata",
+      "year": "2024",
+      "month": "07"
+    },
+    {
+      "src": "assets/work/sonata/AT.jpg",
+      "thumb": "assets/work/sonata/AT-thumb.jpg",
+      "aspect": "1391/1800",
+      "caption": "",
+      "project": "sonata",
+      "year": "2024",
+      "month": "07"
+    },
+    {
+      "src": "assets/work/sonata/AQ.jpg",
+      "thumb": "assets/work/sonata/AQ-thumb.jpg",
+      "aspect": "1800/900",
+      "caption": "",
+      "project": "sonata",
+      "year": "2024",
+      "month": "07"
+    },
+    {
+      "src": "assets/work/sonata/AU.jpg",
+      "thumb": "assets/work/sonata/AU-thumb.jpg",
+      "aspect": "1391/1800",
+      "caption": "",
+      "project": "sonata",
+      "year": "2024",
+      "month": "07"
+    },
+    {
+      "src": "assets/work/how-can-i-not-forget/playback.jpg",
+      "thumb": "assets/work/how-can-i-not-forget/playback-thumb.jpg",
+      "aspect": "1800/1800",
+      "caption": "",
+      "project": "how-can-i-not-forget",
+      "year": "2026",
+      "month": "04",
+      "page": "assets/work/how-can-i-not-forget/playback/search.html",
+      "pos": "50% 22%",
+      "description": "ORION is the film’s near-future search engine — the web on Nora’s laptop. When she looks up the massacre and the riot, the results come back filtered: an overview that explains them away, and a notice that results were “excluded pending verification.” It’s how the state quietly erases what happened. The search, results, and articles are all built and clickable."
+    },
+    {
+      "src": "assets/work/how-can-i-not-forget/H.jpg",
+      "thumb": "assets/work/how-can-i-not-forget/H-thumb.jpg",
+      "aspect": "1800/1200",
+      "caption": "",
+      "project": "how-can-i-not-forget",
+      "year": "2026",
+      "month": "04"
+    },
+    {
+      "src": "assets/work/how-can-i-not-forget/I.jpg",
+      "thumb": "assets/work/how-can-i-not-forget/I-thumb.jpg",
+      "aspect": "1391/1800",
+      "caption": "",
+      "project": "how-can-i-not-forget",
+      "year": "2026",
+      "month": "04"
+    },
+    {
+      "src": "assets/standalone/A.jpg",
+      "thumb": "assets/standalone/A-thumb.jpg",
+      "aspect": "1800/1299",
+      "caption": "Magazine Cover",
+      "project": null,
+      "projectName": "",
+      "year": "2025",
+      "month": "03"
+    },
+    {
+      "src": "assets/standalone/B.jpg",
+      "thumb": "assets/standalone/B-thumb.jpg",
+      "aspect": "1800/1181",
+      "caption": "Magazine Cover",
+      "project": null,
+      "projectName": "",
+      "year": "2025",
+      "month": "03"
+    },
+    {
+      "src": "assets/standalone/C.jpg",
+      "thumb": "assets/standalone/C-thumb.jpg",
+      "aspect": "1414/1800",
+      "caption": "",
+      "project": null,
+      "projectName": "",
+      "year": "2025",
+      "month": "03"
+    },
+    {
+      "src": "assets/standalone/D.jpg",
+      "thumb": "assets/standalone/D-thumb.jpg",
+      "aspect": "1414/1800",
+      "caption": "",
+      "project": null,
+      "projectName": "",
+      "year": "2025",
+      "month": "03"
+    },
+    {
+      "src": "assets/standalone/E.jpg",
+      "thumb": "assets/standalone/E-thumb.jpg",
+      "aspect": "1414/1800",
+      "caption": "",
+      "project": null,
+      "projectName": "",
+      "year": "2025",
+      "month": "03"
+    },
+    {
+      "src": "assets/standalone/F.jpg",
+      "thumb": "assets/standalone/F-thumb.jpg",
+      "aspect": "1414/1800",
+      "caption": "",
+      "project": null,
+      "projectName": "",
+      "year": "2025",
+      "month": "03"
+    },
+    {
+      "src": "assets/standalone/G.jpg",
+      "thumb": "assets/standalone/G-thumb.jpg",
+      "aspect": "1414/1800",
+      "caption": "",
+      "project": null,
+      "projectName": "",
+      "year": "2025",
+      "month": "03"
+    },
+    {
+      "src": "assets/standalone/H.jpg",
+      "thumb": "assets/standalone/H-thumb.jpg",
+      "aspect": "1200/1800",
+      "caption": "Signage - Hospital",
+      "project": null,
+      "projectName": "",
+      "year": "2025",
+      "month": "09"
+    },
+    {
+      "src": "assets/standalone/I.jpg",
+      "thumb": "assets/standalone/I-thumb.jpg",
+      "aspect": "1200/1800",
+      "caption": "Signage - Directory",
+      "project": null,
+      "projectName": "",
+      "year": "2025",
+      "month": "09"
+    },
+    {
+      "src": "assets/standalone/J.jpg",
+      "thumb": "assets/standalone/J-thumb.jpg",
+      "aspect": "1200/1800",
+      "caption": "Signage - Emergency Room",
+      "project": null,
+      "projectName": "",
+      "year": "2025",
+      "month": "09"
+    },
+    {
+      "src": "assets/standalone/K.jpg",
+      "thumb": "assets/standalone/K-thumb.jpg",
+      "aspect": "1350/1800",
+      "caption": "",
+      "project": null,
+      "projectName": "Mummy Loves You",
+      "year": "2026",
+      "month": "04"
+    },
+    {
+      "src": "assets/standalone/L.jpg",
+      "thumb": "assets/standalone/L-thumb.jpg",
+      "aspect": "1350/1800",
+      "caption": "",
+      "project": null,
+      "projectName": "Mummy Loves You",
+      "year": "2026",
+      "month": "04"
+    },
+    {
+      "src": "assets/standalone/Q.jpg",
+      "thumb": "assets/standalone/Q-thumb.jpg",
+      "aspect": "1800/1800",
+      "caption": "Prop - The Cigarette Box",
+      "project": null,
+      "projectName": "Last Song of the Night",
+      "year": "2026",
+      "month": "04"
+    },
+    {
+      "src": "assets/standalone/R.jpg",
+      "thumb": "assets/standalone/R-thumb.jpg",
+      "aspect": "819/1800",
+      "caption": "Prop - The Matchbox",
+      "project": null,
+      "projectName": "Last Song of the Night",
+      "year": "2026",
+      "month": "04"
+    },
+    {
+      "src": "assets/standalone/S.jpg",
+      "thumb": "assets/standalone/S-thumb.jpg",
+      "aspect": "1800/1309",
+      "caption": "Prop - The Newspaper",
+      "project": null,
+      "projectName": "Last Song of the Night",
+      "year": "2026",
+      "month": "04"
+    },
+    {
+      "src": "assets/standalone/T.jpg",
+      "thumb": "assets/standalone/T-thumb.jpg",
+      "aspect": "947/1800",
+      "caption": "Prop - The Train Ticket",
+      "project": null,
+      "projectName": "Last Song of the Night",
+      "year": "2026",
+      "month": "04"
+    },
+    {
+      "src": "assets/standalone/U.jpg",
+      "thumb": "assets/standalone/U-thumb.jpg",
+      "aspect": "1800/1350",
+      "caption": "Prop - The Cereal Box",
+      "project": null,
+      "projectName": "Checkout",
+      "year": "2025",
+      "month": "01"
+    },
+    {
+      "src": "assets/standalone/V.jpg",
+      "thumb": "assets/standalone/V-thumb.jpg",
+      "aspect": "1800/1440",
+      "caption": "Badge Design",
+      "project": null,
+      "projectName": "Obligatory",
+      "year": "2023",
+      "month": "09"
+    },
+    {
+      "src": "assets/standalone/W.jpg",
+      "thumb": "assets/standalone/W-thumb.jpg",
+      "aspect": "1800/1440",
+      "caption": "Badge Design",
+      "project": null,
+      "projectName": "Obligatory",
+      "year": "2023",
+      "month": "09"
+    },
+    {
+      "src": "assets/standalone/AD.jpg",
+      "thumb": "assets/standalone/AD-thumb.jpg",
+      "aspect": "1800/1164",
+      "caption": "Prop - Wine Labels",
+      "project": null,
+      "projectName": "",
+      "year": "2025",
+      "month": "02"
+    },
+    {
+      "src": "assets/standalone/AE.jpg",
+      "thumb": "assets/standalone/AE-thumb.jpg",
+      "aspect": "1800/1800",
+      "caption": "Freddy's - LOGO",
+      "project": null,
+      "projectName": "Freddy's Ice Cream",
+      "year": "2025",
+      "month": "07"
+    },
+    {
+      "src": "assets/standalone/AF.jpg",
+      "thumb": "assets/standalone/AF-thumb.jpg",
+      "aspect": "1800/1164",
+      "caption": "",
+      "project": null,
+      "projectName": "",
+      "year": "2026",
+      "month": "02"
+    },
+    {
+      "src": "assets/standalone/AG.jpg",
+      "thumb": "assets/standalone/AG-thumb.jpg",
+      "aspect": "1800/1800",
+      "caption": "Ice Cream Menu",
+      "project": null,
+      "projectName": "Freddy's Ice Cream",
+      "year": "2025",
+      "month": "07"
+    },
+    {
+      "src": "assets/standalone/AH.jpg",
+      "thumb": "assets/standalone/AH-thumb.jpg",
+      "aspect": "1275/1800",
+      "caption": "Period Prop",
+      "project": null,
+      "projectName": "Last Song of the Night",
+      "year": "2026",
+      "month": "04"
+    },
+    {
+      "src": "assets/standalone/AI.jpg",
+      "thumb": "assets/standalone/AI-thumb.jpg",
+      "aspect": "1275/1800",
+      "caption": "Period Prop",
+      "project": null,
+      "projectName": "Last Song of the Night",
+      "year": "2026",
+      "month": "04"
+    }
+  ],
+  "poster": [
+    {
+      "src": "assets/work/design/B.jpg",
+      "thumb": "assets/work/design/B-thumb.jpg",
+      "aspect": "1391/1800",
+      "caption": "",
+      "project": null,
+      "projectName": "",
+      "year": "",
+      "month": ""
+    },
+    {
+      "src": "assets/work/design/G.jpg",
+      "thumb": "assets/work/design/G-thumb.jpg",
+      "aspect": "1164/1800",
+      "caption": "",
+      "project": null,
+      "projectName": "",
+      "year": "",
+      "month": ""
+    },
+    {
+      "src": "assets/work/design/H.jpg",
+      "thumb": "assets/work/design/H-thumb.jpg",
+      "aspect": "1350/1800",
+      "caption": "",
+      "project": null,
+      "projectName": "",
+      "year": "",
+      "month": ""
+    },
+    {
+      "src": "assets/work/design/L.jpg",
+      "thumb": "assets/work/design/L-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "",
+      "project": null,
+      "projectName": "",
+      "year": "",
+      "month": ""
+    },
+    {
+      "src": "assets/work/design/M.jpg",
+      "thumb": "assets/work/design/M-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "",
+      "project": null,
+      "projectName": "",
+      "year": "",
+      "month": ""
+    },
+    {
+      "src": "assets/work/design/N.jpg",
+      "thumb": "assets/work/design/N-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "",
+      "project": null,
+      "projectName": "",
+      "year": "",
+      "month": ""
+    }
+  ],
+  "social-marketing": [
+    {
+      "src": "assets/work/design/A.jpg",
+      "thumb": "assets/work/design/A-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "",
+      "project": null,
+      "projectName": "",
+      "year": "",
+      "month": ""
+    },
+    {
+      "src": "assets/work/design/B.jpg",
+      "thumb": "assets/work/design/B-thumb.jpg",
+      "aspect": "1391/1800",
+      "caption": "",
+      "project": null,
+      "projectName": "",
+      "year": "",
+      "month": ""
+    },
+    {
+      "src": "assets/work/design/C.jpg",
+      "thumb": "assets/work/design/C-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "",
+      "project": null,
+      "projectName": "",
+      "year": "",
+      "month": ""
+    },
+    {
+      "src": "assets/work/design/D.jpg",
+      "thumb": "assets/work/design/D-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "",
+      "project": null,
+      "projectName": "",
+      "year": "",
+      "month": ""
+    },
+    {
+      "src": "assets/work/design/E.jpg",
+      "thumb": "assets/work/design/E-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "",
+      "project": null,
+      "projectName": "",
+      "year": "",
+      "month": ""
+    },
+    {
+      "src": "assets/work/design/F.jpg",
+      "thumb": "assets/work/design/F-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "",
+      "project": null,
+      "projectName": "",
+      "year": "",
+      "month": ""
+    },
+    {
+      "src": "assets/work/design/I.jpg",
+      "thumb": "assets/work/design/I-thumb.jpg",
+      "aspect": "1800/1800",
+      "caption": "",
+      "project": null,
+      "projectName": "",
+      "year": "",
+      "month": ""
+    },
+    {
+      "src": "assets/work/design/J.jpg",
+      "thumb": "assets/work/design/J-thumb.jpg",
+      "aspect": "1800/1800",
+      "caption": "",
+      "project": null,
+      "projectName": "",
+      "year": "",
+      "month": ""
+    },
+    {
+      "src": "assets/work/design/K.jpg",
+      "thumb": "assets/work/design/K-thumb.jpg",
+      "aspect": "1800/1800",
+      "caption": "",
+      "project": null,
+      "projectName": "",
+      "year": "",
+      "month": ""
+    },
+    {
+      "src": "assets/work/design/L.jpg",
+      "thumb": "assets/work/design/L-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "",
+      "project": null,
+      "projectName": "",
+      "year": "",
+      "month": ""
+    },
+    {
+      "src": "assets/work/design/M.jpg",
+      "thumb": "assets/work/design/M-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "",
+      "project": null,
+      "projectName": "",
+      "year": "",
+      "month": ""
+    },
+    {
+      "src": "assets/work/design/N.jpg",
+      "thumb": "assets/work/design/N-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "",
+      "project": null,
+      "projectName": "",
+      "year": "",
+      "month": ""
+    }
+  ],
+  "graphic-design": [
+    {
+      "src": "assets/work/sonata/AM.jpg",
+      "thumb": "assets/work/sonata/AM-thumb.jpg",
+      "aspect": "1391/1800",
+      "caption": "",
+      "project": "sonata",
+      "year": "2024",
+      "month": "07"
+    },
+    {
+      "src": "assets/work/sonata/AO.jpg",
+      "thumb": "assets/work/sonata/AO-thumb.jpg",
+      "aspect": "1800/1391",
+      "caption": "",
+      "project": "sonata",
+      "year": "2024",
+      "month": "07"
+    },
+    {
+      "src": "assets/work/sonata/AR.jpg",
+      "thumb": "assets/work/sonata/AR-thumb.jpg",
+      "aspect": "1391/1800",
+      "caption": "",
+      "project": "sonata",
+      "year": "2024",
+      "month": "07"
+    },
+    {
+      "src": "assets/work/sonata/AS.jpg",
+      "thumb": "assets/work/sonata/AS-thumb.jpg",
+      "aspect": "1391/1800",
+      "caption": "",
+      "project": "sonata",
+      "year": "2024",
+      "month": "07"
+    },
+    {
+      "src": "assets/work/sonata/AT.jpg",
+      "thumb": "assets/work/sonata/AT-thumb.jpg",
+      "aspect": "1391/1800",
+      "caption": "",
+      "project": "sonata",
+      "year": "2024",
+      "month": "07"
+    },
+    {
+      "src": "assets/work/sonata/AQ.jpg",
+      "thumb": "assets/work/sonata/AQ-thumb.jpg",
+      "aspect": "1800/900",
+      "caption": "",
+      "project": "sonata",
+      "year": "2024",
+      "month": "07"
+    },
+    {
+      "src": "assets/work/how-can-i-not-forget/H.jpg",
+      "thumb": "assets/work/how-can-i-not-forget/H-thumb.jpg",
+      "aspect": "1800/1200",
+      "caption": "",
+      "project": "how-can-i-not-forget",
+      "year": "2026",
+      "month": "04"
+    },
+    {
+      "src": "assets/work/how-can-i-not-forget/I.jpg",
+      "thumb": "assets/work/how-can-i-not-forget/I-thumb.jpg",
+      "aspect": "1391/1800",
+      "caption": "",
+      "project": "how-can-i-not-forget",
+      "year": "2026",
+      "month": "04"
+    },
+    {
+      "src": "assets/standalone/A.jpg",
+      "thumb": "assets/standalone/A-thumb.jpg",
+      "aspect": "1800/1299",
+      "caption": "Magazine Cover",
+      "project": null,
+      "projectName": "",
+      "year": "2025",
+      "month": "03"
+    },
+    {
+      "src": "assets/standalone/B.jpg",
+      "thumb": "assets/standalone/B-thumb.jpg",
+      "aspect": "1800/1181",
+      "caption": "Magazine Cover",
+      "project": null,
+      "projectName": "",
+      "year": "2025",
+      "month": "03"
+    },
+    {
+      "src": "assets/standalone/C.jpg",
+      "thumb": "assets/standalone/C-thumb.jpg",
+      "aspect": "1414/1800",
+      "caption": "",
+      "project": null,
+      "projectName": "",
+      "year": "2025",
+      "month": "03"
+    },
+    {
+      "src": "assets/standalone/H.jpg",
+      "thumb": "assets/standalone/H-thumb.jpg",
+      "aspect": "1200/1800",
+      "caption": "Signage - Hospital",
+      "project": null,
+      "projectName": "",
+      "year": "2025",
+      "month": "09"
+    },
+    {
+      "src": "assets/standalone/I.jpg",
+      "thumb": "assets/standalone/I-thumb.jpg",
+      "aspect": "1200/1800",
+      "caption": "Signage - Directory",
+      "project": null,
+      "projectName": "",
+      "year": "2025",
+      "month": "09"
+    },
+    {
+      "src": "assets/standalone/J.jpg",
+      "thumb": "assets/standalone/J-thumb.jpg",
+      "aspect": "1200/1800",
+      "caption": "Signage - Emergency Room",
+      "project": null,
+      "projectName": "",
+      "year": "2025",
+      "month": "09"
+    },
+    {
+      "src": "assets/standalone/Q.jpg",
+      "thumb": "assets/standalone/Q-thumb.jpg",
+      "aspect": "1800/1800",
+      "caption": "Prop - The Cigarette Box",
+      "project": null,
+      "projectName": "Last Song of the Night",
+      "year": "2026",
+      "month": "04"
+    },
+    {
+      "src": "assets/standalone/R.jpg",
+      "thumb": "assets/standalone/R-thumb.jpg",
+      "aspect": "819/1800",
+      "caption": "Prop - The Matchbox",
+      "project": null,
+      "projectName": "Last Song of the Night",
+      "year": "2026",
+      "month": "04"
+    },
+    {
+      "src": "assets/standalone/S.jpg",
+      "thumb": "assets/standalone/S-thumb.jpg",
+      "aspect": "1800/1309",
+      "caption": "Prop - The Newspaper",
+      "project": null,
+      "projectName": "Last Song of the Night",
+      "year": "2026",
+      "month": "04"
+    },
+    {
+      "src": "assets/standalone/T.jpg",
+      "thumb": "assets/standalone/T-thumb.jpg",
+      "aspect": "947/1800",
+      "caption": "Prop - The Train Ticket",
+      "project": null,
+      "projectName": "Last Song of the Night",
+      "year": "2026",
+      "month": "04"
+    },
+    {
+      "src": "assets/standalone/U.jpg",
+      "thumb": "assets/standalone/U-thumb.jpg",
+      "aspect": "1800/1350",
+      "caption": "Prop - The Cereal Box",
+      "project": null,
+      "projectName": "Checkout",
+      "year": "2025",
+      "month": "01"
+    },
+    {
+      "src": "assets/standalone/AD.jpg",
+      "thumb": "assets/standalone/AD-thumb.jpg",
+      "aspect": "1800/1164",
+      "caption": "Prop - Wine Labels",
+      "project": null,
+      "projectName": "",
+      "year": "2025",
+      "month": "02"
+    },
+    {
+      "src": "assets/standalone/AF.jpg",
+      "thumb": "assets/standalone/AF-thumb.jpg",
+      "aspect": "1800/1164",
+      "caption": "",
+      "project": null,
+      "projectName": "",
+      "year": "2026",
+      "month": "02"
+    },
+    {
+      "src": "assets/standalone/AG.jpg",
+      "thumb": "assets/standalone/AG-thumb.jpg",
+      "aspect": "1800/1800",
+      "caption": "Ice Cream Menu",
+      "project": null,
+      "projectName": "Freddy's Ice Cream",
+      "year": "2025",
+      "month": "07"
+    }
+  ],
+  "illustration": [],
+  "costume": [],
+  "ci": [
+    {
+      "src": "assets/work/ci/A.jpg",
+      "thumb": "assets/work/ci/A-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "Figure Drawing",
+      "tags": [
+        "illustration"
+      ],
+      "group": ""
+    },
+    {
+      "src": "assets/work/ci/B.jpg",
+      "thumb": "assets/work/ci/B-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "Meet Again",
+      "tags": [
+        "illustration",
+        "story"
+      ],
+      "group": ""
+    },
+    {
+      "src": "assets/work/ci/C.jpg",
+      "thumb": "assets/work/ci/C-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "Imagine a Dream Let Loose",
+      "tags": [
+        "illustration"
+      ],
+      "group": ""
+    },
+    {
+      "src": "assets/work/ci/D.jpg",
+      "thumb": "assets/work/ci/D-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "2079: Age of Solace",
+      "tags": [
+        "illustration",
+        "environment",
+        "story"
+      ],
+      "group": "bathroom set"
+    },
+    {
+      "src": "assets/work/ci/E.jpg",
+      "thumb": "assets/work/ci/E-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "A Romance in Morro Bay",
+      "tags": [
+        "illustration",
+        "environment",
+        "story"
+      ],
+      "group": "bathroom set"
+    },
+    {
+      "src": "assets/work/ci/F.jpg",
+      "thumb": "assets/work/ci/F-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "Brink of Dusk",
+      "tags": [
+        "illustration",
+        "environment",
+        "story"
+      ],
+      "group": "bathroom set"
+    },
+    {
+      "src": "assets/work/ci/G.jpg",
+      "thumb": "assets/work/ci/G-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "High Class",
+      "tags": [
+        "illustration",
+        "environment",
+        "story"
+      ],
+      "group": "bathroom set"
+    },
+    {
+      "src": "assets/work/ci/H.jpg",
+      "thumb": "assets/work/ci/H-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "Taste",
+      "tags": [
+        "illustration",
+        "environment",
+        "story"
+      ],
+      "group": "bathroom set"
+    },
+    {
+      "src": "assets/work/ci/I.jpg",
+      "thumb": "assets/work/ci/I-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "Captain Marvel Fan Art",
+      "tags": [
+        "illustration",
+        "story"
+      ],
+      "group": ""
+    },
+    {
+      "src": "assets/work/ci/J.jpg",
+      "thumb": "assets/work/ci/J-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "Silent Night",
+      "tags": [
+        "illustration",
+        "character"
+      ],
+      "group": ""
+    },
+    {
+      "src": "assets/work/ci/K.jpg",
+      "thumb": "assets/work/ci/K-thumb.jpg",
+      "aspect": "1414/1800",
+      "caption": "JINX - A Fan Art",
+      "tags": [
+        "illustration",
+        "story"
+      ],
+      "group": ""
+    },
+    {
+      "src": "assets/work/ci/L.jpg",
+      "thumb": "assets/work/ci/L-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "Ecosystems of Public Bathroom",
+      "tags": [
+        "illustration",
+        "environment",
+        "story"
+      ],
+      "group": ""
+    },
+    {
+      "src": "assets/work/ci/M.jpg",
+      "thumb": "assets/work/ci/M-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "Time Warp",
+      "tags": [
+        "illustration"
+      ],
+      "group": ""
+    },
+    {
+      "src": "assets/work/ci/N.jpg",
+      "thumb": "assets/work/ci/N-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "Drunken",
+      "tags": [
+        "illustration",
+        "character",
+        "story"
+      ],
+      "group": ""
+    },
+    {
+      "src": "assets/work/ci/O.jpg",
+      "thumb": "assets/work/ci/O-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "The Bathing Band",
+      "tags": [
+        "illustration",
+        "character",
+        "story"
+      ],
+      "group": ""
+    },
+    {
+      "src": "assets/work/ci/P.jpg",
+      "thumb": "assets/work/ci/P-thumb.jpg",
+      "aspect": "1349/1800",
+      "caption": "Photo Study",
+      "tags": [
+        "illustration"
+      ],
+      "group": ""
+    },
+    {
+      "src": "assets/work/ci/Q.jpg",
+      "thumb": "assets/work/ci/Q-thumb.jpg",
+      "aspect": "1800/1049",
+      "caption": "",
+      "tags": [
+        "illustration",
+        "environment",
+        "story"
+      ],
+      "group": ""
+    },
+    {
+      "src": "assets/work/ci/R.jpg",
+      "thumb": "assets/work/ci/R-thumb.jpg",
+      "aspect": "1391/1800",
+      "caption": "Responsibility",
+      "tags": [
+        "illustration",
+        "character",
+        "story"
+      ],
+      "group": ""
+    },
+    {
+      "src": "assets/work/ci/S.jpg",
+      "thumb": "assets/work/ci/S-thumb.jpg",
+      "aspect": "1800/1164",
+      "caption": "",
+      "tags": [
+        "concept",
+        "environment"
+      ],
+      "group": "building design"
+    },
+    {
+      "src": "assets/work/ci/T.jpg",
+      "thumb": "assets/work/ci/T-thumb.jpg",
+      "aspect": "1800/1164",
+      "caption": "",
+      "tags": [
+        "concept",
+        "environment"
+      ],
+      "group": "building design"
+    },
+    {
+      "src": "assets/work/ci/U.jpg",
+      "thumb": "assets/work/ci/U-thumb.jpg",
+      "aspect": "1800/1164",
+      "caption": "",
+      "tags": [
+        "concept",
+        "environment"
+      ],
+      "group": "building design"
+    },
+    {
+      "src": "assets/work/ci/V.jpg",
+      "thumb": "assets/work/ci/V-thumb.jpg",
+      "aspect": "1800/1164",
+      "caption": "",
+      "tags": [
+        "concept",
+        "environment"
+      ],
+      "group": "building design"
+    },
+    {
+      "src": "assets/work/ci/W.jpg",
+      "thumb": "assets/work/ci/W-thumb.jpg",
+      "aspect": "1800/1164",
+      "caption": "",
+      "tags": [
+        "concept",
+        "environment"
+      ],
+      "group": "building design"
+    },
+    {
+      "src": "assets/work/ci/X.jpg",
+      "thumb": "assets/work/ci/X-thumb.jpg",
+      "aspect": "1800/1164",
+      "caption": "",
+      "tags": [
+        "concept",
+        "environment"
+      ],
+      "group": "building design"
+    },
+    {
+      "src": "assets/work/ci/Y.jpg",
+      "thumb": "assets/work/ci/Y-thumb.jpg",
+      "aspect": "1800/1164",
+      "caption": "",
+      "tags": [
+        "concept",
+        "environment"
+      ],
+      "group": "building design"
+    },
+    {
+      "src": "assets/work/ci/Z.jpg",
+      "thumb": "assets/work/ci/Z-thumb.jpg",
+      "aspect": "1800/1164",
+      "caption": "",
+      "tags": [
+        "concept",
+        "environment"
+      ],
+      "group": "building design"
+    },
+    {
+      "src": "assets/work/ci/AA.jpg",
+      "thumb": "assets/work/ci/AA-thumb.jpg",
+      "aspect": "1800/1164",
+      "caption": "",
+      "tags": [
+        "concept",
+        "environment"
+      ],
+      "group": "building design"
+    },
+    {
+      "src": "assets/work/ci/AB.jpg",
+      "thumb": "assets/work/ci/AB-thumb.jpg",
+      "aspect": "1800/1164",
+      "caption": "",
+      "tags": [
+        "concept",
+        "environment"
+      ],
+      "group": "building design"
+    },
+    {
+      "src": "assets/work/ci/AC.jpg",
+      "thumb": "assets/work/ci/AC-thumb.jpg",
+      "aspect": "1800/1164",
+      "caption": "",
+      "tags": [
+        "concept",
+        "environment"
+      ],
+      "group": "building design"
+    },
+    {
+      "src": "assets/work/ci/AD.jpg",
+      "thumb": "assets/work/ci/AD-thumb.jpg",
+      "aspect": "1800/1164",
+      "caption": "",
+      "tags": [
+        "concept",
+        "character"
+      ],
+      "group": "spidersona"
+    },
+    {
+      "src": "assets/work/ci/AE.jpg",
+      "thumb": "assets/work/ci/AE-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "",
+      "tags": [
+        "illustration"
+      ],
+      "group": ""
+    },
+    {
+      "src": "assets/work/ci/AF.jpg",
+      "thumb": "assets/work/ci/AF-thumb.jpg",
+      "aspect": "1800/1012",
+      "caption": "",
+      "tags": [
+        "illustration",
+        "environment",
+        "story"
+      ],
+      "group": ""
+    },
+    {
+      "src": "assets/work/ci/AG.jpg",
+      "thumb": "assets/work/ci/AG-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "The Cloth Shop",
+      "tags": [
+        "illustration",
+        "environment",
+        "story"
+      ],
+      "group": ""
+    },
+    {
+      "src": "assets/work/ci/AH.jpg",
+      "thumb": "assets/work/ci/AH-thumb.jpg",
+      "aspect": "1800/1440",
+      "caption": "Teen Girl's Bedroom",
+      "tags": [
+        "concept",
+        "environment"
+      ],
+      "group": ""
+    },
+    {
+      "src": "assets/work/ci/AI.jpg",
+      "thumb": "assets/work/ci/AI-thumb.jpg",
+      "aspect": "1800/1164",
+      "caption": "",
+      "tags": [
+        "concept",
+        "character"
+      ],
+      "group": "spidersona"
+    },
+    {
+      "src": "assets/work/ci/AJ.jpg",
+      "thumb": "assets/work/ci/AJ-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "Leap",
+      "tags": [
+        "illustration"
+      ],
+      "group": ""
+    },
+    {
+      "src": "assets/work/ci/AK.jpg",
+      "thumb": "assets/work/ci/AK-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "",
+      "tags": [
+        "illustration"
+      ],
+      "group": ""
+    },
+    {
+      "src": "assets/work/ci/AL.jpg",
+      "thumb": "assets/work/ci/AL-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "Secret Moments",
+      "tags": [
+        "illustration",
+        "story"
+      ],
+      "group": ""
+    },
+    {
+      "src": "assets/work/ci/AM.jpg",
+      "thumb": "assets/work/ci/AM-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "",
+      "tags": [
+        "illustration",
+        "story"
+      ],
+      "group": ""
+    },
+    {
+      "src": "assets/work/ci/AN.jpg",
+      "thumb": "assets/work/ci/AN-thumb.jpg",
+      "aspect": "1800/1012",
+      "caption": "The Slaughter",
+      "tags": [
+        "illustration",
+        "story"
+      ],
+      "group": ""
+    },
+    {
+      "src": "assets/work/ci/AO.jpg",
+      "thumb": "assets/work/ci/AO-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "SELF ESTEEM",
+      "tags": [
+        "illustration"
+      ],
+      "group": "self"
+    },
+    {
+      "src": "assets/work/ci/AP.jpg",
+      "thumb": "assets/work/ci/AP-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "SELF TRAP",
+      "tags": [
+        "illustration"
+      ],
+      "group": "self"
+    },
+    {
+      "src": "assets/work/ci/AQ.jpg",
+      "thumb": "assets/work/ci/AQ-thumb.jpg",
+      "aspect": "1800/900",
+      "caption": "Koi",
+      "tags": [
+        "illustration",
+        "environment",
+        "story"
+      ],
+      "group": ""
+    },
+    {
+      "src": "assets/work/ci/AR.jpg",
+      "thumb": "assets/work/ci/AR-thumb.jpg",
+      "aspect": "1800/1012",
+      "caption": "North",
+      "tags": [
+        "illustration",
+        "story"
+      ],
+      "group": ""
+    },
+    {
+      "src": "assets/work/ci/AS.jpg",
+      "thumb": "assets/work/ci/AS-thumb.jpg",
+      "aspect": "1800/1440",
+      "caption": "Cafe Paris",
+      "tags": [
+        "story"
+      ],
+      "group": ""
+    },
+    {
+      "src": "assets/work/ci/AT.jpg",
+      "thumb": "assets/work/ci/AT-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "Snow White",
+      "tags": [
+        "character"
+      ],
+      "group": ""
+    },
+    {
+      "src": "assets/work/ci/AU.jpg",
+      "thumb": "assets/work/ci/AU-thumb.jpg",
+      "aspect": "1800/1012",
+      "caption": "",
+      "tags": [
+        "illustration",
+        "environment",
+        "story"
+      ],
+      "group": ""
+    },
+    {
+      "src": "assets/work/ci/AV.jpg",
+      "thumb": "assets/work/ci/AV-thumb.jpg",
+      "aspect": "1012/1800",
+      "caption": "JINX - A Fan Art",
+      "tags": [
+        "illustration"
+      ],
+      "group": ""
+    },
+    {
+      "src": "assets/work/ci/AW.jpg",
+      "thumb": "assets/work/ci/AW-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "Alina - Expression Sheet",
+      "tags": [
+        "concept",
+        "character"
+      ],
+      "group": ""
+    },
+    {
+      "src": "assets/work/ci/AX.jpg",
+      "thumb": "assets/work/ci/AX-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "",
+      "tags": [
+        "concept",
+        "character"
+      ],
+      "group": ""
+    },
+    {
+      "src": "assets/work/ci/AY.jpg",
+      "thumb": "assets/work/ci/AY-thumb.jpg",
+      "aspect": "1800/1012",
+      "caption": "Shattered",
+      "tags": [
+        "illustration",
+        "environment",
+        "story"
+      ],
+      "group": ""
+    },
+    {
+      "src": "assets/work/ci/AZ.jpg",
+      "thumb": "assets/work/ci/AZ-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "The Break Up",
+      "tags": [
+        "illustration",
+        "story"
+      ],
+      "group": ""
+    },
+    {
+      "src": "assets/work/ci/BA.jpg",
+      "thumb": "assets/work/ci/BA-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "Departure",
+      "tags": [
+        "illustration",
+        "environment",
+        "story"
+      ],
+      "group": ""
+    },
+    {
+      "src": "assets/work/ci/BB.gif",
+      "aspect": "480/480",
+      "caption": "Companion",
+      "tags": [
+        "illustration",
+        "motion"
+      ],
+      "group": ""
+    },
+    {
+      "src": "assets/work/ci/BC.gif",
+      "aspect": "480/480",
+      "caption": "Poseidon",
+      "tags": [
+        "illustration",
+        "motion"
+      ],
+      "group": ""
+    },
+    {
+      "src": "assets/work/ci/BD.gif",
+      "aspect": "480/480",
+      "caption": "Ordinary",
+      "tags": [
+        "illustration",
+        "motion"
+      ],
+      "group": ""
+    },
+    {
+      "src": "assets/work/ci/BE.jpg",
+      "thumb": "assets/work/ci/BE-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "Japanese Porch",
+      "tags": [
+        "environment",
+        "3d"
+      ],
+      "group": ""
+    },
+    {
+      "src": "assets/work/ci/BF.jpg",
+      "thumb": "assets/work/ci/BF-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "The Bridge",
+      "tags": [
+        "environment",
+        "3d"
+      ],
+      "group": ""
+    },
+    {
+      "src": "assets/work/ci/BG.jpg",
+      "thumb": "assets/work/ci/BG-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "The Bathroom",
+      "tags": [
+        "environment",
+        "3d"
+      ],
+      "group": "bathroom"
+    },
+    {
+      "src": "assets/work/ci/BH.jpg",
+      "thumb": "assets/work/ci/BH-thumb.jpg",
+      "aspect": "1800/1012",
+      "caption": "The Bathroom",
+      "tags": [
+        "environment",
+        "3d"
+      ],
+      "group": "bathroom"
+    },
+    {
+      "src": "assets/work/ci/BI.jpg",
+      "thumb": "assets/work/ci/BI-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "The Dorm",
+      "tags": [
+        "environment",
+        "3d"
+      ],
+      "group": "dorm"
+    },
+    {
+      "src": "assets/work/ci/BJ.jpg",
+      "thumb": "assets/work/ci/BJ-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "The Chinese House",
+      "tags": [
+        "environment",
+        "3d"
+      ],
+      "group": "The Chinese House"
+    },
+    {
+      "src": "assets/work/ci/BK.jpg",
+      "thumb": "assets/work/ci/BK-thumb.jpg",
+      "aspect": "1800/1012",
+      "caption": "The Chinese House",
+      "tags": [
+        "environment",
+        "3d"
+      ],
+      "group": "The Chinese House"
+    },
+    {
+      "src": "assets/work/ci/BL.jpg",
+      "thumb": "assets/work/ci/BL-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "The Dorm",
+      "tags": [],
+      "group": "dorm"
+    },
+    {
+      "src": "assets/work/ci/BM.jpg",
+      "thumb": "assets/work/ci/BM-thumb.jpg",
+      "aspect": "1800/818",
+      "caption": "The Ogres Tent",
+      "tags": [
+        "environment",
+        "3d"
+      ],
+      "group": ""
+    },
+    {
+      "src": "assets/work/ci/BN.jpg",
+      "thumb": "assets/work/ci/BN-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "Y2K Cloth Shop",
+      "tags": [
+        "environment",
+        "3d"
+      ],
+      "group": ""
+    },
+    {
+      "src": "assets/work/ci/BO.jpg",
+      "thumb": "assets/work/ci/BO-thumb.jpg",
+      "aspect": "1440/1800",
+      "caption": "The Gala",
+      "tags": [
+        "environment",
+        "3d"
+      ],
+      "group": ""
+    }
+  ]
+}

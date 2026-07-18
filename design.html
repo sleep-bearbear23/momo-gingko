@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Design — 默默 GINGKO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;600&family=Spline+Sans:wght@400;500&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css"/>
+<script src="content.js"></script>
+</head>
+<body data-page="menu" data-title="design" data-title-img="title-design.png" data-parent="index.html">
+<main class="view-root">
+  <nav class="submenu" aria-label="Design sections">
+    <button data-view="poster" aria-selected="true">Poster Design</button>
+    <button data-view="social" aria-selected="false">Social<br>Marketing</button>
+    <button data-view="propgfx" aria-selected="false">Prop Graphic<br>Design</button>
+  </nav>
+
+  <div class="mini-body">
+    <section class="view is-active" data-view="poster"><div class="gallery g3" id="dPoster"></div></section>
+    <section class="view" data-view="social"><div class="gallery g3" id="dSocial"></div></section>
+    <section class="view" data-view="propgfx"><div class="gallery g3" id="dPropgfx"></div></section>
+  </div>
+
+  <script>
+  (function(){
+    const btns=[...document.querySelectorAll('.submenu button')];   // shell OR standalone (submenu may be relocated)
+    const views=[...document.querySelectorAll('.view')];
+    const mount=document.getElementById('mount');
+    btns.forEach(b=>b.addEventListener('click',()=>{
+      const v=b.dataset.view;
+      btns.forEach(x=>x.setAttribute('aria-selected', x===b));
+      views.forEach(s=>s.classList.toggle('is-active', s.dataset.view===v));
+      if(mount) mount.scrollTop=0; else scrollTo(0,0);
+    }));
+    if(window.GKcontent){                          // data-driven, from content/sections.json
+      GKcontent.renderSection(document.getElementById('dPoster'),'poster');
+      GKcontent.renderSection(document.getElementById('dSocial'),'social-marketing');
+      GKcontent.renderSection(document.getElementById('dPropgfx'),'graphic-design');
+    }
+  })();
+  </script>
+</main>
+<script src="mobile.js"></script>
+</body>
+</html>

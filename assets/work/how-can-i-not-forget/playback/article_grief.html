@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Why We Hear the Dead — Psychology Spot</title>
+  <link rel="stylesheet" href="shared.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Open+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    html,
+    body {
+      overflow: hidden
+    }
+
+    .page-content {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      background: #fff;
+      position: relative
+    }
+
+    .site-header {
+      background: #fff;
+      border-bottom: 1px solid #e5e1da
+    }
+
+    .top-bar {
+      background: #2e6da4;
+      padding: 5px 40px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: rgba(255, 255, 255, .8)
+    }
+
+    .header-main {
+      padding: 13px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between
+    }
+
+    .site-logo {
+      font-family: 'Merriweather', serif;
+      font-size: 23px;
+      font-weight: 700;
+      color: #1a3a5c;
+      text-decoration: none
+    }
+
+    .site-logo em {
+      color: #2e6da4;
+      font-style: normal
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      font-size: 13px
+    }
+
+    .header-actions a {
+      color: #5a5a5a;
+      text-decoration: none
+    }
+
+    .header-actions .subscribe {
+      background: #2e6da4;
+      color: #fff;
+      padding: 6px 16px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600
+    }
+
+    .nav-bar {
+      border-top: 1px solid #e5e1da;
+      padding: 0 40px;
+      display: flex;
+      overflow-x: auto
+    }
+
+    .nav-item {
+      padding: 10px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #5a5a5a;
+      white-space: nowrap;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: all .2s;
+      text-decoration: none
+    }
+
+    .nav-item.active,
+    .nav-item:hover {
+      color: #2e6da4;
+      border-bottom-color: #2e6da4
+    }
+
+    .breadcrumb {
+      padding: 9px 40px;
+      font-size: 12px;
+      color: #aaa;
+      background: #f6f4f1;
+      border-bottom: 1px solid #e5e1da;
+      display: flex;
+      gap: 6px;
+      align-items: center
+    }
+
+    .breadcrumb a {
+      color: #2e6da4;
+      text-decoration: none
+    }
+
+    .breadcrumb a:hover {
+      text-decoration: underline
+    }
+
+    .page-wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 40px;
+      display: flex;
+      gap: 46px
+    }
+
+    .article-main {
+      flex: 1;
+      min-width: 0
+    }
+
+    .article-sidebar {
+      width: 275px;
+      flex-shrink: 0
+    }
+
+    .article-tag {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: #2e6da4;
+      margin-bottom: 11px;
+      display: flex;
+      align-items: center;
+      gap: 8px
+    }
+
+    .article-tag::before {
+      content: '';
+      width: 18px;
+      height: 2px;
+      background: #2e6da4
+    }
+
+    .article-title {
+      font-family: 'Merriweather', serif;
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 1.28;
+      color: #1c1c1c;
+      margin-bottom: 13px
+    }
+
+    .article-subtitle {
+      font-family: 'Merriweather', serif;
+      font-size: 17px;
+      font-weight: 300;
+      font-style: italic;
+      color: #5a5a5a;
+      line-height: 1.6;
+      margin-bottom: 20px
+    }
+
+    .author-bar {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 13px 0;
+      border-top: 1px solid #e5e1da;
+      border-bottom: 1px solid #e5e1da;
+      margin-bottom: 22px
+    }
+
+    .author-photo {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #a8c5da, #7ba8c4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0
+    }
+
+    .author-details {
+      flex: 1
+    }
+
+    .author-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #2e6da4
+    }
+
+    .author-cred {
+      font-size: 12px;
+      color: #aaa
+    }
+
+    .publish-date {
+      font-size: 12px;
+      color: #aaa;
+      text-align: right;
+      line-height: 1.5
+    }
+
+    .action-btn {
+      border: 1px solid #e5e1da;
+      background: none;
+      padding: 5px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      color: #5a5a5a;
+      cursor: pointer;
+      font-family: 'Open Sans', sans-serif
+    }
+
+    .action-btn:hover {
+      border-color: #2e6da4;
+      color: #2e6da4
+    }
+
+    .hero-img {
+      width: 100%;
+      aspect-ratio: 16/8;
+      background: linear-gradient(135deg, #d4dfe8, #bfcdd8 50%, #d8d0c8);
+      border-radius: 6px;
+      margin-bottom: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Merriweather', serif;
+      font-style: italic;
+      font-size: 13px;
+      color: rgba(40, 60, 80, .35);
+      text-align: center;
+      padding: 18px
+    }
+
+    .img-caption {
+      font-size: 12px;
+      color: #aaa;
+      margin-bottom: 26px;
+      line-height: 1.5
+    }
+
+    .article-body {
+      font-family: 'Open Sans', sans-serif;
+      line-height: 1.8
+    }
+
+    .article-body p {
+      font-size: 16px;
+      color: #1c1c1c;
+      line-height: 1.85;
+      margin-bottom: 20px
+    }
+
+    .article-body h2 {
+      font-family: 'Merriweather', serif;
+      font-size: 21px;
+      font-weight: 700;
+      color: #1c1c1c;
+      margin: 34px 0 13px;
+      padding-bottom: 7px;
+      border-bottom: 2px solid #eaf1f8
+    }
+
+    .article-body h3 {
+      font-size: 17px;
+      font-weight: 600;
+      color: #1c1c1c;
+      margin: 22px 0 9px
+    }
+
+    .article-body blockquote {
+      border-left: 4px solid #2e6da4;
+      padding: 14px 22px;
+      background: #eaf1f8;
+      margin: 26px 0;
+      border-radius: 0 6px 6px 0
+    }
+
+    .article-body blockquote p {
+      font-family: 'Merriweather', serif;
+      font-style: italic;
+      font-size: 16px;
+      color: #1a3a5c;
+      margin: 0
+    }
+
+    .article-body blockquote cite {
+      display: block;
+      margin-top: 7px;
+      font-size: 12px;
+      color: #aaa;
+      font-style: normal
+    }
+
+    .article-body ul {
+      padding-left: 21px;
+      margin-bottom: 20px
+    }
+
+    .article-body li {
+      font-size: 15px;
+      color: #1c1c1c;
+      line-height: 1.75;
+      margin-bottom: 7px
+    }
+
+    .pull-quote {
+      float: right;
+      width: 230px;
+      margin: 0 0 18px 28px;
+      padding: 16px 18px;
+      border-top: 3px solid #c0392b;
+      border-bottom: 1px solid #e5e1da
+    }
+
+    .pull-quote p {
+      font-family: 'Merriweather', serif;
+      font-size: 17px;
+      font-style: italic;
+      color: #c0392b;
+      line-height: 1.5;
+      margin: 0
+    }
+
+    .highlight-box {
+      background: #f6f4f1;
+      border: 1px solid #e5e1da;
+      border-radius: 8px;
+      padding: 18px 22px;
+      margin: 26px 0;
+      clear: both
+    }
+
+    .highlight-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: #1c1c1c;
+      margin-bottom: 9px;
+      text-transform: uppercase;
+      letter-spacing: .06em
+    }
+
+    .highlight-box p {
+      font-size: 13.5px;
+      color: #5a5a5a;
+      line-height: 1.7;
+      margin-bottom: 7px
+    }
+
+    .highlight-box p:last-child {
+      margin-bottom: 0
+    }
+
+    .author-bio {
+      margin-top: 44px;
+      padding-top: 22px;
+      border-top: 2px solid #e5e1da;
+      display: flex;
+      gap: 18px;
+      align-items: flex-start
+    }
+
+    .bio-photo {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #a8c5da, #7ba8c4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      color: #fff;
+      font-weight: 600;
+      flex-shrink: 0
+    }
+
+    .bio-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: #2e6da4;
+      margin-bottom: 4px
+    }
+
+    .bio-text p {
+      font-size: 13px;
+      color: #5a5a5a;
+      line-height: 1.6
+    }
+
+    .sidebar-widget {
+      margin-bottom: 26px
+    }
+
+    .widget-title {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: #aaa;
+      padding-bottom: 9px;
+      border-bottom: 2px solid #2e6da4;
+      margin-bottom: 13px
+    }
+
+    .related-item {
+      padding: 11px 0;
+      border-bottom: 1px solid #e5e1da;
+      cursor: pointer
+    }
+
+    .related-item:last-child {
+      border-bottom: none
+    }
+
+    .related-item-title {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: #1c1c1c;
+      line-height: 1.4;
+      margin-bottom: 3px;
+      transition: color .2s
+    }
+
+    .related-item:hover .related-item-title {
+      color: #2e6da4
+    }
+
+    .related-item-meta {
+      font-size: 11px;
+      color: #aaa
+    }
+
+    .subscribe-widget {
+      background: #2e6da4;
+      color: #fff;
+      border-radius: 8px;
+      padding: 18px;
+      text-align: center;
+      margin-bottom: 22px
+    }
+
+    .subscribe-widget h4 {
+      font-size: 15px;
+      margin-bottom: 7px
+    }
+
+    .subscribe-widget p {
+      font-size: 12px;
+      opacity: .85;
+      margin-bottom: 13px;
+      line-height: 1.5
+    }
+
+    .subscribe-widget button {
+      background: #fff;
+      color: #2e6da4;
+      border: none;
+      padding: 7px 18px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'Open Sans', sans-serif
+    }
+
+    .ad-box {
+      background: #f6f4f1;
+      border: 1px dashed #e5e1da;
+      border-radius: 6px;
+      padding: 24px;
+      text-align: center;
+      font-size: 11px;
+      color: #aaa;
+      margin-bottom: 22px
+    }
+  </style>
+</head>
+
+<body>
+  <div class="browser-window">
+    <div class="browser-chrome">
+      <div class="chrome-left">
+        <div class="traffic-lights">
+          <div class="tl tl-red"></div>
+          <div class="tl tl-yellow"></div>
+          <div class="tl tl-green"></div>
+        </div>
+        <button class="nav-btn" onclick="history.back()"><svg viewBox="0 0 14 14" fill="none">
+            <path d="M9 2L4 7L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg></button>
+        <button class="nav-btn disabled"><svg viewBox="0 0 14 14" fill="none">
+            <path d="M5 2L10 7L5 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg></button>
+      </div>
+      <div class="url-bar">
+        <svg class="url-lock" viewBox="0 0 12 14" fill="none">
+          <rect x="1" y="6" width="10" height="7" rx="1.5" stroke="currentColor" stroke-width="1.2" />
+          <path d="M3.5 6V4a2.5 2.5 0 015 0v2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
+        </svg>
+        <div class="url-text">psychologyspot.com / <span>grief › why-we-hear-the-dead</span></div>
+      </div>
+      <div class="chrome-right">
+        <div class="b-icon"><svg viewBox="0 0 15 15" fill="none">
+            <path d="M5 7.5H2a1 1 0 00-1 1V13a1 1 0 001 1h11a1 1 0 001-1V8.5a1 1 0 00-1-1h-3M7.5 1v8M5 3.5L7.5 1 10 3.5"
+              stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg></div>
+        <div class="b-icon"><svg viewBox="0 0 13 15" fill="none">
+            <path d="M1 1h11v13L6.5 10 1 14V1z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg></div>
+      </div>
+    </div>
+
+    <div class="page-content">
+      <header class="site-header">
+        <div class="top-bar"><span>Find a Therapist · Find a Support Group</span><span>Magazine · Podcast ·
+            Newsletter</span></div>
+        <div class="header-main">
+          <a class="site-logo" href="#">Psychology <em>Spot</em></a>
+          <div class="header-actions">
+            <a href="#">Find a Therapist</a><a href="#">Sign In</a>
+            <a class="subscribe" href="#">Subscribe</a>
+          </div>
+        </div>
+        <nav class="nav-bar">
+          <a class="nav-item" href="#">Basics</a><a class="nav-item active" href="#">Grief</a>
+          <a class="nav-item" href="#">Trauma</a><a class="nav-item" href="#">Relationships</a>
+          <a class="nav-item" href="#">Self</a><a class="nav-item" href="#">Therapy</a>
+          <a class="nav-item" href="#">Health</a>
+        </nav>
+      </header>
+
+      <div class="breadcrumb">
+        <a href="results_voices.html">← Search results</a> ›
+        <a href="#">Grief</a> › <a href="#">Bereavement</a> › <span>Why We Hear the Dead</span>
+      </div>
+
+      <div class="page-wrapper">
+        <article class="article-main">
+          <div class="article-tag">Grief &amp; Loss</div>
+          <h1 class="article-title">Why We Hear the Dead: Grief, Auditory Perception, and the Bereaved Brain</h1>
+          <p class="article-subtitle">Hearing the voice of someone you've lost is remarkably common. Far from a sign of
+            illness, it may be the mind's most human response to an unbearable absence.</p>
+          <div class="author-bar">
+            <div class="author-photo">JM</div>
+            <div class="author-details">
+              <div class="author-name">Dr. James Morales, PsyD</div>
+              <div class="author-cred">Clinical Psychologist · Grief &amp; Trauma Specialist</div>
+            </div>
+            <div class="publish-date">Feb 3, 2028</div>
+            <button class="action-btn">Save</button><button class="action-btn">Share</button>
+          </div>
+
+          <img src="psychologySpot_hero.jpg" alt="An empty chair beside a window with soft morning light"
+            style="width:100%;aspect-ratio:2/1;object-fit:cover;border-radius:6px;margin-bottom:7px;display:block;">
+          <div class="img-caption">Photo illustration. The auditory memory of a loved one can persist long after their
+            death — and hearing it is not a sign that something is wrong.</div>
+
+          <div class="article-body">
+            <p>She heard her mother's voice the morning after the funeral. It came from the kitchen — the sound of her
+              name, called in that particular way, the one nobody else had ever quite replicated. She stood in the
+              hallway for a moment, heart stopped, before remembering.</p>
+            <p>If this sounds familiar, you are in very good company. Research consistently shows that the majority of
+              people who have lost a loved one will, at some point, experience what is sometimes called a
+              <strong>post-bereavement hallucinatory experience</strong> — seeing, hearing, or sensing the presence of
+              the person who has died.
+            </p>
+
+            <div class="pull-quote">
+              <p>"Hearing the dead is not pathology. It is love, looking for somewhere to go."</p>
+            </div>
+
+            <p>The most common form is auditory: a voice, a laugh, a fragment of something they used to say. It happens
+              most often in moments of transition — half-asleep, or just waking up. It happens in the places they used
+              to inhabit. It happens, sometimes, in moments of crisis, when the mind reaches for whoever it has always
+              reached for.</p>
+
+            <h2>The Research Is Clear — and Largely Unknown</h2>
+            <p>Despite how common these experiences are, most bereaved people don't talk about them. They worry what it
+              says about their mental state. They fear the word that hovers near any description of hearing voices:
+              <em>psychosis</em>.
+            </p>
+            <p>But the clinical evidence tells a very different story. A 2026 study in the <em>Journal of Nervous and
+                Mental Disease</em> found that 62% of respondents who had lost a spouse reported hearing their partner's
+              voice in the first three months of bereavement. Other studies, looking at broader bereaved populations,
+              have found rates as high as 80%.</p>
+
+            <blockquote>
+              <p>"These are not the hallucinations of disorder. They are sensory bonds — the brain's attempt to maintain
+                connection with someone the nervous system has not yet accepted as gone."</p>
+              <cite>— Dr. Pamela Wray, Institute for Grief Studies, Cambridge, 2027</cite>
+            </blockquote>
+
+            <p>In the framework of attachment theory, this makes complete sense. The people we love are not merely
+              emotional relationships — they are neurological ones. They become encoded in our threat-detection systems,
+              our reward pathways, our expectations of who will be present when we are in danger. When they are suddenly
+              absent, the brain does not simply update its model. It protests.</p>
+
+            <h2>Grief Voices vs. Psychotic Hallucinations: Key Differences</h2>
+
+            <div class="highlight-box">
+              <div class="highlight-title">How They Differ</div>
+              <p><strong>Grief-related auditory experiences</strong> are typically brief, tied to a specific person,
+                often comforting, and recognized by the person as not externally real, even while feeling vivid.</p>
+              <p><strong>Psychotic hallucinations</strong> are typically persistent, unrecognized as internally
+                generated, often commanding or threatening, and unrelated to a specific loss.</p>
+              <p>Most bereaved individuals who hear the voice of someone they've lost know, on some level, that the
+                person is not there. The experience is more akin to a memory that briefly escaped the bounds of memory.
+              </p>
+            </div>
+
+            <h2>When Trauma and Grief Combine</h2>
+            <p>The experience is often more intense — and sometimes more disorienting — when bereavement is sudden and
+              traumatic. When someone dies in an accident, a disaster, or a violent incident, the grief is compounded by
+              shock and by the unprocessed trauma of how the death occurred. In these cases, auditory experiences may be
+              more intrusive: fragments of the last conversation, sounds from the moment of separation, or the voice in
+              a context of danger or warning.</p>
+
+            <h2>What To Do If You're Experiencing This</h2>
+            <ul>
+              <li>Know that it is common, and that most people never speak of it</li>
+              <li>Know that it does not mean you are losing your mind</li>
+              <li>Know that it typically diminishes on its own, as grief is processed</li>
+              <li>Reach out to a grief therapist or trauma-informed clinician if the experience is distressing,
+                persistent, or affecting your ability to function</li>
+            </ul>
+            <p>Grief does strange and human things to the mind. It reaches back toward what it has lost. Sometimes it
+              reaches back through sound.</p>
+          </div>
+
+          <div class="author-bio">
+            <div class="bio-photo">JM</div>
+            <div>
+              <div class="bio-name">Dr. James Morales, PsyD</div>
+              <p>Dr. Morales is a clinical psychologist specializing in complicated grief and trauma-related disorders.
+                He is a faculty member at UCLA's Department of Psychiatry and Biobehavioral Sciences and maintains a
+                private practice in Los Angeles.</p>
+            </div>
+          </div>
+        </article>
+
+        <aside class="article-sidebar">
+          <div class="subscribe-widget">
+            <h4>Get the help you need</h4>
+            <p>Find a therapist specializing in grief and loss near you</p><button>Find a Therapist</button>
+          </div>
+          <img src="ad_two.png" alt="Advertisement"
+            style="width:100%;height:120px;object-fit:cover;border-radius:6px;display:block;margin-bottom:22px;">
+          <div class="sidebar-widget">
+            <div class="widget-title">More on Grief</div>
+            <div class="related-item" onclick="window.location.href='article_ptsd.html'">
+              <div class="related-item-title">Sleep Disruption and Emotional Processing in the Bereaved</div>
+              <div class="related-item-meta">Neurology Review · 2029</div>
+            </div>
+            <div class="related-item" onclick="window.location.href='article_stress.html'">
+              <div class="related-item-title">Crying, Numbness, and the Physiology of Acute Grief</div>
+              <div class="related-item-meta">Healthline · 2029</div>
+            </div>
+            <div class="related-item">
+              <div class="related-item-title">Traumatic Grief: When Loss and Trauma Collide</div>
+              <div class="related-item-meta">Psychology Spot · 2027</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+  <script src="shared.js"></script>
+</body>
+
+</html>

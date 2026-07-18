@@ -1,0 +1,2159 @@
+{
+  "_note": "Production Design projects. Each entry renders the card (production-design.html Projects view) AND the full project page (project.html?slug=…). Images: give `src` (a path under assets/work/<slug>/) once filed; leave it out to show a labelled placeholder. Managed by the /update-site skill — safe to hand-edit too.",
+  "projects": [
+    {
+      "slug": "how-can-i-not-forget",
+      "title": "How Can I Not Forget",
+      "type": "Production Design",
+      "cover": {
+        "label": "how can i not forget",
+        "aspect": "1800/1275",
+        "src": "assets/work/how-can-i-not-forget/O.jpg",
+        "thumb": "assets/work/how-can-i-not-forget/O-thumb.jpg",
+        "alt": "How Can I Not Forget",
+        "pos": "52% 70.2%"
+      },
+      "format": "Short Film",
+      "year": "2026",
+      "month": "04",
+      "productionCo": "",
+      "role": "Production Designer",
+      "logline": "In a near-future Los Angeles where traumatic memories can be erased, a grieving woman begins to remember the massacre — and the truth about her mother's death — someone she loves has been trying to make her forget.",
+      "awards": [],
+      "links": [],
+      "diary": [
+        "The design projects Nora's internal state onto physical space, and keeps pressing the question of what's real. The apartment is high-class and a little too clean; the hospital has no trace of humanity in it — both built on a rigid, structural order, the kind a world keeps when it's hiding something.",
+        "The surgery room is the piece I keep returning to: its clear curtain drape is the whole film in one object — something you see through and still can't see the truth behind."
+      ],
+      "credits": [
+        {
+          "role": "Writer/Director",
+          "name": "Angie Hanqing Guo"
+        },
+        {
+          "role": "Production Designer",
+          "name": "Yu-Cheng (Momo) Chuang"
+        },
+        {
+          "role": "Costume Designer",
+          "name": "Yu-Cheng (Momo) Chuang"
+        },
+        {
+          "role": "Art Director",
+          "name": "Yunlei Liu"
+        },
+        {
+          "role": "Wardrobe Assistant",
+          "name": "Emma (Jou-Ho) Lai"
+        },
+        {
+          "role": "Producer",
+          "name": "Evian Peng, Mona Yu"
+        },
+        {
+          "role": "Cinematographer",
+          "name": "Joyce Zhang"
+        }
+      ],
+      "hero": [
+        {
+          "label": "still",
+          "aspect": "1800/1275",
+          "src": "assets/work/how-can-i-not-forget/O.jpg",
+          "thumb": "assets/work/how-can-i-not-forget/O-thumb.jpg",
+          "alt": "How Can I Not Forget — still",
+          "caption": "",
+          "pos": "52% 70.2%"
+        },
+        {
+          "label": "still",
+          "aspect": "1800/1349",
+          "src": "assets/work/how-can-i-not-forget/G.jpg",
+          "thumb": "assets/work/how-can-i-not-forget/G-thumb.jpg",
+          "alt": "How Can I Not Forget — still",
+          "caption": ""
+        },
+        {
+          "label": "still",
+          "aspect": "1800/1275",
+          "src": "assets/work/how-can-i-not-forget/P.jpg",
+          "thumb": "assets/work/how-can-i-not-forget/P-thumb.jpg",
+          "alt": "How Can I Not Forget — still",
+          "caption": ""
+        },
+        {
+          "label": "still",
+          "aspect": "1800/1275",
+          "src": "assets/work/how-can-i-not-forget/Q.jpg",
+          "thumb": "assets/work/how-can-i-not-forget/Q-thumb.jpg",
+          "alt": "How Can I Not Forget — still",
+          "caption": ""
+        }
+      ],
+      "tabs": [
+        {
+          "title": "Design",
+          "layout": "g3",
+          "items": [
+            {
+              "label": "still",
+              "aspect": "1800/1350",
+              "src": "assets/work/how-can-i-not-forget/A.jpg",
+              "thumb": "assets/work/how-can-i-not-forget/A-thumb.jpg",
+              "alt": "How Can I Not Forget — Design - Hospital Ward",
+              "caption": "Design - Hospital Ward"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1350",
+              "src": "assets/work/how-can-i-not-forget/B.jpg",
+              "thumb": "assets/work/how-can-i-not-forget/B-thumb.jpg",
+              "alt": "How Can I Not Forget — Design - Hospital Ward",
+              "caption": "Design - Hospital Ward"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1350",
+              "src": "assets/work/how-can-i-not-forget/C.jpg",
+              "thumb": "assets/work/how-can-i-not-forget/C-thumb.jpg",
+              "alt": "How Can I Not Forget — Design - Apartment Living Room",
+              "caption": "Design - Apartment Living Room"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1350",
+              "src": "assets/work/how-can-i-not-forget/D.jpg",
+              "thumb": "assets/work/how-can-i-not-forget/D-thumb.jpg",
+              "alt": "How Can I Not Forget — Design - Cemetary",
+              "caption": "Design - Cemetary"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1350",
+              "src": "assets/work/how-can-i-not-forget/K.jpg",
+              "thumb": "assets/work/how-can-i-not-forget/K-thumb.jpg",
+              "alt": "How Can I Not Forget — Previs - The Living Room",
+              "caption": "Previs - The Living Room"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1350",
+              "src": "assets/work/how-can-i-not-forget/J.jpg",
+              "thumb": "assets/work/how-can-i-not-forget/J-thumb.jpg",
+              "alt": "How Can I Not Forget — Previs - The Surgery Room",
+              "caption": "Previs - The Surgery Room"
+            }
+          ]
+        },
+        {
+          "title": "Wardrobe",
+          "layout": "g3",
+          "items": [
+            {
+              "label": "still",
+              "aspect": "1800/1350",
+              "src": "assets/work/how-can-i-not-forget/L.jpg",
+              "thumb": "assets/work/how-can-i-not-forget/L-thumb.jpg",
+              "alt": "How Can I Not Forget — Wardrobe - Nora's Costume",
+              "caption": "Wardrobe - Nora's Costume"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1350",
+              "src": "assets/work/how-can-i-not-forget/E.jpg",
+              "thumb": "assets/work/how-can-i-not-forget/E-thumb.jpg",
+              "alt": "How Can I Not Forget — Wardrobe - The Mourning Dress",
+              "caption": "Wardrobe - The Mourning Dress"
+            }
+          ]
+        },
+        {
+          "title": "Props and Graphics",
+          "layout": "g3",
+          "items": [
+            {
+              "label": "still",
+              "aspect": "1800/1200",
+              "src": "assets/work/how-can-i-not-forget/H.jpg",
+              "thumb": "assets/work/how-can-i-not-forget/H-thumb.jpg",
+              "alt": "How Can I Not Forget — still",
+              "caption": ""
+            },
+            {
+              "label": "still",
+              "aspect": "1391/1800",
+              "src": "assets/work/how-can-i-not-forget/I.jpg",
+              "thumb": "assets/work/how-can-i-not-forget/I-thumb.jpg",
+              "alt": "How Can I Not Forget — still",
+              "caption": ""
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1800",
+              "src": "assets/work/how-can-i-not-forget/playback.jpg",
+              "thumb": "assets/work/how-can-i-not-forget/playback-thumb.jpg",
+              "caption": "",
+              "alt": "How Can I Not Forget — ORION search prop",
+              "page": "assets/work/how-can-i-not-forget/playback/search.html",
+              "pos": "50% 22%",
+              "description": "ORION is the film’s near-future search engine — the web on Nora’s laptop. When she looks up the massacre and the riot, the results come back filtered: an overview that explains them away, and a notice that results were “excluded pending verification.” It’s how the state quietly erases what happened. The search, results, and articles are all built and clickable."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "mama-mv",
+      "title": "Mama MV",
+      "type": "Art Direction",
+      "cover": {
+        "label": "mama mv",
+        "aspect": "1800/1251",
+        "src": "assets/work/mama-mv/M.jpg",
+        "thumb": "assets/work/mama-mv/M-thumb.jpg",
+        "alt": "Mama MV",
+        "pos": "50.7% 42.1%"
+      },
+      "format": "Music Video",
+      "year": "2025",
+      "month": "02",
+      "productionCo": "",
+      "role": "Art Director",
+      "logline": "",
+      "awards": [],
+      "links": [
+        {
+          "label": "Watch on YouTube",
+          "url": "https://youtu.be/U08uLUqLE08?si=uxW-i1fiPRnfCSUM"
+        }
+      ],
+      "diary": [],
+      "credits": [
+        {
+          "role": "Art Director",
+          "name": "Yu-Cheng (Momo) Chuang"
+        },
+        {
+          "role": "Production Designer",
+          "name": "Yun Gu"
+        },
+        {
+          "role": "Artist",
+          "name": "Benzo"
+        }
+      ],
+      "hero": [
+        {
+          "label": "still",
+          "aspect": "1800/1251",
+          "src": "assets/work/mama-mv/M.jpg",
+          "thumb": "assets/work/mama-mv/M-thumb.jpg",
+          "alt": "Mama MV — still",
+          "caption": "",
+          "pos": "50.7% 42.1%"
+        },
+        {
+          "label": "still",
+          "aspect": "1800/1251",
+          "src": "assets/work/mama-mv/L.jpg",
+          "thumb": "assets/work/mama-mv/L-thumb.jpg",
+          "alt": "Mama MV — still",
+          "caption": ""
+        },
+        {
+          "label": "still",
+          "aspect": "1800/1251",
+          "src": "assets/work/mama-mv/N.jpg",
+          "thumb": "assets/work/mama-mv/N-thumb.jpg",
+          "alt": "Mama MV — still",
+          "caption": ""
+        },
+        {
+          "label": "still",
+          "aspect": "1800/1251",
+          "src": "assets/work/mama-mv/D.jpg",
+          "thumb": "assets/work/mama-mv/D-thumb.jpg",
+          "alt": "Mama MV — still",
+          "caption": ""
+        },
+        {
+          "label": "still",
+          "aspect": "1800/1251",
+          "src": "assets/work/mama-mv/I.jpg",
+          "thumb": "assets/work/mama-mv/I-thumb.jpg",
+          "alt": "Mama MV — still",
+          "caption": ""
+        },
+        {
+          "label": "still",
+          "aspect": "1800/1251",
+          "src": "assets/work/mama-mv/B.jpg",
+          "thumb": "assets/work/mama-mv/B-thumb.jpg",
+          "alt": "Mama MV — still",
+          "caption": ""
+        },
+        {
+          "label": "still",
+          "aspect": "1800/1251",
+          "src": "assets/work/mama-mv/A.jpg",
+          "thumb": "assets/work/mama-mv/A-thumb.jpg",
+          "alt": "Mama MV — still",
+          "caption": ""
+        },
+        {
+          "label": "still",
+          "aspect": "1800/1251",
+          "src": "assets/work/mama-mv/F.jpg",
+          "thumb": "assets/work/mama-mv/F-thumb.jpg",
+          "alt": "Mama MV — still",
+          "caption": ""
+        }
+      ],
+      "tabs": [
+        {
+          "title": "Film Stills",
+          "layout": "g3",
+          "items": [
+            {
+              "label": "still",
+              "aspect": "1800/1251",
+              "src": "assets/work/mama-mv/A.jpg",
+              "thumb": "assets/work/mama-mv/A-thumb.jpg",
+              "alt": "Mama MV — still",
+              "caption": ""
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1251",
+              "src": "assets/work/mama-mv/B.jpg",
+              "thumb": "assets/work/mama-mv/B-thumb.jpg",
+              "alt": "Mama MV — still",
+              "caption": ""
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1251",
+              "src": "assets/work/mama-mv/C.jpg",
+              "thumb": "assets/work/mama-mv/C-thumb.jpg",
+              "alt": "Mama MV — still",
+              "caption": ""
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1251",
+              "src": "assets/work/mama-mv/D.jpg",
+              "thumb": "assets/work/mama-mv/D-thumb.jpg",
+              "alt": "Mama MV — still",
+              "caption": ""
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1251",
+              "src": "assets/work/mama-mv/E.jpg",
+              "thumb": "assets/work/mama-mv/E-thumb.jpg",
+              "alt": "Mama MV — still",
+              "caption": ""
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1251",
+              "src": "assets/work/mama-mv/F.jpg",
+              "thumb": "assets/work/mama-mv/F-thumb.jpg",
+              "alt": "Mama MV — still",
+              "caption": ""
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1251",
+              "src": "assets/work/mama-mv/G.jpg",
+              "thumb": "assets/work/mama-mv/G-thumb.jpg",
+              "alt": "Mama MV — still",
+              "caption": ""
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1251",
+              "src": "assets/work/mama-mv/H.jpg",
+              "thumb": "assets/work/mama-mv/H-thumb.jpg",
+              "alt": "Mama MV — still",
+              "caption": ""
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1251",
+              "src": "assets/work/mama-mv/I.jpg",
+              "thumb": "assets/work/mama-mv/I-thumb.jpg",
+              "alt": "Mama MV — still",
+              "caption": ""
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1251",
+              "src": "assets/work/mama-mv/J.jpg",
+              "thumb": "assets/work/mama-mv/J-thumb.jpg",
+              "alt": "Mama MV — still",
+              "caption": ""
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1251",
+              "src": "assets/work/mama-mv/K.jpg",
+              "thumb": "assets/work/mama-mv/K-thumb.jpg",
+              "alt": "Mama MV — still",
+              "caption": ""
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1251",
+              "src": "assets/work/mama-mv/L.jpg",
+              "thumb": "assets/work/mama-mv/L-thumb.jpg",
+              "alt": "Mama MV — still",
+              "caption": ""
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1251",
+              "src": "assets/work/mama-mv/M.jpg",
+              "thumb": "assets/work/mama-mv/M-thumb.jpg",
+              "alt": "Mama MV — still",
+              "caption": "",
+              "pos": "50.7% 42.1%"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1251",
+              "src": "assets/work/mama-mv/N.jpg",
+              "thumb": "assets/work/mama-mv/N-thumb.jpg",
+              "alt": "Mama MV — still",
+              "caption": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "ghost-mv",
+      "title": "Ghost MV",
+      "type": "Production Design",
+      "cover": {
+        "label": "ghost mv",
+        "aspect": "1800/949",
+        "src": "assets/work/ghost-mv/B.jpg",
+        "thumb": "assets/work/ghost-mv/B-thumb.jpg",
+        "alt": "Ghost MV",
+        "pos": "50.2% 23.1%"
+      },
+      "format": "Music Video",
+      "year": "2025",
+      "month": "09",
+      "productionCo": "",
+      "role": "Production Designer",
+      "logline": "A music video about remembering — the ghost of someone gone, somehow still here.",
+      "awards": [],
+      "links": [
+        {
+          "label": "Watch on YouTube",
+          "url": "https://youtu.be/MKzA4IEORgw?si=WGrpBWXMQLj0yNll"
+        }
+      ],
+      "diary": [],
+      "credits": [
+        {
+          "role": "Production Designer",
+          "name": "Yu-Cheng (Momo) Chuang"
+        },
+        {
+          "role": "Director",
+          "name": "Amanda Chen"
+        },
+        {
+          "role": "Artist",
+          "name": "Raine"
+        },
+        {
+          "role": "Cinematographer",
+          "name": "Jimin Hong"
+        }
+      ],
+      "hero": [
+        {
+          "label": "still",
+          "aspect": "1800/949",
+          "src": "assets/work/ghost-mv/A.jpg",
+          "thumb": "assets/work/ghost-mv/A-thumb.jpg",
+          "alt": "Ghost MV — The Bedroom",
+          "caption": "The Bedroom"
+        },
+        {
+          "label": "still",
+          "aspect": "1800/949",
+          "src": "assets/work/ghost-mv/B.jpg",
+          "thumb": "assets/work/ghost-mv/B-thumb.jpg",
+          "alt": "Ghost MV — The Living Room",
+          "caption": "The Living Room",
+          "pos": "50.2% 23.1%"
+        },
+        {
+          "label": "still",
+          "aspect": "1800/949",
+          "src": "assets/work/ghost-mv/C.jpg",
+          "thumb": "assets/work/ghost-mv/C-thumb.jpg",
+          "alt": "Ghost MV — The Bedroom",
+          "caption": "The Bedroom"
+        },
+        {
+          "label": "still",
+          "aspect": "1800/949",
+          "src": "assets/work/ghost-mv/D.jpg",
+          "thumb": "assets/work/ghost-mv/D-thumb.jpg",
+          "alt": "Ghost MV — The Bedroom",
+          "caption": "The Bedroom"
+        }
+      ],
+      "tabs": [
+        {
+          "title": "Film Stills",
+          "layout": "g3",
+          "items": [
+            {
+              "label": "still",
+              "aspect": "1800/949",
+              "src": "assets/work/ghost-mv/A.jpg",
+              "thumb": "assets/work/ghost-mv/A-thumb.jpg",
+              "alt": "Ghost MV — The Bedroom",
+              "caption": "The Bedroom"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/949",
+              "src": "assets/work/ghost-mv/B.jpg",
+              "thumb": "assets/work/ghost-mv/B-thumb.jpg",
+              "alt": "Ghost MV — The Living Room",
+              "caption": "The Living Room",
+              "pos": "50.2% 23.1%"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/949",
+              "src": "assets/work/ghost-mv/C.jpg",
+              "thumb": "assets/work/ghost-mv/C-thumb.jpg",
+              "alt": "Ghost MV — The Bedroom",
+              "caption": "The Bedroom"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/949",
+              "src": "assets/work/ghost-mv/D.jpg",
+              "thumb": "assets/work/ghost-mv/D-thumb.jpg",
+              "alt": "Ghost MV — The Bedroom",
+              "caption": "The Bedroom"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "sonata",
+      "title": "Sonata",
+      "type": "Art Direction",
+      "cover": {
+        "label": "sonata",
+        "aspect": "1800/1200",
+        "src": "assets/work/sonata/AG.jpg",
+        "thumb": "assets/work/sonata/AG-thumb.jpg",
+        "alt": "Sonata",
+        "pos": "52.3% 81.7%"
+      },
+      "format": "Short Film",
+      "year": "2024",
+      "month": "07",
+      "productionCo": "",
+      "role": "Art Director",
+      "logline": "Two Korean-American sisters — one at the piano, one at the violin — circle a childhood duet they could never play together, until their mother's illness finally brings them to the same song.",
+      "awards": [],
+      "links": [],
+      "diary": [
+        "Sonata takes place in one Korean-American family home, and the design leans all the way into its clutter — the lived-in mess of a house three people have filled over years. I dressed it full: stacked mail and sheet music, medicine and tea sets, framed certificates and small violin trophies on every ledge, laundry drying on a rack in the middle of the living room. The mess isn't background; it holds the tangle between a mother and her two daughters, and the piano they all circle sits at the center of it."
+      ],
+      "credits": [
+        {
+          "role": "Director",
+          "name": "Eljin Yoo"
+        },
+        {
+          "role": "Writer",
+          "name": "Joshua Oh"
+        },
+        {
+          "role": "Producer",
+          "name": "Rebekah Chun, Melanie An"
+        },
+        {
+          "role": "Art Director",
+          "name": "Yu-Cheng (Momo) Chuang"
+        },
+        {
+          "role": "Production Designer",
+          "name": "Peter Noh"
+        }
+      ],
+      "hero": [
+        {
+          "label": "still",
+          "aspect": "1800/1200",
+          "src": "assets/work/sonata/AG.jpg",
+          "thumb": "assets/work/sonata/AG-thumb.jpg",
+          "alt": "Sonata — The Living Room",
+          "caption": "The Living Room",
+          "pos": "52.3% 81.7%"
+        },
+        {
+          "label": "still",
+          "aspect": "1800/1202",
+          "src": "assets/work/sonata/C.jpg",
+          "thumb": "assets/work/sonata/C-thumb.jpg",
+          "alt": "Sonata — still",
+          "caption": ""
+        },
+        {
+          "label": "still",
+          "aspect": "1800/1200",
+          "src": "assets/work/sonata/G.jpg",
+          "thumb": "assets/work/sonata/G-thumb.jpg",
+          "alt": "Sonata — May's Room",
+          "caption": "May's Room"
+        },
+        {
+          "label": "still",
+          "aspect": "1800/1200",
+          "src": "assets/work/sonata/E.jpg",
+          "thumb": "assets/work/sonata/E-thumb.jpg",
+          "alt": "Sonata — still",
+          "caption": ""
+        },
+        {
+          "label": "still",
+          "aspect": "1800/1200",
+          "src": "assets/work/sonata/S.jpg",
+          "thumb": "assets/work/sonata/S-thumb.jpg",
+          "alt": "Sonata — The Living Room",
+          "caption": "The Living Room"
+        },
+        {
+          "label": "still",
+          "aspect": "1800/1200",
+          "src": "assets/work/sonata/T.jpg",
+          "thumb": "assets/work/sonata/T-thumb.jpg",
+          "alt": "Sonata — The Living Room",
+          "caption": "The Living Room"
+        },
+        {
+          "label": "still",
+          "aspect": "1800/1200",
+          "src": "assets/work/sonata/N.jpg",
+          "thumb": "assets/work/sonata/N-thumb.jpg",
+          "alt": "Sonata — still",
+          "caption": "",
+          "pos": "49.9% 66.3%"
+        }
+      ],
+      "tabs": [
+        {
+          "title": "Behind the Scenes",
+          "layout": "g3",
+          "items": [
+            {
+              "label": "still",
+              "aspect": "1800/1200",
+              "src": "assets/work/sonata/F.jpg",
+              "thumb": "assets/work/sonata/F-thumb.jpg",
+              "alt": "Sonata — still",
+              "caption": ""
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1200",
+              "src": "assets/work/sonata/K.jpg",
+              "thumb": "assets/work/sonata/K-thumb.jpg",
+              "alt": "Sonata — The Living Room",
+              "caption": "The Living Room"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1200",
+              "src": "assets/work/sonata/L.jpg",
+              "thumb": "assets/work/sonata/L-thumb.jpg",
+              "alt": "Sonata — May's Room",
+              "caption": "May's Room"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1200",
+              "src": "assets/work/sonata/M.jpg",
+              "thumb": "assets/work/sonata/M-thumb.jpg",
+              "alt": "Sonata — May's Room",
+              "caption": "May's Room"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1200",
+              "src": "assets/work/sonata/R.jpg",
+              "thumb": "assets/work/sonata/R-thumb.jpg",
+              "alt": "Sonata — The Living Room",
+              "caption": "The Living Room"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1200",
+              "src": "assets/work/sonata/S.jpg",
+              "thumb": "assets/work/sonata/S-thumb.jpg",
+              "alt": "Sonata — The Living Room",
+              "caption": "The Living Room"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1200",
+              "src": "assets/work/sonata/AC.jpg",
+              "thumb": "assets/work/sonata/AC-thumb.jpg",
+              "alt": "Sonata — The Living Room",
+              "caption": "The Living Room"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1200",
+              "src": "assets/work/sonata/AH.jpg",
+              "thumb": "assets/work/sonata/AH-thumb.jpg",
+              "alt": "Sonata — The Living Room",
+              "caption": "The Living Room"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1200",
+              "src": "assets/work/sonata/AI.jpg",
+              "thumb": "assets/work/sonata/AI-thumb.jpg",
+              "alt": "Sonata — The Dining Room",
+              "caption": "The Dining Room"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1350",
+              "src": "assets/work/sonata/A.jpg",
+              "thumb": "assets/work/sonata/A-thumb.jpg",
+              "alt": "Sonata — still",
+              "caption": ""
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1350",
+              "src": "assets/work/sonata/B.jpg",
+              "thumb": "assets/work/sonata/B-thumb.jpg",
+              "alt": "Sonata — still",
+              "caption": ""
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1202",
+              "src": "assets/work/sonata/C.jpg",
+              "thumb": "assets/work/sonata/C-thumb.jpg",
+              "alt": "Sonata — still",
+              "caption": ""
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1202",
+              "src": "assets/work/sonata/D.jpg",
+              "thumb": "assets/work/sonata/D-thumb.jpg",
+              "alt": "Sonata — still",
+              "caption": ""
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1200",
+              "src": "assets/work/sonata/J.jpg",
+              "thumb": "assets/work/sonata/J-thumb.jpg",
+              "alt": "Sonata — still",
+              "caption": ""
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1200",
+              "src": "assets/work/sonata/O.jpg",
+              "thumb": "assets/work/sonata/O-thumb.jpg",
+              "alt": "Sonata — still",
+              "caption": ""
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1200",
+              "src": "assets/work/sonata/N.jpg",
+              "thumb": "assets/work/sonata/N-thumb.jpg",
+              "alt": "Sonata — still",
+              "caption": "",
+              "pos": "49.9% 66.3%"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1200",
+              "src": "assets/work/sonata/AF.jpg",
+              "thumb": "assets/work/sonata/AF-thumb.jpg",
+              "alt": "Sonata — The Living Room",
+              "caption": "The Living Room"
+            },
+            {
+              "label": "still",
+              "aspect": "1200/1800",
+              "src": "assets/work/sonata/AE.jpg",
+              "thumb": "assets/work/sonata/AE-thumb.jpg",
+              "alt": "Sonata — The Living Room",
+              "caption": "The Living Room"
+            },
+            {
+              "label": "still",
+              "aspect": "1200/1800",
+              "src": "assets/work/sonata/AD.jpg",
+              "thumb": "assets/work/sonata/AD-thumb.jpg",
+              "alt": "Sonata — The Living Room",
+              "caption": "The Living Room"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1200",
+              "src": "assets/work/sonata/AG.jpg",
+              "thumb": "assets/work/sonata/AG-thumb.jpg",
+              "alt": "Sonata — The Living Room",
+              "caption": "The Living Room",
+              "pos": "52.3% 81.7%"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1200",
+              "src": "assets/work/sonata/AL.jpg",
+              "thumb": "assets/work/sonata/AL-thumb.jpg",
+              "alt": "Sonata — The Dining Room",
+              "caption": "The Dining Room"
+            }
+          ]
+        },
+        {
+          "title": "Designs",
+          "layout": "g3",
+          "items": [
+            {
+              "label": "still",
+              "aspect": "1800/1164",
+              "src": "assets/work/sonata/P.jpg",
+              "thumb": "assets/work/sonata/P-thumb.jpg",
+              "alt": "Sonata — Set Design - Three-quarter View",
+              "caption": "Set Design - Three-quarter View"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1164",
+              "src": "assets/work/sonata/Q.jpg",
+              "thumb": "assets/work/sonata/Q-thumb.jpg",
+              "alt": "Sonata — Set Design - Elevations",
+              "caption": "Set Design - Elevations"
+            }
+          ]
+        },
+        {
+          "title": "Sets",
+          "layout": "g3",
+          "items": [
+            {
+              "label": "still",
+              "aspect": "1200/1800",
+              "src": "assets/work/sonata/H.jpg",
+              "thumb": "assets/work/sonata/H-thumb.jpg",
+              "alt": "Sonata — May's Room",
+              "caption": "May's Room"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1200",
+              "src": "assets/work/sonata/G.jpg",
+              "thumb": "assets/work/sonata/G-thumb.jpg",
+              "alt": "Sonata — May's Room",
+              "caption": "May's Room"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1200",
+              "src": "assets/work/sonata/E.jpg",
+              "thumb": "assets/work/sonata/E-thumb.jpg",
+              "alt": "Sonata — still",
+              "caption": ""
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1200",
+              "src": "assets/work/sonata/T.jpg",
+              "thumb": "assets/work/sonata/T-thumb.jpg",
+              "alt": "Sonata — The Living Room",
+              "caption": "The Living Room"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1200",
+              "src": "assets/work/sonata/X.jpg",
+              "thumb": "assets/work/sonata/X-thumb.jpg",
+              "alt": "Sonata — The Living Room",
+              "caption": "The Living Room"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1200",
+              "src": "assets/work/sonata/W.jpg",
+              "thumb": "assets/work/sonata/W-thumb.jpg",
+              "alt": "Sonata — The Living Room",
+              "caption": "The Living Room"
+            },
+            {
+              "label": "still",
+              "aspect": "1200/1800",
+              "src": "assets/work/sonata/V.jpg",
+              "thumb": "assets/work/sonata/V-thumb.jpg",
+              "alt": "Sonata — Set Dressing",
+              "caption": "Set Dressing"
+            },
+            {
+              "label": "still",
+              "aspect": "1200/1800",
+              "src": "assets/work/sonata/U.jpg",
+              "thumb": "assets/work/sonata/U-thumb.jpg",
+              "alt": "Sonata — Set Dressing",
+              "caption": "Set Dressing"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1200",
+              "src": "assets/work/sonata/Y.jpg",
+              "thumb": "assets/work/sonata/Y-thumb.jpg",
+              "alt": "Sonata — Set Dressing",
+              "caption": "Set Dressing"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1200",
+              "src": "assets/work/sonata/Z.jpg",
+              "thumb": "assets/work/sonata/Z-thumb.jpg",
+              "alt": "Sonata — Set Dressing",
+              "caption": "Set Dressing"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1200",
+              "src": "assets/work/sonata/AA.jpg",
+              "thumb": "assets/work/sonata/AA-thumb.jpg",
+              "alt": "Sonata — still",
+              "caption": ""
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1200",
+              "src": "assets/work/sonata/AB.jpg",
+              "thumb": "assets/work/sonata/AB-thumb.jpg",
+              "alt": "Sonata — Set Dressing",
+              "caption": "Set Dressing"
+            },
+            {
+              "label": "still",
+              "aspect": "1200/1800",
+              "src": "assets/work/sonata/AJ.jpg",
+              "thumb": "assets/work/sonata/AJ-thumb.jpg",
+              "alt": "Sonata — Set Dressing",
+              "caption": "Set Dressing"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1200",
+              "src": "assets/work/sonata/AK.jpg",
+              "thumb": "assets/work/sonata/AK-thumb.jpg",
+              "alt": "Sonata — The Dining Room",
+              "caption": "The Dining Room"
+            }
+          ]
+        },
+        {
+          "title": "Graphics",
+          "layout": "g3",
+          "items": [
+            {
+              "label": "still",
+              "aspect": "1391/1800",
+              "src": "assets/work/sonata/AM.jpg",
+              "thumb": "assets/work/sonata/AM-thumb.jpg",
+              "caption": "",
+              "alt": "Sonata — graphic"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1391",
+              "src": "assets/work/sonata/AN.jpg",
+              "thumb": "assets/work/sonata/AN-thumb.jpg",
+              "caption": "",
+              "alt": "Sonata — graphic"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1391",
+              "src": "assets/work/sonata/AO.jpg",
+              "thumb": "assets/work/sonata/AO-thumb.jpg",
+              "caption": "",
+              "alt": "Sonata — graphic"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1200",
+              "src": "assets/work/sonata/AP.jpg",
+              "thumb": "assets/work/sonata/AP-thumb.jpg",
+              "caption": "",
+              "alt": "Sonata — graphic"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/900",
+              "src": "assets/work/sonata/AQ.jpg",
+              "thumb": "assets/work/sonata/AQ-thumb.jpg",
+              "caption": "",
+              "alt": "Sonata — graphic"
+            },
+            {
+              "label": "still",
+              "aspect": "1391/1800",
+              "src": "assets/work/sonata/AR.jpg",
+              "thumb": "assets/work/sonata/AR-thumb.jpg",
+              "caption": "",
+              "alt": "Sonata — graphic"
+            },
+            {
+              "label": "still",
+              "aspect": "1391/1800",
+              "src": "assets/work/sonata/AS.jpg",
+              "thumb": "assets/work/sonata/AS-thumb.jpg",
+              "caption": "",
+              "alt": "Sonata — graphic"
+            },
+            {
+              "label": "still",
+              "aspect": "1391/1800",
+              "src": "assets/work/sonata/AT.jpg",
+              "thumb": "assets/work/sonata/AT-thumb.jpg",
+              "caption": "",
+              "alt": "Sonata — graphic"
+            },
+            {
+              "label": "still",
+              "aspect": "1391/1800",
+              "src": "assets/work/sonata/AU.jpg",
+              "thumb": "assets/work/sonata/AU-thumb.jpg",
+              "caption": "",
+              "alt": "Sonata — graphic"
+            },
+            {
+              "label": "still",
+              "aspect": "1391/1800",
+              "src": "assets/work/sonata/AV.jpg",
+              "thumb": "assets/work/sonata/AV-thumb.jpg",
+              "caption": "",
+              "alt": "Sonata — graphic"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "soup",
+      "title": "Soup 湯",
+      "type": "Art Direction",
+      "cover": {
+        "label": "soup 湯",
+        "aspect": "1800/1089",
+        "src": "assets/work/soup/M.jpg",
+        "thumb": "assets/work/soup/M-thumb.jpg",
+        "alt": "Soup 湯",
+        "pos": "50.7% 23.3%"
+      },
+      "format": "Short Film",
+      "year": "2025",
+      "month": "11",
+      "productionCo": "USC School of Cinematic Arts",
+      "role": "Art Director",
+      "logline": "A grieving woman running her family's three-generation Chinese restaurant is offered Meng Po's soup — one sip to forget everything and be reborn — until a young apprentice gives her a reason to hold on instead.",
+      "awards": [],
+      "links": [],
+      "diary": [
+        "The restaurant in the script is a small, worn room — the kind a family keeps for three generations. What we found was the opposite: too big, too open, nothing that felt lived in. So we made it smaller. We built a wall.",
+        "The work split cleanly. I designed the structure — the beams and supports that had to stand on their own on set. Ariel, our production designer, designed the look and led the texturing: layer over layer until fresh drywall read as years, a plexiglass window cut in, graphics and props dressed across it until the seam was gone. By the end, the wall had always been there."
+      ],
+      "credits": [
+        {
+          "role": "Art Director",
+          "name": "Yu-Cheng (Momo) Chuang"
+        },
+        {
+          "role": "Production Designer",
+          "name": "Ling-An (Ariel) Huang"
+        },
+        {
+          "role": "Director",
+          "name": "Nathania Djuhar"
+        },
+        {
+          "role": "Producer",
+          "name": "Harrison Kay, Jenny Kim"
+        },
+        {
+          "role": "Cinematographer",
+          "name": "Surui Guo"
+        },
+        {
+          "role": "Set Decoration",
+          "name": "Adrianne Meave, Eri Wong, Varshini Satoor, Ying (Diana) Zhang, Yining (Coco) Zhong, Yunlei Liu"
+        }
+      ],
+      "hero": [
+        {
+          "label": "still",
+          "aspect": "1800/1352",
+          "src": "assets/work/soup/A.jpg",
+          "thumb": "assets/work/soup/A-thumb.jpg",
+          "alt": "Soup 湯 — The Apartment",
+          "caption": "The Apartment"
+        },
+        {
+          "label": "still",
+          "aspect": "1800/1352",
+          "src": "assets/work/soup/D.jpg",
+          "thumb": "assets/work/soup/D-thumb.jpg",
+          "alt": "Soup 湯 — The Kitchen",
+          "caption": "The Kitchen"
+        },
+        {
+          "label": "still",
+          "aspect": "1800/1089",
+          "src": "assets/work/soup/L.jpg",
+          "thumb": "assets/work/soup/L-thumb.jpg",
+          "alt": "Soup 湯 — The Liminal Space",
+          "caption": "The Liminal Space"
+        },
+        {
+          "label": "still",
+          "aspect": "1800/1345",
+          "src": "assets/work/soup/T.jpg",
+          "thumb": "assets/work/soup/T-thumb.jpg",
+          "alt": "Soup 湯 — Prop - The Soup",
+          "caption": "Prop - The Soup"
+        },
+        {
+          "label": "still",
+          "aspect": "1800/1440",
+          "src": "assets/work/soup/AA.jpg",
+          "thumb": "assets/work/soup/AA-thumb.jpg",
+          "alt": "Soup 湯 — The Wall - Construction Plan",
+          "caption": "The Wall - Construction Plan"
+        },
+        {
+          "label": "still",
+          "aspect": "1800/1352",
+          "src": "assets/work/soup/F.jpg",
+          "thumb": "assets/work/soup/F-thumb.jpg",
+          "alt": "Soup 湯 — The Kitchen",
+          "caption": "The Kitchen"
+        },
+        {
+          "label": "still",
+          "aspect": "1800/1089",
+          "src": "assets/work/soup/N.jpg",
+          "thumb": "assets/work/soup/N-thumb.jpg",
+          "alt": "Soup 湯 — still",
+          "caption": ""
+        },
+        {
+          "label": "still",
+          "aspect": "1800/1345",
+          "src": "assets/work/soup/S.jpg",
+          "thumb": "assets/work/soup/S-thumb.jpg",
+          "alt": "Soup 湯 — The Apartment",
+          "caption": "The Apartment"
+        }
+      ],
+      "tabs": [
+        {
+          "title": "Film Stills",
+          "layout": "g3",
+          "items": [
+            {
+              "label": "still",
+              "aspect": "1800/1352",
+              "src": "assets/work/soup/A.jpg",
+              "thumb": "assets/work/soup/A-thumb.jpg",
+              "alt": "Soup 湯 — The Apartment",
+              "caption": "The Apartment"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1352",
+              "src": "assets/work/soup/B.jpg",
+              "thumb": "assets/work/soup/B-thumb.jpg",
+              "alt": "Soup 湯 — The Apartment",
+              "caption": "The Apartment"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1352",
+              "src": "assets/work/soup/C.jpg",
+              "thumb": "assets/work/soup/C-thumb.jpg",
+              "alt": "Soup 湯 — The Apartment",
+              "caption": "The Apartment"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1352",
+              "src": "assets/work/soup/D.jpg",
+              "thumb": "assets/work/soup/D-thumb.jpg",
+              "alt": "Soup 湯 — The Kitchen",
+              "caption": "The Kitchen"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1352",
+              "src": "assets/work/soup/E.jpg",
+              "thumb": "assets/work/soup/E-thumb.jpg",
+              "alt": "Soup 湯 — The Kitchen",
+              "caption": "The Kitchen"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1352",
+              "src": "assets/work/soup/F.jpg",
+              "thumb": "assets/work/soup/F-thumb.jpg",
+              "alt": "Soup 湯 — The Kitchen",
+              "caption": "The Kitchen"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1352",
+              "src": "assets/work/soup/G.jpg",
+              "thumb": "assets/work/soup/G-thumb.jpg",
+              "alt": "Soup 湯 — The Kitchen",
+              "caption": "The Kitchen"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1352",
+              "src": "assets/work/soup/H.jpg",
+              "thumb": "assets/work/soup/H-thumb.jpg",
+              "alt": "Soup 湯 — The Kitchen",
+              "caption": "The Kitchen"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1352",
+              "src": "assets/work/soup/I.jpg",
+              "thumb": "assets/work/soup/I-thumb.jpg",
+              "alt": "Soup 湯 — The Restaurant",
+              "caption": "The Restaurant"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1352",
+              "src": "assets/work/soup/J.jpg",
+              "thumb": "assets/work/soup/J-thumb.jpg",
+              "alt": "Soup 湯 — The Restaurant",
+              "caption": "The Restaurant"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1352",
+              "src": "assets/work/soup/K.jpg",
+              "thumb": "assets/work/soup/K-thumb.jpg",
+              "alt": "Soup 湯 — Prop - The Soup",
+              "caption": "Prop - The Soup"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1089",
+              "src": "assets/work/soup/L.jpg",
+              "thumb": "assets/work/soup/L-thumb.jpg",
+              "alt": "Soup 湯 — The Liminal Space",
+              "caption": "The Liminal Space"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1089",
+              "src": "assets/work/soup/M.jpg",
+              "thumb": "assets/work/soup/M-thumb.jpg",
+              "alt": "Soup 湯 — Prop - The Soup",
+              "caption": "Prop - The Soup",
+              "pos": "50.7% 23.3%"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1089",
+              "src": "assets/work/soup/N.jpg",
+              "thumb": "assets/work/soup/N-thumb.jpg",
+              "alt": "Soup 湯 — still",
+              "caption": ""
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1089",
+              "src": "assets/work/soup/O.jpg",
+              "thumb": "assets/work/soup/O-thumb.jpg",
+              "alt": "Soup 湯 — still",
+              "caption": ""
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1345",
+              "src": "assets/work/soup/P.jpg",
+              "thumb": "assets/work/soup/P-thumb.jpg",
+              "alt": "Soup 湯 — The Kitchen",
+              "caption": "The Kitchen"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1345",
+              "src": "assets/work/soup/Q.jpg",
+              "thumb": "assets/work/soup/Q-thumb.jpg",
+              "alt": "Soup 湯 — The Restaurant",
+              "caption": "The Restaurant"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1345",
+              "src": "assets/work/soup/R.jpg",
+              "thumb": "assets/work/soup/R-thumb.jpg",
+              "alt": "Soup 湯 — The Restaurant",
+              "caption": "The Restaurant"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1345",
+              "src": "assets/work/soup/S.jpg",
+              "thumb": "assets/work/soup/S-thumb.jpg",
+              "alt": "Soup 湯 — The Apartment",
+              "caption": "The Apartment"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1345",
+              "src": "assets/work/soup/T.jpg",
+              "thumb": "assets/work/soup/T-thumb.jpg",
+              "alt": "Soup 湯 — Prop - The Soup",
+              "caption": "Prop - The Soup"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1345",
+              "src": "assets/work/soup/U.jpg",
+              "thumb": "assets/work/soup/U-thumb.jpg",
+              "alt": "Soup 湯 — The Apartment",
+              "caption": "The Apartment"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1345",
+              "src": "assets/work/soup/V.jpg",
+              "thumb": "assets/work/soup/V-thumb.jpg",
+              "alt": "Soup 湯 — The Kitchen",
+              "caption": "The Kitchen"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1345",
+              "src": "assets/work/soup/W.jpg",
+              "thumb": "assets/work/soup/W-thumb.jpg",
+              "alt": "Soup 湯 — The Restaurant",
+              "caption": "The Restaurant"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1345",
+              "src": "assets/work/soup/X.jpg",
+              "thumb": "assets/work/soup/X-thumb.jpg",
+              "alt": "Soup 湯 — The Apartment",
+              "caption": "The Apartment"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1345",
+              "src": "assets/work/soup/Y.jpg",
+              "thumb": "assets/work/soup/Y-thumb.jpg",
+              "alt": "Soup 湯 — The Restaurant",
+              "caption": "The Restaurant"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1345",
+              "src": "assets/work/soup/Z.jpg",
+              "thumb": "assets/work/soup/Z-thumb.jpg",
+              "alt": "Soup 湯 — The Restaurant",
+              "caption": "The Restaurant"
+            }
+          ]
+        },
+        {
+          "title": "Designs",
+          "layout": "g3",
+          "items": [
+            {
+              "label": "still",
+              "aspect": "1800/1440",
+              "src": "assets/work/soup/AA.jpg",
+              "thumb": "assets/work/soup/AA-thumb.jpg",
+              "alt": "Soup 湯 — The Wall - Construction Plan",
+              "caption": "The Wall - Construction Plan"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "antidote",
+      "title": "Antidote",
+      "type": "Costume Design",
+      "cover": {
+        "label": "antidote",
+        "aspect": "1800/1012",
+        "src": "assets/work/antidote/J.jpg",
+        "thumb": "assets/work/antidote/J-thumb.jpg",
+        "alt": "Antidote"
+      },
+      "format": "Short Film",
+      "year": "2025",
+      "month": "11",
+      "productionCo": "USC School of Cinematic Arts",
+      "role": "Costume Designer",
+      "logline": "A feverish boy and a world-weary stranger share a hospital ward, where a tin of mints — passed off as painkillers — becomes a quiet mercy that keeps a family from breaking apart.",
+      "awards": [],
+      "links": [],
+      "diary": [
+        "Antidote unfolds in a single hospital ward — a sick boy and a worn-out stranger sharing a room while the boy's parents carry in the weight of the world outside. I designed the costumes to hold that split. The boy and the old man wear grounded, human color — warm reds and soft, desaturated earth tones, the palette of skin and of being cared for.",
+        "The parents were the variable. Their clothes shift with their state of mind across the film — cooling toward something harder and more capitalistic when the money takes hold of them, then warming and lightening in the moments they stop being a provider and a caretaker and become, again, just a mother and a father.",
+        "The most deliberate piece was the jacket. People shed a jacket or pull one on as they enter or leave a room, but the gesture is also armor — putting it on raises a guard against the outside, taking it off lets it fall. And with nowhere to source a child's hospital gown, I made one: cutting an adult gown apart and sewing it back down to a boy's size."
+      ],
+      "credits": [
+        {
+          "role": "Director",
+          "name": "Hairong (Harry) Wang"
+        },
+        {
+          "role": "Writer",
+          "name": "Hairong (Harry) Wang"
+        },
+        {
+          "role": "Costume Designer",
+          "name": "Yu-Cheng (Momo) Chuang"
+        },
+        {
+          "role": "Production Designer",
+          "name": "Yunlei Liu"
+        },
+        {
+          "role": "Production Designer",
+          "name": "Yining (Coco) Zhong"
+        },
+        {
+          "role": "Producer",
+          "name": "Arwen Wang, Sifan Liu, Yining Dai"
+        },
+        {
+          "role": "First Assistant Director",
+          "name": "Leslie Yang"
+        },
+        {
+          "role": "Cinematographer",
+          "name": "Loyal Xie"
+        },
+        {
+          "role": "Set Decoration",
+          "name": "Ying (Diana) Zhang"
+        }
+      ],
+      "hero": [
+        {
+          "label": "still",
+          "aspect": "1800/1012",
+          "src": "assets/work/antidote/B.jpg",
+          "thumb": "assets/work/antidote/B-thumb.jpg",
+          "alt": "Antidote — still",
+          "caption": ""
+        },
+        {
+          "label": "still",
+          "aspect": "1800/1012",
+          "src": "assets/work/antidote/E.jpg",
+          "thumb": "assets/work/antidote/E-thumb.jpg",
+          "alt": "Antidote — still",
+          "caption": ""
+        },
+        {
+          "label": "still",
+          "aspect": "1800/1012",
+          "src": "assets/work/antidote/L.jpg",
+          "thumb": "assets/work/antidote/L-thumb.jpg",
+          "alt": "Antidote — still",
+          "caption": ""
+        },
+        {
+          "label": "still",
+          "aspect": "1800/1536",
+          "src": "assets/work/antidote/M.jpg",
+          "thumb": "assets/work/antidote/M-thumb.jpg",
+          "alt": "Antidote — Wardrobe — Lei",
+          "caption": "Wardrobe — Lei"
+        },
+        {
+          "label": "still",
+          "aspect": "1800/1012",
+          "src": "assets/work/antidote/D.jpg",
+          "thumb": "assets/work/antidote/D-thumb.jpg",
+          "alt": "Antidote — still",
+          "caption": ""
+        },
+        {
+          "label": "still",
+          "aspect": "1800/1012",
+          "src": "assets/work/antidote/K.jpg",
+          "thumb": "assets/work/antidote/K-thumb.jpg",
+          "alt": "Antidote — still",
+          "caption": ""
+        },
+        {
+          "label": "still",
+          "aspect": "1800/1012",
+          "src": "assets/work/antidote/J.jpg",
+          "thumb": "assets/work/antidote/J-thumb.jpg",
+          "alt": "Antidote — still",
+          "caption": ""
+        }
+      ],
+      "tabs": [
+        {
+          "title": "Film Stills",
+          "layout": "g3",
+          "items": [
+            {
+              "label": "still",
+              "aspect": "1800/1012",
+              "src": "assets/work/antidote/A.jpg",
+              "thumb": "assets/work/antidote/A-thumb.jpg",
+              "alt": "Antidote — still",
+              "caption": ""
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1012",
+              "src": "assets/work/antidote/B.jpg",
+              "thumb": "assets/work/antidote/B-thumb.jpg",
+              "alt": "Antidote — still",
+              "caption": ""
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1012",
+              "src": "assets/work/antidote/C.jpg",
+              "thumb": "assets/work/antidote/C-thumb.jpg",
+              "alt": "Antidote — still",
+              "caption": ""
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1012",
+              "src": "assets/work/antidote/D.jpg",
+              "thumb": "assets/work/antidote/D-thumb.jpg",
+              "alt": "Antidote — still",
+              "caption": ""
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1012",
+              "src": "assets/work/antidote/E.jpg",
+              "thumb": "assets/work/antidote/E-thumb.jpg",
+              "alt": "Antidote — still",
+              "caption": ""
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1012",
+              "src": "assets/work/antidote/F.jpg",
+              "thumb": "assets/work/antidote/F-thumb.jpg",
+              "alt": "Antidote — still",
+              "caption": ""
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1012",
+              "src": "assets/work/antidote/G.jpg",
+              "thumb": "assets/work/antidote/G-thumb.jpg",
+              "alt": "Antidote — still",
+              "caption": ""
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1012",
+              "src": "assets/work/antidote/H.jpg",
+              "thumb": "assets/work/antidote/H-thumb.jpg",
+              "alt": "Antidote — still",
+              "caption": ""
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1012",
+              "src": "assets/work/antidote/I.jpg",
+              "thumb": "assets/work/antidote/I-thumb.jpg",
+              "alt": "Antidote — still",
+              "caption": ""
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1012",
+              "src": "assets/work/antidote/J.jpg",
+              "thumb": "assets/work/antidote/J-thumb.jpg",
+              "alt": "Antidote — still",
+              "caption": ""
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1012",
+              "src": "assets/work/antidote/K.jpg",
+              "thumb": "assets/work/antidote/K-thumb.jpg",
+              "alt": "Antidote — still",
+              "caption": ""
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1012",
+              "src": "assets/work/antidote/L.jpg",
+              "thumb": "assets/work/antidote/L-thumb.jpg",
+              "alt": "Antidote — still",
+              "caption": ""
+            }
+          ]
+        },
+        {
+          "title": "Wardrobe",
+          "layout": "g3",
+          "items": [
+            {
+              "label": "still",
+              "aspect": "1800/1536",
+              "src": "assets/work/antidote/M.jpg",
+              "thumb": "assets/work/antidote/M-thumb.jpg",
+              "alt": "Antidote — Wardrobe — Lei",
+              "caption": "Wardrobe — Lei"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1622",
+              "src": "assets/work/antidote/N.jpg",
+              "thumb": "assets/work/antidote/N-thumb.jpg",
+              "alt": "Antidote — Wardrobe — Lei",
+              "caption": "Wardrobe — Lei"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1007",
+              "src": "assets/work/antidote/O.jpg",
+              "thumb": "assets/work/antidote/O-thumb.jpg",
+              "alt": "Antidote — Wardrobe — Blu",
+              "caption": "Wardrobe — Blu"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "on-the-river-bank",
+      "title": "On the River Bank",
+      "type": "Production Design",
+      "cover": {
+        "label": "on the river bank",
+        "aspect": "1800/1349",
+        "src": "assets/work/on-the-river-bank/I.jpg",
+        "thumb": "assets/work/on-the-river-bank/I-thumb.jpg",
+        "alt": "On the River Bank"
+      },
+      "format": "Music Video",
+      "year": "2025",
+      "month": "11",
+      "productionCo": "",
+      "role": "Production Designer",
+      "logline": "A dance-driven music video that follows Mia through a mist-soaked forest as she chases an illusory success — past a breakfast of empty dishes and scattered poppies, a grove of mirrors hung from the trees, and a path of unreachable lamps — until she reaches the riverbank, and the selves she gathered along the way.",
+      "awards": [],
+      "links": [],
+      "diary": [
+        "The director set four symbols — flower, mirror, river, chain — and the whole world was built from dressed, found objects in an LA creek bed: a full breakfast table laid with empty china and scattered poppies, salvaged mirrors and lampshades staked through the trees, an ankle shackle, and a gradient-brown gown that bleeds toward red as Mia comes apart."
+      ],
+      "credits": [
+        {
+          "role": "Director",
+          "name": "Yining (Coco) Zhong"
+        },
+        {
+          "role": "Music & Lyrics",
+          "name": "Yuqi Zhang"
+        },
+        {
+          "role": "Producer",
+          "name": "Mona Yu"
+        },
+        {
+          "role": "Cinematographer",
+          "name": "Aidan Zhou"
+        },
+        {
+          "role": "Production Designer",
+          "name": "Yu-Cheng (Momo) Chuang"
+        },
+        {
+          "role": "Set Decoration",
+          "name": "Charlotte Hou, Eri Wong, Yilong Yang"
+        }
+      ],
+      "hero": [
+        {
+          "label": "still",
+          "aspect": "1800/1349",
+          "src": "assets/work/on-the-river-bank/C.jpg",
+          "thumb": "assets/work/on-the-river-bank/C-thumb.jpg",
+          "alt": "On the River Bank — Opening",
+          "caption": "Opening"
+        },
+        {
+          "label": "still",
+          "aspect": "1800/1349",
+          "src": "assets/work/on-the-river-bank/D.jpg",
+          "thumb": "assets/work/on-the-river-bank/D-thumb.jpg",
+          "alt": "On the River Bank — The Breakfast Table",
+          "caption": "The Breakfast Table"
+        },
+        {
+          "label": "still",
+          "aspect": "1800/1349",
+          "src": "assets/work/on-the-river-bank/E.jpg",
+          "thumb": "assets/work/on-the-river-bank/E-thumb.jpg",
+          "alt": "On the River Bank — The Breakfast Table",
+          "caption": "The Breakfast Table"
+        },
+        {
+          "label": "still",
+          "aspect": "1800/1349",
+          "src": "assets/work/on-the-river-bank/I.jpg",
+          "thumb": "assets/work/on-the-river-bank/I-thumb.jpg",
+          "alt": "On the River Bank — The Mirror Space",
+          "caption": "The Mirror Space"
+        },
+        {
+          "label": "still",
+          "aspect": "1800/1349",
+          "src": "assets/work/on-the-river-bank/K.jpg",
+          "thumb": "assets/work/on-the-river-bank/K-thumb.jpg",
+          "alt": "On the River Bank — The Lamp Path",
+          "caption": "The Lamp Path"
+        },
+        {
+          "label": "still",
+          "aspect": "1800/1349",
+          "src": "assets/work/on-the-river-bank/O.jpg",
+          "thumb": "assets/work/on-the-river-bank/O-thumb.jpg",
+          "alt": "On the River Bank — The Lamp Path",
+          "caption": "The Lamp Path"
+        },
+        {
+          "label": "still",
+          "aspect": "1800/1349",
+          "src": "assets/work/on-the-river-bank/Q.jpg",
+          "thumb": "assets/work/on-the-river-bank/Q-thumb.jpg",
+          "alt": "On the River Bank — The Mirror Space",
+          "caption": "The Mirror Space"
+        },
+        {
+          "label": "still",
+          "aspect": "1800/1349",
+          "src": "assets/work/on-the-river-bank/T.jpg",
+          "thumb": "assets/work/on-the-river-bank/T-thumb.jpg",
+          "alt": "On the River Bank — The Mirror Space",
+          "caption": "The Mirror Space"
+        }
+      ],
+      "tabs": [
+        {
+          "title": "Film Stills",
+          "layout": "g3",
+          "items": [
+            {
+              "label": "still",
+              "aspect": "1800/1349",
+              "src": "assets/work/on-the-river-bank/A.jpg",
+              "thumb": "assets/work/on-the-river-bank/A-thumb.jpg",
+              "alt": "On the River Bank — River B-Rolls",
+              "caption": "River B-Rolls"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1349",
+              "src": "assets/work/on-the-river-bank/B.jpg",
+              "thumb": "assets/work/on-the-river-bank/B-thumb.jpg",
+              "alt": "On the River Bank — still",
+              "caption": ""
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1349",
+              "src": "assets/work/on-the-river-bank/C.jpg",
+              "thumb": "assets/work/on-the-river-bank/C-thumb.jpg",
+              "alt": "On the River Bank — Opening",
+              "caption": "Opening"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1349",
+              "src": "assets/work/on-the-river-bank/D.jpg",
+              "thumb": "assets/work/on-the-river-bank/D-thumb.jpg",
+              "alt": "On the River Bank — The Breakfast Table",
+              "caption": "The Breakfast Table"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1349",
+              "src": "assets/work/on-the-river-bank/E.jpg",
+              "thumb": "assets/work/on-the-river-bank/E-thumb.jpg",
+              "alt": "On the River Bank — The Breakfast Table",
+              "caption": "The Breakfast Table"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1349",
+              "src": "assets/work/on-the-river-bank/F.jpg",
+              "thumb": "assets/work/on-the-river-bank/F-thumb.jpg",
+              "alt": "On the River Bank — still",
+              "caption": ""
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1349",
+              "src": "assets/work/on-the-river-bank/G.jpg",
+              "thumb": "assets/work/on-the-river-bank/G-thumb.jpg",
+              "alt": "On the River Bank — Choreography",
+              "caption": "Choreography"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1349",
+              "src": "assets/work/on-the-river-bank/H.jpg",
+              "thumb": "assets/work/on-the-river-bank/H-thumb.jpg",
+              "alt": "On the River Bank — Choreography",
+              "caption": "Choreography"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1349",
+              "src": "assets/work/on-the-river-bank/I.jpg",
+              "thumb": "assets/work/on-the-river-bank/I-thumb.jpg",
+              "alt": "On the River Bank — The Mirror Space",
+              "caption": "The Mirror Space"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1349",
+              "src": "assets/work/on-the-river-bank/J.jpg",
+              "thumb": "assets/work/on-the-river-bank/J-thumb.jpg",
+              "alt": "On the River Bank — The Mirror Space",
+              "caption": "The Mirror Space"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1349",
+              "src": "assets/work/on-the-river-bank/L.jpg",
+              "thumb": "assets/work/on-the-river-bank/L-thumb.jpg",
+              "alt": "On the River Bank — The Lamp Path",
+              "caption": "The Lamp Path"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1349",
+              "src": "assets/work/on-the-river-bank/M.jpg",
+              "thumb": "assets/work/on-the-river-bank/M-thumb.jpg",
+              "alt": "On the River Bank — The Lamp Path",
+              "caption": "The Lamp Path"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1349",
+              "src": "assets/work/on-the-river-bank/N.jpg",
+              "thumb": "assets/work/on-the-river-bank/N-thumb.jpg",
+              "alt": "On the River Bank — still",
+              "caption": ""
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1349",
+              "src": "assets/work/on-the-river-bank/O.jpg",
+              "thumb": "assets/work/on-the-river-bank/O-thumb.jpg",
+              "alt": "On the River Bank — The Lamp Path",
+              "caption": "The Lamp Path"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1349",
+              "src": "assets/work/on-the-river-bank/P.jpg",
+              "thumb": "assets/work/on-the-river-bank/P-thumb.jpg",
+              "alt": "On the River Bank — The Lamp Path",
+              "caption": "The Lamp Path"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1349",
+              "src": "assets/work/on-the-river-bank/Q.jpg",
+              "thumb": "assets/work/on-the-river-bank/Q-thumb.jpg",
+              "alt": "On the River Bank — The Mirror Space",
+              "caption": "The Mirror Space"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1349",
+              "src": "assets/work/on-the-river-bank/R.jpg",
+              "thumb": "assets/work/on-the-river-bank/R-thumb.jpg",
+              "alt": "On the River Bank — still",
+              "caption": ""
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1349",
+              "src": "assets/work/on-the-river-bank/S.jpg",
+              "thumb": "assets/work/on-the-river-bank/S-thumb.jpg",
+              "alt": "On the River Bank — The Mirror Space",
+              "caption": "The Mirror Space"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1349",
+              "src": "assets/work/on-the-river-bank/T.jpg",
+              "thumb": "assets/work/on-the-river-bank/T-thumb.jpg",
+              "alt": "On the River Bank — The Mirror Space",
+              "caption": "The Mirror Space"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1349",
+              "src": "assets/work/on-the-river-bank/U.jpg",
+              "thumb": "assets/work/on-the-river-bank/U-thumb.jpg",
+              "alt": "On the River Bank — The Lamp Path",
+              "caption": "The Lamp Path"
+            },
+            {
+              "label": "still",
+              "aspect": "1800/1349",
+              "src": "assets/work/on-the-river-bank/V.jpg",
+              "thumb": "assets/work/on-the-river-bank/V-thumb.jpg",
+              "alt": "On the River Bank — Ending Shot",
+              "caption": "Ending Shot"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "before-sunrise",
+      "title": "Before Sunrise",
+      "type": "Production Design · Costume Design",
+      "cover": {
+        "label": "before sunrise",
+        "aspect": "4/5",
+        "src": "assets/work/before-sunrise/cover.jpg",
+        "thumb": "assets/work/before-sunrise/cover-thumb.jpg",
+        "alt": "Before Sunrise"
+      },
+      "format": "Short Film",
+      "year": "2025",
+      "productionCo": "USC School of Cinematic Arts",
+      "role": "Production Designer · Costume Designer",
+      "logline": "",
+      "awards": [],
+      "links": [],
+      "diary": [],
+      "credits": [
+        {
+          "role": "Director",
+          "name": "Yining (Coco) Zhong"
+        },
+        {
+          "role": "Production Designer",
+          "name": "Yu-Cheng (Momo) Chuang"
+        },
+        {
+          "role": "Costume Designer",
+          "name": "Yu-Cheng (Momo) Chuang"
+        }
+      ],
+      "hero": [
+        {
+          "label": "still",
+          "aspect": "3024/1586",
+          "src": "assets/work/before-sunrise/hero-01.jpg",
+          "thumb": "assets/work/before-sunrise/hero-01-thumb.jpg",
+          "alt": "Before Sunrise — 1"
+        },
+        {
+          "label": "still",
+          "aspect": "3024/1586",
+          "src": "assets/work/before-sunrise/hero-02.jpg",
+          "thumb": "assets/work/before-sunrise/hero-02-thumb.jpg",
+          "alt": "Before Sunrise — 2"
+        },
+        {
+          "label": "still",
+          "aspect": "3024/1586",
+          "src": "assets/work/before-sunrise/hero-03.jpg",
+          "thumb": "assets/work/before-sunrise/hero-03-thumb.jpg",
+          "alt": "Before Sunrise — 3"
+        },
+        {
+          "label": "still",
+          "aspect": "3024/1586",
+          "src": "assets/work/before-sunrise/hero-04.jpg",
+          "thumb": "assets/work/before-sunrise/hero-04-thumb.jpg",
+          "alt": "Before Sunrise — 4"
+        },
+        {
+          "label": "still",
+          "aspect": "3024/1586",
+          "src": "assets/work/before-sunrise/hero-05.jpg",
+          "thumb": "assets/work/before-sunrise/hero-05-thumb.jpg",
+          "alt": "Before Sunrise — 5"
+        },
+        {
+          "label": "still",
+          "aspect": "3024/1586",
+          "src": "assets/work/before-sunrise/hero-06.jpg",
+          "thumb": "assets/work/before-sunrise/hero-06-thumb.jpg",
+          "alt": "Before Sunrise — 6"
+        }
+      ],
+      "tabs": [
+        {
+          "title": "Film Stills",
+          "layout": "g3",
+          "items": [
+            {
+              "label": "still",
+              "aspect": "3024/1586",
+              "src": "assets/work/before-sunrise/film-still-01.jpg",
+              "thumb": "assets/work/before-sunrise/film-still-01-thumb.jpg",
+              "alt": "Before Sunrise — film still 1"
+            },
+            {
+              "label": "still",
+              "aspect": "3024/1586",
+              "src": "assets/work/before-sunrise/film-still-02.jpg",
+              "thumb": "assets/work/before-sunrise/film-still-02-thumb.jpg",
+              "alt": "Before Sunrise — film still 2"
+            },
+            {
+              "label": "still",
+              "aspect": "3024/1586",
+              "src": "assets/work/before-sunrise/film-still-03.jpg",
+              "thumb": "assets/work/before-sunrise/film-still-03-thumb.jpg",
+              "alt": "Before Sunrise — film still 3"
+            },
+            {
+              "label": "still",
+              "aspect": "3024/1586",
+              "src": "assets/work/before-sunrise/film-still-04.jpg",
+              "thumb": "assets/work/before-sunrise/film-still-04-thumb.jpg",
+              "alt": "Before Sunrise — film still 4"
+            },
+            {
+              "label": "still",
+              "aspect": "3024/1586",
+              "src": "assets/work/before-sunrise/film-still-05.jpg",
+              "thumb": "assets/work/before-sunrise/film-still-05-thumb.jpg",
+              "alt": "Before Sunrise — film still 5"
+            },
+            {
+              "label": "still",
+              "aspect": "3024/1586",
+              "src": "assets/work/before-sunrise/film-still-06.jpg",
+              "thumb": "assets/work/before-sunrise/film-still-06-thumb.jpg",
+              "alt": "Before Sunrise — film still 6"
+            },
+            {
+              "label": "still",
+              "aspect": "3024/1586",
+              "src": "assets/work/before-sunrise/film-still-07.jpg",
+              "thumb": "assets/work/before-sunrise/film-still-07-thumb.jpg",
+              "alt": "Before Sunrise — film still 7"
+            },
+            {
+              "label": "still",
+              "aspect": "3024/1586",
+              "src": "assets/work/before-sunrise/film-still-08.jpg",
+              "thumb": "assets/work/before-sunrise/film-still-08-thumb.jpg",
+              "alt": "Before Sunrise — film still 8"
+            },
+            {
+              "label": "still",
+              "aspect": "3024/1586",
+              "src": "assets/work/before-sunrise/film-still-09.jpg",
+              "thumb": "assets/work/before-sunrise/film-still-09-thumb.jpg",
+              "alt": "Before Sunrise — film still 9"
+            },
+            {
+              "label": "still",
+              "aspect": "3024/1586",
+              "src": "assets/work/before-sunrise/film-still-10.jpg",
+              "thumb": "assets/work/before-sunrise/film-still-10-thumb.jpg",
+              "alt": "Before Sunrise — film still 10"
+            },
+            {
+              "label": "still",
+              "aspect": "3024/1586",
+              "src": "assets/work/before-sunrise/film-still-11.jpg",
+              "thumb": "assets/work/before-sunrise/film-still-11-thumb.jpg",
+              "alt": "Before Sunrise — film still 11"
+            },
+            {
+              "label": "still",
+              "aspect": "3024/1586",
+              "src": "assets/work/before-sunrise/film-still-12.jpg",
+              "thumb": "assets/work/before-sunrise/film-still-12-thumb.jpg",
+              "alt": "Before Sunrise — film still 12"
+            },
+            {
+              "label": "still",
+              "aspect": "3024/1586",
+              "src": "assets/work/before-sunrise/film-still-13.jpg",
+              "thumb": "assets/work/before-sunrise/film-still-13-thumb.jpg",
+              "alt": "Before Sunrise — film still 13"
+            },
+            {
+              "label": "still",
+              "aspect": "3024/1586",
+              "src": "assets/work/before-sunrise/film-still-14.jpg",
+              "thumb": "assets/work/before-sunrise/film-still-14-thumb.jpg",
+              "alt": "Before Sunrise — film still 14"
+            },
+            {
+              "label": "still",
+              "aspect": "3024/1586",
+              "src": "assets/work/before-sunrise/film-still-15.jpg",
+              "thumb": "assets/work/before-sunrise/film-still-15-thumb.jpg",
+              "alt": "Before Sunrise — film still 15"
+            },
+            {
+              "label": "still",
+              "aspect": "3024/1586",
+              "src": "assets/work/before-sunrise/film-still-16.jpg",
+              "thumb": "assets/work/before-sunrise/film-still-16-thumb.jpg",
+              "alt": "Before Sunrise — film still 16"
+            }
+          ]
+        }
+      ],
+      "month": "04"
+    }
+  ]
+}

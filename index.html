@@ -1,0 +1,798 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>默默 GINGKO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;600&family=Spline+Sans:wght@400;500&family=Spline+Sans+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css"/>
+<script src="content.js"></script>
+<style>
+  /* ---- canvas layers (self-contained, per design doc) ---- */
+  html,body{margin:0;height:100%;overflow:hidden;overscroll-behavior:none;background:var(--paper);}
+  #stage{position:fixed;inset:0;z-index:0;font-family:Georgia,"Noto Serif TC",serif;cursor:default;}
+  /* on home the (empty, full-screen) #mount must not swallow canvas clicks / cursor */
+  body[data-page="home"] #mount{pointer-events:none;}
+  /* leaf cursor rules live in site.css (needs .entered / [data-page]) */
+  #bed{position:absolute;inset:0;z-index:1;}
+  #base{position:absolute;inset:0;z-index:2;}
+  #leaves{position:absolute;inset:0;z-index:3;}
+  #wfx{position:absolute;inset:0;z-index:4;pointer-events:none;}
+  #fx{position:absolute;inset:0;z-index:6;pointer-events:none;}
+  /* ---- home chrome (only visible in home/landing modes) ---- */
+  #logo{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:5;
+    color:var(--ink);font-family:var(--serif);font-size:min(16vw,150px);letter-spacing:.05em;opacity:0;
+    transition:opacity 1s ease, transform .6s ease;}
+  #logo img{width:min(30vw,340px);height:auto;display:block;}   /* Momo's logo PNG */
+  .home-menu{position:fixed;z-index:12;opacity:0;transition:opacity .7s ease, transform .6s ease;
+    font-family:var(--mono);font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);text-align:right;}
+  .home-menu a{display:block;width:fit-content;margin:3px 0 3px auto;padding:12px 22px;border-radius:4px;
+    text-decoration:none;color:var(--ink);font-weight:700;opacity:1;transition:all .2s ease;}
+  .home-menu a.hot{background:var(--blush);color:var(--paper);opacity:1;transform:translateX(-5px);letter-spacing:.16em;}
+  #homeTop{top:14vh;right:11vw;} #homeBottom{bottom:14vh;right:11vw;}
+  #homeLeft{bottom:14vh;left:11vw;right:auto;text-align:left;}
+  .home-menu-l a{margin:3px auto 3px 0;}   /* left-aligned social links */
+  .home-menu-l a.hot{transform:translateX(5px);}
+  #icon{position:fixed;left:50%;top:50%;width:88px;height:88px;transform:translate(-50%,-50%);
+    z-index:30;cursor:pointer;background:var(--paper);
+    -webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+    -webkit-mask-position:center;mask-position:center;   /* mask-image set by GK.rollIcon (random leaf) */
+    transition:opacity .5s ease;animation:breathe 3.2s ease-in-out infinite;}
+  @keyframes breathe{0%,100%{transform:translate(-50%,-50%) scale(1);}50%{transform:translate(-50%,-50%) scale(1.07);}}
+  #hint{position:fixed;left:50%;top:calc(50% + 74px);transform:translateX(-50%);z-index:31;
+    color:#8a8a8a;font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;transition:opacity .5s;}
+  /* home chrome hides on any inner page (title/side/footer handled in site.css) */
+  body:not([data-page="home"]) #logo,body:not([data-page="home"]) .home-menu,
+  body:not([data-page="home"]) #icon,body:not([data-page="home"]) #hint{opacity:0!important;pointer-events:none;}
+</style>
+</head>
+<body class="shell" data-page="home" data-mode="landing">
+  <div id="stage">
+    <canvas id="bed"></canvas>
+    <canvas id="base"></canvas>
+    <canvas id="leaves"></canvas>
+    <canvas id="wfx"></canvas>
+    <canvas id="fx"></canvas>
+  </div>
+
+  <!-- home chrome -->
+  <div id="logo"><img src="logo.png" alt="默默 GINGKO"/></div>
+  <nav id="homeTop" class="home-menu"><a href="production-design.html">Production Design</a><a href="concept-illustration.html">Concept &amp; Illustration</a><a href="design.html">Design</a></nav>
+  <nav id="homeBottom" class="home-menu"><a href="about.html">About Me</a></nav>
+  <nav id="homeLeft" class="home-menu home-menu-l"><a href="#" data-social="instagram">Instagram</a><a href="#" data-social="linkedin">LinkedIn</a></nav>
+  <div id="icon"></div>
+  <div id="hint">click</div>
+
+  <!-- shared frame + inner-page chrome -->
+  <div class="frame" aria-hidden="true"><i class="fe-t"></i><i class="fe-r"></i><i class="fe-b"></i><i class="fe-l"></i></div>
+  <a id="returnBtn" href="index.html">← back</a>
+  <button id="stripPrev" class="strip-arrow" aria-label="Previous images">‹</button>
+  <button id="stripNext" class="strip-arrow" aria-label="Next images">›</button>
+  <h1 id="pageTitle"></h1>
+  <nav id="sideMenu" aria-label="Section"></nav>
+  <div id="curtain"></div>
+  <main id="mount"></main>
+  <div id="footer"></div>
+  <div id="copyright"><span>© 2025 默默 GINGKO. All rights reserved.</span></div>
+
+  <!-- ===== MOBILE HOME: vertical swipe (shown after the leaf-blow, on html.mob) ===== -->
+  <div id="mHome" aria-label="Home">
+    <section class="mslide mcover">
+      <img class="mlogo" src="logo.png" alt="默默 GINGKO"/>
+      <div class="mswipe"><span class="mchev" aria-hidden="true">︿</span>swipe up</div>
+    </section>
+
+    <section class="mslide mcard" data-card>
+      <button class="mnav mnav-up" data-prev aria-label="Previous">︿</button>
+      <h2 class="mcard-title"><img src="title-production-design.png" alt="Production Design"/></h2>
+      <a class="mthumb" href="production-design.html" data-page-thumb="production-design" aria-label="Production Design"><span class="ph" data-object="production design"></span></a>
+      <p class="mcard-note">Visual worlds for film, vertical drama, music video, and commercial work — concept through set, prop, and what reads on camera.</p>
+      <a class="mmore" href="production-design.html">See more</a>
+      <button class="mnav mnav-down" data-next aria-label="Next">﹀</button>
+    </section>
+
+    <section class="mslide mcard" data-card>
+      <button class="mnav mnav-up" data-prev aria-label="Previous">︿</button>
+      <h2 class="mcard-title"><img src="title-concept-illustration.png" alt="Concept &amp; Illustration"/></h2>
+      <a class="mthumb" href="concept-illustration.html" data-page-thumb="concept-illustration" aria-label="Concept &amp; Illustration"><span class="ph" data-object="concept & illustration"></span></a>
+      <p class="mcard-note">Concept art and illustration — classical Chinese, wuxia, and xianxia world-building, and the objects that tell you where you are.</p>
+      <a class="mmore" href="concept-illustration.html">See more</a>
+      <button class="mnav mnav-down" data-next aria-label="Next">﹀</button>
+    </section>
+
+    <section class="mslide mcard" data-card>
+      <button class="mnav mnav-up" data-prev aria-label="Previous">︿</button>
+      <h2 class="mcard-title"><img src="title-design.png" alt="Design"/></h2>
+      <a class="mthumb" href="design.html" data-page-thumb="design" aria-label="Design"><span class="ph" data-object="design"></span></a>
+      <p class="mcard-note">Poster design, social marketing campaigns, and prop graphic design across film and commercial projects.</p>
+      <a class="mmore" href="design.html">See more</a>
+      <button class="mnav mnav-down" data-next aria-label="Next">﹀</button>
+    </section>
+
+    <!-- About: title → portrait → bio, all grouped (one tall section, free-scrolls) -->
+    <section class="mslide mabout-card" id="mAbout" data-card>
+      <h2 class="mcard-title mabout-title"><img src="title-about.png" alt="About"/></h2>
+      <div class="mabout-body">
+        <div class="mportrait"><span class="ph" data-object="portrait"></span></div>
+        <div class="bio">
+          <p>Momo Chuang (默默) is an art director and production designer based in Los Angeles, building visual worlds for film, vertical drama, music video, and commercial work.</p>
+          <p class="lede">She moves between the drawing table and the set — concept and elevation through prop, set dressing, and what finally reads on camera. Her work leans toward classical Chinese, wuxia, and xianxia world-building, and toward objects: the single prop that tells you where you are.</p>
+          <p class="lede">She studied Media Arts + Practice at USC's School of Cinematic Arts, and works across Mandarin, English, and Taiwanese.</p>
+        </div>
+        <div class="about-block">
+          <h2>Selected Credits</h2>
+          <table class="credits"><tbody>
+            <tr><td class="c-yr">2025</td><td class="c-t">Soup 湯</td><td class="c-r">Art Director</td></tr>
+            <tr><td class="c-yr">2025</td><td class="c-t">Antidote</td><td class="c-r">Costume Designer</td></tr>
+            <tr><td class="c-yr">2025</td><td class="c-t">On the River Bank</td><td class="c-r">Production Designer</td></tr>
+            <tr><td class="c-yr">2025</td><td class="c-t">Before Sunrise</td><td class="c-r">Production Designer · Costume Designer</td></tr>
+          </tbody></table>
+        </div>
+        <div class="about-block">
+          <h2>Contact</h2>
+          <div class="contact">
+            <a href="mailto:[email]">[email]</a>
+            <a href="#">Instagram</a>
+            <a href="#">Vimeo</a>
+            <a href="#">Résumé (PDF)</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="mfoot">
+      <nav class="mfoot-nav">
+        <a href="production-design.html">Production Design</a>
+        <a href="concept-illustration.html">Concept &amp; Illustration</a>
+        <a href="design.html">Design</a>
+        <a data-scroll="#mAbout">About</a>
+      </nav>
+      <span class="mfoot-cr">© 2025 默默 GINGKO</span>
+    </footer>
+  </div>
+
+<script>
+  // ============ mobile flag (single source of truth for index.html + nav.js + site.css) ============
+  // portrait phones/tablets AND iPad-ish landscape (aspect ≤ 1.4) → mobile interface. Wide desktop (16:10+) stays desktop.
+  const MOBQ = matchMedia('(max-aspect-ratio: 7/5), (max-width: 820px)');
+  const setMob = ()=>document.documentElement.classList.toggle('mob', MOBQ.matches);
+  const isMob = ()=>document.documentElement.classList.contains('mob');
+  setMob();   // set before setup() so canvas density is right on first paint
+
+  // ============ leaf canvas engine (image sprites — Momo's leaf/ + particle/ PNGs) ============
+  const LEAF_URLS = Array.from({length:13},(_,i)=>'leaf/leaf_'+(i+1)+'.png');
+  const PART_URLS = Array.from({length:20},(_,i)=>'particle/particle_'+(i+1)+'.png');
+  const BAKE=104;
+  const VARIANTS=[{s:0.9,r:-0.12},{s:1,r:0},{s:1.09,r:0.13}];   // slight scale/rotate variety per source
+  const DCOL=['#0d0d0d','#171615','#171817','#18191a','#1b1b1d','#282827'];
+  // near-black spread with a QUARTER-strength hue whisper so stacked leaves separate: neutral, rust-red,
+  // moss, desaturated navy, deep indigo, neutral-charcoal. Channels drift only ~1 from neutral.
+  const WCOL=['#F3ECDC','#F6F0E2','#EFE9D9']; // pale near-paper tints for the brush + shimmer layers
+  const BASE='rgba(252,247,238,';
+  const rint=n=>(Math.random()*n)|0;
+
+  // baked sprite sets: [shapeVariant][tint]. _D dark (drawn art), _P pale (silhouette tint).
+  let LEAF_D=[],LEAF_P=[],PART_D=[],PART_P=[],leafKeyed=[],assetsReady=false;
+
+  function keyWhite(img){                      // knock the white background out to alpha; keep the brush's alpha shape
+    const s=300,c=document.createElement('canvas'); c.width=c.height=s;
+    const x=c.getContext('2d'); x.imageSmoothingEnabled=true; x.imageSmoothingQuality='high';
+    x.drawImage(img,0,0,s,s);
+    const im=x.getImageData(0,0,s,s),p=im.data;
+    for(let i=0;i<p.length;i+=4){ const lum=(p[i]+p[i+1]+p[i+2])/3; p[i+3]=(255-lum)|0; }
+    x.putImageData(im,0,0); return c;
+  }
+  // draw the full frame (no crop → keeps drawn size), scaled/rotated, then RECOLOR via source-in so
+  // the anti-aliased white edge is discarded (was leaving a light halo on dark sprites) and every
+  // sprite — dark or pale — is a clean silhouette filled with its tint.
+  function bakeSprite(keyed,v,tint){
+    const c=document.createElement('canvas'); c.width=c.height=BAKE; const x=c.getContext('2d');
+    x.imageSmoothingEnabled=true; x.imageSmoothingQuality='high';
+    x.translate(BAKE/2,BAKE/2); x.rotate(v.r); x.scale(v.s,v.s); x.translate(-BAKE/2,-BAKE/2);
+    x.drawImage(keyed,0,0,BAKE,BAKE);
+    x.globalCompositeOperation='source-in'; x.fillStyle=tint; x.fillRect(-BAKE,-BAKE,BAKE*3,BAKE*3);
+    return c;
+  }
+  function loadImg(u){ return new Promise(res=>{ const im=new Image(); im.onload=()=>res(im); im.onerror=()=>res(null); im.src=u; }); }
+  async function loadAssets(){
+    const [lg,pg]=await Promise.all([Promise.all(LEAF_URLS.map(loadImg)),Promise.all(PART_URLS.map(loadImg))]);
+    for(const img of lg){ if(!img)continue; const k=keyWhite(img); leafKeyed.push(k);
+      for(const v of VARIANTS){ LEAF_D.push(DCOL.map(c=>bakeSprite(k,v,c))); LEAF_P.push(WCOL.map(c=>bakeSprite(k,v,c))); } }
+    for(const img of pg){ if(!img)continue; const k=keyWhite(img);
+      for(const v of VARIANTS){ PART_D.push(DCOL.map(c=>bakeSprite(k,v,c))); PART_P.push(WCOL.map(c=>bakeSprite(k,v,c))); } }
+    onAssetsReady();
+  }
+  // pooled pickers. type 'p' = particle (slightly outnumbers), 'l' = leaf. svi = shape-variant index.
+  function randType(){ return Math.random()<0.57 ? 'p':'l'; }
+  function rsvi(t){ return rint((t==='p'?PART_D:LEAF_D).length||1); }
+  function dsp(t,svi){ const A=t==='p'?PART_D:LEAF_D; return A[svi][rint(A[svi].length)]; }
+  function psp(t,svi){ const A=t==='p'?PART_P:LEAF_P; return A[svi][rint(A[svi].length)]; }
+
+  const bed=document.getElementById('bed'), base=document.getElementById('base'),
+        leavesC=document.getElementById('leaves'), wfx=document.getElementById('wfx'), fx=document.getElementById('fx');
+  const bc=bed.getContext('2d'), basec=base.getContext('2d'), lc=leavesC.getContext('2d'),
+        wc=wfx.getContext('2d'), fc=fx.getContext('2d');
+  const icon=document.getElementById('icon'), hint=document.getElementById('hint');
+  const logo=document.getElementById('logo'), menuTop=document.getElementById('homeTop'), menuBot=document.getElementById('homeBottom');
+  const menuLeft=document.getElementById('homeLeft');
+  const menuItems=[...menuTop.querySelectorAll('a'), ...menuBot.querySelectorAll('a')];   // 4 right-side destinations
+  const leftItems=[...menuLeft.querySelectorAll('a')];                                    // 2 bottom-left socials
+  let W,H,dpr;
+
+  let X, PUSH;
+  function radii(){ X=H*0.29; PUSH=H*0.27; }
+  let WINDX=0, WINDY=0; const WMAG=1.25;
+  const CELL=14; let cols,rows,wstamp;
+
+  let mode='landing';     // landing | paper | home | ink
+  let whiteExpand=null;   // active during blow-away: grows the white field to fill the canvas
+
+  function blit(ctx, sp, x,y, size, rot, sx){
+    ctx.save(); ctx.translate(x,y); ctx.rotate(rot); ctx.scale(sx*size/100, size/100);
+    ctx.drawImage(sp,-50,-50,100,100); ctx.restore();
+  }
+  function paintBed(){ bc.fillStyle='#0a0a0a'; bc.fillRect(0,0,W,H); if(assetsReady) paintBedScatter(); }
+  function paintBedScatter(){
+    const beds=Math.floor(W*H/(isMob()?2600:1500));   // sparser bed on phones (perf)
+    for(let i=0;i<beds;i++){ const t=randType(); blit(bc, dsp(t,rsvi(t)), Math.random()*W, Math.random()*H,
+        30+Math.random()*38, Math.random()*6.28, Math.random()<.5?1:-1); }
+  }
+  function setup(){
+    W=innerWidth; H=innerHeight; dpr=Math.min(isMob()?1.5:2, devicePixelRatio||1); radii();
+    for(const cv of [bed,base,leavesC,wfx,fx]){ cv.width=W*dpr; cv.height=H*dpr; cv.style.width=W+'px'; cv.style.height=H+'px'; }
+    for(const ctx of [bc,basec,lc,wc,fc]) ctx.setTransform(dpr,0,0,dpr,0,0);
+    cols=Math.ceil(W/CELL); rows=Math.ceil(H/CELL); wstamp=new Uint8Array(cols*rows);
+    paintBed();
+  }
+  setup();
+
+  const leaves=[]; const CAP=11000;
+  const EMOVE=0.09;   // motion floor: below this energy a grounded sprite is fully at rest (no drift, no spin)
+  function mkLeaf(x,y,type,svi,energy,vx,vy){
+    const isP = type==='p';
+    return { x,y, type, svi, isP, sp:dsp(type,svi),
+      vx:vx||0, vy:vy||0, rot:Math.random()*6.28,
+      rotSpeed:(Math.random()-0.5)*(isP?0.5:0.26),          // particles tumble more
+      phase:0, spinSpeed:0.16+Math.random()*0.34, energy:energy||0, size:30+Math.random()*20,
+      k:(isP?0.5:0.4)+Math.random()*(isP?1.35:1.3),         // particles a touch lighter (subtle)
+      drag:(isP?0.875:0.855)+Math.random()*(isP?0.09:0.1),  // particles keep momentum slightly longer (subtle)
+      flipMin:0.22+Math.random()*0.34,
+      lift:(isP?0.25:0.7)+Math.random()*(isP?0.4:1.1),      // particles don't swell much
+      decay:(isP?0.94:0.925)+Math.random()*0.03 };          // <1 so energy always bleeds off → sprite settles
+  }
+  function spawnBorder(){
+    const edge=rint(4), m=5; let x,y,ang;
+    if(edge===0){ x=Math.random()*W; y=m;   ang=1.571+(Math.random()-0.5); }
+    else if(edge===1){ x=W-m; y=Math.random()*H; ang=3.142+(Math.random()-0.5); }
+    else if(edge===2){ x=Math.random()*W; y=H-m; ang=-1.571+(Math.random()-0.5); }
+    else { x=m; y=Math.random()*H; ang=(Math.random()-0.5); }
+    const sp=1.5+Math.random()*2.5, t=randType();
+    const L=mkLeaf(x,y, t, rsvi(t), 0.5, Math.cos(ang)*sp, Math.sin(ang)*sp);
+    L.deco=true; return L;
+  }
+
+  const FBIG=2.8;
+  function spawnFall(){
+    const edge=rint(4), m=70; let x,y,vx,vy;
+    if(edge===0){ x=Math.random()*W; y=-m; vx=(Math.random()-0.5)*1.6; vy=0.6+Math.random()*1.3; }
+    else if(edge===1){ x=W+m; y=Math.random()*H; vx=-(0.6+Math.random()*1.3); vy=(Math.random()-0.5)*1.6; }
+    else if(edge===2){ x=Math.random()*W; y=H+m; vx=(Math.random()-0.5)*1.6; vy=-(0.6+Math.random()*1.3); }
+    else { x=-m; y=Math.random()*H; vx=0.6+Math.random()*1.3; vy=(Math.random()-0.5)*1.6; }
+    const t=randType(), L=mkLeaf(x,y, t, rsvi(t), 0, vx, vy);
+    L.falling=true; L.deco=true; L.h=1; L.hspeed=0.0035+Math.random()*0.0045;
+    L.wPhase=Math.random()*6.28; L.wSpeed=0.02+Math.random()*0.045;
+    L.fallSpin=(Math.random()-0.5)*0.13; L.fallFlip=0.07+Math.random()*0.15;
+    L.phase=Math.random()*6.28;
+    return L;
+  }
+
+  const wleaves=[];
+  function spawnWhite(){
+    for(let a=0;a<8;a++){
+      const cx=rint(cols), cy=rint(rows), idx=cy*cols+cx;
+      if(wstamp[idx]){
+        const t=randType();
+        wleaves.push({ x:cx*CELL+Math.random()*CELL, y:cy*CELL+Math.random()*CELL,
+          hx:cx*CELL+CELL/2, hy:cy*CELL+CELL/2, vx:0,vy:0, isP:t==='p',
+          rot:Math.random()*6.28, rotSpeed:(Math.random()-0.5)*(t==='p'?0.36:0.2),
+          phase:Math.random()*6.28, spinSpeed:0.14+Math.random()*0.24, energy:0,
+          size:26+Math.random()*16, sp:psp(t,rsvi(t)),
+          k:0.5+Math.random()*1.0, flipMin:0.3+Math.random()*0.3, lift:0.5+Math.random()*0.7 });
+        return;
+      }
+    }
+  }
+
+  let swirlCount=0;
+  function makeSwirl(L){
+    L.swirl=true; L.falling=false;
+    L.sAng=Math.random()*6.28; L.sRad=30+Math.random()*50; L.sRadT=70+Math.random()*270;
+    L.sAngSpeed=(0.012+Math.random()*0.055)*(Math.random()<.5?1:-1);
+    L.sLife=170+Math.random()*260; L.energy=0.85; swirlCount++;
+  }
+
+  function reveal(px,py,r,burst){
+    basec.save();
+    const g=basec.createRadialGradient(px,py,r*0.2,px,py,r);
+    g.addColorStop(0,BASE+'1)'); g.addColorStop(0.82,BASE+'1)'); g.addColorStop(1,BASE+'0)');
+    basec.fillStyle=g; basec.beginPath(); basec.arc(px,py,r,0,7); basec.fill(); basec.restore();
+    const RR=r*1.12, R2=RR*RR;
+    const c0=Math.max(0,((px-RR)/CELL)|0), c1=Math.min(cols-1,((px+RR)/CELL)|0);
+    const r0=Math.max(0,((py-RR)/CELL)|0), r1=Math.min(rows-1,((py+RR)/CELL)|0);
+    for(let cy=r0;cy<=r1;cy++)for(let cx=c0;cx<=c1;cx++){
+      const gx=cx*CELL, gy=cy*CELL, dx=gx-px, dy=gy-py; if(dx*dx+dy*dy>R2) continue;
+      const idx=cy*cols+cx; if(wstamp[idx]) continue; wstamp[idx]=1;
+      const lx=gx+Math.random()*CELL, ly=gy+Math.random()*CELL, ls=28+Math.random()*20, lr=Math.random()*6.28;
+      const ty=randType(), svi=rsvi(ty);                    // TWIN: pale stamp + dark twin share type+shape
+      blit(lc, psp(ty,svi), lx,ly, ls, lr, 1);
+      if(leaves.length>=CAP){
+        for(let j=0;j<leaves.length;j++){ const Q=leaves[j];
+          if(Q.deco && !Q.falling && !Q.swirl && Q.energy<0.05){ leaves.splice(j,1); break; } }
+      }
+      if(leaves.length<CAP){
+        const ex=lx-px, ey=ly-py, ed=Math.hypot(ex,ey);
+        let bdx=0, bdy=0;
+        if(burst){ if(ed<24){ const a=Math.random()*6.28; bdx=Math.cos(a); bdy=Math.sin(a); } else { bdx=ex/ed; bdy=ey/ed; } }
+        const sp=burst?(9+Math.random()*5):0;
+        const L=mkLeaf(lx,ly, ty, svi, burst?1:0, burst?bdx*sp+WINDX:0, burst?bdy*sp+WINDY:0);
+        L.rot=lr; L.size=ls*1.22; if(burst) L.drag=0.9+Math.random()*0.03;
+        leaves.push(L);
+        // denser opening: throw extra loose sprites (mostly particles) on top of the stamped grid
+        if(burst){
+          const extra = 2 + (Math.random()<0.6?1:0);           // ~2–3 extra per cell
+          for(let e=0;e<extra && leaves.length<CAP;e++){
+            const et = Math.random()<0.78 ? 'p' : 'l';          // heavily favour particles
+            const esvi=rsvi(et), ea=(ed<24?Math.random()*6.28:Math.atan2(ey,ex))+(Math.random()-0.5)*0.9;
+            const es=(et==='p'?9:7)+Math.random()*6;
+            const P=mkLeaf(lx,ly, et, esvi, 1, Math.cos(ea)*es+WINDX, Math.sin(ea)*es+WINDY);
+            P.size=ls*(et==='p'?0.7:1); P.drag=0.9+Math.random()*0.03;
+            leaves.push(P);
+          }
+        }
+      }
+    }
+  }
+
+  let mx=W/2,my=H/2,pmx=W/2,pmy=H/2,activated=false,windAngle=0,speedF=0,wt=Math.random()*100;
+  let gustTimer=60;   // countdown to the next localized wind gust (influence point) — reset to a random interval
+  let smx=W/2,smy=H/2,scox=0,scoy=0,scoxT=0,scoyT=0;
+  const stage=document.getElementById('stage');
+  function doOpen(){
+    reveal(W/2,H/2,X,true);
+    for(const L of leaves){
+      const dx=L.x-W/2, dy=L.y-H/2, d=Math.hypot(dx,dy);
+      if(d<X){ L.energy=1; const a=d<24?Math.random()*6.28:Math.atan2(dy,dx), s=9+Math.random()*5;
+        L.vx=Math.cos(a)*s+WINDX; L.vy=Math.sin(a)*s+WINDY; L.drag=0.9+Math.random()*0.03; }
+    }
+  }
+  function activate(){
+    if(activated || !assetsReady)return; activated=true;
+    stage.classList.add('playing'); document.body.classList.add('playing');
+    icon.style.opacity=0; hint.style.opacity=0;
+    if(isMob()){ mobileEnter(); return; }   // mobile: blow leaves away → reveal the white-leaf swipe home
+    logo.style.opacity=1;
+    selMin=my-RANGE/2; selMax=my+RANGE/2;
+    lSelMin=my-LRANGE/2; lSelMax=my+LRANGE/2;
+    doOpen();
+  }
+  async function mobileEnter(){
+    // simple entry: leaves fly outward from centre and OFF (they don't linger), while the black
+    // bed crossfades to the white field. The 默默 logo is dark ink → invisible on the black, so
+    // revealing #mHome now (not later) lets it just appear as the field turns white.
+    const cx=W/2, cy=H/2;
+    for(let i=0;i<120 && leaves.length<CAP;i++){
+      const x=Math.random()*W, y=Math.random()*H, dx=x-cx, dy=y-cy, dd=Math.hypot(dx,dy)||1, sp=5+Math.random()*5;
+      const t=randType(), L=mkLeaf(x,y, t, rsvi(t), 1, (dx/dd)*sp+WINDX, (dy/dd)*sp+WINDY);
+      L.blow=true; L.size=28+Math.random()*22; L.drag=0.992+Math.random()*0.005;   // gentle launch + little velocity loss → keeps drifting out of frame (flipping/rotating), then culled
+      leaves.push(L);
+    }
+    mode='paper'; fillPaper();                        // paint the white-leaf field on base+leaves…
+    document.body.classList.add('m-entered');         // logo present now (hidden on black, shown as it turns white)
+    base.style.transition='opacity .85s ease'; leavesC.style.transition='opacity .85s ease';
+    base.style.opacity='0'; leavesC.style.opacity='0';
+    void base.offsetHeight;                           // reflow → the next change transitions (works even if rAF is throttled)
+    base.style.opacity='1'; leavesC.style.opacity='1';// …and fade it in over the black bed
+    await new Promise(r=>setTimeout(r,850));
+    base.style.transition=''; leavesC.style.transition='';
+  }
+  function onResize(){
+    if(innerWidth===W && innerHeight===H) return;
+    setup();
+    if(mode==='paper'||mode==='home') fillPaper();
+    else if(mode==='ink') fillInk();
+    else if(activated) doOpen();
+    if(window.GKframe) window.GKframe();
+  }
+  addEventListener('resize', onResize);
+  document.addEventListener('fullscreenchange', onResize);
+  const ZONE=0.65, INC=100, RANGE=INC*4;        // right 35%: 4 destinations
+  const LZONE=0.35, LINC=100, LRANGE=LINC*2;    // left  35%: 2 socials
+  let menuShown=false, selMin=0, selMax=0, curHot=-1;
+  let lSelMin=0, lSelMax=0, leftHot=-1;
+  function showMenu(){
+    if(menuShown)return; menuShown=true;
+    menuTop.style.opacity=1; menuBot.style.opacity=1; menuLeft.style.opacity=1;
+  }
+  function updateMenuHot(x,y){
+    curHot=-1; leftHot=-1;
+    if(activated && x>W*ZONE){
+      if(y>selMax){ selMax=y; selMin=y-RANGE; }
+      else if(y<selMin){ selMin=y; selMax=y+RANGE; }
+      curHot=Math.min(3,Math.max(0,((y-selMin)/INC)|0));
+      showMenu();
+    } else if(activated && x<W*LZONE){
+      if(y>lSelMax){ lSelMax=y; lSelMin=y-LRANGE; }
+      else if(y<lSelMin){ lSelMin=y; lSelMax=y+LRANGE; }
+      leftHot=Math.min(1,Math.max(0,((y-lSelMin)/LINC)|0));
+      showMenu();
+    }
+    for(let i=0;i<menuItems.length;i++) menuItems[i].classList.toggle('hot', i===curHot);
+    for(let i=0;i<leftItems.length;i++) leftItems[i].classList.toggle('hot', i===leftHot);
+  }
+  icon.addEventListener('click',activate);
+  // Home selection is the "adjustable hitbox": hover in the right zone highlights the
+  // nearest of the 4 items (curHot); a click ANYWHERE fires it. Handled on WINDOW in the
+  // capture phase so it runs before the event reaches any overlay (#mount, frame, etc.) —
+  // the old #stage-level handler broke the moment a full-screen layer sat above the canvas.
+  addEventListener('click',(e)=>{
+    if(document.body.dataset.page!=='home') return;
+    if(!activated){ activate(); return; }         // first tap enters (mobile landing too)
+    if(isMob()) return;                            // after entry, mobile uses the swipe home (no hitbox)
+    if(e.target.closest && e.target.closest('#homeTop a, #homeBottom a, #homeLeft a')) return; // direct link → nav.js
+    if(curHot>=0) menuItems[curHot].click();
+    else if(leftHot>=0) leftItems[leftHot].click();
+  }, true);
+  addEventListener('mousemove',e=>{ mx=e.clientX; my=e.clientY;
+    if(document.body.dataset.page!=='home') return;
+    if(mode==='landing' && activated) reveal(mx,my, X*(0.32+speedF*0.68), false);
+    if(activated) updateMenuHot(mx,my); });
+
+  // ---- mode fills ----
+  function fillPaper(){
+    basec.fillStyle=BASE+'1)'; basec.fillRect(0,0,W,H);
+    lc.clearRect(0,0,W,H); wstamp.fill(0);          // wipe any prior leaf layer (e.g. ink's black texture) so no black gaps remain
+    for(let cy=0;cy<rows;cy++)for(let cx=0;cx<cols;cx++){
+      const idx=cy*cols+cx; wstamp[idx]=1; const t=randType();
+      blit(lc, psp(t,rsvi(t)), cx*CELL+Math.random()*CELL, cy*CELL+Math.random()*CELL,
+        30+Math.random()*18, Math.random()*6.28, 1);
+    }
+  }
+  function fillInk(){
+    basec.clearRect(0,0,W,H); lc.clearRect(0,0,W,H); wstamp.fill(0);
+    const n=Math.floor(W*H/1400);
+    for(let i=0;i<n;i++){ const t=randType(); blit(lc, dsp(t,rsvi(t)), Math.random()*W, Math.random()*H,
+        30+Math.random()*30, Math.random()*6.28, Math.random()<.5?1:-1); }
+  }
+  function clearFlying(){ leaves.length=0; wleaves.length=0; swirlCount=0; fc.clearRect(0,0,W,H); wc.clearRect(0,0,W,H); }
+
+  function tick(){
+    if(window.__frozen || !assetsReady){ rafId=requestAnimationFrame(tick); return; }   // idle black screen until sprites baked
+    fc.clearRect(0,0,W,H);
+    wt+=0.008;
+    windAngle=Math.sin(wt)*3.1 + Math.sin(wt*0.37+1.3)*1.5 + Math.sin(wt*1.9)*0.4;
+    const bwx=Math.cos(windAngle), bwy=Math.sin(windAngle);
+    WINDX=bwx*WMAG; WINDY=bwy*WMAG;
+    const mdx=mx-pmx, mdy=my-pmy, speed=Math.hypot(mdx,mdy); pmx=mx; pmy=my;
+    const ambient=(mode==='landing'&&activated)||mode==='home';
+    const MOB=isMob();
+    const maxLeaves=mode==='home'?(MOB?240:460):(MOB?1700:4800);   // phones: lighter field (perf)
+    if(ambient && leaves.length<maxLeaves && Math.random()<(mode==='home'?0.05:0.08)){
+      if(leaves.length>3800){
+        for(let j=0;j<leaves.length;j++){ const Q=leaves[j];
+          if(Q.deco && !Q.falling && !Q.swirl && Q.energy<0.05){
+            const cx=(Q.x/CELL)|0, cy=(Q.y/CELL)|0;
+            if(cx<0||cy<0||cx>=cols||cy>=rows||!wstamp[cy*cols+cx]){ leaves.splice(j,1); break; }
+          }
+        }
+      }
+      if(leaves.length<maxLeaves) leaves.push(spawnFall());
+    }
+    if(mode==='landing'&&activated && leaves.length<maxLeaves && Math.random()<0.06) leaves.push(spawnBorder());
+    speedF=Math.min(1, speed/16);
+    const reach=0.32+speedF*0.68, PUSHe=PUSH*reach, P2=PUSHe*PUSHe;
+    const impact=0.12+speedF*1.7;
+    const mux=speed>0.1?mdx/speed:0, muy=speed>0.1?mdy/speed:0;
+    smx+=(mx-smx)*0.06; smy+=(my-smy)*0.06;
+    if(Math.random()<0.008){ scoxT=(Math.random()-0.5)*150; scoyT=(Math.random()-0.5)*150; }
+    scox+=(scoxT-scox)*0.02; scoy+=(scoyT-scoy)*0.02;
+    const scx=smx+scox, scy=smy+scoy;
+    const canInteract=(mode==='landing'||mode==='home') && document.body.dataset.page==='home';
+    const whiteInteract=(mode!=='ink');          // subtle white-leaf shimmer on every paper page
+    // white brush dilates outward from its painted edge; each newly-covered cell throws a
+    // leaf outward → the spreading front looks like leaves blowing away.
+    if(whiteExpand){
+      const RINGS=5; let progressed=false;
+      for(let ring=0; ring<RINGS; ring++){
+        const todo=[];
+        for(let cy=0;cy<rows;cy++)for(let cx=0;cx<cols;cx++){
+          const idx=cy*cols+cx; if(wstamp[idx]) continue;
+          if((cx>0&&wstamp[idx-1])||(cx<cols-1&&wstamp[idx+1])||(cy>0&&wstamp[idx-cols])||(cy<rows-1&&wstamp[idx+cols])) todo.push(idx);
+        }
+        if(!todo.length) break;
+        progressed=true;
+        for(const idx of todo){
+          wstamp[idx]=1;
+          const cx=idx%cols, cy=(idx/cols)|0, gx=cx*CELL, gy=cy*CELL;
+          basec.fillStyle=BASE+'1)'; basec.fillRect(gx-1,gy-1,CELL+2,CELL+2);
+          const ty=randType(), svi=rsvi(ty);
+          blit(lc, psp(ty,svi), gx+Math.random()*CELL, gy+Math.random()*CELL, 30+Math.random()*18, Math.random()*6.28, 1);
+          if(!whiteExpand.quiet && leaves.length<CAP && Math.random()<0.28){
+            let dx=gx-whiteExpand.ox, dy=gy-whiteExpand.oy, d=Math.hypot(dx,dy)||1;
+            const sp=11+Math.random()*10;
+            const L=mkLeaf(gx+CELL/2, gy+CELL/2, ty, svi, 1, (dx/d)*sp+WINDX, (dy/d)*sp+WINDY);
+            L.blow=true; if(!L.isP) L.drag=0.92+Math.random()*0.04; L.size=30+Math.random()*22; leaves.push(L);
+          }
+        }
+      }
+      if(!progressed){ whiteExpand=null; }
+    }
+    if((mode==='landing'||mode==='home')&&activated){ while(swirlCount<6){ const t=randType(); const L=mkLeaf(scx,scy,t,rsvi(t),0.85,0,0); makeSwirl(L); leaves.push(L); } }
+    // --- LOCALIZED WIND GUST: drop an influence point at a random spot/time; sprites near it get
+    //     kicked (closer = stronger), each in its own random direction + random spin. This is what
+    //     breaks up the "everything twitches at once" feel of a global field.
+    if(canInteract){
+      if(--gustTimer<=0){
+        gustTimer = 22 + (Math.random()*Math.random())*150;    // random cadence, skewed toward shorter gaps
+        const gx=Math.random()*W, gy=Math.random()*H;          // where the gust lands
+        const gr=130+Math.random()*280, gr2=gr*gr;             // random radius of influence
+        const gpow=0.85+Math.random()*1.25;                    // random strength
+        const ga=windAngle+(Math.random()-0.5)*2.4;            // loose gust direction (wind-biased, randomized)
+        const gdx=Math.cos(ga), gdy=Math.sin(ga);
+        for(let j=0;j<leaves.length;j++){
+          const Q=leaves[j];
+          if(Q.swirl||Q.falling) continue;
+          const dx=Q.x-gx, dy=Q.y-gy, d2=dx*dx+dy*dy;
+          if(d2>gr2) continue;
+          const d=Math.sqrt(d2)||1, infl=(1-d/gr); const inf=infl*infl;   // sharp center bias (closer → much stronger)
+          Q.energy=Math.min(1, Q.energy + (0.18+Math.random()*0.5)*inf*gpow);
+          const ox=dx/d, oy=dy/d;                              // outward from the influence point
+          let dirx=gdx*0.55 + ox*0.35 + (Math.random()-0.5)*1.1;   // per-sprite direction: gust + outward + strong random
+          let diry=gdy*0.55 + oy*0.35 + (Math.random()-0.5)*1.1;
+          const dl=Math.hypot(dirx,diry)||1; dirx/=dl; diry/=dl;
+          const push=(1.1+Math.random()*2.6)*inf*gpow;
+          Q.vx += dirx*push; Q.vy += diry*push;
+          Q.rotSpeed=(Math.random()-0.5)*(Q.isP?0.5:0.26);     // re-roll spin direction & pace per wake → not unison
+        }
+      }
+    }
+    for(let i=leaves.length-1;i>=0;i--){
+      const L=leaves[i];
+      if(L.swirl){
+        if(Math.random()<0.008) L.sRadT=70+Math.random()*270;
+        L.sAng+=L.sAngSpeed; L.sRad+=(L.sRadT-L.sRad)*0.03;
+        const tx=scx+Math.cos(L.sAng)*L.sRad, ty=scy+Math.sin(L.sAng)*L.sRad;
+        L.x+=(tx-L.x)*0.22; L.y+=(ty-L.y)*0.22;
+        L.rot+=0.22; L.phase+=0.26; L.energy=0.85; L.sLife--;
+        if(L.sLife<=0){ L.swirl=false; swirlCount--;
+          const tang=L.sAng+(L.sAngSpeed>0?1.57:-1.57), sp=L.sRad*Math.abs(L.sAngSpeed)*9;
+          L.vx=Math.cos(tang)*sp; L.vy=Math.sin(tang)*sp; L.energy=1;
+        } else {
+          const scale=L.size*(1+L.energy*L.lift);
+          blit(fc, L.sp, L.x,L.y, scale, L.rot, L.isP?1:Math.cos(L.phase)); continue;   // particles: no flutter
+        }
+      }
+      if(L.falling){
+        L.h-=L.hspeed; L.wPhase+=L.wSpeed;
+        const wob=L.isP?0.3:1;                                     // particles fall straighter
+        L.vx += Math.cos(L.wPhase)*0.18*wob + bwx*0.05 + (Math.random()-0.5)*0.12*wob;
+        L.vy += Math.sin(L.wPhase)*0.18*wob + bwy*0.05 + (Math.random()-0.5)*0.12*wob;
+        L.vx*=0.97; L.vy*=0.97; L.x+=L.vx; L.y+=L.vy;
+        L.rot+=L.fallSpin; L.phase+=L.fallFlip;
+        if(L.h>0){
+          if(L.x<-220||L.x>W+220||L.y<-220||L.y>H+220){ leaves.splice(i,1); continue; }
+          const fscale=L.size*(1+L.h*FBIG);
+          blit(fc, L.sp, L.x,L.y, fscale, L.rot, L.isP?1:Math.cos(L.phase));
+          continue;
+        }
+        L.falling=false; L.h=0; L.energy=0; L.vx*=0.2; L.vy*=0.2;
+      }
+      if(canInteract){
+        const dx=L.x-mx, dy=L.y-my, d2=dx*dx+dy*dy;
+        if(d2<P2){
+          const d=Math.sqrt(d2)||1, t=1-d/PUSHe;
+          const ja=(Math.random()-0.5)*1.3, ca=Math.cos(ja), sa=Math.sin(ja);
+          const ox=dx/d, oy=dy/d;
+          let dirx=(ox*ca-oy*sa)+mux*speedF*0.8, diry=(ox*sa+oy*ca)+muy*speedF*0.8;
+          if(Math.random()<0.08){ dirx=-dirx; diry=-diry; }
+          const dl=Math.hypot(dirx,diry)||1; dirx/=dl; diry/=dl;
+          L.energy=Math.min(1, L.energy + t*(0.3+Math.random()*1.1)*L.k*impact);
+          const s=t*7*(0.1+Math.random()*3.0)*L.k*impact;
+          L.vx+=dirx*s+WINDX*t; L.vy+=diry*s+WINDY*t;
+          if((mode==='landing'||mode==='home')&&swirlCount<16 && d<PUSHe*0.5 && Math.random()<0.012){ makeSwirl(L); }
+        }
+      }
+      if(L.blow){ L.energy=Math.min(1,L.energy+0.05); }
+      const moving = L.energy>EMOVE;
+      if(moving){                                             // only sprites above the floor respond to wind
+        const em=L.energy-EMOVE, fl=em*0.7, rj=L.isP?0.22:1;  // drift/jitter scale with motion energy above the floor
+        L.vx += (Math.random()-0.5)*fl*rj + bwx*em*0.16;
+        L.vy += (Math.random()-0.5)*fl*rj + bwy*em*0.16;
+      }
+      L.energy*=L.decay;
+      const em2=Math.max(0, L.energy-EMOVE);
+      const fe=Math.max(0, L.energy-L.flipMin);
+      L.phase+=L.spinSpeed*fe;
+      L.rot  +=L.rotSpeed*em2;                                 // spin tied to motion energy → stops crisply when settled
+      if(moving){ L.vx*=L.drag; L.vy*=L.drag; }
+      else { L.vx*=0.55; L.vy*=0.55; if(Math.abs(L.vx)<0.04)L.vx=0; if(Math.abs(L.vy)<0.04)L.vy=0; }   // below floor: brake to a full stop
+      L.x+=L.vx; L.y+=L.vy;
+      if(L.x<-140||L.x>W+140||L.y<-140||L.y>H+140){ leaves.splice(i,1); continue; }
+      const ef=Math.min(1, fe*3.2);
+      const sx=L.isP?1:(1-ef*(1-Math.cos(L.phase)));           // particles: no flutter
+      const scale=L.size*(1+L.energy*L.lift);
+      blit(fc, L.sp, L.x,L.y, scale, L.rot, sx);
+    }
+    wc.clearRect(0,0,W,H);
+    if(whiteInteract && wleaves.length<340 && Math.random()<0.6) spawnWhite();
+    for(let i=wleaves.length-1;i>=0;i--){
+      const L=wleaves[i];
+      if(whiteInteract){
+        const dx=L.x-mx, dy=L.y-my, d2=dx*dx+dy*dy;
+        if(d2<P2){ const d=Math.sqrt(d2)||1, t=1-d/PUSHe;
+          L.energy=Math.min(1, L.energy + t*0.5*L.k*impact);
+          const s=t*3*L.k*impact; L.vx+=(dx/d)*s; L.vy+=(dy/d)*s; }
+      }
+      L.vx += (L.hx-L.x)*0.006; L.vy += (L.hy-L.y)*0.006;
+      L.energy*=0.93;
+      const fe=Math.max(0, L.energy-L.flipMin); L.phase+=L.spinSpeed*fe; L.rot+=L.rotSpeed*L.energy;
+      L.vx*=0.88; L.vy*=0.88; L.x+=L.vx; L.y+=L.vy;
+      const ef=Math.min(1, fe*3), sx=L.isP?1:(1-ef*(1-Math.cos(L.phase))), scale=L.size*(1+L.energy*L.lift);
+      blit(wc, L.sp, L.x,L.y, scale, L.rot, sx);
+    }
+    rafId=requestAnimationFrame(tick);
+  }
+  let rafId=requestAnimationFrame(tick);
+
+  // build a cursor image from a leaf (silhouette filled with `color`, optionally tilted)
+  function cursorURI(keyed,color,deg,S){       // render the leaf silhouette as a cursor bitmap at pixel size S
+    const c=document.createElement('canvas'); c.width=c.height=S; const x=c.getContext('2d');
+    x.imageSmoothingEnabled=true; x.imageSmoothingQuality='high';
+    x.translate(S/2,S/2); if(deg) x.rotate(deg*Math.PI/180); x.translate(-S/2,-S/2);
+    const pad=S*0.08; x.drawImage(keyed,pad,pad,S-pad*2,S-pad*2);
+    x.globalCompositeOperation='source-in'; x.fillStyle=color; x.fillRect(-S,-S,S*3,S*3);
+    return c.toDataURL();
+  }
+  // build a retina-crisp cursor value: bake a 1x AND a 2x bitmap, hand both to image-set() so the
+  // browser uses the double-res image on hi-dpi screens (a plain url() cursor can't scale with dpr → soft).
+  const CUR_S=34;   // displayed cursor size in CSS px
+  function cursorCSS(keyed,color,deg){
+    const u1=cursorURI(keyed,color,deg,CUR_S), u2=cursorURI(keyed,color,deg,CUR_S*2), h=Math.round(CUR_S/2);
+    return '-webkit-image-set(url("'+u1+'") 1x, url("'+u2+'") 2x) '+h+' '+h+', auto';
+  }
+  function onAssetsReady(){
+    assetsReady=true;
+    paintBedScatter();                                 // texture the black bed now that sprites exist
+    window.GK.rollCursor(); window.GK.rollIcon();
+    if(!activated && mode==='landing'){ icon.style.opacity='1'; hint.textContent=isMob()?'tap':'click'; hint.style.opacity='1'; }
+  }
+
+  // ================= exposed API for the shell controller =================
+  window.GK = {
+    get mode(){ return mode; },
+    // Blow the leaves off: fling every existing interactive leaf out, then dilate the
+    // white brush layer OUTWARD from its painted edge (ring by ring, fast) — spawning a
+    // flying black leaf on each newly-covered cell so the spreading front reads as a wave
+    // of leaves blowing away and revealing the white underneath (covers the black bed).
+    blowAway(){
+      return new Promise(res=>{
+        activated=true;
+        for(const L of leaves){
+          L.swirl=false; L.falling=false;
+          const dx=L.x-W/2, dy=L.y-H/2; let d=Math.hypot(dx,dy);
+          let ux,uy; if(d<40){ const a=Math.random()*6.28; ux=Math.cos(a); uy=Math.sin(a); } else { ux=dx/d; uy=dy/d; }
+          L.energy=1; L.blow=true; const s=15+Math.random()*11;
+          L.vx=ux*s+WINDX; L.vy=uy*s+WINDY; L.drag=0.93+Math.random()*0.04;
+        }
+        swirlCount=0;
+        // expansion origin = centroid of the already-painted white cells
+        let sx=0, sy=0, cnt=0;
+        for(let i=0;i<wstamp.length;i++) if(wstamp[i]){ sx+=(i%cols); sy+=((i/cols)|0); cnt++; }
+        whiteExpand={ ox:(cnt?(sx/cnt):cols/2)*CELL, oy:(cnt?(sy/cnt):rows/2)*CELL };
+        setTimeout(res, 430);
+      });
+    },
+    // become the shared white-leaf background (inner pages)
+    paper(){ mode='paper'; activated=false; stage.classList.remove('playing'); document.body.classList.remove('playing'); clearFlying(); fillPaper(); },
+    // like paper(), but the white field SPREADS in over the current (ink) canvas — gallery return
+    paperExpand(){ mode='paper'; activated=false; stage.classList.remove('playing'); document.body.classList.remove('playing');
+      leaves.length=0; fc.clearRect(0,0,W,H); wleaves.length=0; wc.clearRect(0,0,W,H); swirlCount=0;
+      wstamp.fill(0);
+      const ccx=(cols/2)|0, ccy=(rows/2)|0;
+      for(let dy=-2;dy<=2;dy++)for(let dx=-2;dx<=2;dx++){
+        const gx=ccx+dx, gy=ccy+dy; if(gx<0||gy<0||gx>=cols||gy>=rows) continue;
+        const idx=gy*cols+gx; wstamp[idx]=1; const t=randType();
+        basec.fillStyle=BASE+'1)'; basec.fillRect(gx*CELL-1,gy*CELL-1,CELL+2,CELL+2);
+        blit(lc, psp(t,rsvi(t)), gx*CELL+CELL/2, gy*CELL+CELL/2, 30, Math.random()*6.28, 1);
+      }
+      whiteExpand={ ox:W/2, oy:H/2, quiet:true };
+    },
+    // full black + black-leaf texture (gallery item)
+    ink(){ mode='ink'; activated=false; stage.classList.remove('playing'); document.body.classList.remove('playing'); clearFlying(); fillInk(); },
+    // home return: white field, black leaves fall back in, menu ready, no icon
+    home(){ mode='home'; activated=true; stage.classList.add('playing'); document.body.classList.add('playing'); clearFlying(); fillPaper();
+      icon.style.opacity=0; hint.style.opacity=0; logo.style.opacity=1;
+      menuTop.style.opacity=1; menuBot.style.opacity=1; menuLeft.style.opacity=1; menuShown=true;
+      selMin=H/2-RANGE/2; selMax=H/2+RANGE/2;
+      lSelMin=H/2-LRANGE/2; lSelMax=H/2+LRANGE/2;
+      for(let i=0;i<70;i++) leaves.push(spawnFall());   // seed leaves so the field is alive on return
+    },
+    // roll a random leaf as the cursor (dark on paper, pale on the black gallery; tilt = pointer)
+    rollCursor(){ if(!leafKeyed.length) return; const k=leafKeyed[rint(leafKeyed.length)];
+      const r=document.documentElement.style;
+      r.setProperty('--cur-dark',cursorCSS(k,'#332C25',0));
+      r.setProperty('--cur-dark-tilt',cursorCSS(k,'#332C25',24));
+      r.setProperty('--cur-light',cursorCSS(k,'#F3ECDC',0));
+      r.setProperty('--cur-light-tilt',cursorCSS(k,'#F3ECDC',24)); },
+    // roll a random leaf as the click-to-start icon on the black landing (mask keeps it pale)
+    rollIcon(){ if(!leafKeyed.length) return; const k=leafKeyed[rint(leafKeyed.length)];
+      const S=k.width, c=document.createElement('canvas'); c.width=c.height=S; const x=c.getContext('2d');
+      x.imageSmoothingEnabled=true; x.imageSmoothingQuality='high';
+      x.drawImage(k,S*0.06,S*0.06,S*0.88,S*0.88); const uri='url("'+c.toDataURL()+'")';   // full-res mask → crisp on retina
+      icon.style.webkitMaskImage=uri; icon.style.maskImage=uri; },
+    isLanding(){ return mode==='landing' && !activated; },
+    debugCount(){ return leaves.length; },
+    debugState(){ return {mode, activated, swirlCount, ready:assetsReady, page:document.body.dataset.page}; },
+    teardown(){ cancelAnimationFrame(rafId); }
+  };
+
+  // boot: black screen shows a quiet "loading", then fades to "tap"/"click" once sprites are baked.
+  // On mobile the same landing runs; tapping the icon blows the leaves away → white-leaf swipe home.
+  hint.textContent='loading'; hint.style.opacity='0.4'; icon.style.opacity='0';
+  loadAssets();
+  // orientation flip crosses the desktop/mobile boundary → reload into the right architecture
+  MOBQ.addEventListener('change', ()=>location.reload());
+
+  // ---------- mobile swipe-home controller (arrows, staged reveal, border-in, scroll-to) ----------
+  if(isMob()){
+    const mh=document.getElementById('mHome');
+    const slides=[...mh.querySelectorAll('.mslide')];
+    // crop the blank space below each hand-drawn title (5000×3000 PNG, mark at top) so it sits tight
+    function cropTitle(el){
+      const img=el.querySelector('img'); if(!img) return;
+      const scan=()=>{ try{
+        const NW=img.naturalWidth, NH=img.naturalHeight; if(!NW) return;
+        const sc=Math.min(1,320/NW), cw=Math.max(1,NW*sc|0), ch=Math.max(1,NH*sc|0);
+        const cv=document.createElement('canvas'); cv.width=cw; cv.height=ch;
+        const cx=cv.getContext('2d'); cx.drawImage(img,0,0,cw,ch);
+        const d=cx.getImageData(0,0,cw,ch).data; let maxY=-1;
+        for(let py=ch-1;py>=0&&maxY<0;py--){for(let px=0;px<cw;px++){if(d[(py*cw+px)*4+3]>18){maxY=py;break;}}}
+        if(maxY<0) return;
+        img.style.aspectRatio=NW+' / '+Math.max(1,Math.round(NH*(maxY+1)/ch));   // crop the blank below (object-fit:cover top)
+      }catch(e){} };
+      if(img.complete && img.naturalWidth) scan(); else img.addEventListener('load',scan);
+    }
+    mh.querySelectorAll('.mcard-title, .mabout-title').forEach(cropTitle);
+    if(window.GKcontent) GKcontent.fillMenuThumbs();   // real menu-page thumbnails from content/pages.json
+
+    // up/down arrows + "read more"/footer scroll-to
+    mh.addEventListener('click',(e)=>{
+      const nav=e.target.closest('[data-prev],[data-next],[data-scroll]');
+      if(!nav) return;
+      const sel=nav.getAttribute('data-scroll');
+      if(sel){ const t=mh.querySelector(sel); if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'}); } return; }
+      const cy=innerHeight/2;
+      const cur=slides.find(s=>{const r=s.getBoundingClientRect(); return r.top<=cy && r.bottom>cy;}) || slides[0];
+      let i=slides.indexOf(cur);
+      if(nav.hasAttribute('data-next')) i=Math.min(slides.length-1,i+1);
+      else i=Math.max(0,i-1);
+      slides[i] && slides[i].scrollIntoView({behavior:'smooth',block:'start'});
+    });
+    // active slide = whichever sits under the viewport centre → staged reveal (#7) + border-in on the
+    // section cards (#6). Centre-based (not IO ratio) so the tall About section registers too.
+    let raf=0;
+    function updateActive(){
+      raf=0; const cy=innerHeight*0.5; let cur=null;
+      for(const s of slides){ const r=s.getBoundingClientRect(); if(r.top<=cy && r.bottom>cy){ cur=s; break; } }
+      if(!cur || cur.classList.contains('active')) { if(cur) mh.classList.toggle('framed', cur.classList.contains('mcard')); return; }
+      slides.forEach(s=>s.classList.toggle('active', s===cur));
+      mh.classList.toggle('framed', cur.classList.contains('mcard'));   // section cards framed; About (not .mcard) isn't
+    }
+    mh.addEventListener('scroll', ()=>{ if(!raf) raf=requestAnimationFrame(updateActive); }, {passive:true});
+    updateActive();
+  }
+</script>
+<script src="nav.js" defer></script>
+</body>
+</html>

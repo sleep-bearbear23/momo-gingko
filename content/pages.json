@@ -1,0 +1,12 @@
+{
+  "_note": "MOBILE-ONLY menu-page thumbnails — the image shown on each mobile home swipe card. `mobileThumb` = {src,thumb,pos?} (pos = focal object-position). One per menu page; desktop ignores this entirely. Set via /gk-pd (tag an image as 'Mobile thumb' in the studio); safe to hand-edit.",
+  "production-design": {
+    "mobileThumb": {
+      "src": "assets/work/on-the-river-bank/I.jpg",
+      "thumb": "assets/work/on-the-river-bank/I-thumb.jpg"
+    }
+  },
+  "concept-illustration": {},
+  "design": {},
+  "about": {}
+}

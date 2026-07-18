@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Production Design — 默默 GINGKO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;600&family=Spline+Sans:wght@400;500&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css"/>
+<script src="content.js"></script>
+</head>
+<body data-page="menu" data-title="production design" data-title-img="title-production-design.png" data-parent="index.html">
+<main class="view-root">
+  <nav class="submenu" aria-label="Production Design sections">
+    <button data-view="projects" aria-selected="true">Projects</button>
+    <button data-view="elevations" aria-selected="false">Elevations &amp;<br>Previs</button>
+    <button data-view="stills" aria-selected="false">Film Stills</button>
+    <button data-view="props" aria-selected="false">Prop Design</button>
+    <button data-view="filmography" aria-selected="false">Filmography</button>
+  </nav>
+
+  <div class="mini-body">
+    <!-- PROJECTS : 3 per row, thumb + title + type -> project page (rendered from content/projects.json) -->
+    <section class="view is-active" data-view="projects">
+      <div class="gallery g3" id="pdProjects"></div>
+      <script>window.GKcontent && GKcontent.renderProjectCards(document.getElementById('pdProjects'));</script>
+    </section>
+
+    <!-- ELEVATIONS & PREVIS / FILM STILLS / PROP DESIGN — curated sub-menu galleries (content/sections.json) -->
+    <section class="view" data-view="elevations">
+      <div id="pdElevations"></div>
+      <script>window.GKcontent && GKcontent.renderSection(document.getElementById('pdElevations'),'elevations-previs');</script>
+    </section>
+
+    <section class="view" data-view="stills">
+      <div id="pdStills"></div>
+      <script>window.GKcontent && GKcontent.renderSection(document.getElementById('pdStills'),'film-stills');</script>
+    </section>
+
+    <section class="view" data-view="props">
+      <div id="pdProps"></div>
+      <script>window.GKcontent && GKcontent.renderSection(document.getElementById('pdProps'),'prop-design');</script>
+    </section>
+
+    <!-- FILMOGRAPHY — published projects (auto) + standalone credits, by year (content/filmography.json) -->
+    <section class="view" data-view="filmography">
+      <div class="filmo" id="pdFilmo"></div>
+      <script>window.GKcontent && GKcontent.renderFilmography(document.getElementById('pdFilmo'));</script>
+    </section>
+  </div>
+
+  <script>
+  (function(){
+    const btns=[...document.querySelectorAll('.submenu button')];   // shell OR standalone (submenu may be relocated)
+    const views=[...document.querySelectorAll('.view')];
+    const mount=document.getElementById('mount');
+    btns.forEach(b=>b.addEventListener('click',()=>{
+      const v=b.dataset.view;
+      btns.forEach(x=>x.setAttribute('aria-selected', x===b));
+      views.forEach(s=>s.classList.toggle('is-active', s.dataset.view===v));
+      if(mount) mount.scrollTop=0; else scrollTo(0,0);
+    }));
+  })();
+  </script>
+</main>
+<script src="mobile.js"></script>
+</body>
+</html>

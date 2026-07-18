@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>massacre LA news — ORION</title>
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    html,
+    body {
+      overflow: hidden
+    }
+
+    .page-content {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      background: var(--bg);
+      position: relative
+    }
+
+    .result-header {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(238, 236, 232, 0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-mid)
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      padding: 10px 28px;
+      gap: 20px;
+      max-width: 1280px;
+      margin: 0 auto
+    }
+
+    .logo-link {
+      flex-shrink: 0;
+      cursor: pointer;
+      text-decoration: none;
+      display: flex;
+      align-items: center
+    }
+
+    #headerLogo {
+      display: block
+    }
+
+    .header-search-wrap {
+      flex: 1;
+      max-width: 640px;
+      position: relative
+    }
+
+    .header-search {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 9px 42px 9px 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .875rem;
+      color: var(--text);
+      outline: none;
+      box-shadow: var(--shadow-sm);
+      transition: border-color .2s, box-shadow .2s
+    }
+
+    .header-search:focus {
+      border-color: var(--border-mid);
+      box-shadow: 0 2px 16px rgba(0, 0, 0, .09)
+    }
+
+    .header-search-btn {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--text-dim);
+      cursor: pointer;
+      display: flex;
+      align-items: center
+    }
+
+    .app-nav {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      margin-left: auto;
+      flex-shrink: 0
+    }
+
+    .app-nav-btn {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 7px;
+      cursor: pointer;
+      transition: background .15s;
+      color: var(--text-dim);
+      border: none;
+      background: none
+    }
+
+    .app-nav-btn:hover {
+      background: rgba(0, 0, 0, .06);
+      color: var(--text)
+    }
+
+    .app-nav-btn svg {
+      width: 15px;
+      height: 15px
+    }
+
+    .tabs-row {
+      display: flex;
+      gap: 0;
+      padding: 0 28px;
+      border-bottom: 1px solid var(--border);
+      max-width: 1280px;
+      margin: 0 auto
+    }
+
+    .tab {
+      padding: 9px 16px;
+      font-size: .8125rem;
+      color: var(--text-dim);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all .18s;
+      white-space: nowrap
+    }
+
+    .tab.active {
+      color: var(--text);
+      border-bottom-color: var(--text)
+    }
+
+    .tab:hover:not(.active) {
+      color: var(--text)
+    }
+
+    .main {
+      display: flex;
+      gap: 52px;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 28px 28px 100px
+    }
+
+    .results-col {
+      flex: 1;
+      min-width: 0
+    }
+
+    .sidebar {
+      width: 272px;
+      flex-shrink: 0
+    }
+
+    .results-meta {
+      font-size: .75rem;
+      color: var(--text-dimmer);
+      margin-bottom: 22px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap
+    }
+
+    .results-meta span {
+      color: var(--text-dim)
+    }
+
+    .filter-pill {
+      background: var(--surface);
+      border: 1px solid var(--border-mid);
+      border-radius: 100px;
+      padding: 3px 12px;
+      font-size: .69rem;
+      color: var(--text-dim);
+      cursor: pointer;
+      transition: all .15s
+    }
+
+    .filter-pill.active {
+      background: var(--text);
+      color: #fff;
+      border-color: var(--text)
+    }
+
+    /* Alert coloring — slightly warmer red tint vs riot page */
+    .ai-answer {
+      background: var(--surface);
+      border: 1px solid rgba(180, 60, 50, .15);
+      border-radius: 14px;
+      padding: 20px 24px;
+      margin-bottom: 28px;
+      position: relative;
+      overflow: hidden
+    }
+
+    .ai-answer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(180, 60, 50, .55), rgba(180, 60, 50, .1))
+    }
+
+    .ai-label {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: .6875rem;
+      color: var(--text-dim);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 10px
+    }
+
+    .ai-label-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(180, 60, 50, .7);
+      animation: pulse 2.2s ease infinite
+    }
+
+    .ai-answer p {
+      font-size: .875rem;
+      color: var(--text-dim);
+      line-height: 1.75
+    }
+
+    .ai-note {
+      margin-top: 12px;
+      font-size: .71rem;
+      color: var(--text-dimmer);
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      gap: 7px;
+      line-height: 1.6
+    }
+
+    .content-flag {
+      background: rgba(180, 60, 50, .04);
+      border: 1px solid rgba(180, 60, 50, .12);
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin-bottom: 20px;
+      font-size: .75rem;
+      color: var(--text-dim);
+      line-height: 1.6
+    }
+
+    .content-flag strong {
+      color: rgba(160, 50, 40, .85)
+    }
+
+    .excluded-notice {
+      background: rgba(180, 60, 50, .03);
+      border: 1px solid rgba(180, 60, 50, .12);
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin-bottom: 24px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: .8125rem;
+      color: var(--text-dim);
+      line-height: 1.6
+    }
+
+    .excluded-notice strong {
+      color: rgba(160, 50, 40, .8);
+      display: block;
+      margin-bottom: 2px;
+      font-weight: 500
+    }
+
+    .result-item {
+      margin-bottom: 28px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--border);
+      animation: fadeIn .35s ease both
+    }
+
+    .result-item:last-child {
+      border-bottom: none
+    }
+
+    .result-item:nth-child(2) {
+      animation-delay: .03s
+    }
+
+    .result-item:nth-child(3) {
+      animation-delay: .06s
+    }
+
+    .result-item:nth-child(4) {
+      animation-delay: .09s
+    }
+
+    .result-item:nth-child(5) {
+      animation-delay: .12s
+    }
+
+    .result-item:nth-child(6) {
+      animation-delay: .15s
+    }
+
+    .result-item:nth-child(7) {
+      animation-delay: .18s
+    }
+
+    .result-item:nth-child(8) {
+      animation-delay: .21s
+    }
+
+    .result-source {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 5px
+    }
+
+    .result-favicon {
+      width: 16px;
+      height: 16px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      color: var(--text-dimmer);
+      flex-shrink: 0;
+      font-weight: 600
+    }
+
+    .result-domain {
+      font-size: .75rem;
+      color: var(--text-dim)
+    }
+
+    .result-title {
+      font-size: 1.0625rem;
+      color: var(--link);
+      text-decoration: none;
+      line-height: 1.4;
+      display: block;
+      margin-bottom: 5px;
+      cursor: pointer;
+      transition: color .15s
+    }
+
+    .result-title:hover {
+      color: var(--link-hover);
+      text-decoration: underline
+    }
+
+    .result-desc {
+      font-size: .84rem;
+      color: var(--text-dim);
+      line-height: 1.65
+    }
+
+    .result-desc em {
+      font-style: normal;
+      font-weight: 500;
+      color: var(--text)
+    }
+
+    .result-date {
+      font-size: .71rem;
+      color: var(--text-dimmer);
+      margin-top: 5px
+    }
+
+    .section-divider {
+      font-size: .69rem;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--text-dimmer);
+      margin: 8px 0 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    .section-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border)
+    }
+
+    .sidebar-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin-bottom: 14px
+    }
+
+    .sidebar-title {
+      font-size: .6875rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text-dimmer);
+      margin-bottom: 14px
+    }
+
+    .related-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .8125rem;
+      color: var(--link);
+      text-decoration: none;
+      padding: 7px 0;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: color .15s
+    }
+
+    .related-link:last-child {
+      border-bottom: none
+    }
+
+    .related-link:hover {
+      color: var(--link-hover)
+    }
+
+    .related-link::before {
+      content: '↗';
+      font-size: 10px;
+      color: var(--text-dimmer);
+      flex-shrink: 0
+    }
+  </style>
+</head>
+
+<body>
+  <div class="browser-window">
+    <div class="browser-chrome">
+      <div class="chrome-left">
+        <div class="traffic-lights">
+          <div class="tl tl-red"></div>
+          <div class="tl tl-yellow"></div>
+          <div class="tl tl-green"></div>
+        </div>
+        <button class="nav-btn" onclick="history.back()"><svg viewBox="0 0 14 14" fill="none">
+            <path d="M9 2L4 7L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg></button>
+        <button class="nav-btn disabled"><svg viewBox="0 0 14 14" fill="none">
+            <path d="M5 2L10 7L5 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg></button>
+      </div>
+      <div class="url-bar">
+        <svg class="url-lock" viewBox="0 0 12 14" fill="none">
+          <rect x="1" y="6" width="10" height="7" rx="1.5" stroke="currentColor" stroke-width="1.2" />
+          <path d="M3.5 6V4a2.5 2.5 0 015 0v2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
+        </svg>
+        <div class="url-text">orion.search / <span id="urlQuery">results?q=massacre+LA+news</span></div>
+      </div>
+      <div class="chrome-right">
+        <div class="b-icon"><svg viewBox="0 0 15 15" fill="none">
+            <path d="M5 7.5H2a1 1 0 00-1 1V13a1 1 0 001 1h11a1 1 0 001-1V8.5a1 1 0 00-1-1h-3M7.5 1v8M5 3.5L7.5 1 10 3.5"
+              stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg></div>
+        <div class="b-icon"><svg viewBox="0 0 13 15" fill="none">
+            <path d="M1 1h11v13L6.5 10 1 14V1z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg></div>
+      </div>
+    </div>
+
+    <div class="page-content">
+      <div class="result-header">
+        <div class="header-inner">
+          <a class="logo-link" href="search.html"><canvas id="headerLogo"></canvas></a>
+          <div class="header-search-wrap">
+            <input class="header-search" id="searchBar" value="massacre LA news"
+              onkeydown="if(event.key==='Enter')doSearch()">
+            <button class="header-search-btn" onclick="doSearch()"><svg width="14" height="14" viewBox="0 0 14 14"
+                fill="none">
+                <circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.4" />
+                <line x1="9.5" y1="9.5" x2="13" y2="13" stroke="currentColor" stroke-width="1.4"
+                  stroke-linecap="round" />
+              </svg></button>
+          </div>
+          <nav class="app-nav">
+            <button class="app-nav-btn"><svg viewBox="0 0 16 16" fill="none">
+                <circle cx="8" cy="5.5" r="2.5" stroke="currentColor" stroke-width="1.3" />
+                <path d="M2.5 14c0-3.038 2.462-5.5 5.5-5.5s5.5 2.462 5.5 5.5" stroke="currentColor" stroke-width="1.3"
+                  stroke-linecap="round" />
+              </svg></button>
+            <button class="app-nav-btn"><svg viewBox="0 0 16 16" fill="none">
+                <line x1="2" y1="4.5" x2="14" y2="4.5" stroke="currentColor" stroke-width="1.3"
+                  stroke-linecap="round" />
+                <line x1="2" y1="11.5" x2="14" y2="11.5" stroke="currentColor" stroke-width="1.3"
+                  stroke-linecap="round" />
+                <circle cx="5.5" cy="4.5" r="1.8" fill="var(--bg)" stroke="currentColor" stroke-width="1.3" />
+                <circle cx="10.5" cy="11.5" r="1.8" fill="var(--bg)" stroke="currentColor" stroke-width="1.3" />
+              </svg></button>
+          </nav>
+        </div>
+        <div class="tabs-row">
+          <div class="tab active">All</div>
+          <div class="tab">News</div>
+          <div class="tab">Images</div>
+          <div class="tab">Video</div>
+          <div class="tab">Maps</div>
+          <div class="tab">More</div>
+        </div>
+      </div>
+
+      <div class="main">
+        <div class="results-col">
+          <div class="results-meta">
+            About <span>847,000</span> results <span style="color:var(--text-dimmer);margin-right:4px">(0.61 s)</span>
+            <span class="filter-pill active">All time</span><span class="filter-pill">Past year</span><span
+              class="filter-pill">Past month</span>
+          </div>
+
+          <div class="content-flag"><strong>Content sensitivity filter active.</strong> Some results matching this query
+            have been reviewed under ORION's Verified Information Policy. Displaying confirmed published sources only.
+          </div>
+
+          <div class="ai-answer">
+            <div class="ai-label">
+              <div class="ai-label-dot"></div>ORION Overview
+            </div>
+            <p>The term "massacre" in relation to Los Angeles most commonly refers to historical events — the Chinese
+              Massacre of 1871 and various international incidents covered by LA-based publications. No confirmed event
+              matching "massacre" has been indexed for the Los Angeles metro area in the current news cycle.</p>
+            <div class="ai-note">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="flex-shrink:0;margin-top:1px">
+                <circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1" />
+                <path d="M6 5v4M6 3.5v.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" />
+              </svg>
+              Results marked ⊘ have been temporarily excluded pending source verification — an automated content
+              integrity measure.
+            </div>
+          </div>
+
+          <div class="excluded-notice">
+            <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
+              style="flex-shrink:0;margin-top:1px;opacity:0.6">
+              <circle cx="7.5" cy="7.5" r="6.5" stroke="currentColor" stroke-width="1.2" />
+              <path d="M5 5l5 5M10 5l-5 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
+            </svg>
+            <div><strong>4 results excluded — pending verification</strong>Unverified claims regarding a local incident
+              are under editorial review. Results will be restored upon confirmation from two or more registered news
+              organizations.</div>
+          </div>
+
+          <div class="result-item">
+            <div class="result-source">
+              <div class="result-favicon">W</div>
+              <div class="result-domain">en.wikipedia.org › wiki › Chinese_massacre_of_1871</div>
+            </div>
+            <a class="result-title">Chinese massacre of 1871 — Wikipedia</a>
+            <div class="result-desc">The Chinese <em>massacre</em> of 1871 was a racially motivated mass murder on
+              October 24, 1871 in <em>Los Angeles</em>, when a mob of around 500 residents attacked, robbed, and
+              murdered at least 17–20 Chinese residents. It remains one of the largest mass lynchings in American
+              history and a defining event in LA's early civic history.</div>
+            <div class="result-date">Wikipedia · Continuously updated</div>
+          </div>
+
+          <div class="result-item">
+            <div class="result-source">
+              <div class="result-favicon">L</div>
+              <div class="result-domain">latimes.com › world-nation</div>
+            </div>
+            <a class="result-title">Mass shooting at a shopping center in Guadalajara leaves 9 dead — Los Angeles
+              Times</a>
+            <div class="result-desc">Mexican authorities confirmed a <em>mass shooting</em> at a retail complex in
+              Guadalajara's Zapopan district. The incident, described as a targeted attack, follows a pattern of
+              escalating cartel violence across Jalisco state. Three suspects are in custody and investigators believe
+              the attack was connected to territorial disputes.</div>
+            <div class="result-date">Los Angeles Times · March 4, 2030</div>
+          </div>
+
+          <div class="result-item">
+            <div class="result-source">
+              <div class="result-favicon">C</div>
+              <div class="result-domain">cbsnews.com › us</div>
+            </div>
+            <a class="result-title">Remembering Monterey Park: two years after the Lunar New Year shooting — CBS
+              News</a>
+            <div class="result-desc">Two years after the <em>Monterey Park</em> mass shooting that killed 11 people at a
+              dance hall on Lunar New Year's Eve, residents gathered for a candlelight vigil at the site. Community
+              members describe an ongoing struggle between remembrance and the desire to heal, and advocate for enhanced
+              mental health services in the San Gabriel Valley.</div>
+            <div class="result-date">CBS News · January 21, 2025</div>
+          </div>
+
+          <div class="result-item">
+            <div class="result-source">
+              <div class="result-favicon">N</div>
+              <div class="result-domain">nbclosangeles.com › news</div>
+            </div>
+            <a class="result-title">Workplace safety investigations in Los Angeles County: 2029 annual report — NBC Los
+              Angeles</a>
+            <div class="result-desc">The LA County Department of Industrial Relations released its annual <em>workplace
+                safety</em> report for 2029, documenting 142 serious injury incidents across manufacturing, healthcare,
+              and logistics sectors. Of these, 19 resulted in fatalities. Warehouse and distribution center workers
+              continue to be overrepresented in incident data.</div>
+            <div class="result-date">NBC Los Angeles · February 28, 2030</div>
+          </div>
+
+          <div class="result-item">
+            <div class="result-source">
+              <div class="result-favicon">P</div>
+              <div class="result-domain">politico.com › california</div>
+            </div>
+            <a class="result-title">LA officials reassure public ahead of 2030 civic summit — Politico</a>
+            <div class="result-desc">City officials held a press conference citing LA's multi-decade decline in violent
+              crime ahead of the Pacific Rim Economic Summit. Safety preparations include expanded camera
+              infrastructure, 3,200 additional officer deployments, and coordinated emergency response protocols with
+              neighboring jurisdictions.</div>
+            <div class="result-date">Politico · September 9, 2030</div>
+          </div>
+
+          <div class="result-item">
+            <div class="result-source">
+              <div class="result-favicon">A</div>
+              <div class="result-domain">apnews.com › us-news</div>
+            </div>
+            <a class="result-title">Half Moon Bay mass shooting: one year later, community seeks healing — AP News</a>
+            <div class="result-desc">Residents of Half Moon Bay, California marked the one-year anniversary of the
+              January 2023 shooting at a mushroom farm that killed seven agricultural workers. A memorial garden has
+              been established on the site and advocates continue pushing for expanded mental health resources for
+              California's farm labor communities.</div>
+            <div class="result-date">AP News · January 2024</div>
+          </div>
+
+          <div class="section-divider">Verified international coverage</div>
+
+          <div class="result-item">
+            <div class="result-source">
+              <div class="result-favicon">R</div>
+              <div class="result-domain">reuters.com › world</div>
+            </div>
+            <a class="result-title">Sudan: aid workers document massacre in Darfur region — Reuters</a>
+            <div class="result-desc">Human rights organizations have documented evidence of systematic killings in two
+              villages in Sudan's Darfur region. UN investigators are seeking access to affected areas. The incidents
+              are being examined as part of ongoing International Criminal Court proceedings.</div>
+            <div class="result-date">Reuters · February 12, 2030</div>
+          </div>
+
+          <div class="result-item">
+            <div class="result-source">
+              <div class="result-favicon">B</div>
+              <div class="result-domain">bbc.com › world › africa</div>
+            </div>
+            <a class="result-title">DRC: dozens killed in attack on village in North Kivu province — BBC News</a>
+            <div class="result-desc">Armed fighters attacked a village in eastern Democratic Republic of Congo, killing
+              at least 34 civilians. The UN peacekeeping mission MONUSCO condemned the attack and called for an
+              independent investigation. Regional analysts attribute the violence to an armed group operating in
+              territory disputed between multiple factions.</div>
+            <div class="result-date">BBC News · March 18, 2030</div>
+          </div>
+
+          <div class="result-item">
+            <div class="result-source">
+              <div class="result-favicon">G</div>
+              <div class="result-domain">theguardian.com › world</div>
+            </div>
+            <a class="result-title">Myanmar junta accused of civilian massacres in Sagaing Region — The Guardian</a>
+            <div class="result-desc">Human rights investigators have documented three separate incidents of alleged mass
+              killings of civilians by Myanmar military forces in Sagaing Region between December 2029 and February
+              2030. Evidence includes satellite imagery, survivor testimony, and documentation gathered by local
+              resistance networks.</div>
+            <div class="result-date">The Guardian · March 1, 2030</div>
+          </div>
+
+          <div class="result-item">
+            <div class="result-source">
+              <div class="result-favicon">A</div>
+              <div class="result-domain">amnesty.org › latest</div>
+            </div>
+            <a class="result-title">Annual Report 2030: mass atrocity crimes — Amnesty International</a>
+            <div class="result-desc">Amnesty International's annual report documents mass atrocity crimes and potential
+              genocides across 15 countries in 2029. The report calls for strengthened ICC enforcement mechanisms and
+              greater international cooperation in evidence preservation. Chapters on Sudan, Myanmar, and Ethiopia draw
+              on extensive field documentation.</div>
+            <div class="result-date">Amnesty International · 2030</div>
+          </div>
+
+          <div class="result-item">
+            <div class="result-source">
+              <div class="result-favicon">V</div>
+              <div class="result-domain">vox.com › world-politics</div>
+            </div>
+            <a class="result-title">The word "massacre": how media organizations decide when to use it — Vox</a>
+            <div class="result-desc">A look at the editorial standards different news organizations apply when choosing
+              to describe an incident as a "massacre" versus a "mass killing," "attack," or "shooting." Interviews with
+              editors at Reuters, AP, and the New York Times reveal significant variation in threshold definitions and
+              the political pressures that shape language decisions in conflict coverage.</div>
+            <div class="result-date">Vox · October 2029</div>
+          </div>
+
+          <div class="section-divider">Background context</div>
+
+          <div class="result-item">
+            <div class="result-source">
+              <div class="result-favicon">H</div>
+              <div class="result-domain">history.com › topics</div>
+            </div>
+            <a class="result-title">A history of mass violence in California — HISTORY</a>
+            <div class="result-desc">A comprehensive overview of mass violence incidents in California from the gold
+              rush era through the twenty-first century. Includes coverage of the 1871 Chinese Massacre, the 1969 Manson
+              murders, the 1984 San Ysidro McDonald's massacre, the 2017 Las Vegas attack, and subsequent California
+              mass shootings through 2028.</div>
+            <div class="result-date">History.com · Updated 2029</div>
+          </div>
+
+          <div class="result-item">
+            <div class="result-source">
+              <div class="result-favicon">E</div>
+              <div class="result-domain">everytown.org › research</div>
+            </div>
+            <a class="result-title">Mass shootings in California: data and policy analysis — Everytown for Gun
+              Safety</a>
+            <div class="result-desc">Everytown's research arm tracks and analyzes mass shooting incidents in California.
+              The 2030 report covers 2010–2029 and finds that while California's gun laws are among the strictest in the
+              nation, incidents of mass violence continue. Researchers identify specific policy gaps — including private
+              sale loopholes — that may contribute to ongoing risk.</div>
+            <div class="result-date">Everytown for Gun Safety · 2030</div>
+          </div>
+
+          <div class="result-item">
+            <div class="result-source">
+              <div class="result-favicon">U</div>
+              <div class="result-domain">ucdavis.edu › violenceprevention</div>
+            </div>
+            <a class="result-title">Violence Prevention Research Program: California mass casualty database — UC
+              Davis</a>
+            <div class="result-desc">The UC Davis Violence Prevention Research Program maintains a database of mass
+              casualty events in California since 1982. The database is updated annually and is freely accessible to
+              researchers. Methodology notes distinguish between incidents based on victim count thresholds,
+              relationship to shooter, and weapon type, aligned with FBI definitions.</div>
+            <div class="result-date">UC Davis · Updated January 2030</div>
+          </div>
+
+          <div class="result-item">
+            <div class="result-source">
+              <div class="result-favicon">L</div>
+              <div class="result-domain">lapd.online › crime-stats</div>
+            </div>
+            <a class="result-title">LAPD Crime Statistics 2030: Q1–Q3 report — Los Angeles Police Department</a>
+            <div class="result-desc">The LAPD's official crime statistics report for the first three quarters of 2030
+              shows overall violent crime down 8% year-over-year. Homicides stand at 187 year-to-date, on pace to be the
+              lowest total since 1967. Aggravated assault and robbery also show declines. Property crime rose 4%, driven
+              by a spike in vehicle theft citywide.</div>
+            <div class="result-date">LAPD · Released October 2030</div>
+          </div>
+
+          <div class="section-divider">Social &amp; real-time</div>
+
+          <div class="result-item" style="opacity:0.5">
+            <div class="result-source">
+              <div class="result-favicon" style="color:var(--text-dimmer)">X</div>
+              <div class="result-domain" style="color:var(--text-dimmer)">x.com · content review active</div>
+            </div>
+            <a class="result-title" style="color:var(--text-dimmer);cursor:default;font-size:.875rem">⊘ Social results
+              for this query are excluded pending editorial verification.</a>
+            <div class="result-desc" style="font-size:.75rem">ORION's content integrity policy excludes unverified
+              social media claims for queries involving potential mass casualty events. This is an automated measure and
+              will be lifted once independent verification is confirmed.</div>
+          </div>
+
+        </div>
+
+        <aside class="sidebar">
+          <div class="sidebar-card">
+            <div class="sidebar-title">Related searches</div>
+            <a class="related-link">Los Angeles crime statistics 2030</a>
+            <a class="related-link">mass shooting LA history</a>
+            <a class="related-link">Monterey Park shooting memorial</a>
+            <a class="related-link">workplace accidents Los Angeles</a>
+            <a class="related-link">Chinese massacre 1871 documentary</a>
+            <a class="related-link">California gun laws 2030</a>
+            <a class="related-link">LAPD homicide statistics</a>
+          </div>
+          <div class="sidebar-card">
+            <div class="sidebar-title">Information notice</div>
+            <p style="font-size:.75rem;color:var(--text-dim);line-height:1.6">ORION applies editorial verification
+              standards to queries about sensitive events. If you believe relevant results are missing, you may submit a
+              content review request via Settings.</p>
+          </div>
+          <div class="sidebar-card">
+            <div class="sidebar-title">Try refining</div>
+            <p style="font-size:.75rem;color:var(--text-dim);line-height:1.65">Add a specific date, location, or source
+              publication. Verified results load faster when queries include a named news organization.</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <script src="shared.js"></script>
+  <script>
+    drawOrionLogo(document.getElementById('headerLogo'), 22);
+    const p = new URLSearchParams(window.location.search);
+    if (p.get('q')) {
+      document.getElementById('searchBar').value = p.get('q');
+      document.getElementById('urlQuery').textContent = 'results?q=' + encodeURIComponent(p.get('q'));
+    }
+    function doSearch() {
+      const q = document.getElementById('searchBar').value.trim();
+      if (!q) return;
+      // Second result page always chains to voices result page
+      window.location.href = 'results_voices.html?q=' + encodeURIComponent(q);
+    }
+  </script>
+</body>
+
+</html>

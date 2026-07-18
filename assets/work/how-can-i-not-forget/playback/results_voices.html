@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>hearing voices after car accident — ORION</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+  html,body{overflow:hidden}
+  .page-content{flex:1;overflow-y:auto;overflow-x:hidden;background:var(--bg);position:relative}
+  .result-header{position:sticky;top:0;z-index:200;background:rgba(238,236,232,0.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--border-mid)}
+  .header-inner{display:flex;align-items:center;padding:10px 28px;gap:20px;max-width:1280px;margin:0 auto}
+  .logo-link{flex-shrink:0;cursor:pointer;text-decoration:none;display:flex;align-items:center}
+  #headerLogo{display:block}
+  .header-search-wrap{flex:1;max-width:640px;position:relative}
+  .header-search{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:9px 42px 9px 16px;font-family:'DM Sans',sans-serif;font-size:.875rem;color:var(--text);outline:none;box-shadow:var(--shadow-sm);transition:border-color .2s,box-shadow .2s}
+  .header-search:focus{border-color:var(--border-mid);box-shadow:0 2px 16px rgba(0,0,0,.09)}
+  .header-search-btn{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--text-dim);cursor:pointer;display:flex;align-items:center}
+  .app-nav{display:flex;gap:4px;align-items:center;margin-left:auto;flex-shrink:0}
+  .app-nav-btn{width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:7px;cursor:pointer;transition:background .15s;color:var(--text-dim);border:none;background:none}
+  .app-nav-btn:hover{background:rgba(0,0,0,.06);color:var(--text)}
+  .app-nav-btn svg{width:15px;height:15px}
+  .tabs-row{display:flex;gap:0;padding:0 28px;border-bottom:1px solid var(--border);max-width:1280px;margin:0 auto}
+  .tab{padding:9px 16px;font-size:.8125rem;color:var(--text-dim);cursor:pointer;border-bottom:2px solid transparent;transition:all .18s;white-space:nowrap}
+  .tab.active{color:var(--text);border-bottom-color:var(--text)}
+  .tab:hover:not(.active){color:var(--text)}
+  .main{display:flex;gap:52px;max-width:1100px;margin:0 auto;padding:28px 28px 100px}
+  .results-col{flex:1;min-width:0}
+  .sidebar{width:272px;flex-shrink:0}
+  .results-meta{font-size:.75rem;color:var(--text-dimmer);margin-bottom:22px;padding-bottom:14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .results-meta span{color:var(--text-dim)}
+  .filter-pill{background:var(--surface);border:1px solid var(--border-mid);border-radius:100px;padding:3px 12px;font-size:.69rem;color:var(--text-dim);cursor:pointer;transition:all .15s}
+  .filter-pill.active{background:var(--text);color:#fff;border-color:var(--text)}
+
+  /* Medical-blue AI box */
+  .ai-answer{background:var(--surface);border:1px solid rgba(42,94,168,.15);border-radius:14px;padding:20px 24px;margin-bottom:28px;position:relative;overflow:hidden}
+  .ai-answer::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(to bottom,rgba(42,94,168,.55),rgba(42,94,168,.1))}
+  .ai-label{display:flex;align-items:center;gap:7px;font-size:.6875rem;color:var(--text-dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
+  .ai-label-dot{width:5px;height:5px;border-radius:50%;background:rgba(42,94,168,.65);animation:pulse 2.2s ease infinite}
+  .ai-answer p{font-size:.875rem;color:var(--text-dim);line-height:1.75}
+  .ai-answer ul{margin:10px 0 0 18px}
+  .ai-answer ul li{font-size:.84rem;color:var(--text-dim);line-height:1.7;margin-bottom:5px}
+  .ai-answer ul li strong{color:var(--text);font-weight:500}
+  .ai-note{margin-top:12px;font-size:.71rem;color:var(--text-dimmer);padding-top:10px;border-top:1px solid var(--border);display:flex;align-items:flex-start;gap:7px;line-height:1.6}
+
+  /* Featured snippet */
+  .featured{background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--link);border-radius:10px;padding:16px 20px;margin-bottom:24px}
+  .featured-label{font-size:.69rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-dimmer);margin-bottom:8px}
+  .featured p{font-size:.875rem;color:var(--text-dim);line-height:1.7}
+  .featured-source{margin-top:8px;font-size:.75rem;color:var(--link);cursor:pointer}
+  .featured-source:hover{text-decoration:underline}
+
+  .result-item{margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--border);animation:fadeIn .35s ease both}
+  .result-item:last-child{border-bottom:none}
+  .result-item:nth-child(2){animation-delay:.03s}.result-item:nth-child(3){animation-delay:.06s}
+  .result-item:nth-child(4){animation-delay:.09s}.result-item:nth-child(5){animation-delay:.12s}
+  .result-item:nth-child(6){animation-delay:.15s}.result-item:nth-child(7){animation-delay:.18s}
+  .result-item:nth-child(8){animation-delay:.21s}.result-item:nth-child(9){animation-delay:.24s}
+  .result-source{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+  .result-favicon{width:16px;height:16px;background:var(--surface2);border:1px solid var(--border);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--text-dimmer);flex-shrink:0;font-weight:600}
+  .result-domain{font-size:.75rem;color:var(--text-dim)}
+  .result-title{font-size:1.0625rem;color:var(--link);text-decoration:none;line-height:1.4;display:block;margin-bottom:5px;cursor:pointer;transition:color .15s}
+  .result-title:hover{color:var(--link-hover);text-decoration:underline}
+  .result-desc{font-size:.84rem;color:var(--text-dim);line-height:1.65}
+  .result-desc em{font-style:normal;font-weight:500;color:var(--text)}
+  .result-date{font-size:.71rem;color:var(--text-dimmer);margin-top:5px}
+  .result-tag{display:inline-block;background:rgba(42,94,168,.07);border:1px solid rgba(42,94,168,.15);border-radius:100px;padding:2px 9px;font-size:.69rem;color:rgba(42,94,168,.8);margin-top:6px;margin-right:4px}
+
+  .section-divider{font-size:.69rem;text-transform:uppercase;letter-spacing:.12em;color:var(--text-dimmer);margin:8px 0 22px;display:flex;align-items:center;gap:10px}
+  .section-divider::after{content:'';flex:1;height:1px;background:var(--border)}
+
+  /* PAA */
+  .paa-wrap{background:var(--surface);border:1px solid var(--border);border-radius:12px;margin-bottom:28px;overflow:hidden}
+  .paa-item{border-bottom:1px solid var(--border);cursor:pointer}
+  .paa-item:last-child{border-bottom:none}
+  .paa-q{padding:12px 16px;font-size:.875rem;color:var(--text);display:flex;justify-content:space-between;align-items:center}
+  .paa-q::after{content:'›';color:var(--text-dimmer);font-size:16px;flex-shrink:0}
+  .paa-a{display:none;padding:0 16px 12px;font-size:.8125rem;color:var(--text-dim);line-height:1.65}
+  .paa-item.open .paa-a{display:block}
+  .paa-item.open .paa-q::after{content:'‹'}
+
+  .sidebar-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin-bottom:14px}
+  .sidebar-title{font-size:.6875rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dimmer);margin-bottom:14px}
+  .related-link{display:flex;align-items:center;gap:8px;font-size:.8125rem;color:var(--link);text-decoration:none;padding:7px 0;border-bottom:1px solid var(--border);cursor:pointer;transition:color .15s}
+  .related-link:last-child{border-bottom:none}
+  .related-link:hover{color:var(--link-hover)}
+  .related-link::before{content:'↗';font-size:10px;color:var(--text-dimmer);flex-shrink:0}
+</style>
+</head>
+<body>
+<div class="browser-window">
+  <div class="browser-chrome">
+    <div class="chrome-left">
+      <div class="traffic-lights"><div class="tl tl-red"></div><div class="tl tl-yellow"></div><div class="tl tl-green"></div></div>
+      <button class="nav-btn" onclick="history.back()"><svg viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button class="nav-btn disabled"><svg viewBox="0 0 14 14" fill="none"><path d="M5 2L10 7L5 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+    <div class="url-bar">
+      <svg class="url-lock" viewBox="0 0 12 14" fill="none"><rect x="1" y="6" width="10" height="7" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M3.5 6V4a2.5 2.5 0 015 0v2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+      <div class="url-text">orion.search / <span id="urlQuery">results?q=hearing+voices+after+car+accident</span></div>
+    </div>
+    <div class="chrome-right">
+      <div class="b-icon"><svg viewBox="0 0 15 15" fill="none"><path d="M5 7.5H2a1 1 0 00-1 1V13a1 1 0 001 1h11a1 1 0 001-1V8.5a1 1 0 00-1-1h-3M7.5 1v8M5 3.5L7.5 1 10 3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="b-icon"><svg viewBox="0 0 13 15" fill="none"><path d="M1 1h11v13L6.5 10 1 14V1z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    </div>
+  </div>
+
+  <div class="page-content">
+    <div class="result-header">
+      <div class="header-inner">
+        <a class="logo-link" href="search.html"><canvas id="headerLogo"></canvas></a>
+        <div class="header-search-wrap">
+          <input class="header-search" id="searchBar" value="hearing voices after car accident" onkeydown="if(event.key==='Enter')doSearch()">
+          <button class="header-search-btn" onclick="doSearch()"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.4"/><line x1="9.5" y1="9.5" x2="13" y2="13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></button>
+        </div>
+        <nav class="app-nav">
+          <button class="app-nav-btn"><svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="5.5" r="2.5" stroke="currentColor" stroke-width="1.3"/><path d="M2.5 14c0-3.038 2.462-5.5 5.5-5.5s5.5 2.462 5.5 5.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></button>
+          <button class="app-nav-btn"><svg viewBox="0 0 16 16" fill="none"><line x1="2" y1="4.5" x2="14" y2="4.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><line x1="2" y1="11.5" x2="14" y2="11.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><circle cx="5.5" cy="4.5" r="1.8" fill="var(--bg)" stroke="currentColor" stroke-width="1.3"/><circle cx="10.5" cy="11.5" r="1.8" fill="var(--bg)" stroke="currentColor" stroke-width="1.3"/></svg></button>
+        </nav>
+      </div>
+      <div class="tabs-row">
+        <div class="tab active">All</div><div class="tab">Medical</div><div class="tab">News</div>
+        <div class="tab">Video</div><div class="tab">Images</div><div class="tab">More</div>
+      </div>
+    </div>
+
+    <div class="main">
+      <div class="results-col">
+        <div class="results-meta">
+          About <span>14,300,000</span> results <span style="color:var(--text-dimmer);margin-right:4px">(0.22 s)</span>
+          <span class="filter-pill active">All time</span><span class="filter-pill">Past year</span><span class="filter-pill">Past month</span>
+        </div>
+
+        <div class="ai-answer">
+          <div class="ai-label"><div class="ai-label-dot"></div>ORION Health Overview</div>
+          <p>Hearing voices or sounds after a car accident is a recognized clinical phenomenon with several possible explanations. This is sometimes called <strong style="color:var(--text)">post-traumatic auditory hallucination</strong> and may be associated with:</p>
+          <ul>
+            <li><strong>Post-Traumatic Stress Disorder (PTSD)</strong> — Intrusive auditory memories triggered by trauma, especially in accident survivors</li>
+            <li><strong>Acute grief response</strong> — Auditory experiences of a deceased person's voice are reported in 50–80% of bereaved individuals</li>
+            <li><strong>Stress-induced perception disturbances</strong> — Heightened sensory sensitivity under extreme psychological stress</li>
+            <li><strong>Traumatic Brain Injury (TBI)</strong> — Even mild concussion can produce temporary auditory disturbances</li>
+          </ul>
+          <div class="ai-note">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="flex-shrink:0;margin-top:1px"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1"/><path d="M6 5v4M6 3.5v.5" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+            This is general health information only. If you are experiencing persistent hallucinations, please consult a licensed medical professional.
+          </div>
+        </div>
+
+        <div class="featured">
+          <div class="featured-label">Featured result</div>
+          <p>Auditory hallucinations following traumatic events are far more common than often assumed. Studies indicate that between 30–50% of trauma survivors report some form of intrusive auditory experience in the weeks following the event. These are usually temporary and diminish with proper support and processing.</p>
+          <div class="featured-source" onclick="window.location.href='article_ptsd.html'">neurologyreview.net › trauma › auditory-hallucinations-after-trauma</div>
+        </div>
+
+        <!-- Result 1 -->
+        <div class="result-item">
+          <div class="result-source"><div class="result-favicon">W</div><div class="result-domain">en.wikipedia.org › wiki › Auditory_hallucination</div></div>
+          <a class="result-title">Auditory hallucination — Wikipedia</a>
+          <div class="result-desc">An <em>auditory hallucination</em> is a form of hallucination that involves perceiving sounds without an external stimulus. It is a symptom of various conditions including schizophrenia, bipolar disorder, major depression, PTSD, and neurological disorders. In bereavement and trauma contexts, auditory hallucinations are frequently reported and are not necessarily indicative of a psychiatric disorder.</div>
+          <div class="result-date">Wikipedia · Continuously updated</div>
+          <span class="result-tag">Overview</span>
+        </div>
+
+        <!-- Result 2 -->
+        <div class="result-item">
+          <div class="result-source"><div class="result-favicon">M</div><div class="result-domain">mayoclinic.org › symptoms › hallucinations</div></div>
+          <a class="result-title">Hallucinations: overview, causes, and when to see a doctor — Mayo Clinic</a>
+          <div class="result-desc">Hallucinations are sensory experiences that appear real but are created by your mind. Causes include psychiatric conditions, neurological disorders, substance use, extreme stress, grief, or sensory deprivation. <em>Trauma-related auditory experiences</em> are common and typically transient, resolving as the acute stress response diminishes.</div>
+          <div class="result-date">Mayo Clinic · Updated 2029</div>
+          <span class="result-tag">Medical Reference</span>
+        </div>
+
+        <!-- Result 3 — LINKS TO article_ptsd.html -->
+        <div class="result-item">
+          <div class="result-source"><div class="result-favicon">N</div><div class="result-domain">neurologyreview.net › trauma</div></div>
+          <a class="result-title" onclick="window.location.href='article_ptsd.html'">Post-Traumatic Auditory Hallucinations: Causes, Symptoms, and What to Expect — Neurology Review</a>
+          <div class="result-desc">After a traumatic event such as a <em>car accident</em>, survivors sometimes report <em>hearing voices</em> — particularly the voices of loved ones. These <em>post-traumatic auditory hallucinations</em> are a recognized symptom cluster and do not necessarily indicate psychosis. Covers prevalence, neuroscience, and treatment approaches.</div>
+          <div class="result-date">Neurology Review · March 14, 2029</div>
+          <span class="result-tag">Peer Reviewed</span><span class="result-tag">Medical</span>
+        </div>
+
+        <!-- Result 4 -->
+        <div class="result-item">
+          <div class="result-source"><div class="result-favicon">W</div><div class="result-domain">webmd.com › mental-health</div></div>
+          <a class="result-title">Auditory hallucinations: causes and when to see a doctor — WebMD</a>
+          <div class="result-desc">While <em>hearing voices</em> is most commonly associated with schizophrenia, it is experienced by a wide range of people in varied circumstances — including extreme stress, <em>grief</em>, sleep deprivation, and in the aftermath of <em>trauma</em>. WebMD explains the distinction between pathological and situational auditory experiences and outlines recommended clinical evaluation pathways.</div>
+          <div class="result-date">WebMD · Updated 2030</div>
+        </div>
+
+        <!-- Result 5 -->
+        <div class="result-item">
+          <div class="result-source"><div class="result-favicon">N</div><div class="result-domain">nimh.nih.gov › health</div></div>
+          <a class="result-title">Post-Traumatic Stress Disorder: overview and symptoms — National Institute of Mental Health</a>
+          <div class="result-desc">PTSD is a disorder that develops in some people who have experienced a shocking, scary, or dangerous event. Symptoms include flashbacks, avoidance, negative changes in thinking and mood, and changes in physical and emotional reactions. <em>Intrusive auditory memories</em> are specifically listed as a recognized PTSD symptom in DSM-5-TR criteria.</div>
+          <div class="result-date">NIMH · Updated 2029</div>
+          <span class="result-tag">Government Source</span>
+        </div>
+
+        <!-- Result 6 -->
+        <div class="result-item">
+          <div class="result-source"><div class="result-favicon">H</div><div class="result-domain">healthline.com › mental-health</div></div>
+          <a class="result-title">Stress-Induced Perception Disturbances: when the mind misreads reality — Healthline</a>
+          <div class="result-desc">Extreme stress and trauma can create what clinicians call <em>stress-induced perception disturbances</em> — temporary alterations in how the brain processes sensory input. <em>Hearing sounds, voices, or echoes</em> that others don't perceive is among the most commonly reported. Covers mechanism, duration, and recovery outlook.</div>
+          <div class="result-date">Healthline · Updated January 2029</div>
+        </div>
+
+        <!-- Result 7 -->
+        <div class="result-item">
+          <div class="result-source"><div class="result-favicon">V</div><div class="result-domain">verywellmind.com › ptsd</div></div>
+          <a class="result-title">PTSD symptoms after a car accident: what to look for — Verywell Mind</a>
+          <div class="result-desc">Car accidents are among the leading causes of PTSD in the general population. Symptoms can include flashbacks, <em>auditory intrusions</em>, hypervigilance, and emotional numbness. This article outlines the difference between normal acute stress response and clinically significant PTSD, and explains how to access professional support.</div>
+          <div class="result-date">Verywell Mind · 2029</div>
+          <span class="result-tag">PTSD</span><span class="result-tag">Recovery</span>
+        </div>
+
+        <!-- Result 8 — LINKS TO article_grief.html -->
+        <div class="result-item">
+          <div class="result-source"><div class="result-favicon">P</div><div class="result-domain">psychologyspot.com › grief</div></div>
+          <a class="result-title" onclick="window.location.href='article_grief.html'">Why We Hear the Dead: grief, auditory perception, and the bereaved brain — Psychology Spot</a>
+          <div class="result-desc">It is remarkably common for people who have lost a loved one to report <em>hearing their voice</em>. Far from a sign of pathology, many clinicians now regard this as a <em>normal grief response</em>. Reviews the research on post-bereavement hallucinatory experience and explains the neuroscience of auditory memory in the context of loss.</div>
+          <div class="result-date">Psychology Spot · February 3, 2028</div>
+          <span class="result-tag">Grief &amp; Loss</span><span class="result-tag">Mental Health</span>
+        </div>
+
+        <!-- Result 9 — LINKS TO article_stress.html -->
+        <div class="result-item">
+          <div class="result-source"><div class="result-favicon">H</div><div class="result-domain">healthline.com › mental-health › stress</div></div>
+          <a class="result-title" onclick="window.location.href='article_stress.html'">Stress-Induced Perception Disturbances: causes, duration, and recovery — Healthline</a>
+          <div class="result-desc">Under conditions of extreme stress, the brain can generate sensory experiences — sounds, voices, sensations — that feel entirely real. Here's what's happening neurologically, why it happens, and when to seek professional help. Includes data on prevalence among trauma survivors and evidence-based treatment options.</div>
+          <div class="result-date">Healthline · January 22, 2029</div>
+          <span class="result-tag">Stress</span><span class="result-tag">Perception</span><span class="result-tag">Recovery</span>
+        </div>
+
+        <!-- PAA -->
+        <div class="paa-wrap">
+          <div class="paa-item" onclick="this.classList.toggle('open')">
+            <div class="paa-q">Is it normal to hear a deceased person's voice after they die?</div>
+            <div class="paa-a">Yes. Research consistently shows that 50–80% of bereaved individuals experience some form of post-bereavement hallucinatory experience. Hearing the voice of the person who died is the most commonly reported form and is typically brief and non-distressing.</div>
+          </div>
+          <div class="paa-item" onclick="this.classList.toggle('open')">
+            <div class="paa-q">Can a car accident cause auditory hallucinations?</div>
+            <div class="paa-a">Yes — through traumatic brain injury (even mild), acute stress response, PTSD, or the combined shock of trauma and loss. Most cases resolve naturally. Persistent symptoms warrant evaluation by a neurologist or psychiatrist.</div>
+          </div>
+          <div class="paa-item" onclick="this.classList.toggle('open')">
+            <div class="paa-q">What is the difference between grief voices and psychosis?</div>
+            <div class="paa-a">Grief-related auditory experiences are tied to a specific loss, are usually recognizable and non-threatening, and diminish over time. Psychotic hallucinations tend to be persistent, commanding, unconnected to a specific loss, and accompanied by other symptoms like paranoid ideation.</div>
+          </div>
+          <div class="paa-item" onclick="this.classList.toggle('open')">
+            <div class="paa-q">How long do post-traumatic auditory hallucinations last?</div>
+            <div class="paa-a">Most cases resolve within 3–6 weeks as the acute stress response diminishes. Grief-related auditory experiences may persist longer but typically decrease in frequency over the first 3 months. Cases lasting beyond 6 weeks or causing significant distress should be evaluated clinically.</div>
+          </div>
+        </div>
+
+        <div class="section-divider">Clinical research</div>
+
+        <!-- Result 10 -->
+        <div class="result-item">
+          <div class="result-source"><div class="result-favicon">P</div><div class="result-domain">pubmed.ncbi.nlm.nih.gov</div></div>
+          <a class="result-title">Prevalence of auditory intrusions in acute trauma survivors: a systematic review — PubMed</a>
+          <div class="result-desc">A systematic review of 34 peer-reviewed studies examining the prevalence and characteristics of auditory intrusive symptoms in trauma survivors. Pooled prevalence across studies was 38.4% in the first six weeks post-trauma, declining to 14.2% at six months. The review identifies significant heterogeneity in measurement methodology and calls for standardized assessment tools.</div>
+          <div class="result-date">JAMA Psychiatry · 2028 · via PubMed</div>
+          <span class="result-tag">Peer Reviewed</span>
+        </div>
+
+        <!-- Result 11 -->
+        <div class="result-item">
+          <div class="result-source"><div class="result-favicon">A</div><div class="result-domain">apa.org › ptsd › resources</div></div>
+          <a class="result-title">PTSD treatment guidelines: evidence-based approaches — American Psychological Association</a>
+          <div class="result-desc">The APA's clinical practice guidelines for PTSD recommend trauma-focused cognitive behavioral therapy (TF-CBT) and EMDR as first-line treatments with strong evidence. Pharmacotherapy with SSRIs or SNRIs is recommended as an adjunct. The guidelines include specific guidance for trauma presentations involving bereavement and complicated grief.</div>
+          <div class="result-date">APA · Updated 2029</div>
+          <span class="result-tag">Clinical Guidelines</span>
+        </div>
+
+        <!-- Result 12 -->
+        <div class="result-item">
+          <div class="result-source"><div class="result-favicon">J</div><div class="result-domain">jamanetwork.com › psychiatry</div></div>
+          <a class="result-title">Limbic encoding of acoustic traumatic memory: implications for PTSD treatment — JAMA Psychiatry</a>
+          <div class="result-desc">This research article examines the neurological mechanisms by which traumatic events encode auditory components in memory. Findings suggest that the amygdala's role in acoustic memory encoding during high-arousal states creates conditions for later intrusive auditory re-experiencing. Authors propose targeted neuromodulation protocols as a potential adjunct to existing therapies.</div>
+          <div class="result-date">JAMA Psychiatry · Vol. 87, 2029</div>
+          <span class="result-tag">Neuroscience</span><span class="result-tag">Research</span>
+        </div>
+
+        <!-- Result 13 -->
+        <div class="result-item">
+          <div class="result-source"><div class="result-favicon">B</div><div class="result-domain">bmj.com › research</div></div>
+          <a class="result-title">Post-bereavement hallucinatory experiences: a qualitative study across cultures — British Medical Journal</a>
+          <div class="result-desc">A qualitative study interviewing 240 bereaved individuals across six countries finds that auditory experiences of a deceased person's voice are culturally universal but socially suppressed in Western contexts. Participants in non-Western settings were significantly more likely to interpret such experiences as meaningful communication rather than symptoms requiring treatment.</div>
+          <div class="result-date">BMJ · January 2028</div>
+        </div>
+
+        <!-- Result 14 -->
+        <div class="result-item">
+          <div class="result-source"><div class="result-favicon">C</div><div class="result-domain">cochrane.org › reviews</div></div>
+          <a class="result-title">Psychological interventions for acute stress following road traffic accidents — Cochrane Library</a>
+          <div class="result-desc">A Cochrane systematic review of 22 randomized controlled trials examining psychological interventions in the immediate aftermath of road traffic accidents. Early intervention reduces progression to chronic PTSD by approximately 35%. The review finds strong evidence for structured psychological first aid and moderate evidence for brief CBT delivered within 72 hours of the incident.</div>
+          <div class="result-date">Cochrane Library · 2027</div>
+          <span class="result-tag">Systematic Review</span>
+        </div>
+
+        <!-- Result 15 -->
+        <div class="result-item">
+          <div class="result-source"><div class="result-favicon">N</div><div class="result-domain">nami.org › mental-health-resources</div></div>
+          <a class="result-title">Understanding trauma and auditory symptoms: a guide for survivors — NAMI</a>
+          <div class="result-desc">The National Alliance on Mental Illness offers this accessible guide for survivors of traumatic events who experience auditory symptoms including <em>hearing voices</em>, sounds from the incident, or the voice of a person who died in the event. Includes self-assessment tools, guidance on when to seek professional support, and a directory of trauma-informed therapists.</div>
+          <div class="result-date">NAMI · 2030</div>
+        </div>
+
+      </div>
+
+      <aside class="sidebar">
+        <div class="sidebar-card">
+          <div class="sidebar-title">Related searches</div>
+          <a class="related-link">PTSD after car accident symptoms</a>
+          <a class="related-link">grief hallucinations bereaved</a>
+          <a class="related-link">post-traumatic stress auditory</a>
+          <a class="related-link">hearing dead loved one's voice</a>
+          <a class="related-link">trauma brain noise sensitivity</a>
+          <a class="related-link">TBI auditory disturbances</a>
+          <a class="related-link">EMDR therapy Los Angeles</a>
+        </div>
+        <div class="sidebar-card">
+          <div class="sidebar-title">Medical resources</div>
+          <p style="font-size:.75rem;color:var(--text-dim);line-height:1.75">
+            <span style="color:var(--link);cursor:pointer;display:block;margin-bottom:6px">PTSD Support Finder →</span>
+            <span style="color:var(--link);cursor:pointer;display:block;margin-bottom:6px">Find a trauma therapist →</span>
+            <span style="color:var(--link);cursor:pointer;display:block;margin-bottom:10px">NAMI Helpline: 1-800-950-6264 →</span>
+            <span style="font-size:.69rem;color:var(--text-dimmer)">ORION health results are for informational purposes only and do not constitute medical advice.</span>
+          </p>
+        </div>
+        <div class="sidebar-card" style="background:rgba(42,94,168,.03);border-color:rgba(42,94,168,.12)">
+          <div class="sidebar-title" style="color:rgba(42,94,168,.7)">ORION Tip</div>
+          <p style="font-size:.75rem;color:var(--text-dim);line-height:1.6">You can ask a follow-up question directly in the search bar. Try: <em style="color:var(--text)">"how long does grief hallucination last"</em></p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+
+<script src="shared.js"></script>
+<script>
+  drawOrionLogo(document.getElementById('headerLogo'), 22);
+  const p = new URLSearchParams(window.location.search);
+  if(p.get('q')){
+    document.getElementById('searchBar').value = p.get('q');
+    document.getElementById('urlQuery').textContent = 'results?q=' + encodeURIComponent(p.get('q'));
+  }
+  const routes = {
+    'los angeles riot':'results_riot.html','la riot':'results_riot.html','riot':'results_riot.html',
+    'massacre la news':'results_massacre.html','massacre':'results_massacre.html',
+    'hearing voices after car accident':'results_voices.html','hearing voices':'results_voices.html',
+  };
+  function doSearch(){
+    const q = document.getElementById('searchBar').value.trim();
+    if(!q) return;
+    window.location.href = (routes[q.toLowerCase()]||'results_voices.html') + '?q=' + encodeURIComponent(q);
+  }
+</script>
+</body>
+</html>

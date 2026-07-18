@@ -1,0 +1,478 @@
+/* ============================================================
+   MOMO GINGKO — shell + page styles
+   One runtime document: a persistent leaf-canvas background,
+   a JS-sized border frame, fixed chrome, and a #mount that
+   swaps page fragments. Home canvas keeps its own inline CSS.
+   ============================================================ */
+
+:root{
+  --paper:#FAF4EA; --ink:#332C25; --taupe:#6B6154;   /* text darkened for legibility */
+  --blush:#E4A9A4; --yellow:#EFE3B0; --line:#DDD2BE; --tile:#F0E8D6;
+  --grey:#C7BDAC;                        /* faded section title */
+  --leaf-black:#0a0a0a;                  /* frame + leaves: the black-leaf black */
+  --serif:"Noto Serif TC", Georgia, "Songti SC", serif;
+  --sans:"Spline Sans", ui-sans-serif, system-ui, sans-serif;
+  --mono:"Spline Sans Mono", ui-monospace, monospace;
+  --pad:clamp(22px, 4vw, 56px);
+  --bt:0px; --bs:0px;                     /* border thickness, set by nav.js */
+  --leaf:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23000' d='M50 86 C45 66 28 62 17 55 C7 49 8 36 19 32 C30 28 42 38 50 50 C58 38 70 28 81 32 C92 36 93 49 83 55 C72 62 55 66 50 86 Z'/%3E%3C/svg%3E");
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{margin:0;}   /* standalone subpages don't get the shell's inline reset → kill the default 8px margin */
+a{color:inherit;text-decoration:none;} img{max-width:100%;display:block;} ul{margin:0;padding:0;list-style:none;}
+
+/* ---------- leaf cursor (everywhere except the very first landing) ---------- */
+:root{
+  /* upright leaf = regular; tilted leaf (rotated 24°) = pointer/interactive */
+  --cur-dark:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='30'%20height='30'%20viewBox='0%200%20100%20100'%3E%3Cpath%20fill='%23332C25'%20d='M50%2086%20C45%2066%2028%2062%2017%2055%20C7%2049%208%2036%2019%2032%20C30%2028%2042%2038%2050%2050%20C58%2038%2070%2028%2081%2032%20C92%2036%2093%2049%2083%2055%20C72%2062%2055%2066%2050%2086%20Z'/%3E%3C/svg%3E") 15 15, auto;
+  --cur-dark-tilt:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='30'%20height='30'%20viewBox='0%200%20100%20100'%3E%3Cpath%20fill='%23332C25'%20d='M%2035.36%2082.89%20C%2038.92%2062.58%2025.02%2052.01%2017.82%2041.15%20C%2011.12%2031.6%2017.33%2020.13%2029%2020.95%20C%2040.68%2021.77%2047.57%2035.78%2050%2050%20C%2062.19%2042.29%2077.22%2038.04%2085.64%2046.17%20C%2094.06%2054.29%2089.69%2066.58%2078.11%2067.99%20C%2065.22%2069.91%2048.06%2066.65%2035.36%2082.89%20Z'/%3E%3C/svg%3E") 15 15, auto;
+  --cur-light:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='30'%20height='30'%20viewBox='0%200%20100%20100'%3E%3Cpath%20fill='%23F3ECDC'%20d='M50%2086%20C45%2066%2028%2062%2017%2055%20C7%2049%208%2036%2019%2032%20C30%2028%2042%2038%2050%2050%20C58%2038%2070%2028%2081%2032%20C92%2036%2093%2049%2083%2055%20C72%2062%2055%2066%2050%2086%20Z'/%3E%3C/svg%3E") 15 15, auto;
+  --cur-light-tilt:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='30'%20height='30'%20viewBox='0%200%20100%20100'%3E%3Cpath%20fill='%23F3ECDC'%20d='M%2035.36%2082.89%20C%2038.92%2062.58%2025.02%2052.01%2017.82%2041.15%20C%2011.12%2031.6%2017.33%2020.13%2029%2020.95%20C%2040.68%2021.77%2047.57%2035.78%2050%2050%20C%2062.19%2042.29%2077.22%2038.04%2085.64%2046.17%20C%2094.06%2054.29%2089.69%2066.58%2078.11%2067.99%20C%2065.22%2069.91%2048.06%2066.65%2035.36%2082.89%20Z'/%3E%3C/svg%3E") 15 15, auto;
+}
+/* inner pages: upright dark leaf on non-interactive… */
+body:not([data-page="home"]):not([data-page="gallery"]),
+html{cursor:var(--cur-dark);}   /* base fallback so the frame's very top/bottom edge still shows a leaf, not the OS arrow */
+body:not([data-page="home"]):not([data-page="gallery"]),
+body:not([data-page="home"]):not([data-page="gallery"]) *{cursor:var(--cur-dark);}
+/* …tilted dark leaf on interactive (the "pointer" state) */
+body:not([data-page="home"]):not([data-page="gallery"]) :is(a,button,summary,label,.tile,[role=button]){cursor:var(--cur-dark-tilt);}
+/* gallery: light leaf (dark would vanish on black), tilt for interactive */
+body[data-page="gallery"], body[data-page="gallery"] *{cursor:var(--cur-light);}
+body[data-page="gallery"] :is(a,button,.item-arrow,.gk-close){cursor:var(--cur-light-tilt);}
+/* the black border shows the light leaf; footer/return are clickable → tilt */
+.frame i{pointer-events:auto;}
+body:not([data-page="home"]):not([data-page="gallery"]) .frame i{cursor:var(--cur-light);}
+#footer,#footer *,#returnBtn{cursor:var(--cur-light-tilt);}
+/* home: cursor hides only once "playing" (after the icon click / on return) — the leaves are
+   the pointer. Before the first click it stays a normal cursor (pointer over the icon). */
+body[data-page="home"].playing, body[data-page="home"].playing *{cursor:none !important;}
+body[data-page="home"]:not(.playing) #icon{cursor:pointer;}
+
+/* ---------- border frame (edges read --bt/--bs, animate on change) ---------- */
+.frame{position:fixed;inset:0;pointer-events:none;z-index:40;}
+.frame i{position:absolute;display:block;background:var(--leaf-black);
+  transition:width .38s cubic-bezier(.16,1,.3,1), height .38s cubic-bezier(.16,1,.3,1);}
+.frame .fe-t,.frame .fe-b{left:0;right:0;height:var(--bt);}
+.frame .fe-t{top:0;} .frame .fe-b{bottom:0;}
+.frame .fe-l,.frame .fe-r{top:0;bottom:0;width:var(--bs);}
+.frame .fe-l{left:0;} .frame .fe-r{right:0;}
+
+/* ---------- crossfade curtain (gallery → paper return) ---------- */
+#curtain{position:fixed;inset:0;z-index:15;background:var(--paper);opacity:0;pointer-events:none;
+  transition:opacity .35s ease;}
+#curtain.on{opacity:1;}
+
+/* ---------- content mount (scroll container inside the frame) ---------- */
+#mount{position:fixed;top:var(--bt);bottom:var(--bt);left:var(--bs);right:var(--bs);
+  z-index:20;overflow-y:auto;overflow-x:hidden;overscroll-behavior:none;
+  transition:opacity .25s ease;}   /* inset snaps while content is faded out */
+#mount.leaving{opacity:0;}
+#mount::-webkit-scrollbar{width:0;height:0;}
+#mount{scrollbar-width:none;}
+.view-root{min-height:100%;padding:clamp(20px,4vh,44px) var(--pad) clamp(40px,8vh,90px);
+  padding-right:clamp(150px,16vw,240px);}      /* room for the right-side menu column */
+
+/* ---------- fixed big title (menu pages) ---------- */
+#pageTitle{position:fixed;top:calc(var(--bt) + clamp(14px,3vh,40px));left:calc(var(--bs) + var(--pad));
+  right:calc(var(--bs) + clamp(150px,16vw,240px));z-index:15;margin:0;pointer-events:none;
+  font-family:var(--serif);font-weight:600;letter-spacing:-.01em;line-height:.9;
+  font-size:clamp(48px,11vw,150px);color:var(--ink);text-transform:lowercase;
+  transition:color .25s ease,opacity .25s ease;}
+#pageTitle[hidden]{display:none;}
+/* image title (Momo's hand-drawn PNGs, transparent bg): the mark is a MASK filled with a
+   solid colour; it TINTS toward paper on scroll (background changes — no transparency).
+   Fills the frame width with a gap on top/left/right; the mark touches the image edges. */
+#pageTitle.img{--tgap:clamp(10px,1.1vw,16px);            /* one small, consistent gap top/left */
+  top:calc(var(--bt) + var(--tgap));left:calc(var(--bs) + var(--tgap));
+  right:calc(var(--bs) + clamp(150px,16vw,240px));       /* reserve the right-side submenu column — no overlap */
+  font-size:0;aspect-ratio:5/3;height:auto;background:var(--ink);transition:background .25s ease;
+  -webkit-mask:var(--ti) left top/100% auto no-repeat;mask:var(--ti) left top/100% auto no-repeat;}
+
+/* ---------- return button (on the top border, top-left) ---------- */
+#returnBtn{position:fixed;top:calc(var(--bt)/2);left:calc(var(--bs) + 2px);transform:translateY(-50%);
+  z-index:45;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(250,244,234,.72);padding:15px 18px;transition:color .2s;}   /* padding = bigger hitbox */
+#returnBtn:hover{color:var(--blush);}
+#returnBtn[hidden]{display:none;}
+
+/* ---------- right-side vertical menu (sub-nav + C&I filters) ---------- */
+#sideMenu{position:fixed;bottom:calc(var(--bt) + clamp(36px,7vh,80px));right:calc(var(--bs) + 22px);
+  z-index:30;display:flex;flex-direction:column;align-items:flex-end;text-align:right;gap:2px;
+  transition:opacity .3s ease;}
+#sideMenu[hidden]{display:none;}
+#sideMenu .submenu,#sideMenu .filters{display:flex;flex-direction:column;align-items:flex-end;
+  padding:0;max-width:none;}
+#sideMenu .submenu{gap:22px;} #sideMenu .filters{gap:9px;}
+/* submenu (PD / Design): hover = pink highlight box (like the home menu); selected = ENLARGED */
+#sideMenu .submenu button{all:unset;cursor:var(--cur-dark-tilt);font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--taupe);text-align:right;line-height:1.18;padding:5px 11px;border-radius:4px;
+  transform-origin:right center;transition:transform .3s cubic-bezier(.2,.7,.2,1),background .2s,color .2s;}
+#sideMenu .submenu button:hover{background:var(--blush);color:var(--paper);}
+#sideMenu .submenu button[aria-selected="true"]{transform:scale(1.4);color:var(--ink);}
+/* filters (C&I): boxed pills — box always, hover thickens the border, selected = pink fill + white text */
+#sideMenu .filters button{all:unset;cursor:var(--cur-dark-tilt);font-family:var(--mono);font-weight:600;font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--taupe);padding:6px 13px;border:1.5px solid #ADA089;
+  border-radius:999px;box-sizing:border-box;transition:border-color .2s,box-shadow .2s,background .2s,color .2s;}
+/* thicken via box-shadow (not border-width) so siblings don't shift; pink on hover */
+#sideMenu .filters button:hover{border-color:var(--blush);box-shadow:0 0 0 1.5px var(--blush);}
+#sideMenu .filters button[aria-pressed="true"]{background:var(--blush);border-color:var(--blush);color:var(--paper);}
+#sideMenu .filters button[data-cat="all"]{margin-bottom:12px;}   /* gap between ALL and the rest */
+#sideMenu button:focus-visible{outline:2px solid var(--blush);outline-offset:3px;}
+
+/* ---------- footer living on the bottom border ---------- */
+#footer{position:fixed;left:0;right:0;bottom:0;height:var(--bt);z-index:42;
+  display:flex;align-items:center;justify-content:center;gap:clamp(22px,5vw,72px);flex-wrap:wrap;pointer-events:none;
+  font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(250,244,234,.7);transition:opacity .25s ease;}
+#footer a{pointer-events:auto;color:rgba(250,244,234,.82);font-weight:600;padding:5px 12px;border-radius:3px;
+  transition:background .2s,color .2s;}
+#footer a:hover{background:var(--blush);color:var(--leaf-black);}   /* pink box, black text */
+/* copyright rotated, pinned to the right EDGE of the screen frame (not centred in the border) */
+#copyright{position:fixed;top:0;bottom:0;right:0;width:38px;z-index:42;pointer-events:none;
+  display:flex;align-items:center;justify-content:center;transition:opacity .25s ease;}
+#copyright span{transform:rotate(-90deg);white-space:nowrap;
+  font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(250,244,234,.55);}
+
+/* chrome hidden on home + gallery */
+body[data-page="home"] #footer,body[data-page="gallery"] #footer,
+body[data-page="home"] #copyright,body[data-page="gallery"] #copyright,
+body[data-page="home"] #pageTitle,body[data-page="gallery"] #pageTitle,
+body[data-page="home"] #sideMenu,body[data-page="gallery"] #sideMenu{opacity:0;pointer-events:none;}
+
+/* ---------- mini-home views (PD / Design content column) ---------- */
+.view{display:none;}
+.view.is-active{display:block;animation:fade .5s ease both;}
+@keyframes fade{from{opacity:0;} to{opacity:1;}}
+
+/* ---------- galleries ---------- */
+.gallery{display:grid;gap:clamp(8px,1vw,14px);
+  grid-template-columns:repeat(auto-fill,minmax(min(100%,var(--col,240px)),1fr));}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr));} .g3{grid-template-columns:repeat(3,minmax(0,1fr));} .g4{--col:210px;}
+/* every gallery tile shares one aspect (cropped to cover); the click-through hero strip (.ps-img) and cards keep their own */
+.gallery .tile:not(.card){aspect-ratio:var(--tile-ar,3/2);}
+.gallery.sec-prop-design .tile:not(.card){aspect-ratio:4/5;}   /* Prop Design → portrait */
+/* Design page galleries */
+.gallery.sec-poster .tile:not(.card){aspect-ratio:4/5;}          /* Poster → 2/row portrait */
+.gallery.sec-graphic-design .tile:not(.card){aspect-ratio:5/4;}  /* Prop Graphic Design → 2/row landscape */
+.gallery.sec-social-marketing .tile:not(.card){aspect-ratio:1/1;}          /* Social Marketing → 3/row square */
+.gallery.sec-social-marketing{gap:clamp(3px,.34vw,5px);}                    /* …tighter grid (~1/3 the gap) */
+/* Production Design project cards: wide film-frame thumbnails (2.2:1), ~2 per row */
+#pdProjects{grid-template-columns:1fr;}   /* Production Design projects — one card per row */
+.tile.card{aspect-ratio:11/5;}
+.tile{display:block;position:relative;aspect-ratio:var(--ar,4/5);background:var(--tile);
+  border-radius:2px;overflow:hidden;border:2.5px solid var(--leaf-black);
+  --kx:0px;--ky:0px;--kr:0deg;                       /* random "knock" set by nav.js on hover */
+  transition:transform .4s cubic-bezier(.34,1.35,.5,1),box-shadow .4s;}
+.tile:hover{transform:translate(var(--kx),var(--ky)) rotate(var(--kr));box-shadow:0 16px 34px -22px rgba(51,44,37,.5);}
+/* clicked-tile clone that spins + shoots out of frame fast (positioned/animated by nav.js) */
+.tile.fly{transition:transform .28s cubic-bezier(.5,0,.85,.6);
+  box-shadow:0 24px 60px -24px rgba(0,0,0,.55);}
+.tile:focus-visible{outline:2px solid var(--blush);outline-offset:3px;}
+.tile:nth-child(3n+2){background:#EDE4CF;} .tile:nth-child(3n+3){background:#EFE8D6;}
+/* real images fill their tile/strip cell exactly like the placeholder does (cover) */
+.tile>img,.ps-img>img,.portrait>img,.mthumb>img,.mportrait>img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+.ph{position:absolute;inset:0;display:grid;place-items:center;}
+.ph::before{content:"";width:42%;height:42%;transform:rotate(-8deg);
+  background:color-mix(in srgb,var(--ink) 16%,transparent);
+  -webkit-mask:var(--leaf) center/contain no-repeat;mask:var(--leaf) center/contain no-repeat;}
+.ph::after{content:attr(data-object);position:absolute;left:11px;bottom:10px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--taupe);}
+.tile:nth-child(4n+1) .ph::before{transform:rotate(6deg);}
+.tile[data-motion]::before{content:"▶";position:absolute;top:10px;right:12px;font-size:10px;color:var(--taupe);}
+
+/* hover-info overlay on tiles (project cards + sub-menu tiles): revealed on hover (desktop),
+   always shown on mobile (no hover). Sits over the bottom of the image. */
+.tile-info{position:absolute;left:0;right:0;bottom:0;z-index:2;pointer-events:none;
+  padding:32px 14px 12px;display:flex;flex-direction:column;gap:3px;
+  background:linear-gradient(transparent,rgba(10,10,10,.76));color:#f3ede1;
+  opacity:0;transition:opacity .28s ease;}
+.tile:hover .tile-info,.tile:focus-visible .tile-info{opacity:1;}
+.tile-info b{font-family:var(--serif);font-weight:600;font-size:16px;line-height:1.18;}
+.tile-info .ti-meta{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#d3cbbc;}
+html.mob .tile-info{opacity:1;}
+/* a prop that's a live web page: screenshot tile that opens the working page in a new tab */
+.tile-web::after{content:"↗ page";position:absolute;top:8px;right:8px;z-index:3;pointer-events:none;
+  font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--paper);
+  background:rgba(10,10,10,.6);padding:4px 8px;border-radius:3px;}
+
+/* ---------- Filmography (grouped by year) ---------- */
+.filmo{max-width:760px;}
+.filmo-grp{display:grid;grid-template-columns:84px 1fr;gap:0 26px;padding:18px 0;border-top:1px solid var(--line);}
+.filmo-grp:last-child{border-bottom:1px solid var(--line);}
+.filmo-yr{margin:3px 0 0;font-family:var(--mono);font-weight:400;font-size:13px;letter-spacing:.12em;color:var(--taupe);}
+.filmo ul{display:flex;flex-direction:column;gap:13px;}
+.filmo li{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
+  font-family:var(--serif);font-size:17px;color:var(--ink);}
+.filmo li span{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--taupe);white-space:nowrap;}
+.filmo li a:hover{color:var(--blush);}
+
+/* ---------- Concept & Illustration masonry ---------- */
+/* JS masonry (content.js layoutCI): container is position-context, tiles absolutely placed with variable col-span */
+.masonry{position:relative;}
+.masonry .tile{position:absolute;box-sizing:border-box;margin:0;aspect-ratio:auto;overflow:hidden;}
+.masonry .tile>img{position:static;width:100%;height:100%;object-fit:cover;display:block;}
+.masonry .tile .ph{position:absolute;inset:0;height:auto;padding-bottom:0;}
+.masonry .tile[hidden]{display:none;}
+
+/* ---------- About ---------- */
+.about{max-width:1040px;}
+.about-grid{display:grid;gap:clamp(28px,4vw,54px);grid-template-columns:minmax(0,1fr);}
+@media(min-width:820px){.about-grid{grid-template-columns:280px minmax(0,1fr);}}
+.portrait{aspect-ratio:4/5;background:var(--tile);border-radius:2px;position:relative;}
+.bio p{margin:0 0 1.1em;max-width:60ch;font-size:clamp(16px,1.7vw,19px);color:var(--ink);}
+.bio p:first-child{font-family:var(--serif);font-size:clamp(21px,2.4vw,27px);line-height:1.4;}
+.bio p.lede{color:#4a4139;}
+.about-block{margin-top:clamp(36px,5vw,64px);}
+.about-block h2{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--taupe);font-weight:400;margin:0 0 18px;padding-bottom:12px;border-bottom:1px solid var(--line);}
+.credits{width:100%;border-collapse:collapse;font-size:15px;}
+.credits td{padding:13px 0;border-bottom:1px solid var(--line);vertical-align:baseline;}
+.credits .c-yr{font-family:var(--mono);font-size:12.5px;color:var(--taupe);width:60px;white-space:nowrap;}
+.credits .c-t{font-family:var(--serif);font-size:17px;color:var(--ink);}
+.credits .c-t a:hover{color:var(--blush);}
+.credits .c-r{color:var(--taupe);text-align:right;font-size:13.5px;}
+.contact{display:flex;flex-wrap:wrap;gap:10px 26px;font-family:var(--mono);font-size:13px;letter-spacing:.04em;}
+.contact a{border-bottom:1px solid var(--line);padding-bottom:2px;transition:.2s;}
+.contact a:hover{color:var(--blush);border-color:var(--blush);}
+
+/* ---------- Project page ---------- */
+.proj{max-width:880px;}
+.proj-poster{aspect-ratio:3/4;max-width:400px;background:var(--tile);border-radius:2px;position:relative;margin-bottom:34px;}
+/* project hero: FULL-BLEED horizontal strip (images keep their own aspect ratio, shared
+   height) → gallery-item. White ‹/› arrows live on the black side borders (shell-level). */
+body[data-page="project"] .view-root{padding-right:var(--pad);}     /* no side menu → symmetric pad */
+.proj-strip{position:relative;margin:0 calc(-1 * var(--pad)) 36px;overflow:hidden;}    /* span the whole content box */
+.ps-track{display:flex;gap:16px;position:relative;padding:0 clamp(52px,6vw,86px);       /* wider side gaps → room for the arrows */
+  transition:transform .45s cubic-bezier(.2,.7,.2,1);}
+/* arrows live INSIDE the strip (scroll away with it), in the side gaps — not on the border */
+.ps-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:6;border:0;cursor:var(--cur-dark-tilt);
+  width:46px;height:46px;border-radius:50%;display:grid;place-items:center;
+  font-family:var(--mono);font-size:26px;line-height:1;color:var(--ink);
+  background:color-mix(in srgb,var(--paper) 74%,transparent);backdrop-filter:blur(3px);
+  transition:background .2s,color .2s;}
+.ps-arrow:hover{background:var(--blush);color:var(--paper);}
+.ps-prev{left:8px;} .ps-next{right:8px;}
+html.mob .ps-arrow{display:none;}   /* mobile = native swipe */
+.ps-img{flex:none;height:var(--ps-h,50vh);position:relative;background:var(--tile);
+  border:2.5px solid var(--leaf-black);border-radius:2px;overflow:hidden;
+  transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s;}
+.ps-img:hover{transform:translateY(-4px);box-shadow:0 14px 30px -18px rgba(0,0,0,.5);}
+/* white arrows centered on the side borders, shown only on project pages */
+.strip-arrow{position:fixed;top:calc(var(--bt) + clamp(118px,17vh,150px));z-index:46;display:none;
+  background:none;border:0;padding:12px 10px;font-family:var(--mono);font-size:34px;line-height:1;
+  color:var(--paper);opacity:.85;transition:opacity .2s,color .2s;}
+.strip-arrow:hover{opacity:1;color:var(--blush);}
+#stripPrev{left:var(--bs);transform:translate(-100%,-50%);}
+#stripNext{right:var(--bs);transform:translate(100%,-50%);}
+/* the old shell border-arrows are retired — arrows now render inside .proj-strip (.ps-arrow) */
+.proj-title{font-family:var(--serif);font-weight:600;font-size:clamp(32px,5vw,56px);line-height:1.02;margin:0;color:var(--ink);}
+.proj-info{display:flex;flex-wrap:wrap;gap:6px 22px;margin:18px 0 0;font-family:var(--mono);
+  font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--taupe);}
+.logline{font-family:var(--serif);font-size:clamp(19px,2.2vw,24px);line-height:1.5;margin:26px 0 0;max-width:52ch;color:#443c33;}
+.stamps{display:flex;flex-wrap:wrap;gap:12px;margin:28px 0 0;}
+.stamp{width:74px;height:74px;border-radius:50%;border:1px solid var(--ink);display:grid;place-items:center;
+  text-align:center;font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink);padding:6px;line-height:1.25;}
+.social{display:flex;flex-wrap:wrap;gap:10px 22px;margin:26px 0 0;font-family:var(--mono);font-size:12px;letter-spacing:.08em;}
+.social a{border-bottom:1px solid var(--line);padding-bottom:2px;transition:.2s;}
+.social a:hover{color:var(--blush);border-color:var(--blush);}
+.block-h{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--taupe);
+  margin:0 0 16px;padding-bottom:12px;border-bottom:1px solid var(--line);}
+.diary{margin-top:clamp(36px,5vw,60px);} .diary p{max-width:60ch;margin:0 0 1.1em;color:var(--ink);}
+.creditlist{margin-top:clamp(36px,5vw,60px);}
+.creditlist dl{display:grid;grid-template-columns:150px 1fr;gap:10px 20px;margin:0;font-size:14.5px;color:var(--ink);align-items:baseline;}
+.creditlist dt{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--taupe);}
+.creditlist dd{margin:0;}
+/* "Check out next" — 3 recommended projects, one per row */
+.recommend{margin-top:clamp(44px,6vw,76px);}
+.rec-list{display:flex;flex-direction:column;gap:12px;margin-top:14px;}
+.rec{display:grid;grid-template-columns:clamp(120px,26vw,190px) 1fr;align-items:center;
+  border:1px solid var(--line);border-radius:9px;overflow:hidden;background:var(--tile);transition:border-color .2s,transform .2s;}
+.rec>img{width:100%;aspect-ratio:3/2;object-fit:cover;display:block;}
+.rec-info{display:flex;flex-direction:column;justify-content:center;padding:12px clamp(14px,3vw,22px);}
+.rec-info b{font-family:var(--serif);font-size:clamp(16px,2.4vw,20px);color:var(--ink);line-height:1.15;}
+.rec-meta{font-family:var(--mono);font-size:11px;color:var(--taupe);text-transform:uppercase;letter-spacing:.06em;margin-top:6px;}
+.rec:hover{border-color:var(--blush);transform:translateX(3px);}
+@media(max-width:560px){.creditlist dl{grid-template-columns:1fr;gap:2px 0;} .creditlist dd{margin-bottom:12px;}}
+.tabs{margin-top:clamp(36px,5vw,60px);border-top:1px solid var(--line);}
+.tab{border-bottom:1px solid var(--line);}
+.tab>summary{cursor:pointer;list-style:none;padding:20px 2px;display:flex;justify-content:space-between;
+  align-items:center;font-family:var(--serif);font-size:20px;color:var(--ink);}
+.tab>summary::-webkit-details-marker{display:none;}
+.tab>summary::after{content:"+";font-family:var(--mono);font-size:20px;color:var(--taupe);}
+.tab[open]>summary::after{content:"–";}
+.tab .tab-body{padding:6px 0 26px;overflow:hidden;transition:height .34s cubic-bezier(.4,0,.2,1);}
+
+/* ---------- gallery-item (full-black ink field, no scroll) ---------- */
+body[data-page="gallery"] #mount{overflow:hidden;}
+.item{position:absolute;inset:0;display:grid;grid-template-rows:auto 1fr auto;color:#e9e4da;}
+.item-bar{display:flex;justify-content:space-between;align-items:center;padding:20px var(--pad);
+  font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#9a9285;}
+.item-bar a{color:#d4cbbb;cursor:pointer;} .item-bar a:hover{color:var(--blush);}
+.item-stage{position:relative;display:grid;place-items:center;padding:6px var(--pad);min-height:0;}
+.item-media{max-width:min(82vw,900px);max-height:100%;aspect-ratio:4/5;width:auto;height:100%;
+  background:#141414;border-radius:2px;position:relative;}
+.item-media .ph::before{background:rgba(233,228,218,.16);}
+.item-media .ph::after{color:#9a9285;}
+/* a REAL image in the viewer: shown whole (contain), centred, fit to screen — not cropped */
+.item-media:has(img){width:auto;height:auto;max-width:none;max-height:none;aspect-ratio:auto;background:none;}
+.item-media img{display:block;width:auto;height:auto;max-width:min(92vw,1200px);max-height:76vh;object-fit:contain;}
+.item-cap{padding:14px var(--pad) 26px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:#9a9285;text-align:center;}
+/* web-page asset in the viewer: screenshot on the left, description + live-page link on the right */
+.item-stage.is-page{grid-template-columns:auto minmax(240px,340px);justify-content:center;align-items:center;gap:clamp(24px,4vw,56px);}
+.item-stage.is-page .item-media img{max-width:min(54vw,720px);max-height:72vh;}
+.item-text{max-width:340px;text-align:left;}
+.item-desc{font-size:14.5px;line-height:1.62;margin:0 0 18px;color:#cfc6b6;}
+.item-pagelink{display:inline-block;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--paper);border:1px solid #6b6156;border-radius:7px;padding:9px 16px;text-decoration:none;transition:border-color .2s,background .2s,color .2s;}
+.item-pagelink:hover{background:var(--blush);border-color:var(--blush);color:#3a2b2b;}
+@media(max-width:760px){.item-stage.is-page{grid-template-columns:1fr;gap:16px;}
+  .item-text{max-width:min(90vw,420px);margin:0 auto;text-align:center;} .item-stage.is-page .item-media img{max-height:50vh;}}
+.item-cap b{color:#e9e4da;font-weight:500;}
+/* paging between items fades ONLY the media + its caption; bar/arrows stay put */
+.item-media,.item-cap{transition:opacity .22s ease;}
+.item.paging .item-media,.item.paging .item-cap{opacity:0;}
+.item-arrow{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;
+  display:grid;place-items:center;font-family:var(--mono);font-size:22px;color:#d4cbbb;
+  border:1px solid rgba(233,228,218,.24);user-select:none;
+  transition:background .45s ease,color .45s ease,border-color .45s ease,transform .2s;}
+.item-arrow:hover{color:var(--blush);border-color:var(--blush);}
+/* on click: snap to a pink circle with a black arrow, then fade back */
+.item-arrow.flash{background:var(--blush);border-color:var(--blush);color:#141414;transition:none;}
+.item-prev{left:clamp(10px,3vw,40px);} .item-next{right:clamp(10px,3vw,40px);}
+.item-arrow.item-next:hover{transform:translateY(-50%) translateX(4px);}
+.item-arrow.item-prev:hover{transform:translateY(-50%) translateX(-4px);}
+
+:focus-visible{outline:2px solid var(--blush);outline-offset:3px;}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+
+/* ============================================================
+   MOBILE  (html.mob — set by index.html matchMedia / mobile.js;
+   also iPad-ish landscape, aspect ≤ 1.4)
+   index.html = a vertical SWIPE HOME on a static white-leaf field
+   (reached by the black leaf landing → tap → blow). Every section
+   is its own standalone scrolling subpage (built by mobile.js).
+   Desktop is untouched.
+   ============================================================ */
+html.mob, html.mob *{cursor:auto !important;}
+/* keep the leaf-canvas LANDING (#stage/#icon/#hint) on mobile; hide the rest of the desktop shell */
+html.mob #logo, html.mob .home-menu, html.mob .frame, html.mob #returnBtn, html.mob .strip-arrow,
+html.mob #pageTitle, html.mob #sideMenu, html.mob #curtain, html.mob #mount, html.mob #footer, html.mob #copyright{display:none !important;}
+
+/* ================= swipe home (revealed after the leaf-blow: body.m-entered) ================= */
+#mHome{display:none;}
+html.mob #mHome{position:fixed;inset:0;z-index:50;background:transparent;   /* the pale leaf field shows through */
+  overflow-y:scroll;scroll-snap-type:y mandatory;-webkit-overflow-scrolling:touch;pointer-events:none;}
+/* revealed instantly with the crossfade — the dark-ink logo is hidden on the black, shown on the white */
+html.mob body.m-entered #mHome{display:block;pointer-events:auto;}
+html.mob #mHome::-webkit-scrollbar{width:0;height:0;}
+/* top + bottom black border that comes in on the section cards */
+html.mob #mHome::before, html.mob #mHome::after{content:"";position:fixed;left:0;right:0;height:0;
+  background:var(--leaf-black);z-index:52;pointer-events:none;transition:height .5s cubic-bezier(.16,1,.3,1);}
+html.mob #mHome::before{top:0;} html.mob #mHome::after{bottom:0;}
+html.mob #mHome.framed::before, html.mob #mHome.framed::after{height:6vh;}
+
+.mslide{scroll-snap-align:start;scroll-snap-stop:always;
+  min-height:100vh;min-height:100svh;height:100vh;height:100svh;position:relative;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:calc(env(safe-area-inset-top) + 7vh) 0 calc(env(safe-area-inset-bottom) + 7vh);}
+/* cover: 默默 logo + swipe cue */
+.mcover .mlogo{width:min(58vw,320px);height:auto;display:block;}
+.mswipe{position:absolute;left:0;right:0;bottom:calc(env(safe-area-inset-bottom) + 5vh);text-align:center;
+  font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--taupe);}
+.mswipe .mchev{display:block;font-size:18px;line-height:1;margin-bottom:4px;animation:mbounce 1.9s ease-in-out infinite;}
+@keyframes mbounce{0%,100%{transform:translateY(3px);opacity:.45;}50%{transform:translateY(-4px);opacity:1;}}
+
+/* up/down nav arrows (sit in the black border zones on cards) */
+.mnav{position:absolute;left:50%;transform:translateX(-50%);background:none;border:0;z-index:54;
+  font-family:var(--mono);font-size:19px;line-height:1;color:var(--paper);padding:9px 24px;}
+.mnav-up{top:calc(env(safe-area-inset-top) + 1.3vh);}
+.mnav-down{bottom:calc(env(safe-area-inset-bottom) + 1.3vh);}
+.mnav:active{color:var(--blush);}
+
+/* card: title · full-bleed 16:9 image · passage · see-more button, staged in when active */
+.mcard{gap:clamp(7px,1.4vh,13px);}   /* tight → title sits close to the image, button not pushed low */
+.mcard .mcard-title,.mcard .mthumb,.mcard .mcard-note,.mcard .mmore{opacity:0;transform:translateY(16px);
+  transition:opacity .55s ease, transform .55s ease;}
+.mcard.active .mcard-title{opacity:1;transform:none;transition-delay:.4s;}                 /* title 0.4s after swipe-in */
+.mcard.active .mthumb,.mcard.active .mcard-note,.mcard.active .mmore{opacity:1;transform:none;transition-delay:.7s;} /* rest 0.3s after title */
+/* title fills the frame width with just a small gap either side; JS sets a cropped aspect-ratio
+   on the img (blank below the mark removed) and object-fit:cover keeps the mark, tight. */
+.mcard-title{margin:0;width:100%;max-width:none;padding:0 clamp(14px,4.5vw,32px);overflow:hidden;}
+.mcard-title img{width:100%;height:auto;display:block;object-fit:cover;object-position:top center;}
+/* full-bleed 16:9 image, flush to the screen's left + right edges */
+.mthumb{display:block;width:100%;aspect-ratio:16/9;background:var(--tile);position:relative;overflow:hidden;
+  border-top:2px solid var(--leaf-black);border-bottom:2px solid var(--leaf-black);}
+.mthumb:active{opacity:.9;}
+.mcard-note{margin:0;padding:0 var(--pad);max-width:min(90vw,560px);text-align:center;
+  font-family:var(--sans);font-size:14.5px;line-height:1.5;color:#4a4139;}
+/* see more → a button */
+.mmore{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);
+  border:1.5px solid var(--ink);border-radius:999px;padding:11px 28px;background:transparent;}
+.mmore:active{background:var(--blush);border-color:var(--blush);color:var(--paper);}
+.mreadmore{position:absolute;bottom:calc(env(safe-area-inset-bottom) + 1.2vh);left:50%;transform:translateX(-50%);
+  z-index:54;background:none;border:0;display:flex;flex-direction:column-reverse;align-items:center;gap:2px;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--paper);}
+.mreadmore .mchev-d{font-size:15px;animation:mbounce 1.9s ease-in-out infinite;}
+
+/* About: title → portrait → bio grouped at the top of one tall section (free-scrolls under mandatory snap) */
+html.mob .mabout-card{justify-content:flex-start;align-items:center;height:auto;min-height:100vh;
+  padding:calc(env(safe-area-inset-top) + 8vh) var(--pad) 9vh;gap:clamp(16px,2.6vh,26px);}
+html.mob .mabout-title{width:100%;max-width:none;padding:0;overflow:hidden;}
+html.mob .mabout-title img{width:100%;height:auto;display:block;object-fit:cover;object-position:top center;}
+html.mob .mabout-body{width:100%;max-width:560px;margin:0 auto;}
+html.mob .mabout-body .mportrait{width:min(64vw,290px);aspect-ratio:4/5;margin:0 auto clamp(18px,3vh,30px);
+  position:relative;overflow:hidden;background:var(--tile);border:2.5px solid var(--leaf-black);border-radius:2px;}
+html.mob .mabout-body .bio p{margin:0 0 1.1em;font-size:16px;line-height:1.6;color:var(--ink);}
+html.mob .mabout-body .bio p:first-child{font-family:var(--serif);font-size:20px;line-height:1.4;}
+html.mob .mabout-body .bio p.lede{color:#4a4139;}
+html.mob .mabout-body .about-block{margin-top:clamp(28px,5vh,50px);}
+
+/* footer (on the home AND every subpage) — black bar, cross-nav */
+.mfoot{scroll-snap-align:start;background:var(--leaf-black);color:rgba(250,244,234,.82);
+  padding:calc(6vh) var(--pad) calc(env(safe-area-inset-bottom) + 5vh);}
+.mfoot-nav{display:flex;flex-direction:column;gap:14px;margin-bottom:26px;}
+.mfoot-nav a{font-family:var(--mono);font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(250,244,234,.86);}
+.mfoot-nav a:active{color:var(--blush);}
+.mfoot-cr{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(250,244,234,.45);}
+
+/* ================= standalone subpage (mobile.js) ================= */
+html.mob body.m-sub{background:var(--paper);-webkit-overflow-scrolling:touch;}
+/* sticky sub-nav row (PD/Design) — WRAPS to keep every item in frame; NO back arrow */
+html.mob .m-subnav{position:sticky;top:0;z-index:30;background:var(--paper);border-bottom:1px solid var(--line);
+  padding:calc(env(safe-area-inset-top) + 9px) var(--pad) 9px;}
+html.mob .m-subnav .submenu{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:7px 16px;padding:0;max-width:none;margin:0;}
+html.mob .m-subnav .submenu button{all:unset;font-family:var(--mono);font-weight:700;font-size:11.5px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--taupe);white-space:nowrap;padding:3px 2px;border-bottom:2px solid transparent;}
+html.mob .m-subnav .submenu button br{display:none;}
+html.mob .m-subnav .submenu button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--blush);}
+
+html.mob body.m-sub .view-root{min-height:0;padding:16px var(--pad) 40px;}
+html.mob .m-banner{margin:4px 0 clamp(16px,3.4vh,28px);}
+html.mob .m-btitle{display:block;width:100%;background:var(--ink);aspect-ratio:5/3;
+  -webkit-mask:var(--ti) left top/100% auto no-repeat;mask:var(--ti) left top/100% auto no-repeat;}
+/* every gallery is ONE per row on the small screen (bigger images) */
+html.mob body.m-sub .gallery{grid-template-columns:1fr;}
+html.mob body.m-sub .masonry{columns:1;}
+
+/* project subpage: full-width swipe carousel */
+html.mob body.m-sub .proj-strip{margin:0 calc(-1 * var(--pad)) 26px;overflow-x:auto;overflow-y:hidden;
+  scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;}
+html.mob body.m-sub .proj-strip::-webkit-scrollbar{height:0;width:0;}
+html.mob body.m-sub .ps-track{padding:0 var(--pad);gap:12px;}
+html.mob body.m-sub .ps-img{height:min(46vh,64vw);scroll-snap-align:center;}
+html.mob body.m-sub .proj{max-width:none;}
+
+/* gallery-item subpage: full-screen black viewer, swipe to page */
+html.mob body.m-sub[data-page="gallery"]{overflow:hidden;background:#0a0a0a;}
+html.mob body.m-sub[data-page="gallery"] .view-root{padding:0;}
+html.mob body.m-sub[data-page="gallery"] .item{position:fixed;inset:0;}
+html.mob .item-media{width:min(92vw,64vh);height:auto;max-width:none;max-height:none;}
+html.mob .item-media:has(img){width:auto;}
+html.mob .item-media img{max-width:94vw;max-height:70vh;}
+html.mob .item-arrow{width:44px;height:44px;font-size:20px;}
+html.mob .item-bar{padding:calc(env(safe-area-inset-top) + 16px) 16px 12px;}
+html.mob .item-cap{padding:12px 16px calc(env(safe-area-inset-bottom) + 20px);}

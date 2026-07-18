@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07/12 Version 01</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Michroma&family=Tektur:wght@400..900&family=VT323&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div class="full-container">
+        <div id="browser-bar">
+            <div id="browser-title">🧬 GeneSnip ©</div>
+            <div class="browser-button">_</div>
+            <div class="browser-button">❐</div>
+            <div class="browser-button">X</div>
+        </div>
+        <div class="top-bar lay">
+            <div class="menu-item">File</div>
+            <div class="menu-item">Edit</div>
+            <div class="menu-item">Sequence</div>
+            <div class="menu-item">Data</div>
+            <div class="menu-item">Tools</div>
+            <div class="menu-item">Help</div>
+            <div id="account">LEE, DO-HEE</div>
+            <div id="sign-out">Sign Out</div>
+        </div>
+        <div class="content lay">
+            <div class="left-column">
+                <div id="browser-bar">
+                    <div class="sub-browser">Patient Information</div>
+                </div>
+                <div class="left-panel lay">
+                    <div id="patient-info-container">
+                        <div class="photo-container lay">
+                            <img src="asset/mia.png" class="profile-picture">
+                        </div>
+                        <div class="patient-info-box lay">
+                            <table id="patient-info">
+                                <tr>
+                                    <td colspan="2"><strong>PATIENT NUMBER:</strong></td>
+                                    <td colspan="2">KR-HOSP-456789</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><strong>PATIENT NAME</strong></td>
+                                    <td colspan="2">KWON, MIA</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>D.O.B.:</strong></td>
+                                    <td>03/17/1997</td>
+                                    <td><strong>AGE:</strong></td>
+                                    <td>8 years</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>GENDER:</strong></td>
+                                    <td>Female</td>
+                                    <td><strong>BLOOD:</strong></td>
+                                    <td>A+</td>
+                                <tr>
+                                    <td><strong>HEIGHT:</strong></td>
+                                    <td>122 cm</td>
+                                    <td><strong>WEIGHT:</strong></td>
+                                    <td>25 kg</td>
+                                </tr>
+                                <tr></tr>
+                                <tr>
+                                    <td><strong>CURRENT MEDICATION</strong></td>
+                                    <td colspan="3">Acetaminophen (pain), Albuterol (asthma), Cefazolin (infection
+                                        prevention),
+                                        Tacrolimus (stem cell therapy)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>DATE OF HOSPITALIZATION</strong></td>
+                                    <td colspan="3">9/29/2004</td>
+                                </tr>
+                                <tr>
+
+                                </tr>
+
+                                <tr>
+                                    <td><strong>EMERGENCY CONTACT</strong></td>
+                                    <td colspan="3">Young-Ro Kwon (Father)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>EMRGENCY PHONE</strong></td>
+                                    <td colspan="3">010-1234-5678</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>RESEARCH SUPERVISOR</strong></td>
+                                    <td colspan="3">Dr. Park Ho-won</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>PRIMARY PHYSICIAN</strong></td>
+                                    <td colspan="3">Dr. Kim Min-Jae</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>REFERENCING SPECIALIST</strong></td>
+                                    <td colspan="3">Dr. Lee Soo-Young (Pediatrician)</td>
+                                </tr>
+                                <tr></tr>
+                                <tr>
+                                    <td><strong>INSURANCE PROVIDER</strong></td>
+                                    <td colspan="3">National Health Insurance Service (NHIS)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>INSURER ID</strong></td>
+                                    <td colspan="3">NHIS-789012345</td>
+                                </tr>
+                                <tr>
+
+                                </tr>
+                                <tr>
+                                    <td><strong>PRIMARY PHYSICIAN</strong></td>
+                                    <td colspan="3">Dr. Kim Min-Jae</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>REFERENCING SPECIALIST</strong></td>
+                                    <td colspan="3">Dr. Lee Soo-Young (Pediatrician)</td>
+                                </tr>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="middle-column lay">
+                <div class="diagram-tabs">
+                    <div class="tabs">
+                        <p class="tab-font">ℹ Segment Details</p>
+                        <!-- <p class="tab-exit">x</p> -->
+                    </div>
+                    <div class="tabs-selected">
+                        <p class="tab-font">📝 Sequence Tool</p>
+                        <!-- <p class="tab-exit">x</p> -->
+                    </div>
+                    <div class="tabs">
+                        <p class="tab-font">📁 Log</p>
+                        <!-- <p class="tab-exit">x</p> -->
+                    </div>
+                </div>
+                <div class="dna-panel">
+                    <div class="diagram-info">
+                        <div class="cp-section-outer">
+                            <div class="section-title">
+                                <div class="section-title-text">Nucleotide Info</div>
+                            </div>
+                            <div class="cp-section-inner">
+                                <table id="control-panel">
+                                    <tbody id="data-edit">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="popup-greyout" class="popup">
+                            <label for="g-nucleotide">QUERY NUCLEOTIDE</label>
+                            <input id="g-nucleotide" type="text" disabled>
+                            </input>
+                            <br />
+                            <label for="edit-note">NOTE</label>
+                            <input id="edit-note" type="text" disabled></input>
+                            <div class="popup-buttons">
+                                <button></button>
+                                <button></button>
+                            </div>
+                        </div>
+                        <div id="editPopup" class="popup">
+                            <label for="nucleotideSelect">QUERY NUCLEOTIDE</label>
+                            <input id="nucleotideSelect" type="text">
+                            </input>
+                            <br />
+                            <label for="edit-note">NOTE</label>
+                            <input id="edit-note" type="text"></input>
+                            <div class="popup-buttons">
+                                <button id="cancelButton">CANCEL</button>
+                                <button id="submitButton">SUBMIT</button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="diagram-outer-frame">
+                        <div class="section-title">
+                            <div class="section-title-text">Sequence Match</div>
+                        </div>
+                        <div class="diagram-inner-frame">
+                            <div class="dna-diagram-container lay">
+                                <table class="diagram">
+                                    <thead>
+                                        <tr>
+                                            <th class="dia-c1">
+                                                <div class="mismatch-holder">⚠</div>
+                                            </th>
+                                            <th class="dia-c2">CODE</th>
+                                            <th colspan="1" class="nucleotide-label">REFERENCE</th>
+                                            <th colspan="1" class="nucleotide-label">QUERY</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                                <div class="diagram-tb-container scroll">
+                                    <table class="diagram">
+                                        <tbody id="tableBody" class="scroll"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="dia-scrollBar">
+                                <div class="dia-scrollButton-top"> ▲</div>
+                                <div id="dia-scrollThumb-container">
+                                    <div class="dia-scrollThumb"></div>
+                                </div>
+                                <div class="dia-scrollButton-bottom"> ▼</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="browser-bar">
+                    <div class="sub-browser">Chromatograph</div>
+                </div>
+                <div class="sequence-info-container lay">
+                    <canvas id="chromatogram-holder"></canvas>
+                </div>
+            </div>
+            <div class="right-column lay">
+                <table class="sequence-info">
+                    <tbody>
+                        <tr>
+                            <td class="si-item">GENE NAME: </td>
+                            <td class="si-input">MYOGENIC DIFFERENTIATION 1 (MYOD1)</td>
+                        </tr>
+                        <tr>
+                            <td class="si-item">LOCATION: </td>
+                            <td class="si-input">11p15.1 (GRCh38)</td>
+                        </tr>
+                        <tr>
+                            <td class="si-item">SEQUENCE REGION: </td>
+                            <td class="si-input">EXON 1 bHLH DNA-BINDING DOMAIN (c.1-c.300).</td>
+                        </tr>
+                        <tr>
+                            <td class="si-item">SEQUENCE STATUS: </td>
+                            <td class="si-input">MISMATCHED</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="dna-control-container lay">
+                    <table class="sequence-info">
+                        <tbody>
+                            <tr>
+                                <td class="si-item">Hamming Distance: </td>
+                                <td class="si-input" id="hd"></td>
+                            </tr>
+                            <tr>
+                                <td class="si-item">Error Rate: </td>
+                                <td class="si-input" id="er"></td>
+                            </tr>
+                            <tr>
+                                <td class="si-item">Percent Identity: </td>
+                                <td class="si-input" id="pi"></td>
+                            </tr>
+                            <tr>
+                                <td class="si-item">Error Margin: </td>
+                                <td class="si-input" id="em"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="diagnosis">
+                    <div class="diagnosis-outer-frame">
+                        <div class="section-title">
+                            <div class="section-title-text">Diagnosis</div>
+                        </div>
+                        <div class="diagnosis-inner-frame">
+                            <table class="sequence-info">
+                                <tbody>
+                                    <tr>
+                                        <td class="diag-item">POSITION: </td>
+                                        <td class="diag-input" id="diag-pos"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="diag-item">REFERENCE: </td>
+                                        <td class="diag-input" id="diag-r"></td>
+                                        <td class="diag-gap"></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td class="diag-item">QUERY: </td>
+                                        <td class="diag-input" id="diag-q"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="diag-item">ERROR: </td>
+                                        <td class="diag-input" id="pe"></td>
+
+                                    </tr>
+                                    <tr class="diag-tallRow">
+                                        <td class="diag-item">STATUS: </td>
+                                        <td colspan="4" class="diag-input" id="diag-status"></td>
+                                        <!-- <td class="diag-gap" id="status-issue"></td> -->
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <canvas class="diagnosis-visual" id="selected-chromatogram">
+                            </canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="warning">
+        <div id="warning-innerframe" class="lighten-effect">
+            <div id="browser-bar" class="">
+                <div id="browser-title"></div>
+            </div>
+            <h1>⚠ WARNING ⚠</h1><br />
+            Manual Modification Alert<br />
+            <br />
+            Manual data edit may falsify results and violate protocols.
+            <br />
+            Do you still want to proceed with the edit?
+            <br />
+            <br />
+
+            <button id="warningCancel">CANCEL</button>
+            <button id="confirmButton">CONFIRM</button>
+        </div>
+    </div>
+
+
+    <script src="js/12.1.js"></script>
+    <script src="js/sequence-data.js"></script>
+    <script src="js/chromatogram.js"></script>
+</body>
+
+</html>
