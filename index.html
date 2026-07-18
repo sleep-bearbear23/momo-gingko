@@ -78,7 +78,7 @@
   <div id="logo"><img src="logo.png" alt="默默 GINGKO"/></div>
   <nav id="homeTop" class="home-menu"><a href="production-design.html">Production Design</a><a href="concept-illustration.html">Concept &amp; Illustration</a><a href="design.html">Design</a></nav>
   <nav id="homeBottom" class="home-menu"><a href="about.html">About Me</a></nav>
-  <nav id="homeLeft" class="home-menu home-menu-l"><a href="#" data-social="instagram">Instagram</a><a href="#" data-social="linkedin">LinkedIn</a></nav>
+  <nav id="homeLeft" class="home-menu home-menu-l"><!-- socials hidden for now: <a href="#" data-social="instagram">Instagram</a><a href="#" data-social="linkedin">LinkedIn</a> --></nav>
   <div id="icon"></div>
   <div id="hint">click</div>
 
@@ -132,11 +132,12 @@
     <section class="mslide mabout-card" id="mAbout" data-card>
       <h2 class="mcard-title mabout-title"><img src="title-about.png" alt="About"/></h2>
       <div class="mabout-body">
-        <div class="mportrait"><span class="ph" data-object="portrait"></span></div>
+        <div class="mportrait"><img src="assets/about/portrait.jpg" srcset="assets/about/portrait-thumb.jpg 506w, assets/about/portrait.jpg 900w" sizes="60vw" alt="Momo Chuang"></div>
         <div class="bio">
-          <p>Momo Chuang (默默) is an art director and production designer based in Los Angeles, building visual worlds for film, vertical drama, music video, and commercial work.</p>
-          <p class="lede">She moves between the drawing table and the set — concept and elevation through prop, set dressing, and what finally reads on camera. Her work leans toward classical Chinese, wuxia, and xianxia world-building, and toward objects: the single prop that tells you where you are.</p>
-          <p class="lede">She studied Media Arts + Practice at USC's School of Cinematic Arts, and works across Mandarin, English, and Taiwanese.</p>
+          <p>Hey, I’m Momo — an art director and production designer based in Los Angeles, working across vertical film, music video, and commercial shoots. I’ve worked both as a lead designer and as someone’s right-hand art director, bringing visions to life on set.</p>
+          <p class="lede">What sets my approach apart is how I feel a space first — its mood, its emotional pull — and then translate that into a clear, logical structure: budgets, timelines, build plans, and crew flow. I’ve never been able to separate the two.</p>
+          <p class="lede">I started with drawing, both traditional and digital, long before I ever touched a film set. That foundation still shapes how I work — I sketch or visualize ideas quickly so everyone can see them clearly. These days I’m especially excited about weaving new AI tools into my process to test directions fast, refine the feeling, and make smarter decisions before anything gets built.</p>
+          <p class="lede">Originally from Taiwan and now rooted in LA, I love blending that sensitivity with practical execution. If you’re looking for someone who can hold the heart of a project and the plan in the same breath, I’d love to create with you.</p>
         </div>
         <div class="about-block">
           <h2>Selected Credits</h2>
@@ -151,7 +152,6 @@
           <h2>Contact</h2>
           <div class="contact">
             <a href="mailto:[email]">[email]</a>
-            <a href="#">Instagram</a>
             <a href="#">Vimeo</a>
             <a href="#">Résumé (PDF)</a>
           </div>
@@ -439,7 +439,7 @@
       else if(y<selMin){ selMin=y; selMax=y+RANGE; }
       curHot=Math.min(3,Math.max(0,((y-selMin)/INC)|0));
       showMenu();
-    } else if(activated && x<W*LZONE){
+    } else if(activated && x<W*LZONE && leftItems.length){
       if(y>lSelMax){ lSelMax=y; lSelMin=y-LRANGE; }
       else if(y<lSelMin){ lSelMin=y; lSelMax=y+LRANGE; }
       leftHot=Math.min(1,Math.max(0,((y-lSelMin)/LINC)|0));
