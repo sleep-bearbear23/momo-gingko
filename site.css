@@ -208,6 +208,11 @@ html.mob .tile-info{opacity:1;}
 .filmo li span{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;
   color:var(--taupe);white-space:nowrap;}
 .filmo li a:hover{color:var(--blush);}
+@media(max-width:560px){          /* phones: year above its list, role under each title */
+  .filmo-grp{grid-template-columns:1fr;gap:12px;}
+  .filmo li{flex-direction:column;align-items:flex-start;gap:3px;}
+  .filmo li span{white-space:normal;}
+}
 
 /* ---------- Concept & Illustration masonry ---------- */
 /* JS masonry (content.js layoutCI): container is position-context, tiles absolutely placed with variable col-span */
@@ -234,6 +239,22 @@ html.mob .tile-info{opacity:1;}
 .credits .c-t{font-family:var(--serif);font-size:17px;color:var(--ink);}
 .credits .c-t a:hover{color:var(--blush);}
 .credits .c-r{color:var(--taupe);text-align:right;font-size:13.5px;}
+.positioning{margin:0 0 1.2em;max-width:60ch;font-family:var(--mono);font-size:12.5px;line-height:1.7;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--ink);}
+/* illustration strip (inside the bio, after the paragraph about drawing) — horizontal swipe row */
+.illo{margin:.4em 0 1.8em;}
+.illo-strip{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px;}
+.illo-strip::-webkit-scrollbar{height:0;}
+.illo-strip .tile{flex:0 0 auto;height:clamp(150px,20vw,220px);aspect-ratio:var(--ar);scroll-snap-align:start;}
+.illo-more{display:inline-block;margin-top:10px;font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;
+  text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:2px;}
+.illo-more:hover{color:var(--blush);border-color:var(--blush);}
+/* About filmography: collapsed to the latest year until "Show full filmography" */
+.filmo:not(.open) .filmo-x{display:none;}
+.filmo:not(.open) .filmo-grp:not(.filmo-x){border-bottom:1px solid var(--line);}
+.filmo-toggle{all:unset;display:inline-block;margin-top:18px;font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink);border:1.5px solid var(--ink);border-radius:999px;padding:10px 22px;transition:.2s;}
+.filmo-toggle:hover,.filmo-toggle:active{background:var(--blush);border-color:var(--blush);color:var(--paper);}
 .contact{display:flex;flex-wrap:wrap;gap:10px 26px;font-family:var(--mono);font-size:13px;letter-spacing:.04em;}
 .contact a{border-bottom:1px solid var(--line);padding-bottom:2px;transition:.2s;}
 .contact a:hover{color:var(--blush);border-color:var(--blush);}
@@ -395,10 +416,21 @@ html.mob #mHome.framed::before, html.mob #mHome.framed::after{height:6vh;}
 
 /* card: title · full-bleed 16:9 image · passage · see-more button, staged in when active */
 .mcard{gap:clamp(7px,1.4vh,13px);}   /* tight → title sits close to the image, button not pushed low */
-.mcard .mcard-title,.mcard .mthumb,.mcard .mcard-note,.mcard .mmore{opacity:0;transform:translateY(16px);
+.mcard .mcard-title,.mcard .mthumb,.mcard .mcard-meta,.mcard .mcard-note,.mcard .mmore,.mcard .mgfx{opacity:0;transform:translateY(16px);
   transition:opacity .55s ease, transform .55s ease;}
 .mcard.active .mcard-title{opacity:1;transform:none;transition-delay:.4s;}                 /* title 0.4s after swipe-in */
-.mcard.active .mthumb,.mcard.active .mcard-note,.mcard.active .mmore{opacity:1;transform:none;transition-delay:.7s;} /* rest 0.3s after title */
+.mcard.active .mthumb,.mcard.active .mcard-meta,.mcard.active .mcard-note,.mcard.active .mmore,.mcard.active .mgfx{opacity:1;transform:none;transition-delay:.7s;} /* rest 0.3s after title */
+/* featured project card: serif text title (until a hand-drawn homeTitleImg exists) + mono role · year */
+.mcard-title.mcard-name{font-family:var(--serif);font-weight:600;font-size:clamp(30px,9vw,46px);line-height:1.05;
+  letter-spacing:-.01em;text-align:center;color:var(--ink);overflow:visible;}
+.mcard-meta{margin:0;padding:0 var(--pad);text-align:center;font-family:var(--mono);font-size:10.5px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--taupe);}
+/* graphics highlight card: a horizontal swipe strip of objects */
+.mgfx{display:flex;gap:10px;width:100%;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px var(--pad);box-sizing:border-box;}
+.mgfx::-webkit-scrollbar{height:0;}
+.mgfx-it{flex:0 0 auto;height:min(44vh,300px);position:relative;overflow:hidden;background:var(--tile);
+  border:2px solid var(--leaf-black);scroll-snap-align:center;}
+.mgfx-it>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
 /* title fills the frame width with just a small gap either side; JS sets a cropped aspect-ratio
    on the img (blank below the mark removed) and object-fit:cover keeps the mark, tight. */
 .mcard-title{margin:0;width:100%;max-width:none;padding:0 clamp(14px,4.5vw,32px);overflow:hidden;}

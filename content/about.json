@@ -1,0 +1,28 @@
+{
+  "_note": "Single source for about.html AND the inline About on the mobile home (GKcontent.renderAbout). Empty strings / nulls are not rendered: positioning, illustrations, illustrationMore.url and each contact link appear only once filled. illustrationsAfter = the bio paragraph (1-based) the illustration strip follows.",
+  "positioning": "",
+  "bio": [
+    "Hey, I’m Momo — an art director and production designer based in Los Angeles, working across vertical film, music video, and commercial shoots. I’ve worked both as a lead designer and as someone’s right-hand art director, bringing visions to life on set.",
+    "What sets my approach apart is how I feel a space first — its mood, its emotional pull — and then translate that into a clear, logical structure: budgets, timelines, build plans, and crew flow. I’ve never been able to separate the two.",
+    "I started with drawing, both traditional and digital, long before I ever touched a film set. That foundation still shapes how I work — I sketch or visualize ideas quickly so everyone can see them clearly. These days I’m especially excited about weaving new AI tools into my process to test directions fast, refine the feeling, and make smarter decisions before anything gets built.",
+    "Originally from Taiwan and now rooted in LA, I love blending that sensitivity with practical execution. If you’re looking for someone who can hold the heart of a project and the plan in the same breath, I’d love to create with you."
+  ],
+  "portrait": {
+    "src": "assets/about/portrait.jpg",
+    "thumb": "assets/about/portrait-thumb.jpg",
+    "alt": "Momo Chuang"
+  },
+  "illustrationsAfter": 3,
+  "illustrations": [],
+  "illustrationMore": {
+    "label": "See more on Instagram",
+    "url": ""
+  },
+  "contact": {
+    "email": "",
+    "vimeo": null,
+    "resume": null,
+    "instagram": null,
+    "linkedin": null
+  }
+}

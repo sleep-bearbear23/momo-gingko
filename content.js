@@ -26,6 +26,9 @@
   }
   // newest-first by year then month (both strings like "2025" / "02")
   const byYM = (a,b) => String(b.year||'').localeCompare(String(a.year||'')) || String(b.month||'').localeCompare(String(a.month||''));
+  // featured projects first (1, 2, 3…), then everything else by byYM
+  const isFeat = p => Number.isFinite(p.featured) && p.featured > 0;
+  const byFeatured = (a,b) => (isFeat(b)-isFeat(a)) || (isFeat(a) ? a.featured-b.featured : byYM(a,b));
   // credit ordering: Artist (music video — top) → Director → Producer → Art department (Production Designer
   // above Art Director) → Costume (below the art dept) → everyone else. Stable within a rank (keeps entered order).
   const CREDIT_RANK = r => { const s=String(r||'').toLowerCase().trim();
@@ -57,15 +60,16 @@
         if(s) el.innerHTML = '<img src="'+esc(s)+'" alt=""'+(t.pos?' style="object-position:'+esc(t.pos)+'"':'')+'>';
       });
     },
-    // Production Design → the Projects cards grid
+    // Production Design → the project list: featured first (by `featured`), then the rest newest-first
     async renderProjectCards(el){
       if(!el) return;
       const d = await load('content/projects.json');
-      el.innerHTML = (d.projects||[]).slice().sort(byYM).map(p =>
+      el.innerHTML = (d.projects||[]).slice().sort(byFeatured).map(p =>
         '<a class="tile card" href="project.html?slug='+esc(p.slug)+'">'+
           cell(p.cover, true)+
           '<span class="tile-info"><b>'+esc(p.title)+'</b>'+
-          '<span class="ti-meta">'+esc(p.type||'')+(p.year?' · '+esc(p.year):'')+'</span></span></a>'
+          (p.role?'<span class="ti-meta">'+esc(p.role)+'</span>':'')+
+          '<span class="ti-meta">'+[p.format,p.year].filter(Boolean).map(esc).join(' · ')+'</span></span></a>'
       ).join('');
     },
     // a single project page
@@ -211,7 +215,8 @@
       el.style.height=(y>gap? y-gap : rowH)+'px';
     },
     // Filmography: published projects (auto) + standalone entries, grouped by year (newest), ordered by month.
-    async renderFilmography(el){
+    // opts.collapse → only the most recent year shows, plus a "Show full filmography (N)" toggle (About page).
+    async renderFilmography(el, opts){
       if(!el) return;
       const [p, f] = await Promise.all([load('content/projects.json'), load('content/filmography.json')]);
       const rows = [];
@@ -219,12 +224,97 @@
       (f.entries||[]).forEach(e => rows.push({ title:e.title, role:e.role, year:e.year, month:e.month||'', slug:null }));
       const years = {}; rows.forEach(r => (years[r.year||'—'] = years[r.year||'—'] || []).push(r));
       const order = Object.keys(years).sort((a,b)=> String(b).localeCompare(String(a)));
-      el.innerHTML = order.map(y => {
+      const collapse = !!(opts && opts.collapse) && order.length > 1;
+      el.innerHTML = order.map((y,gi) => {
         const list = years[y].sort((a,b)=> String(b.month||'').localeCompare(String(a.month||'')));
-        return '<section class="filmo-grp"><h3 class="filmo-yr">'+esc(y)+'</h3><ul>'+
+        return '<section class="filmo-grp'+(collapse && gi>0 ? ' filmo-x' : '')+'"><h3 class="filmo-yr">'+esc(y)+'</h3><ul>'+
           list.map(r => '<li>'+(r.slug ? '<a href="project.html?slug='+esc(r.slug)+'">'+esc(r.title)+'</a>' : esc(r.title))+
             '<span>'+esc(r.role||'')+'</span></li>').join('')+'</ul></section>';
-      }).join('');
+      }).join('') + (collapse ? '<button class="filmo-toggle" type="button" aria-expanded="false">Show full filmography ('+rows.length+')</button>' : '');
+      const btn = el.querySelector('.filmo-toggle');
+      if(btn) btn.addEventListener('click', ()=>{
+        const open = el.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open);
+        btn.textContent = open ? 'Show less' : 'Show full filmography ('+rows.length+')';
+      });
+    },
+    // About — content/about.json. Renders into about.html (desktop shell + mobile subpage) AND the inline
+    // About on the mobile home (opts.inline: that section keeps its own .mportrait / .mabout-body styling).
+    // Empty fields are skipped: no positioning line, no illustration strip, no contact link until filled.
+    async renderAbout(el, opts){
+      if(!el) return;
+      const a = await load('content/about.json');
+      const inline = !!(opts && opts.inline);
+      const pic = a.portrait && a.portrait.src
+        ? '<div class="'+(inline?'mportrait':'portrait')+'"><img src="'+esc(a.portrait.src)+'"'+
+          (a.portrait.thumb?' srcset="'+esc(a.portrait.thumb)+' 506w, '+esc(a.portrait.src)+' 900w" sizes="'+(inline?'60vw':'(max-width:820px) 60vw, 30vw')+'"':'')+
+          ' alt="'+esc(a.portrait.alt||'')+'"></div>' : '';
+      const illos = (a.illustrations||[]).filter(x=>x && x.src), n = illos.length;
+      const more = a.illustrationMore && a.illustrationMore.url
+        ? '<a class="illo-more" href="'+esc(a.illustrationMore.url)+'" target="_blank" rel="noopener">'+esc(a.illustrationMore.label||'See more')+' ↗</a>' : '';
+      const strip = n ? '<div class="illo"><div class="illo-strip">'+
+        illos.map((it,i)=>'<a class="tile" style="--ar:'+esc(it.aspect||'4/5')+'" href="gallery-item.html?section=about-illustrations&i='+(i+1)+'&n='+n+'">'+cell(it,true)+'</a>').join('')+
+        '</div>'+more+'</div>' : '';
+      const after = Math.max(1, parseInt(a.illustrationsAfter,10) || (a.bio||[]).length);
+      const bio = '<div class="bio">'+(a.bio||[]).map((t,i)=>'<p'+(i?' class="lede"':'')+'>'+esc(t)+'</p>'+(i+1===after?strip:'')).join('')+
+        ((a.bio||[]).length < after ? strip : '')+'</div>';
+      const pos = a.positioning ? '<p class="positioning">'+esc(a.positioning)+'</p>' : '';
+      const c = a.contact||{};
+      const links = [
+        c.email ? '<a href="mailto:'+esc(c.email)+'">'+esc(c.email)+'</a>' : '',
+        c.vimeo ? '<a href="'+esc(c.vimeo)+'" target="_blank" rel="noopener">Vimeo</a>' : '',
+        c.resume ? '<a href="'+esc(c.resume)+'" target="_blank" rel="noopener">Résumé (PDF)</a>' : '',
+        c.instagram ? '<a href="'+esc(c.instagram)+'" target="_blank" rel="noopener">Instagram</a>' : '',
+        c.linkedin ? '<a href="'+esc(c.linkedin)+'" target="_blank" rel="noopener">LinkedIn</a>' : ''
+      ].join('');
+      const contact = links ? '<div class="about-block"><h2>Contact</h2><div class="contact">'+links+'</div></div>' : '';
+      const filmo = '<div class="about-block"><h2>Filmography</h2><div class="filmo"></div></div>';
+      el.innerHTML = inline
+        ? pic + pos + bio + filmo + contact
+        : '<div class="about"><div class="about-grid">'+pic+'<div class="about-text">'+pos+bio+'</div></div>'+filmo+contact+'</div>';
+      await this.renderFilmography(el.querySelector('.filmo'), {collapse:true});
+    },
+    // Mobile home: one swipe card per featured project (by `featured`), then the graphics highlight
+    // card (content/home.json — skipped while it has no items), inserted before the "All projects" card.
+    async renderHomeCards(before){
+      if(!before) return;
+      const [d, h] = await Promise.all([load('content/projects.json'), load('content/home.json').catch(()=>({}))]);
+      const ps = d.projects||[];
+      const firstSentence = s => { const m = String(s||'').match(/^.*?[.!?](?=\s|$)/); return m ? m[0] : String(s||''); };
+      const nav = (inner) => '<section class="mslide mcard" data-card>'+
+        '<button class="mnav mnav-up" data-prev aria-label="Previous">︿</button>'+inner+
+        '<button class="mnav mnav-down" data-next aria-label="Next">﹀</button></section>';
+      const img = (o, sizes) => {
+        if(!o || !o.src) return '<span class="ph" data-object="'+esc(o&&o.label||'')+'"></span>';
+        const t = o.thumb || o.src;
+        return '<img src="'+esc(t)+'"'+(o.thumb?' srcset="'+esc(o.thumb)+' 640w, '+esc(o.src)+' 1800w" sizes="'+sizes+'"':'')+
+          ' alt="'+esc(o.alt||'')+'" loading="lazy" decoding="async"'+(o.pos?' style="object-position:'+esc(o.pos)+'"':'')+'>';
+      };
+      const cards = ps.filter(isFeat).sort(byFeatured).map(p => {
+        const href = 'project.html?slug='+esc(p.slug);
+        const title = p.homeTitleImg
+          ? '<h2 class="mcard-title"><img src="'+esc(p.homeTitleImg)+'" alt="'+esc(p.title)+'"/></h2>'
+          : '<h2 class="mcard-title mcard-name">'+esc(p.title)+'</h2>';
+        const meta = [p.role, p.year].filter(Boolean).map(esc).join(' · ');
+        const passage = p.homePassage || firstSentence(p.logline);
+        return nav(title+
+          '<a class="mthumb" href="'+href+'" aria-label="'+esc(p.title)+'">'+img(p.cover,'100vw')+'</a>'+
+          (meta?'<p class="mcard-meta">'+meta+'</p>':'')+
+          (passage?'<p class="mcard-note">'+esc(passage)+'</p>':'')+
+          '<a class="mmore" href="'+href+'">See project</a>');
+      });
+      // graphics highlight: items = [{project, src}] picked from project-attached graphics/props
+      const g = h.graphics || {}, gItems = (g.items||[]).map(ref => {
+        const p = ps.find(x=>x.slug===ref.project); if(!p) return null;
+        const all = [].concat(...(p.topics||[]).map(t=>t.items||[]), ...(p.tabs||[]).map(t=>t.items||[]));
+        const it = all.find(x=>x.src===ref.src) || { src:ref.src };
+        return { p, it };
+      }).filter(Boolean);
+      if(gItems.length) cards.push(nav(
+        '<h2 class="mcard-title mcard-name">'+esc(g.title||'Objects & Graphics')+'</h2>'+
+        '<div class="mgfx">'+gItems.map(({p,it})=>'<a class="mgfx-it" style="aspect-ratio:'+esc(it.aspect||'4/5')+'" href="project.html?slug='+esc(p.slug)+'#objects">'+img(it,'60vw')+'</a>').join('')+'</div>'+
+        (g.note?'<p class="mcard-note">'+esc(g.note)+'</p>':'')));
+      before.insertAdjacentHTML('beforebegin', cards.join(''));
     },
     // the gallery viewer — reads ?work=&set=hero|<tabIndex>&i=&n=  OR  ?section=<key>&i=&n=.
     // Real image, pages the set; caption auto-derived; the project name LINKS to the project when published.
@@ -235,7 +325,11 @@
       let i = Math.max(1, parseInt(q.get('i'),10) || 1);
       const projData = await load('content/projects.json');
       let list = [], project = null, sub = '';
-      if(section){
+      if(section==='about-illustrations'){
+        const a = await load('content/about.json');
+        list = (a.illustrations||[]).filter(x=>x && x.src);
+        sub = 'Illustration';
+      } else if(section){
         const s = await load('content/sections.json');
         list = (s[section]||[]).slice().sort(byYM);
         sub = SECTION_LABEL[section] || '';

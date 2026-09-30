@@ -1,0 +1,8 @@
+{
+  "_note": "Mobile home extras. graphics = the 'Objects & Graphics' highlight card after the featured project cards: 6–8 project-attached graphics/props, each {project: <slug>, src: <the image's src in that project>}; tapping one opens project.html?slug=…#objects. The card is hidden while items is empty. Featured project cards themselves come from projects.json `featured`.",
+  "graphics": {
+    "title": "Objects & Graphics",
+    "note": "",
+    "items": []
+  }
+}

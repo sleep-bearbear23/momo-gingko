@@ -369,7 +369,9 @@
   applyFrame('home');
   if(FILE){ showFileNotice(); }
   else {
-    const deep=new URLSearchParams(location.search).get('view');
-    if(deep){ history.replaceState({gk:1},'', 'index.html'); go(deep, true); }
+    // index.html?view=<file>&<rest> → go('<file>?<rest>') so ?slug= / ?sec= / ?i= survive the redirect
+    const q=new URLSearchParams(location.search), deep=q.get('view');
+    if(deep){ q.delete('view'); const rest=q.toString();
+      history.replaceState({gk:1},'', 'index.html'); go(deep + (rest?'?'+rest:''), true); }
   }
 })();
