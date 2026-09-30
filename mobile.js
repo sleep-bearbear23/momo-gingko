@@ -31,8 +31,6 @@
   var FOOT =
     '<footer class="mfoot"><nav class="mfoot-nav">'+
     '<a href="production-design.html">Production Design</a>'+
-    '<a href="concept-illustration.html">Concept &amp; Illustration</a>'+
-    '<a href="design.html">Design</a>'+
     '<a href="about.html">About</a>'+
     '</nav><span class="mfoot-cr">© 2025 默默 GINGKO</span></footer>';
 

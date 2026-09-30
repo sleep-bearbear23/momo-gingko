@@ -35,8 +35,6 @@
   const copyright = document.getElementById('copyright');
   const curtain = document.getElementById('curtain');
   const FOOTER = `<a href="production-design.html">Production Design</a>`+
-                 `<a href="concept-illustration.html">Concept &amp; Illustration</a>`+
-                 `<a href="design.html">Design</a>`+
                  `<a href="about.html">About</a>`;
 
   let busy=false, currentFile='index.html', currentUrl='index.html', galleryOrigin='production-design.html';
