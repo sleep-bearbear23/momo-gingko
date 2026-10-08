@@ -34,8 +34,9 @@
 
   const copyright = document.getElementById('copyright');
   const curtain = document.getElementById('curtain');
-  const FOOTER = `<a href="production-design.html">Production Design</a>`+
-                 `<a href="about.html">About</a>`;
+  // border footer = Home · About. "About" is the home's last section (index.html#about → GKhome.resume('about')).
+  const FOOTER = `<a href="index.html">Home</a>`+
+                 `<a href="index.html#about">About</a>`;
 
   let busy=false, currentFile='index.html', currentUrl='index.html', galleryOrigin='production-design.html';
 
@@ -133,8 +134,10 @@
       title.style.aspectRatio=''; title.textContent=t; title.hidden=!t; title.removeAttribute('aria-label');
     }
     mount.scrollTop=0; fadeTitle();
-    ret.setAttribute('href', b.dataset.parent||'index.html');
-    ret.textContent = b.dataset.back || '← back';
+    // a project's return button goes back to where it was opened from (a home section or the list)
+    const origin = page==='project' ? window.GKorigin : null;
+    ret.setAttribute('href', origin || b.dataset.parent || 'index.html');
+    ret.textContent = origin ? '← back' : (b.dataset.back || '← back');
     ret.hidden = (page==='home'||page==='gallery');
     foot.innerHTML = FOOTER;
     // relocate the fragment's sub-nav / filters into the fixed right rail
@@ -169,16 +172,10 @@
   }
 
   // ---------- transitions ----------
-  function slideHomeMenu(){
-    ['homeTop','homeBottom'].forEach(id=>{ const el=document.getElementById(id);
-      el.style.opacity='0'; el.style.transform='translateX(40px)'; });
-    const l=document.getElementById('homeLeft'); if(l){ l.style.opacity='0'; l.style.transform='translateX(-40px)'; }
-  }
   function warpLogo(){ const l=document.getElementById('logo');
     if(l){ l.style.opacity='0'; l.style.transform='translate(-50%,-50%) scale(.4)'; } }
   function restoreHomeChrome(){
-    const l=document.getElementById('logo'); if(l) l.style.transform='translate(-50%,-50%)';
-    ['homeTop','homeBottom','homeLeft'].forEach(id=>{ const el=document.getElementById(id); el.style.transform=''; });
+    const l=document.getElementById('logo'); if(l) l.style.transform='translate(-50%,-50%)';   // GKhome.resume() then places it for the section
   }
 
   function hideChrome(){ title.style.opacity='0'; side.style.opacity='0'; }
@@ -190,14 +187,15 @@
     mount.classList.remove('leaving');
   }
 
-  async function toHome(){
+  // `key` = a section to land on (e.g. 'about'); otherwise the section the visitor left.
+  async function toHome(key){
     const from=bodyEl.dataset.page;
     if(from!=='home'){ mount.classList.add('leaving'); await wait(200); }
     bodyEl.dataset.page='home'; ret.hidden=true;
     title.hidden=true; title.style.opacity=''; side.hidden=true; foot.style.opacity=''; copyright.style.opacity='';
     applyFrame('home');
-    window.GK.home();
     restoreHomeChrome();
+    if(window.GKhome) window.GKhome.resume(key); else window.GK.home();   // canvas: cover → GK.home(), a section → GK.paper()
     mount.innerHTML=''; mount.classList.remove('leaving'); document.title='默默 GINGKO';
   }
 
@@ -249,16 +247,20 @@
       return 'gallery';
     }
 
+    // leaving the home from a section (not the cover): there are no black leaves to blow, so it's a
+    // plain crossfade like inner→inner — the home sections fade out first.
+    const homeDeep = from==='home' && window.GKhome && window.GKhome.index()>0;
+    if(homeDeep){ bodyEl.classList.add('hp-leaving'); await wait(200); }
     mount.classList.add('leaving');                 // fade current content out
     if(from!=='home') await wait(150);
     const page = await mountFragment(file);         // fills mount (hidden), sets chrome
     hideChrome();
 
-    if(from==='home'){
-      // signature: warp stub + menu slides right; border comes in IMMEDIATELY.
+    if(from==='home' && !homeDeep){
+      // signature (deep link straight from the landing): warp stub; border comes in IMMEDIATELY.
       // Keep data-page=home through the blow so the home menu/logo actually animate
       // out (the [data-page] CSS would otherwise snap them hidden); flip afterwards.
-      warpLogo(); slideHomeMenu();
+      warpLogo();
       applyFrame(page);                             // border in immediately (explicit page)
       await window.GK.blowAway();                    // leaves fly off + white field expands
       window.GK.paper();
@@ -279,6 +281,7 @@
       foot.style.opacity=''; copyright.style.opacity='';   // restore border chrome
       bodyEl.dataset.page=page; ret.hidden=false;
       applyFrame(page);
+      bodyEl.classList.remove('hp-leaving');
     }
 
     applyTitleOffset();                             // now #mount has its final height
@@ -296,6 +299,9 @@
     if(window.GKcontent && GKcontent.projectUrl) url = await GKcontent.projectUrl(url);   // unpublished project → the list
     if(busy) return;
     const file=fileOf(url), from=bodyEl.dataset.page;
+    // remember where a project was opened from, so its back links return there (R4.6). A deep link has no origin.
+    if(file==='project.html' && currentFile!=='project.html' && currentFile!=='gallery-item.html')
+      window.GKorigin = (from==='home' && currentFile==='index.html' && !window.GKhome.index()) ? null : (currentFile==='index.html' ? 'index.html' : currentUrl);
     // gallery-item + project re-render from the query (slug / i&n) → don't short-circuit same-file nav
     if(file===currentFile && from!=='home' && file!=='gallery-item.html' && file!=='project.html') return;
     busy=true;
@@ -304,7 +310,7 @@
     // throws on origin-null documents (file:// — the site must be served over http).
     if(push){ try{ history.pushState({gk:1}, '', file==='index.html'?'index.html':url); }catch(e){} }
     try{
-      if(file==='index.html' || file===''){ await toHome(); }
+      if(file==='index.html' || file===''){ await toHome(/#about$/i.test(url) ? 'about' : null); }
       else { await toPage(file); }
       currentFile=file; currentUrl=url;
     }catch(e){ busy=false; if(!FILE) location.href=url; return; }

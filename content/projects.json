@@ -554,7 +554,7 @@
           ]
         }
       ],
-      "featured": 1,
+      "featured": 2,
       "constraint": "",
       "homePassage": "",
       "homeTitleImg": null,
@@ -3837,7 +3837,7 @@
           ]
         }
       ],
-      "featured": 3,
+      "featured": null,
       "constraint": "",
       "homePassage": "",
       "homeTitleImg": null,
@@ -4306,7 +4306,7 @@
         }
       ],
       "month": "04",
-      "featured": 2,
+      "featured": 1,
       "constraint": "",
       "homePassage": "",
       "homeTitleImg": null,
