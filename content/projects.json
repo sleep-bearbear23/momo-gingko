@@ -7,17 +7,17 @@
       "type": "Production Design",
       "cover": {
         "label": "how can i not forget",
-        "aspect": "1800/1275",
-        "src": "assets/work/how-can-i-not-forget/O.jpg",
-        "thumb": "assets/work/how-can-i-not-forget/O-thumb.jpg",
+        "aspect": "1800/748",
+        "src": "assets/work/how-can-i-not-forget/film-S48.jpg",
+        "thumb": "assets/work/how-can-i-not-forget/film-S48-thumb.jpg",
         "alt": "How Can I Not Forget",
-        "pos": "52% 70.2%"
+        "pos": "44% 50%"
       },
       "format": "Short Film",
       "year": "2026",
       "month": "04",
       "productionCo": "",
-      "role": "Production Designer",
+      "role": "Production Designer · Costume Designer",
       "logline": "In a near-future Los Angeles where traumatic memories can be erased, a grieving woman begins to remember the massacre — and the truth about her mother's death — someone she loves has been trying to make her forget.",
       "awards": [],
       "links": [],
@@ -203,250 +203,353 @@
       ],
       "topics": [
         {
-          "id": "apartment",
-          "kind": "set",
-          "title": "The Apartment",
-          "slug": "INT. APARTMENT — LIVING ROOM",
-          "note": "High-class and a little too clean, built on a rigid order, the kind a world keeps when it's hiding something.",
-          "layout": null,
-          "items": [
+          "id": "surgery",
+          "title": "The Surgery Room",
+          "slug": "INT. SURGERY ROOM",
+          "key": {
+            "src": "assets/work/how-can-i-not-forget/film-S43.jpg",
+            "thumb": "assets/work/how-can-i-not-forget/film-S43-thumb.jpg",
+            "aspect": "1800/748",
+            "alt": "How Can I Not Forget — The Surgery Room"
+          },
+          "blocks": [
             {
-              "src": "assets/work/how-can-i-not-forget/C.jpg",
-              "thumb": "assets/work/how-can-i-not-forget/C-thumb.jpg",
-              "aspect": "1800/1350",
-              "stage": "reference",
-              "caption": "Lookbook board",
-              "alt": "How Can I Not Forget — Design - Apartment Living Room",
-              "pos": null,
-              "page": null,
-              "description": null
+              "text": "Much of the film keeps a thin film between Nora and reality. Here it became physical: clear plastic curtains around the surgical table. While she and her husband are on opposite sides of it, the illusion holds. Once they're both inside, there's nothing left between them and the truth. But did she really like the truth better?"
             },
             {
-              "src": "assets/work/how-can-i-not-forget/F.jpg",
-              "thumb": "assets/work/how-can-i-not-forget/F-thumb.jpg",
-              "aspect": "1800/1009",
-              "stage": "drawing",
-              "caption": "Elevation sketch",
-              "alt": "",
-              "pos": null,
-              "page": null,
-              "description": null
+              "imgs": [
+                {
+                  "src": "assets/work/how-can-i-not-forget/J.jpg",
+                  "thumb": "assets/work/how-can-i-not-forget/J-thumb.jpg",
+                  "aspect": "1800/1350",
+                  "alt": "Previs of the curtained surgical bay"
+                },
+                {
+                  "src": "assets/work/how-can-i-not-forget/film-S48.jpg",
+                  "thumb": "assets/work/how-can-i-not-forget/film-S48-thumb.jpg",
+                  "aspect": "1800/748",
+                  "alt": "Nora outside the curtain"
+                },
+                {
+                  "src": "assets/work/how-can-i-not-forget/film-S51.jpg",
+                  "thumb": "assets/work/how-can-i-not-forget/film-S51-thumb.jpg",
+                  "aspect": "1800/748",
+                  "alt": "Her husband preparing the procedure inside it"
+                }
+              ],
+              "caption": "Top to bottom: previs of the curtained surgical bay; Nora outside the curtain; her husband preparing the procedure inside it."
             },
             {
-              "src": "assets/work/how-can-i-not-forget/K.jpg",
-              "thumb": "assets/work/how-can-i-not-forget/K-thumb.jpg",
-              "aspect": "1800/1350",
-              "stage": "previs",
-              "caption": "The living room",
-              "alt": "How Can I Not Forget — Previs - The Living Room",
-              "pos": null,
-              "page": null,
-              "description": null
+              "text": "The shots stay close on the characters, with close-ups and symmetry, so every set either had to stay quiet or push that emphasis. This is the one room that pushes. Shot on the standing hospital set at Heritage Props, who rigged round curtain tracks on the ceiling for us; we hung the curtains to enclose the table."
             },
             {
-              "src": "assets/work/how-can-i-not-forget/N.jpg",
-              "thumb": "assets/work/how-can-i-not-forget/N-thumb.jpg",
-              "aspect": "1800/1275",
-              "stage": "final",
-              "caption": "",
-              "alt": "",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/how-can-i-not-forget/P.jpg",
-              "thumb": "assets/work/how-can-i-not-forget/P-thumb.jpg",
-              "aspect": "1800/1275",
-              "stage": "final",
-              "caption": "",
-              "alt": "How Can I Not Forget — still",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/how-can-i-not-forget/O.jpg",
-              "thumb": "assets/work/how-can-i-not-forget/O-thumb.jpg",
-              "aspect": "1800/1275",
-              "stage": "final",
-              "caption": "",
-              "alt": "How Can I Not Forget — still",
-              "pos": "52% 70.2%",
-              "page": null,
-              "description": null
+              "imgs": [
+                {
+                  "src": "assets/work/how-can-i-not-forget/film-S56.jpg",
+                  "thumb": "assets/work/how-can-i-not-forget/film-S56-thumb.jpg",
+                  "aspect": "1800/748",
+                  "alt": "Nora on the surgical table, from overhead"
+                }
+              ],
+              "caption": "Nora on the surgical table, from overhead."
             }
           ]
         },
         {
-          "id": "hospital",
-          "kind": "set",
-          "title": "The Hospital",
-          "slug": "INT. HOSPITAL WARD / SURGERY ROOM",
-          "note": "No trace of humanity. The surgery room's clear curtain drape is the whole film in one object: you see through it and still can't see the truth.",
-          "layout": null,
-          "items": [
+          "id": "apartment",
+          "title": "The Apartment",
+          "slug": "INT. APARTMENT",
+          "key": {
+            "src": "assets/work/how-can-i-not-forget/film-S18.jpg",
+            "thumb": "assets/work/how-can-i-not-forget/film-S18-thumb.jpg",
+            "aspect": "1800/748",
+            "alt": "How Can I Not Forget — The Apartment"
+          },
+          "blocks": [
             {
-              "src": "assets/work/how-can-i-not-forget/A.jpg",
-              "thumb": "assets/work/how-can-i-not-forget/A-thumb.jpg",
-              "aspect": "1800/1350",
-              "stage": "reference",
-              "caption": "Lookbook board",
-              "alt": "How Can I Not Forget — Design - Hospital Ward",
-              "pos": null,
-              "page": null,
-              "description": null
+              "text": "The film is less a timeline than an emotional state: doubt, the feeling that something isn't quite right. The couple's apartment had to feel logically homey but emotionally distant, calming to the point of feeling unreal, as if Nora were living inside an illustration."
             },
             {
-              "src": "assets/work/how-can-i-not-forget/B.jpg",
-              "thumb": "assets/work/how-can-i-not-forget/B-thumb.jpg",
-              "aspect": "1800/1350",
-              "stage": "drawing",
-              "caption": "Set dressing, location photos + plan",
-              "alt": "How Can I Not Forget — Design - Hospital Ward",
-              "pos": null,
-              "page": null,
-              "description": null
+              "imgs": [
+                {
+                  "src": "assets/work/how-can-i-not-forget/C.jpg",
+                  "thumb": "assets/work/how-can-i-not-forget/C-thumb.jpg",
+                  "aspect": "1800/1350",
+                  "alt": "Lookbook board and previs for the living room"
+                },
+                {
+                  "src": "assets/work/how-can-i-not-forget/K.jpg",
+                  "thumb": "assets/work/how-can-i-not-forget/K-thumb.jpg",
+                  "aspect": "1800/1350",
+                  "alt": "Lookbook board and previs for the living room"
+                }
+              ],
+              "caption": "Lookbook board and previs for the living room."
             },
             {
-              "src": "assets/work/how-can-i-not-forget/J.jpg",
-              "thumb": "assets/work/how-can-i-not-forget/J-thumb.jpg",
-              "aspect": "1800/1350",
-              "stage": "previs",
-              "caption": "The surgery room",
-              "alt": "How Can I Not Forget — Previs - The Surgery Room",
-              "pos": null,
-              "page": null,
-              "description": null
+              "text": "Translucent sheers, rounded edges, neutrals, and every piece of dressing placed exactly where it's \"supposed\" to be. The location was a real house that came full of furniture and bold wall art and sculpture, so most of the work was subtraction."
             },
             {
-              "src": "assets/work/how-can-i-not-forget/G.jpg",
-              "thumb": "assets/work/how-can-i-not-forget/G-thumb.jpg",
-              "aspect": "1800/1349",
-              "stage": "final",
-              "caption": "The curtain",
-              "alt": "How Can I Not Forget — still",
-              "pos": null,
-              "page": null,
-              "description": null
+              "imgs": [
+                {
+                  "src": "assets/work/how-can-i-not-forget/film-S25.jpg",
+                  "thumb": "assets/work/how-can-i-not-forget/film-S25-thumb.jpg",
+                  "aspect": "1800/748",
+                  "alt": "The living room"
+                },
+                {
+                  "src": "assets/work/how-can-i-not-forget/film-S22.jpg",
+                  "thumb": "assets/work/how-can-i-not-forget/film-S22-thumb.jpg",
+                  "aspect": "1800/748",
+                  "alt": "Nora researching at her laptop"
+                },
+                {
+                  "src": "assets/work/how-can-i-not-forget/film-S14.jpg",
+                  "thumb": "assets/work/how-can-i-not-forget/film-S14-thumb.jpg",
+                  "aspect": "1800/748",
+                  "alt": "Nora in the bathroom, one of the paintings on the wall"
+                }
+              ],
+              "caption": "Top to bottom: the living room; Nora researching at her laptop; Nora in the bathroom, one of the paintings on the wall."
             },
             {
-              "src": "assets/work/how-can-i-not-forget/Q.jpg",
-              "thumb": "assets/work/how-can-i-not-forget/Q-thumb.jpg",
-              "aspect": "1800/1275",
-              "stage": "onset",
-              "caption": "Behind the scenes",
-              "alt": "How Can I Not Forget — still",
-              "pos": null,
-              "page": null,
-              "description": null
+              "imgs": [
+                {
+                  "src": "assets/work/how-can-i-not-forget/F.jpg",
+                  "thumb": "assets/work/how-can-i-not-forget/F-thumb.jpg",
+                  "aspect": "1800/1009",
+                  "alt": "Sketch of the bedroom wall looking into the bathroom, drawn for a shot later cut"
+                }
+              ],
+              "caption": "Sketch of the bedroom wall looking into the bathroom, drawn for a shot later cut."
+            }
+          ]
+        },
+        {
+          "id": "ward",
+          "title": "The Ward",
+          "slug": "INT. HOSPITAL WARD",
+          "key": {
+            "src": "assets/work/how-can-i-not-forget/film-S04.jpg",
+            "thumb": "assets/work/how-can-i-not-forget/film-S04-thumb.jpg",
+            "aspect": "1800/748",
+            "alt": "How Can I Not Forget — The Ward"
+          },
+          "blocks": [
+            {
+              "imgs": [
+                {
+                  "src": "assets/work/how-can-i-not-forget/A.jpg",
+                  "thumb": "assets/work/how-can-i-not-forget/A-thumb.jpg",
+                  "aspect": "1800/1350",
+                  "alt": "Lookbook board"
+                }
+              ],
+              "caption": "Lookbook board."
+            },
+            {
+              "imgs": [
+                {
+                  "src": "assets/work/how-can-i-not-forget/ward-0761.jpg",
+                  "thumb": "assets/work/how-can-i-not-forget/ward-0761-thumb.jpg",
+                  "aspect": "1800/1350",
+                  "alt": "Location photo of the standing ward set at Heritage Props"
+                },
+                {
+                  "src": "assets/work/how-can-i-not-forget/ward-0567.jpg",
+                  "thumb": "assets/work/how-can-i-not-forget/ward-0567-thumb.jpg",
+                  "aspect": "1800/1395",
+                  "alt": "Floor plan sketch with sheers, IV pole and camera position"
+                },
+                {
+                  "src": "assets/work/how-can-i-not-forget/ward-0566.jpg",
+                  "thumb": "assets/work/how-can-i-not-forget/ward-0566-thumb.jpg",
+                  "aspect": "1800/847",
+                  "alt": "Elevation sketch of the bed wall"
+                }
+              ],
+              "caption": "Top to bottom: location photo of the standing ward set at Heritage Props; floor plan sketch with sheers, IV pole and camera position; elevation sketch of the bed wall."
+            },
+            {
+              "imgs": [
+                {
+                  "src": "assets/work/how-can-i-not-forget/film-S05.jpg",
+                  "thumb": "assets/work/how-can-i-not-forget/film-S05-thumb.jpg",
+                  "aspect": "1800/748",
+                  "alt": "Nora in the ward"
+                },
+                {
+                  "src": "assets/work/how-can-i-not-forget/film-S08.jpg",
+                  "thumb": "assets/work/how-can-i-not-forget/film-S08-thumb.jpg",
+                  "aspect": "1800/748",
+                  "alt": "The corridor outside"
+                }
+              ],
+              "caption": "Nora in the ward; the corridor outside."
             }
           ]
         },
         {
           "id": "cemetery",
-          "kind": "set",
           "title": "The Cemetery",
           "slug": "EXT. CEMETERY",
-          "note": null,
-          "layout": null,
-          "items": [
+          "key": {
+            "src": "assets/work/how-can-i-not-forget/film-S09.jpg",
+            "thumb": "assets/work/how-can-i-not-forget/film-S09-thumb.jpg",
+            "aspect": "1800/748",
+            "alt": "How Can I Not Forget — The Cemetery"
+          },
+          "blocks": [
             {
-              "src": "assets/work/how-can-i-not-forget/D.jpg",
-              "thumb": "assets/work/how-can-i-not-forget/D-thumb.jpg",
-              "aspect": "1800/1350",
-              "stage": "reference",
-              "caption": "Lookbook board",
-              "alt": "How Can I Not Forget — Design - Cemetary",
-              "pos": null,
-              "page": null,
-              "description": null
+              "imgs": [
+                {
+                  "src": "assets/work/how-can-i-not-forget/D.jpg",
+                  "thumb": "assets/work/how-can-i-not-forget/D-thumb.jpg",
+                  "aspect": "1800/1350",
+                  "alt": "Lookbook board for the funeral"
+                }
+              ],
+              "caption": "Lookbook board for the funeral."
             },
             {
-              "src": "assets/work/how-can-i-not-forget/M.jpg",
-              "thumb": "assets/work/how-can-i-not-forget/M-thumb.jpg",
-              "aspect": "1275/1800",
-              "stage": "final",
-              "caption": "Ellen Hayes' grave",
-              "alt": "",
-              "pos": null,
-              "page": null,
-              "description": null
+              "imgs": [
+                {
+                  "src": "assets/work/how-can-i-not-forget/film-S10.jpg",
+                  "thumb": "assets/work/how-can-i-not-forget/film-S10-thumb.jpg",
+                  "aspect": "1800/748",
+                  "alt": "The funeral"
+                },
+                {
+                  "src": "assets/work/how-can-i-not-forget/film-S12.jpg",
+                  "thumb": "assets/work/how-can-i-not-forget/film-S12-thumb.jpg",
+                  "aspect": "1800/748",
+                  "alt": "Nora among the trees"
+                }
+              ],
+              "caption": "The funeral; Nora among the trees."
             }
           ]
         },
         {
           "id": "nora",
-          "kind": "grid",
           "title": "Nora",
           "slug": "WARDROBE",
-          "note": null,
-          "layout": null,
-          "items": [
+          "key": {
+            "src": "assets/work/how-can-i-not-forget/film-S31.jpg",
+            "thumb": "assets/work/how-can-i-not-forget/film-S31-thumb.jpg",
+            "aspect": "1800/748",
+            "alt": "How Can I Not Forget — Nora"
+          },
+          "blocks": [
             {
-              "src": "assets/work/how-can-i-not-forget/L.jpg",
-              "thumb": "assets/work/how-can-i-not-forget/L-thumb.jpg",
-              "aspect": "1800/1350",
-              "stage": "drawing",
-              "caption": "Costume sketches",
-              "alt": "How Can I Not Forget — Wardrobe - Nora's Costume",
-              "pos": null,
-              "page": null,
-              "description": null
+              "text": "Nora's color is olive: grey enough to read as dull, the everyday adulthood that is its own kind of illusion. Its light tint of beige and green is the most natural thing in her world, set against the film's artificial blues. Nature stands for truth, and the only existence she can confirm is her own."
             },
             {
-              "src": "assets/work/how-can-i-not-forget/E.jpg",
-              "thumb": "assets/work/how-can-i-not-forget/E-thumb.jpg",
-              "aspect": "1800/1350",
-              "stage": "reference",
-              "caption": "Mourning looks",
-              "alt": "How Can I Not Forget — Wardrobe - The Mourning Dress",
-              "pos": null,
-              "page": null,
-              "description": null
+              "imgs": [
+                {
+                  "src": "assets/work/how-can-i-not-forget/L.jpg",
+                  "thumb": "assets/work/how-can-i-not-forget/L-thumb.jpg",
+                  "aspect": "1800/1350",
+                  "alt": "Costume sketches for Nora"
+                },
+                {
+                  "src": "assets/work/how-can-i-not-forget/E.jpg",
+                  "thumb": "assets/work/how-can-i-not-forget/E-thumb.jpg",
+                  "aspect": "1800/1350",
+                  "alt": "Mourning-wear references"
+                }
+              ],
+              "caption": "Costume sketches for Nora; mourning-wear references."
+            },
+            {
+              "text": "Layers and outerwear build up as she grows defensive; in a tank top or the patient gown she's raw and helpless. Her husband dresses for what he wants to uphold: professionalism, his craft, the strict system he belongs to. Between the two of them: clean against patterned, neutral against vibrant, geometric against floral: the duality of man and nature."
+            },
+            {
+              "imgs": [
+                {
+                  "src": "assets/work/how-can-i-not-forget/film-S22.jpg",
+                  "thumb": "assets/work/how-can-i-not-forget/film-S22-thumb.jpg",
+                  "aspect": "1800/748",
+                  "alt": "Nora at home in olive-grey layers"
+                },
+                {
+                  "src": "assets/work/how-can-i-not-forget/film-S45.jpg",
+                  "thumb": "assets/work/how-can-i-not-forget/film-S45-thumb.jpg",
+                  "aspect": "1800/748",
+                  "alt": "Nora in the patient gown"
+                },
+                {
+                  "src": "assets/work/how-can-i-not-forget/film-S24.jpg",
+                  "thumb": "assets/work/how-can-i-not-forget/film-S24-thumb.jpg",
+                  "aspect": "1800/748",
+                  "alt": "Her husband in a black suit"
+                }
+              ],
+              "caption": "Top to bottom: Nora at home in olive-grey layers; Nora in the patient gown; her husband in a black suit."
             }
           ]
         },
         {
-          "id": "objects",
-          "kind": "grid",
-          "title": "Objects",
-          "slug": "PROPS + GRAPHICS",
-          "note": "ORION is the film’s near-future search engine — the web on Nora’s laptop. When she looks up the massacre and the riot, the results come back filtered: an overview that explains them away, and a notice that results were “excluded pending verification.” It’s how the state quietly erases what happened. The search, results, and articles are all built and clickable.",
-          "layout": null,
-          "items": [
+          "id": "graphics",
+          "title": "Props & Graphics",
+          "insetPortraits": true,
+          "blocks": [
             {
-              "src": "assets/work/how-can-i-not-forget/playback.jpg",
-              "thumb": "assets/work/how-can-i-not-forget/playback-thumb.jpg",
-              "aspect": "1800/1800",
-              "stage": "prop",
-              "caption": "ORION search engine",
-              "alt": "How Can I Not Forget — ORION search prop",
-              "pos": "50% 22%",
-              "page": "assets/work/how-can-i-not-forget/playback/search.html",
-              "description": "ORION is the film’s near-future search engine — the web on Nora’s laptop. When she looks up the massacre and the riot, the results come back filtered: an overview that explains them away, and a notice that results were “excluded pending verification.” It’s how the state quietly erases what happened. The search, results, and articles are all built and clickable."
+              "imgs": [
+                {
+                  "src": "assets/work/how-can-i-not-forget/playback.jpg",
+                  "thumb": "assets/work/how-can-i-not-forget/playback-thumb.jpg",
+                  "aspect": "1800/1800",
+                  "alt": "ORION's filtered search results",
+                  "page": "assets/work/how-can-i-not-forget/playback/search.html"
+                },
+                {
+                  "src": "assets/work/how-can-i-not-forget/film-S21.jpg",
+                  "thumb": "assets/work/how-can-i-not-forget/film-S21-thumb.jpg",
+                  "aspect": "1800/748",
+                  "alt": "The ORION home page on Nora's laptop"
+                },
+                {
+                  "src": "assets/work/how-can-i-not-forget/film-S23.jpg",
+                  "thumb": "assets/work/how-can-i-not-forget/film-S23-thumb.jpg",
+                  "aspect": "1800/748",
+                  "alt": "The search on screen"
+                }
+              ],
+              "caption": "Top to bottom: ORION's filtered search results; the ORION home page on Nora's laptop; the search on screen."
             },
             {
-              "src": "assets/work/how-can-i-not-forget/I.jpg",
-              "thumb": "assets/work/how-can-i-not-forget/I-thumb.jpg",
-              "aspect": "1391/1800",
-              "stage": "graphic",
-              "caption": "Staff + press IDs",
-              "alt": "How Can I Not Forget — still",
-              "pos": null,
-              "page": null,
-              "description": null
+              "lead": "ORION",
+              "text": "is an AI-enhanced search engine that belongs to Nora's world. When she looks up the massacre, the results come back filtered: an overview that explains it away, and a notice that results were \"excluded pending verification.\" The film's memory-erasing technology has a parallel in how AI is folding into everyday life now, and ORION is where the two meet. I built it as a working site with Claude Code; the search, the results and the articles are all clickable."
             },
             {
-              "src": "assets/work/how-can-i-not-forget/H.jpg",
-              "thumb": "assets/work/how-can-i-not-forget/H-thumb.jpg",
-              "aspect": "1800/1200",
-              "stage": "setart",
-              "caption": "Paintings",
-              "alt": "How Can I Not Forget — still",
-              "pos": null,
-              "page": null,
-              "description": null
+              "imgs": [
+                {
+                  "src": "assets/work/how-can-i-not-forget/I.jpg",
+                  "thumb": "assets/work/how-can-i-not-forget/I-thumb.jpg",
+                  "aspect": "1391/1800",
+                  "alt": "Hospital staff and press ID badges"
+                },
+                {
+                  "src": "assets/work/how-can-i-not-forget/H.jpg",
+                  "thumb": "assets/work/how-can-i-not-forget/H-thumb.jpg",
+                  "aspect": "1800/1200",
+                  "alt": "Paintings for the apartment"
+                },
+                {
+                  "src": "assets/work/how-can-i-not-forget/film-S17.jpg",
+                  "thumb": "assets/work/how-can-i-not-forget/film-S17-thumb.jpg",
+                  "aspect": "1800/748",
+                  "alt": "Nora's press badge and camera in a drawer"
+                },
+                {
+                  "src": "assets/work/how-can-i-not-forget/film-S19.jpg",
+                  "thumb": "assets/work/how-can-i-not-forget/film-S19-thumb.jpg",
+                  "aspect": "1800/748",
+                  "alt": "Her mother's death certificate"
+                }
+              ],
+              "caption": "Top to bottom: hospital staff and press ID badges; paintings for the apartment; Nora's press badge and camera in a drawer; her mother's death certificate."
             }
           ]
         }
@@ -454,7 +557,16 @@
       "featured": 1,
       "constraint": "",
       "homePassage": "",
-      "homeTitleImg": null
+      "homeTitleImg": null,
+      "published": true,
+      "headerNote": "Made on a grant exploring a film + AI workflow.",
+      "heroImage": {
+        "src": "assets/work/how-can-i-not-forget/film-S48.jpg",
+        "thumb": "assets/work/how-can-i-not-forget/film-S48-thumb.jpg",
+        "aspect": "1800/748",
+        "alt": "Nora outside the surgical curtain",
+        "pos": "44% 50%"
+      }
     },
     {
       "slug": "mama-mv",
@@ -853,7 +965,8 @@
       "featured": null,
       "constraint": "",
       "homePassage": "",
-      "homeTitleImg": null
+      "homeTitleImg": null,
+      "published": false
     },
     {
       "slug": "ghost-mv",
@@ -1044,7 +1157,8 @@
       "featured": null,
       "constraint": "",
       "homePassage": "",
-      "homeTitleImg": null
+      "homeTitleImg": null,
+      "published": false
     },
     {
       "slug": "sonata",
@@ -2134,10 +2248,11 @@
           ]
         }
       ],
-      "featured": 3,
+      "featured": null,
       "constraint": "",
       "homePassage": "",
-      "homeTitleImg": null
+      "homeTitleImg": null,
+      "published": false
     },
     {
       "slug": "soup",
@@ -2848,7 +2963,8 @@
       "featured": null,
       "constraint": "",
       "homePassage": "",
-      "homeTitleImg": null
+      "homeTitleImg": null,
+      "published": false
     },
     {
       "slug": "antidote",
@@ -3294,7 +3410,8 @@
       "featured": null,
       "constraint": "",
       "homePassage": "",
-      "homeTitleImg": null
+      "homeTitleImg": null,
+      "published": false
     },
     {
       "slug": "on-the-river-bank",
@@ -3302,10 +3419,11 @@
       "type": "Production Design",
       "cover": {
         "label": "on the river bank",
-        "aspect": "1800/1349",
-        "src": "assets/work/on-the-river-bank/I.jpg",
-        "thumb": "assets/work/on-the-river-bank/I-thumb.jpg",
-        "alt": "On the River Bank"
+        "aspect": "1800/1350",
+        "src": "assets/work/on-the-river-bank/still-O03.jpg",
+        "thumb": "assets/work/on-the-river-bank/still-O03-thumb.jpg",
+        "alt": "On the River Bank",
+        "pos": "44% 50%"
       },
       "format": "Music Video",
       "year": "2025",
@@ -3588,302 +3706,150 @@
       ],
       "topics": [
         {
-          "id": "language",
-          "kind": "language",
+          "id": "world",
           "title": "The World",
-          "slug": null,
-          "note": null,
-          "layout": null,
-          "items": [
+          "blocks": [
             {
-              "src": "assets/work/on-the-river-bank/C.jpg",
-              "thumb": "assets/work/on-the-river-bank/C-thumb.jpg",
-              "aspect": "1800/1349",
-              "stage": "final",
-              "caption": "Opening",
-              "alt": "On the River Bank — Opening",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/on-the-river-bank/G.jpg",
-              "thumb": "assets/work/on-the-river-bank/G-thumb.jpg",
-              "aspect": "1800/1349",
-              "stage": "final",
-              "caption": "Choreography",
-              "alt": "On the River Bank — Choreography",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/on-the-river-bank/H.jpg",
-              "thumb": "assets/work/on-the-river-bank/H-thumb.jpg",
-              "aspect": "1800/1349",
-              "stage": "final",
-              "caption": "Choreography",
-              "alt": "On the River Bank — Choreography",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/on-the-river-bank/V.jpg",
-              "thumb": "assets/work/on-the-river-bank/V-thumb.jpg",
-              "aspect": "1800/1349",
-              "stage": "final",
-              "caption": "Ending Shot",
-              "alt": "On the River Bank — Ending Shot",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/on-the-river-bank/B.jpg",
-              "thumb": "assets/work/on-the-river-bank/B-thumb.jpg",
-              "aspect": "1800/1349",
-              "stage": "final",
-              "caption": "",
-              "alt": "On the River Bank — still",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/on-the-river-bank/F.jpg",
-              "thumb": "assets/work/on-the-river-bank/F-thumb.jpg",
-              "aspect": "1800/1349",
-              "stage": "final",
-              "caption": "",
-              "alt": "On the River Bank — still",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/on-the-river-bank/N.jpg",
-              "thumb": "assets/work/on-the-river-bank/N-thumb.jpg",
-              "aspect": "1800/1349",
-              "stage": "final",
-              "caption": "",
-              "alt": "On the River Bank — still",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/on-the-river-bank/R.jpg",
-              "thumb": "assets/work/on-the-river-bank/R-thumb.jpg",
-              "aspect": "1800/1349",
-              "stage": "final",
-              "caption": "",
-              "alt": "On the River Bank — still",
-              "pos": null,
-              "page": null,
-              "description": null
+              "text": "The director set four symbols — flower, mirror, river, chain — and the whole world was built from dressed, found objects in an LA creek bed: a full breakfast table laid with empty china and scattered poppies, salvaged mirrors and lampshades staked through the trees, an ankle shackle, and a gradient-brown gown that bleeds toward red as Mia comes apart."
             }
           ]
         },
         {
-          "id": "flower",
-          "kind": "set",
-          "title": "The Flower",
-          "slug": null,
-          "note": null,
-          "layout": null,
-          "items": [
+          "id": "breakfast-table",
+          "title": "The Breakfast Table",
+          "key": {
+            "src": "assets/work/on-the-river-bank/still-O04.jpg",
+            "thumb": "assets/work/on-the-river-bank/still-O04-thumb.jpg",
+            "aspect": "1800/1350",
+            "alt": "On the River Bank — The Breakfast Table"
+          },
+          "blocks": [
             {
-              "src": "assets/work/on-the-river-bank/D.jpg",
-              "thumb": "assets/work/on-the-river-bank/D-thumb.jpg",
-              "aspect": "1800/1349",
-              "stage": "final",
-              "caption": "The Breakfast Table",
-              "alt": "On the River Bank — The Breakfast Table",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/on-the-river-bank/E.jpg",
-              "thumb": "assets/work/on-the-river-bank/E-thumb.jpg",
-              "aspect": "1800/1349",
-              "stage": "final",
-              "caption": "The Breakfast Table",
-              "alt": "On the River Bank — The Breakfast Table",
-              "pos": null,
-              "page": null,
-              "description": null
+              "imgs": [
+                {
+                  "src": "assets/work/on-the-river-bank/still-O05.jpg",
+                  "thumb": "assets/work/on-the-river-bank/still-O05-thumb.jpg",
+                  "aspect": "1800/1350",
+                  "alt": "Empty china and scattered poppies on the breakfast table"
+                }
+              ],
+              "caption": "Empty china and scattered poppies on the breakfast table."
             }
           ]
         },
         {
-          "id": "mirror",
-          "kind": "set",
-          "title": "The Mirror",
-          "slug": null,
-          "note": null,
-          "layout": null,
-          "items": [
+          "id": "mirror-grove",
+          "title": "The Mirror Grove",
+          "key": {
+            "src": "assets/work/on-the-river-bank/still-O09.jpg",
+            "thumb": "assets/work/on-the-river-bank/still-O09-thumb.jpg",
+            "aspect": "1800/1350",
+            "alt": "On the River Bank — The Mirror Grove"
+          },
+          "blocks": [
             {
-              "src": "assets/work/on-the-river-bank/I.jpg",
-              "thumb": "assets/work/on-the-river-bank/I-thumb.jpg",
-              "aspect": "1800/1349",
-              "stage": "final",
-              "caption": "",
-              "alt": "On the River Bank — The Mirror Space",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/on-the-river-bank/J.jpg",
-              "thumb": "assets/work/on-the-river-bank/J-thumb.jpg",
-              "aspect": "1800/1349",
-              "stage": "final",
-              "caption": "",
-              "alt": "On the River Bank — The Mirror Space",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/on-the-river-bank/Q.jpg",
-              "thumb": "assets/work/on-the-river-bank/Q-thumb.jpg",
-              "aspect": "1800/1349",
-              "stage": "final",
-              "caption": "",
-              "alt": "On the River Bank — The Mirror Space",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/on-the-river-bank/S.jpg",
-              "thumb": "assets/work/on-the-river-bank/S-thumb.jpg",
-              "aspect": "1800/1349",
-              "stage": "final",
-              "caption": "",
-              "alt": "On the River Bank — The Mirror Space",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/on-the-river-bank/T.jpg",
-              "thumb": "assets/work/on-the-river-bank/T-thumb.jpg",
-              "aspect": "1800/1349",
-              "stage": "final",
-              "caption": "",
-              "alt": "On the River Bank — The Mirror Space",
-              "pos": null,
-              "page": null,
-              "description": null
-            }
-          ]
-        },
-        {
-          "id": "river",
-          "kind": "set",
-          "title": "The River",
-          "slug": null,
-          "note": null,
-          "layout": null,
-          "items": [
-            {
-              "src": "assets/work/on-the-river-bank/A.jpg",
-              "thumb": "assets/work/on-the-river-bank/A-thumb.jpg",
-              "aspect": "1800/1349",
-              "stage": "final",
-              "caption": "River B-Rolls",
-              "alt": "On the River Bank — River B-Rolls",
-              "pos": null,
-              "page": null,
-              "description": null
+              "imgs": [
+                {
+                  "src": "assets/work/on-the-river-bank/still-O10.jpg",
+                  "thumb": "assets/work/on-the-river-bank/still-O10-thumb.jpg",
+                  "aspect": "1800/1350",
+                  "alt": "Salvaged mirrors staked among the trees"
+                },
+                {
+                  "src": "assets/work/on-the-river-bank/still-O11.jpg",
+                  "thumb": "assets/work/on-the-river-bank/still-O11-thumb.jpg",
+                  "aspect": "1800/1350",
+                  "alt": "Salvaged mirrors staked among the trees"
+                },
+                {
+                  "src": "assets/work/on-the-river-bank/still-O21.jpg",
+                  "thumb": "assets/work/on-the-river-bank/still-O21-thumb.jpg",
+                  "aspect": "1800/1350",
+                  "alt": "Salvaged mirrors staked among the trees"
+                },
+                {
+                  "src": "assets/work/on-the-river-bank/still-O22.jpg",
+                  "thumb": "assets/work/on-the-river-bank/still-O22-thumb.jpg",
+                  "aspect": "1800/1350",
+                  "alt": "Salvaged mirrors staked among the trees"
+                }
+              ],
+              "caption": "Salvaged mirrors staked among the trees."
             }
           ]
         },
         {
           "id": "lamp-path",
-          "kind": "set",
           "title": "The Lamp Path",
-          "slug": null,
-          "note": null,
-          "layout": null,
-          "items": [
+          "key": {
+            "src": "assets/work/on-the-river-bank/still-O12.jpg",
+            "thumb": "assets/work/on-the-river-bank/still-O12-thumb.jpg",
+            "aspect": "1800/1350",
+            "alt": "On the River Bank — The Lamp Path"
+          },
+          "blocks": [
             {
-              "src": "assets/work/on-the-river-bank/L.jpg",
-              "thumb": "assets/work/on-the-river-bank/L-thumb.jpg",
-              "aspect": "1800/1349",
-              "stage": "final",
-              "caption": "",
-              "alt": "On the River Bank — The Lamp Path",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
+              "imgs": [
+                {
+                  "src": "assets/work/on-the-river-bank/still-O14.jpg",
+                  "thumb": "assets/work/on-the-river-bank/still-O14-thumb.jpg",
+                  "aspect": "1800/1350",
+                  "alt": "Lamps staked along the path, always just out of reach"
+                },
+                {
+                  "src": "assets/work/on-the-river-bank/still-O16.jpg",
+                  "thumb": "assets/work/on-the-river-bank/still-O16-thumb.jpg",
+                  "aspect": "1800/1350",
+                  "alt": "Lamps staked along the path, always just out of reach"
+                },
+                {
+                  "src": "assets/work/on-the-river-bank/still-O17.jpg",
+                  "thumb": "assets/work/on-the-river-bank/still-O17-thumb.jpg",
+                  "aspect": "1800/1350",
+                  "alt": "Lamps staked along the path, always just out of reach"
+                }
+              ],
+              "caption": "Lamps staked along the path, always just out of reach."
+            }
+          ]
+        },
+        {
+          "id": "riverbank",
+          "title": "The Riverbank",
+          "key": {
+            "src": "assets/work/on-the-river-bank/still-O24.jpg",
+            "thumb": "assets/work/on-the-river-bank/still-O24-thumb.jpg",
+            "aspect": "1800/1350",
+            "alt": "On the River Bank — The Riverbank"
+          },
+          "blocks": [
             {
-              "src": "assets/work/on-the-river-bank/M.jpg",
-              "thumb": "assets/work/on-the-river-bank/M-thumb.jpg",
-              "aspect": "1800/1349",
-              "stage": "final",
-              "caption": "",
-              "alt": "On the River Bank — The Lamp Path",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/on-the-river-bank/O.jpg",
-              "thumb": "assets/work/on-the-river-bank/O-thumb.jpg",
-              "aspect": "1800/1349",
-              "stage": "final",
-              "caption": "",
-              "alt": "On the River Bank — The Lamp Path",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/on-the-river-bank/P.jpg",
-              "thumb": "assets/work/on-the-river-bank/P-thumb.jpg",
-              "aspect": "1800/1349",
-              "stage": "final",
-              "caption": "",
-              "alt": "On the River Bank — The Lamp Path",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/on-the-river-bank/U.jpg",
-              "thumb": "assets/work/on-the-river-bank/U-thumb.jpg",
-              "aspect": "1800/1349",
-              "stage": "final",
-              "caption": "",
-              "alt": "On the River Bank — The Lamp Path",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/on-the-river-bank/K.jpg",
-              "thumb": "assets/work/on-the-river-bank/K-thumb.jpg",
-              "aspect": "1800/1349",
-              "stage": "final",
-              "caption": "",
-              "alt": "On the River Bank — The Lamp Path",
-              "pos": null,
-              "page": null,
-              "description": null
+              "imgs": [
+                {
+                  "src": "assets/work/on-the-river-bank/still-O01.jpg",
+                  "thumb": "assets/work/on-the-river-bank/still-O01-thumb.jpg",
+                  "aspect": "1800/1350",
+                  "alt": "The riverbank, where Mia meets the selves she gathered along the way"
+                }
+              ],
+              "caption": "The riverbank, where Mia meets the selves she gathered along the way."
             }
           ]
         }
       ],
-      "featured": 2,
+      "featured": 3,
       "constraint": "",
       "homePassage": "",
-      "homeTitleImg": null
+      "homeTitleImg": null,
+      "published": true,
+      "headerNote": "",
+      "heroImage": {
+        "src": "assets/work/on-the-river-bank/still-O03.jpg",
+        "thumb": "assets/work/on-the-river-bank/still-O03-thumb.jpg",
+        "aspect": "1800/1350",
+        "alt": "Mia on the fallen log",
+        "pos": "44% 50%"
+      }
     },
     {
       "slug": "before-sunrise",
@@ -3891,22 +3857,23 @@
       "type": "Production Design · Costume Design",
       "cover": {
         "label": "before sunrise",
-        "aspect": "4/5",
-        "src": "assets/work/before-sunrise/cover.jpg",
-        "thumb": "assets/work/before-sunrise/cover-thumb.jpg",
-        "alt": "Before Sunrise"
+        "aspect": "1800/944",
+        "src": "assets/work/before-sunrise/film-still-04.jpg",
+        "thumb": "assets/work/before-sunrise/film-still-04-thumb.jpg",
+        "alt": "Before Sunrise",
+        "pos": "44% 50%"
       },
       "format": "Short Film",
       "year": "2025",
       "productionCo": "USC School of Cinematic Arts",
       "role": "Production Designer · Costume Designer",
-      "logline": "",
+      "logline": "On what may be the last night before the swelling sun swallows the Earth, Emily, an eighteen-year-old call girl, lets in George, the neighbor who talks her into phoning everyone they know to save the world.",
       "awards": [],
       "links": [],
       "diary": [],
       "credits": [
         {
-          "role": "Director",
+          "role": "Writer/Director",
           "name": "Yining (Coco) Zhong"
         },
         {
@@ -3916,6 +3883,26 @@
         {
           "role": "Costume Designer",
           "name": "Yu-Cheng (Momo) Chuang"
+        },
+        {
+          "role": "Poster Design",
+          "name": "Yu-Cheng (Momo) Chuang"
+        },
+        {
+          "role": "Producer/Editor",
+          "name": "Gelila Reta"
+        },
+        {
+          "role": "Cinematographer",
+          "name": "Cody Smith"
+        },
+        {
+          "role": "Music",
+          "name": "Yuxuan Liu"
+        },
+        {
+          "role": "Cast",
+          "name": "Sydney Summerville, Michael Andrew Seitz"
         }
       ],
       "hero": [
@@ -4084,218 +4071,254 @@
       ],
       "topics": [
         {
-          "id": "bedroom",
-          "kind": "set",
-          "title": "The Bedroom",
-          "slug": null,
-          "note": null,
-          "layout": null,
-          "items": [
+          "id": "emilys-room",
+          "title": "Emily's Room",
+          "slug": "INT. EMILY'S BEDROOM",
+          "key": {
+            "src": "assets/work/before-sunrise/film-still-01.jpg",
+            "thumb": "assets/work/before-sunrise/film-still-01-thumb.jpg",
+            "aspect": "1800/944",
+            "alt": "Before Sunrise — Emily's Room"
+          },
+          "blocks": [
             {
-              "src": "assets/work/before-sunrise/previs-01.jpg",
-              "thumb": "assets/work/before-sunrise/previs-01-thumb.jpg",
-              "aspect": "1800/1164",
-              "stage": "previs",
-              "caption": "",
-              "alt": "",
-              "pos": null,
-              "page": null,
-              "description": null
+              "text": "Before Sunrise is a film about internal space: one room as a picture of Emily's inner state. The clutter is the resentment she carries toward everything in her life that fell short, piling up with nowhere to go. It's also what she traps herself in, and protects herself with."
+            },
+            {
+              "imgs": [
+                {
+                  "src": "assets/work/before-sunrise/design-D03.jpg",
+                  "thumb": "assets/work/before-sunrise/design-D03-thumb.jpg",
+                  "aspect": "1800/818",
+                  "alt": "Atmosphere painting of the room"
+                },
+                {
+                  "src": "assets/work/before-sunrise/film-still-07.jpg",
+                  "thumb": "assets/work/before-sunrise/film-still-07-thumb.jpg",
+                  "aspect": "1800/944",
+                  "alt": "The room on screen"
+                }
+              ],
+              "caption": "Atmosphere painting of the room; the room on screen."
+            },
+            {
+              "text": "I leaned a little into the stereotypes of sex work: fashion, glamour, womanhood. Not to define her with a label, but to show the deceptive mask that shields her deeper self, a human soul. Clothing hangs everywhere, dressing her and confining her at the same time."
+            },
+            {
+              "imgs": [
+                {
+                  "src": "assets/work/before-sunrise/film-still-09.jpg",
+                  "thumb": "assets/work/before-sunrise/film-still-09-thumb.jpg",
+                  "aspect": "1800/944",
+                  "alt": "Clothing strung across the room on lines and racks"
+                },
+                {
+                  "src": "assets/work/before-sunrise/film-still-08.jpg",
+                  "thumb": "assets/work/before-sunrise/film-still-08-thumb.jpg",
+                  "aspect": "1800/944",
+                  "alt": "Clothing strung across the room on lines and racks"
+                }
+              ],
+              "caption": "Clothing strung across the room on lines and racks."
+            },
+            {
+              "text": "We shot on location, in a space that came with a fair amount of furniture. I used it to turn the space into a studio apartment: a room without boundaries, with every part of a home crammed into it. We brought in piles of clutter and clothing, and placed the furniture so the room read smaller, as if Emily had built some of the barriers herself to shield part of who she is. I wanted dressing at every level of height: clutter on the floor, along the walls, and hanging down from above the camera, so the room wraps around her and engulfs her."
+            },
+            {
+              "imgs": [
+                {
+                  "src": "assets/work/before-sunrise/onset-W05.jpg",
+                  "thumb": "assets/work/before-sunrise/onset-W05-thumb.jpg",
+                  "aspect": "1800/1013",
+                  "alt": "On set: the dressed room, from the floor to the lines overhead"
+                },
+                {
+                  "src": "assets/work/before-sunrise/onset-W04.jpg",
+                  "thumb": "assets/work/before-sunrise/onset-W04-thumb.jpg",
+                  "aspect": "1800/1013",
+                  "alt": "On set: the dressed room, from the floor to the lines overhead"
+                }
+              ],
+              "caption": "On set: the dressed room, from the floor to the lines overhead."
+            },
+            {
+              "text": "The bed, usually the most intimate place in a room, sits against the outside wall under her large window. Sex work asks her to expose her rawest self, and she's used to it. It's also from that raw state that she looks out at the world, hoping, expecting. The couch, shielded behind the clothing racks, is the homey corner: the belonging she wants more, deep down."
+            },
+            {
+              "imgs": [
+                {
+                  "src": "assets/work/before-sunrise/design-D02.jpg",
+                  "thumb": "assets/work/before-sunrise/design-D02-thumb.jpg",
+                  "aspect": "1800/1165",
+                  "alt": "Drafted plan and elevations"
+                },
+                {
+                  "src": "assets/work/before-sunrise/design-D01.jpg",
+                  "thumb": "assets/work/before-sunrise/design-D01-thumb.jpg",
+                  "aspect": "1800/1165",
+                  "alt": "¾ concept of the room"
+                },
+                {
+                  "src": "assets/work/before-sunrise/model-D14.jpg",
+                  "thumb": "assets/work/before-sunrise/model-D14-thumb.jpg",
+                  "aspect": "1800/1194",
+                  "alt": "SketchUp model of the room, built from the drafted plan"
+                },
+                {
+                  "src": "assets/work/before-sunrise/model-D11.jpg",
+                  "thumb": "assets/work/before-sunrise/model-D11-thumb.jpg",
+                  "aspect": "1800/852",
+                  "alt": "A view inside the model from the couch corner toward the doorway"
+                }
+              ],
+              "caption": "Top to bottom: drafted plan and elevations; ¾ concept of the room; SketchUp model of the room, built from the drafted plan; a view inside the model from the couch corner toward the doorway."
+            },
+            {
+              "imgs": [
+                {
+                  "src": "assets/work/before-sunrise/film-still-03.jpg",
+                  "thumb": "assets/work/before-sunrise/film-still-03-thumb.jpg",
+                  "aspect": "1800/944",
+                  "alt": "Emily asleep on the bed beneath the window"
+                }
+              ],
+              "caption": "Emily asleep on the bed beneath the window."
+            },
+            {
+              "text": "The characters face an enormous threat from outside, and much of the film watches it from within: from inside the room, looking out. That dynamic, knowing the world from an interior view, was what interested me most."
+            },
+            {
+              "imgs": [
+                {
+                  "src": "assets/work/before-sunrise/film-still-04.jpg",
+                  "thumb": "assets/work/before-sunrise/film-still-04-thumb.jpg",
+                  "aspect": "1800/944",
+                  "alt": "The swelling sun through Emily's window"
+                },
+                {
+                  "src": "assets/work/before-sunrise/film-still-14.jpg",
+                  "thumb": "assets/work/before-sunrise/film-still-14-thumb.jpg",
+                  "aspect": "1800/944",
+                  "alt": "The room at night"
+                }
+              ],
+              "caption": "The swelling sun through Emily's window; the room at night."
             }
           ]
         },
         {
-          "id": "frames",
-          "kind": "stills",
-          "title": "Frames",
-          "slug": null,
-          "note": null,
-          "layout": null,
-          "items": [
+          "id": "graphics",
+          "title": "Props & Graphics",
+          "insetPortraits": true,
+          "blocks": [
             {
-              "src": "assets/work/before-sunrise/film-still-01.jpg",
-              "thumb": "assets/work/before-sunrise/film-still-01-thumb.jpg",
-              "aspect": "3024/1586",
-              "stage": "final",
-              "caption": "",
-              "alt": "Before Sunrise — film still 1",
-              "pos": null,
-              "page": null,
-              "description": null
+              "imgs": [
+                {
+                  "src": "assets/work/before-sunrise/graphic-G02.jpg",
+                  "thumb": "assets/work/before-sunrise/graphic-G02-thumb.jpg",
+                  "aspect": "1219/1800",
+                  "alt": "The \"Call Emily for a good time\" flyer, written into the script"
+                }
+              ],
+              "caption": "The \"Call Emily for a good time\" flyer, written into the script."
             },
             {
-              "src": "assets/work/before-sunrise/film-still-02.jpg",
-              "thumb": "assets/work/before-sunrise/film-still-02-thumb.jpg",
-              "aspect": "3024/1586",
-              "stage": "final",
-              "caption": "",
-              "alt": "Before Sunrise — film still 2",
-              "pos": null,
-              "page": null,
-              "description": null
+              "imgs": [
+                {
+                  "src": "assets/work/before-sunrise/graphic-G08.jpg",
+                  "thumb": "assets/work/before-sunrise/graphic-G08-thumb.jpg",
+                  "aspect": "900/600",
+                  "alt": "Business cards and photo cards scattered through Emily's room"
+                },
+                {
+                  "src": "assets/work/before-sunrise/graphic-G09.jpg",
+                  "thumb": "assets/work/before-sunrise/graphic-G09-thumb.jpg",
+                  "aspect": "900/600",
+                  "alt": "Business cards and photo cards scattered through Emily's room"
+                },
+                {
+                  "src": "assets/work/before-sunrise/graphic-G10.jpg",
+                  "thumb": "assets/work/before-sunrise/graphic-G10-thumb.jpg",
+                  "aspect": "900/1200",
+                  "alt": "Business cards and photo cards scattered through Emily's room"
+                },
+                {
+                  "src": "assets/work/before-sunrise/graphic-G12.jpg",
+                  "thumb": "assets/work/before-sunrise/graphic-G12-thumb.jpg",
+                  "aspect": "900/1200",
+                  "alt": "Business cards and photo cards scattered through Emily's room"
+                }
+              ],
+              "caption": "Business cards and photo cards scattered through Emily's room."
             },
             {
-              "src": "assets/work/before-sunrise/film-still-03.jpg",
-              "thumb": "assets/work/before-sunrise/film-still-03-thumb.jpg",
-              "aspect": "3024/1586",
-              "stage": "final",
-              "caption": "",
-              "alt": "Before Sunrise — film still 3",
-              "pos": null,
-              "page": null,
-              "description": null
+              "imgs": [
+                {
+                  "src": "assets/work/before-sunrise/graphic-G13.jpg",
+                  "thumb": "assets/work/before-sunrise/graphic-G13-thumb.jpg",
+                  "aspect": "1500/1500",
+                  "alt": "Concert posters for a fictional artist, \"Lizzo.\""
+                },
+                {
+                  "src": "assets/work/before-sunrise/graphic-G15.jpg",
+                  "thumb": "assets/work/before-sunrise/graphic-G15-thumb.jpg",
+                  "aspect": "1350/1800",
+                  "alt": "Concert posters for a fictional artist, \"Lizzo.\""
+                }
+              ],
+              "caption": "Concert posters for a fictional artist, \"Lizzo.\""
             },
             {
-              "src": "assets/work/before-sunrise/film-still-04.jpg",
-              "thumb": "assets/work/before-sunrise/film-still-04-thumb.jpg",
-              "aspect": "3024/1586",
-              "stage": "final",
-              "caption": "",
-              "alt": "Before Sunrise — film still 4",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
+              "imgs": [
+                {
+                  "src": "assets/work/before-sunrise/graphic-G04.jpg",
+                  "thumb": "assets/work/before-sunrise/graphic-G04-thumb.jpg",
+                  "aspect": "600/900",
+                  "alt": "Baby photo and house photo props"
+                },
+                {
+                  "src": "assets/work/before-sunrise/graphic-G16.jpg",
+                  "thumb": "assets/work/before-sunrise/graphic-G16-thumb.jpg",
+                  "aspect": "1800/1500",
+                  "alt": "Baby photo and house photo props"
+                }
+              ],
+              "caption": "Baby photo and house photo props."
+            }
+          ]
+        },
+        {
+          "id": "poster",
+          "title": "The Poster",
+          "blocks": [
             {
-              "src": "assets/work/before-sunrise/film-still-05.jpg",
-              "thumb": "assets/work/before-sunrise/film-still-05-thumb.jpg",
-              "aspect": "3024/1586",
-              "stage": "final",
-              "caption": "",
-              "alt": "Before Sunrise — film still 5",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/before-sunrise/film-still-06.jpg",
-              "thumb": "assets/work/before-sunrise/film-still-06-thumb.jpg",
-              "aspect": "3024/1586",
-              "stage": "final",
-              "caption": "",
-              "alt": "Before Sunrise — film still 6",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/before-sunrise/film-still-07.jpg",
-              "thumb": "assets/work/before-sunrise/film-still-07-thumb.jpg",
-              "aspect": "3024/1586",
-              "stage": "final",
-              "caption": "",
-              "alt": "Before Sunrise — film still 7",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/before-sunrise/film-still-08.jpg",
-              "thumb": "assets/work/before-sunrise/film-still-08-thumb.jpg",
-              "aspect": "3024/1586",
-              "stage": "final",
-              "caption": "",
-              "alt": "Before Sunrise — film still 8",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/before-sunrise/film-still-09.jpg",
-              "thumb": "assets/work/before-sunrise/film-still-09-thumb.jpg",
-              "aspect": "3024/1586",
-              "stage": "final",
-              "caption": "",
-              "alt": "Before Sunrise — film still 9",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/before-sunrise/film-still-10.jpg",
-              "thumb": "assets/work/before-sunrise/film-still-10-thumb.jpg",
-              "aspect": "3024/1586",
-              "stage": "final",
-              "caption": "",
-              "alt": "Before Sunrise — film still 10",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/before-sunrise/film-still-11.jpg",
-              "thumb": "assets/work/before-sunrise/film-still-11-thumb.jpg",
-              "aspect": "3024/1586",
-              "stage": "final",
-              "caption": "",
-              "alt": "Before Sunrise — film still 11",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/before-sunrise/film-still-12.jpg",
-              "thumb": "assets/work/before-sunrise/film-still-12-thumb.jpg",
-              "aspect": "3024/1586",
-              "stage": "final",
-              "caption": "",
-              "alt": "Before Sunrise — film still 12",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/before-sunrise/film-still-13.jpg",
-              "thumb": "assets/work/before-sunrise/film-still-13-thumb.jpg",
-              "aspect": "3024/1586",
-              "stage": "final",
-              "caption": "",
-              "alt": "Before Sunrise — film still 13",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/before-sunrise/film-still-14.jpg",
-              "thumb": "assets/work/before-sunrise/film-still-14-thumb.jpg",
-              "aspect": "3024/1586",
-              "stage": "final",
-              "caption": "",
-              "alt": "Before Sunrise — film still 14",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/before-sunrise/film-still-15.jpg",
-              "thumb": "assets/work/before-sunrise/film-still-15-thumb.jpg",
-              "aspect": "3024/1586",
-              "stage": "final",
-              "caption": "",
-              "alt": "Before Sunrise — film still 15",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/before-sunrise/film-still-16.jpg",
-              "thumb": "assets/work/before-sunrise/film-still-16-thumb.jpg",
-              "aspect": "3024/1586",
-              "stage": "final",
-              "caption": "",
-              "alt": "Before Sunrise — film still 16",
-              "pos": null,
-              "page": null,
-              "description": null
+              "imgs": [
+                {
+                  "src": "assets/work/before-sunrise/poster-final.jpg",
+                  "thumb": "assets/work/before-sunrise/poster-final-thumb.jpg",
+                  "aspect": "1440/1800",
+                  "alt": "Poster for the film's premiere, built from the set itself: Emily's flyer among the makeup and clutter on her table"
+                }
+              ],
+              "caption": "Poster for the film's premiere, built from the set itself: Emily's flyer among the makeup and clutter on her table."
             }
           ]
         }
       ],
       "month": "04",
-      "featured": 4,
+      "featured": 2,
       "constraint": "",
       "homePassage": "",
-      "homeTitleImg": null
+      "homeTitleImg": null,
+      "published": true,
+      "headerNote": "",
+      "heroImage": {
+        "src": "assets/work/before-sunrise/film-still-04.jpg",
+        "thumb": "assets/work/before-sunrise/film-still-04-thumb.jpg",
+        "aspect": "1800/944",
+        "alt": "The sun through Emily's window",
+        "pos": "44% 50%"
+      }
     }
   ]
 }
