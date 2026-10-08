@@ -1,5 +1,27 @@
 {
-  "_note": "Mobile home extras. graphics = the 'Objects & Graphics' highlight card after the featured project cards: 6–8 project-attached graphics/props, each {project: <slug>, src: <the image's src in that project>}; tapping one opens project.html?slug=…#objects. The card is hidden while items is empty. Featured project cards themselves come from projects.json `featured`.",
+  "_note": "Home page sections (GKcontent.homeSections; same order on desktop + mobile): cover → highlights (projects.json `featured` 1, 2) → pdTeaser → illustration (about.json `illustrations`, skipped until it has 6) → about. Each section takes `title` and an optional `titleImg` (hand-drawn title PNG, replaces the serif text). `graphics` is unused for now (kept for a later card).",
+  "highlights": {
+    "title": "Project Highlights",
+    "titleImg": null
+  },
+  "pdTeaser": {
+    "title": "See more of my production design work!",
+    "titleImg": null,
+    "image": {
+      "src": "assets/work/before-sunrise/design-D01.jpg",
+      "thumb": "assets/work/before-sunrise/design-D01-thumb.jpg",
+      "aspect": "1800/1165",
+      "alt": "Three-quarter concept drawing of Emily's room, Before Sunrise"
+    }
+  },
+  "illustration": {
+    "title": "Illustration",
+    "titleImg": null
+  },
+  "about": {
+    "title": "About",
+    "titleImg": null
+  },
   "graphics": {
     "title": "Objects & Graphics",
     "note": "",

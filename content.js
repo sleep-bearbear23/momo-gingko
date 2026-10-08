@@ -268,8 +268,8 @@
       });
     },
     // About — content/about.json. Renders into about.html (desktop shell + mobile subpage) AND the inline
-    // About on the mobile home (opts.inline: that section keeps its own .mportrait / .mabout-body styling).
-    // Empty fields are skipped: no positioning line, no illustration strip, no contact link until filled.
+    // About section of the home page (opts.inline: desktop pager + mobile swipe; .mportrait / .mabout-body styling).
+    // Empty fields are skipped: no positioning line, no contact link until filled. (Illustrations show on the home.)
     async renderAbout(el, opts){
       if(!el) return;
       const a = await load('content/about.json');
@@ -278,15 +278,7 @@
         ? '<div class="'+(inline?'mportrait':'portrait')+'"><img src="'+esc(a.portrait.src)+'"'+
           (a.portrait.thumb?' srcset="'+esc(a.portrait.thumb)+' 506w, '+esc(a.portrait.src)+' 900w" sizes="'+(inline?'60vw':'(max-width:820px) 60vw, 30vw')+'"':'')+
           ' alt="'+esc(a.portrait.alt||'')+'"></div>' : '';
-      const illos = (a.illustrations||[]).filter(x=>x && x.src), n = illos.length;
-      const more = a.illustrationMore && a.illustrationMore.url
-        ? '<a class="illo-more" href="'+esc(a.illustrationMore.url)+'" target="_blank" rel="noopener">'+esc(a.illustrationMore.label||'See more')+' ↗</a>' : '';
-      const strip = n ? '<div class="illo"><div class="illo-strip">'+
-        illos.map((it,i)=>'<a class="tile" style="--ar:'+esc(it.aspect||'4/5')+'" href="gallery-item.html?section=about-illustrations&i='+(i+1)+'&n='+n+'">'+cell(it,true)+'</a>').join('')+
-        '</div>'+more+'</div>' : '';
-      const after = Math.max(1, parseInt(a.illustrationsAfter,10) || (a.bio||[]).length);
-      const bio = '<div class="bio">'+(a.bio||[]).map((t,i)=>'<p'+(i?' class="lede"':'')+'>'+esc(t)+'</p>'+(i+1===after?strip:'')).join('')+
-        ((a.bio||[]).length < after ? strip : '')+'</div>';
+      const bio = '<div class="bio">'+(a.bio||[]).map((t,i)=>'<p'+(i?' class="lede"':'')+'>'+esc(t)+'</p>').join('')+'</div>';
       const pos = a.positioning ? '<p class="positioning">'+esc(a.positioning)+'</p>' : '';
       const c = a.contact||{};
       const links = [
@@ -303,47 +295,36 @@
         : '<div class="about"><div class="about-grid">'+pic+'<div class="about-text">'+pos+bio+'</div></div>'+filmo+contact+'</div>';
       await this.renderFilmography(el.querySelector('.filmo'), {collapse:true});
     },
-    // Mobile home: one swipe card per featured project (by `featured`), then the graphics highlight
-    // card (content/home.json — skipped while it has no items), inserted before the "All projects" card.
-    async renderHomeCards(before){
-      if(!before) return;
-      const [d, h] = await Promise.all([load('content/projects.json'), load('content/home.json').catch(()=>({}))]);
-      const ps = (d.projects||[]).filter(isPub);
-      const firstSentence = s => { const m = String(s||'').match(/^.*?[.!?](?=\s|$)/); return m ? m[0] : String(s||''); };
-      const nav = (inner) => '<section class="mslide mcard" data-card>'+
-        '<button class="mnav mnav-up" data-prev aria-label="Previous">︿</button>'+inner+
-        '<button class="mnav mnav-down" data-next aria-label="Next">﹀</button></section>';
-      const img = (o, sizes) => {
-        if(!o || !o.src) return '<span class="ph" data-object="'+esc(o&&o.label||'')+'"></span>';
-        const t = o.thumb || o.src;
-        return '<img src="'+esc(t)+'"'+(o.thumb?' srcset="'+esc(o.thumb)+' 640w, '+esc(o.src)+' 1800w" sizes="'+sizes+'"':'')+
-          ' alt="'+esc(o.alt||'')+'" loading="lazy" decoding="async"'+(o.pos?' style="object-position:'+esc(o.pos)+'"':'')+'>';
-      };
-      const cards = ps.filter(isFeat).sort(byFeatured).map(p => {
-        const href = 'project.html?slug='+esc(p.slug);
-        const title = p.homeTitleImg
-          ? '<h2 class="mcard-title"><img src="'+esc(p.homeTitleImg)+'" alt="'+esc(p.title)+'"/></h2>'
-          : '<h2 class="mcard-title mcard-name">'+esc(p.title)+'</h2>';
-        const meta = [p.role, p.year].filter(Boolean).map(esc).join(' · ');
-        const passage = p.homePassage || firstSentence(p.logline);
-        return nav(title+
-          '<a class="mthumb" href="'+href+'" aria-label="'+esc(p.title)+'">'+img(p.cover,'100vw')+'</a>'+
-          (meta?'<p class="mcard-meta">'+meta+'</p>':'')+
-          (passage?'<p class="mcard-note">'+esc(passage)+'</p>':'')+
-          '<a class="mmore" href="'+href+'">See project</a>');
-      });
-      // graphics highlight: items = [{project, src}] picked from project-attached graphics/props
-      const g = h.graphics || {}, gItems = (g.items||[]).map(ref => {
-        const p = ps.find(x=>x.slug===ref.project); if(!p) return null;
-        const all = [].concat(...(p.topics||[]).map(t=>t.items||[]), ...(p.tabs||[]).map(t=>t.items||[]));
-        const it = all.find(x=>x.src===ref.src) || { src:ref.src };
-        return { p, it };
-      }).filter(Boolean);
-      if(gItems.length) cards.push(nav(
-        '<h2 class="mcard-title mcard-name">'+esc(g.title||'Objects & Graphics')+'</h2>'+
-        '<div class="mgfx">'+gItems.map(({p,it})=>'<a class="mgfx-it" style="aspect-ratio:'+esc(it.aspect||'4/5')+'" href="project.html?slug='+esc(p.slug)+'#topic-graphics">'+img(it,'60vw')+'</a>').join('')+'</div>'+
-        (g.note?'<p class="mcard-note">'+esc(g.note)+'</p>':'')));
-      before.insertAdjacentHTML('beforebegin', cards.join(''));
+    // Home page sections 2–4 (PDG rebuild R4.1), as [{key, name, html}] — the SAME markup on desktop (the
+    // pager in home.js) and mobile (#mHome slides). Cover and About are built by home.js around these.
+    //   highlights   — the two `featured` films: 4:3 hero crop, title, role · year. Nothing else.
+    //   pd           — one link to the project list: heading, one drawing, "All projects →".
+    //   illustration — about.json `illustrations` as 4:5 tiles, every tile → Instagram. Skipped below 6.
+    async homeSections(){
+      const [d, h, a] = await Promise.all([load('content/projects.json'), load('content/home.json').catch(()=>({})), load('content/about.json').catch(()=>({}))]);
+      const head = (o, fallback) => { o = o||{}; const t = o.title || fallback;
+        return o.titleImg ? '<h2 class="hsh hsh-img"><img src="'+esc(o.titleImg)+'" alt="'+esc(t)+'"></h2>' : '<h2 class="hsh">'+esc(t)+'</h2>'; };
+      const img = (o, sizes, pos) => '<img src="'+esc(o.thumb||o.src)+'"'+(o.thumb?' srcset="'+esc(o.thumb)+' 640w, '+esc(o.src)+' 1800w" sizes="'+sizes+'"':'')+
+        ' alt="'+esc(o.alt||'')+'" decoding="async"'+((pos&&o.pos)?' style="object-position:'+esc(o.pos)+'"':'')+'>';
+      const out = [];
+      const films = (d.projects||[]).filter(p=>isPub(p) && isFeat(p)).sort(byFeatured).slice(0,2);
+      if(films.length) out.push({ key:'highlights', name:(h.highlights||{}).title||'Project Highlights', html:
+        head(h.highlights,'Project Highlights')+'<div class="hfilms">'+films.map(p=>{
+          const im = p.heroImage || p.cover || {};
+          return '<a class="hfilm" href="project.html?slug='+esc(p.slug)+'"><span class="hph">'+(im.src?img(im,'(max-width:820px) 92vw, 40vw',true):'')+'</span>'+
+            '<h3>'+esc(p.title)+'</h3><span class="hmono">'+[p.role,p.year].filter(Boolean).map(esc).join(' · ')+'</span></a>';
+        }).join('')+'</div>' });
+      const pd = h.pdTeaser||{};
+      out.push({ key:'pd', name:'Production Design', html:
+        '<a class="hpd" href="production-design.html">'+head(pd,'See more of my production design work!')+
+        (pd.image&&pd.image.src?'<span class="hdraw">'+img(pd.image,'(max-width:820px) 92vw, 62vw')+'</span>':'')+
+        '<span class="hpill">All projects →</span></a>' });
+      const illos = (a.illustrations||[]).filter(x=>x && x.src).slice(0,12), ig = (a.illustrationMore||{}).url;
+      if(illos.length >= 6 && ig) out.push({ key:'illustration', name:(h.illustration||{}).title||'Illustration', html:
+        head(h.illustration,'Illustration')+'<div class="hillo">'+illos.map(it=>
+          '<a href="'+esc(ig)+'" target="_blank" rel="noopener" aria-label="'+esc((it.alt||'Illustration')+', opens Instagram')+'">'+img(it,'(max-width:820px) 40vw, 14vw',true)+'</a>').join('')+'</div>'+
+        '<a class="hig" href="'+esc(ig)+'" target="_blank" rel="noopener">'+esc((a.illustrationMore||{}).label||'See more on Instagram')+' ↗</a>' });
+      return { sections: out, about: h.about||{} };
     },
     // the gallery viewer — reads ?work=&set=hero|<tabIndex>&i=&n=  OR  ?section=<key>&i=&n=.
     // Real image, pages the set; caption auto-derived; the project name LINKS to the project when published.
@@ -449,8 +430,16 @@
     }).join('');
     const credits = (p.credits&&p.credits.length) ? '<section class="creditlist"><h2 class="block-h">Credits</h2><dl>'+
       orderCredits(p.credits).map(c=>'<dt>'+esc(c.role)+'</dt><dd>'+esc(c.name)+'</dd>').join('')+'</dl></section>' : '';
+    // "← Back" to wherever the visitor came from (a home section or the list); a direct visit falls back to the list.
+    // Shell: nav.js records the origin in window.GKorigin. Mobile: the referrer, and the link is a real history.back().
+    let back = { href:'production-design.html', text:'← Back to Production Design', hist:false };
+    if(window.__SHELL__){ if(window.GKorigin) back = { href:window.GKorigin, text:'← Back', hist:false }; }
+    else { try{ const r = document.referrer && new URL(document.referrer);
+      if(r && r.origin===location.origin && /(\/|index\.html|production-design\.html)$/.test(r.pathname) && history.length>1) back = { href:r.pathname+r.search, text:'← Back', hist:true };
+    }catch(e){} }
     el.innerHTML = '<article class="pp">'+hero+head+topics+credits+
-      '<a class="pp-back" href="production-design.html">← Back to Production Design</a></article>';
+      '<a class="pp-back" href="'+esc(back.href)+'">'+back.text+'</a></article>';
+    if(back.hist) el.querySelector('.pp-back').addEventListener('click', e=>{ e.preventDefault(); history.back(); });
     // #topic-<id> anchors (cheap; nothing on the page links to them yet)
     const target = location.hash && el.querySelector(location.hash.replace(/[^#\w-]/g,''));
     if(target) target.scrollIntoView();

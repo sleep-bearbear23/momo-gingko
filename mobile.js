@@ -30,8 +30,8 @@
 
   var FOOT =
     '<footer class="mfoot"><nav class="mfoot-nav">'+
-    '<a href="production-design.html">Production Design</a>'+
-    '<a href="about.html">About</a>'+
+    '<a href="index.html">Home</a>'+                 // the home restores the section the visitor left
+    '<a href="index.html#about">About</a>'+          // the home's last section
     '</nav><span class="mfoot-cr">© 2025 默默 GINGKO</span></footer>';
 
   // ---- gallery-item: full-screen viewer (its own bar handles counter + prev/next hrefs) ----

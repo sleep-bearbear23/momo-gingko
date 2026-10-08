@@ -1,5 +1,5 @@
 {
-  "_note": "Single source for about.html AND the inline About on the mobile home (GKcontent.renderAbout). Empty strings / nulls are not rendered: positioning, illustrations, illustrationMore.url and each contact link appear only once filled. illustrationsAfter = the bio paragraph (1-based) the illustration strip follows.",
+  "_note": "Single source for about.html AND the home page's About section (GKcontent.renderAbout). Empty strings / nulls are not rendered. `illustrations` ({src, thumb, aspect, alt, pos?}, in order) feeds the HOME Illustration section (needs at least 6; phone shows the first 6, desktop 12); every tile links to illustrationMore.url.",
   "positioning": "",
   "bio": [
     "Hey, I’m Momo — an art director and production designer based in Los Angeles, working across vertical film, music video, and commercial shoots. I’ve worked both as a lead designer and as someone’s right-hand art director, bringing visions to life on set.",
@@ -12,11 +12,10 @@
     "thumb": "assets/about/portrait-thumb.jpg",
     "alt": "Momo Chuang"
   },
-  "illustrationsAfter": 3,
   "illustrations": [],
   "illustrationMore": {
     "label": "See more on Instagram",
-    "url": ""
+    "url": "https://www.instagram.com/momobear.draws4916/"
   },
   "contact": {
     "email": "mochuang4916@gmail.com",
