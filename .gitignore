@@ -9,3 +9,8 @@ CLAUDE.md
 # OS cruft
 .DS_Store
 **/.DS_Store
+
+# PDG rebuild: local reference only — never deploy
+_incoming/**/_preview/
+_incoming/**/_contact-sheet-*.jpg
+Claude outputs/
