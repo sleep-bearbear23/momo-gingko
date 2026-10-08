@@ -29,6 +29,20 @@
   // featured projects first (1, 2, 3…), then everything else by byYM
   const isFeat = p => Number.isFinite(p.featured) && p.featured > 0;
   const byFeatured = (a,b) => (isFeat(b)-isFeat(a)) || (isFeat(a) ? a.featured-b.featured : byYM(a,b));
+  // `published:false` projects stay in the data (and in the Filmography, unlinked) but have no page, card or link.
+  const isPub = p => !!p && p.published !== false;
+  const isMobile = () => document.documentElement.classList.contains('mob');
+  // project-page image: never cropped, width/height from `aspect` (no layout shift), thumb + display srcset.
+  function pimg(o, opts){
+    opts = opts||{};
+    const a = String(o.aspect||'').split('/').map(Number), w = a[0]||0, h = a[1]||0;
+    return '<img'+(opts.cls?' class="'+opts.cls+'"':'')+' src="'+esc(o.src)+'"'+
+      (o.thumb?' srcset="'+esc(o.thumb)+' 640w, '+esc(o.src)+' 1800w" sizes="(max-width:820px) 100vw, 760px"':'')+
+      (w&&h?' width="'+w+'" height="'+h+'"':'')+' alt="'+esc(o.alt||'')+'"'+
+      (opts.eager?' fetchpriority="high"':' loading="lazy"')+' decoding="async"'+
+      (opts.pos&&o.pos?' style="object-position:'+esc(o.pos)+'"':'')+'>';
+  }
+  const isPortrait = o => { const a = String(o.aspect||'').split('/').map(Number); return a[1] > a[0]; };
   // credit ordering: Artist (music video — top) → Director → Producer → Art department (Production Designer
   // above Art Director) → Costume (below the art dept) → everyone else. Stable within a rank (keeps entered order).
   const CREDIT_RANK = r => { const s=String(r||'').toLowerCase().trim();
@@ -51,6 +65,16 @@
 
   const GKcontent = {
     load,
+    // where a project link should really go: project.html?slug=<unpublished|unknown> → the list.
+    // nav.js go() calls this before mounting, so the shell never shows an unpublished page.
+    async projectUrl(url){
+      try{
+        const u = new URL(url, location.href);
+        if(!/(^|\/)project\.html$/.test(u.pathname)) return url;
+        const d = await load('content/projects.json'), slug = u.searchParams.get('slug');
+        return isPub((d.projects||[]).find(x=>x.slug===slug)) ? url : 'production-design.html';
+      }catch(e){ return url; }
+    },
     // mobile home only: fill each menu-page card's thumbnail from pages.json (desktop ignores this).
     async fillMenuThumbs(){
       let pages; try{ pages = await load('content/pages.json'); }catch(e){ return; }
@@ -64,7 +88,7 @@
     async renderProjectCards(el){
       if(!el) return;
       const d = await load('content/projects.json');
-      el.innerHTML = (d.projects||[]).slice().sort(byFeatured).map(p =>
+      el.innerHTML = (d.projects||[]).filter(isPub).sort(byFeatured).map(p =>
         '<a class="tile card" href="project.html?slug='+esc(p.slug)+'">'+
           cell(p.cover, true)+
           '<span class="tile-info"><b>'+esc(p.title)+'</b>'+
@@ -76,9 +100,13 @@
     async renderProject(el, slug){
       if(!el) return;
       const d = await load('content/projects.json');
-      const p = (d.projects||[]).find(x=>x.slug===slug) || (d.projects||[])[0];
+      const p = (d.projects||[]).find(x=>x.slug===slug) || (d.projects||[]).filter(isPub)[0];
       if(!p){ el.innerHTML='<p class="logline">Project not found.</p>'; return; }
+      // unpublished → no page. Standalone (mobile) replaces itself with the list; the desktop shell
+      // never gets here (nav.js go() swaps the URL first via GKcontent.projectUrl).
+      if(!isPub(p)){ if(!window.__SHELL__) location.replace('production-design.html'); return; }
       document.title = p.title + ' — 默默 GINGKO';
+      if((p.topics||[]).some(t=>t.blocks)){ renderProjectBlocks(el, p); return; }
       const hero = p.hero||[], n = hero.length;
       const strip = hero.length ? '<div class="proj-strip" data-strip><div class="ps-track">'+
         hero.map((h,i)=>'<a class="ps-img" style="aspect-ratio:'+esc(h.aspect||'4/3')+'" href="gallery-item.html?work='+esc(p.slug)+'&set=hero&i='+(i+1)+'&n='+n+'">'+cell(h)+'</a>').join('')+
@@ -104,7 +132,7 @@
           }).join('')+
           '</div></div></details>').join('')+'</section>' : '';
       // "Check out next" — 3 random OTHER projects, freshly shuffled each render, stacked one per row
-      const others = (d.projects||[]).filter(x=>x.slug!==p.slug);
+      const others = (d.projects||[]).filter(x=>x.slug!==p.slug && isPub(x));
       for(let i=others.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [others[i],others[j]]=[others[j],others[i]]; }
       const recs = others.slice(0,3);
       const recHtml = recs.length ? '<section class="recommend"><h2 class="block-h">Check out next</h2><div class="rec-list">'+
@@ -220,7 +248,8 @@
       if(!el) return;
       const [p, f] = await Promise.all([load('content/projects.json'), load('content/filmography.json')]);
       const rows = [];
-      (p.projects||[]).forEach(pr => rows.push({ title:pr.title, role:pr.role, year:pr.year, month:pr.month||'', slug:pr.slug }));
+      // unpublished projects still list here, as plain unlinked rows
+      (p.projects||[]).forEach(pr => rows.push({ title:pr.title, role:pr.role, year:pr.year, month:pr.month||'', slug:isPub(pr)?pr.slug:null }));
       (f.entries||[]).forEach(e => rows.push({ title:e.title, role:e.role, year:e.year, month:e.month||'', slug:null }));
       const years = {}; rows.forEach(r => (years[r.year||'—'] = years[r.year||'—'] || []).push(r));
       const order = Object.keys(years).sort((a,b)=> String(b).localeCompare(String(a)));
@@ -279,7 +308,7 @@
     async renderHomeCards(before){
       if(!before) return;
       const [d, h] = await Promise.all([load('content/projects.json'), load('content/home.json').catch(()=>({}))]);
-      const ps = d.projects||[];
+      const ps = (d.projects||[]).filter(isPub);
       const firstSentence = s => { const m = String(s||'').match(/^.*?[.!?](?=\s|$)/); return m ? m[0] : String(s||''); };
       const nav = (inner) => '<section class="mslide mcard" data-card>'+
         '<button class="mnav mnav-up" data-prev aria-label="Previous">︿</button>'+inner+
@@ -312,7 +341,7 @@
       }).filter(Boolean);
       if(gItems.length) cards.push(nav(
         '<h2 class="mcard-title mcard-name">'+esc(g.title||'Objects & Graphics')+'</h2>'+
-        '<div class="mgfx">'+gItems.map(({p,it})=>'<a class="mgfx-it" style="aspect-ratio:'+esc(it.aspect||'4/5')+'" href="project.html?slug='+esc(p.slug)+'#objects">'+img(it,'60vw')+'</a>').join('')+'</div>'+
+        '<div class="mgfx">'+gItems.map(({p,it})=>'<a class="mgfx-it" style="aspect-ratio:'+esc(it.aspect||'4/5')+'" href="project.html?slug='+esc(p.slug)+'#topic-graphics">'+img(it,'60vw')+'</a>').join('')+'</div>'+
         (g.note?'<p class="mcard-note">'+esc(g.note)+'</p>':'')));
       before.insertAdjacentHTML('beforebegin', cards.join(''));
     },
@@ -356,7 +385,7 @@
       const yr = (img && img.year) || (proj && proj.year);
       const projName = proj ? proj.title : ((img && img.projectName) || '');
       const projHtml = projName
-        ? (proj ? '<a class="cap-link" href="project.html?slug='+esc(proj.slug)+'">'+esc(projName)+'</a>' : esc(projName))
+        ? (isPub(proj) ? '<a class="cap-link" href="project.html?slug='+esc(proj.slug)+'">'+esc(projName)+'</a>' : esc(projName))
         : '';
       const head = projHtml ? (projHtml + (yr?' ('+esc(yr)+')':'')) : (yr?esc(yr):'');
       const label = (img && img.caption) ? esc(img.caption) : '';
@@ -391,6 +420,41 @@
         '</div>';
     }
   };
+
+  // Project page (PDG rebuild R3.2): hero → header → topics (key · slugline · title · alternating text /
+  // image-group blocks) → credits → back link. No viewer, no stage tags, no chips; images aren't links
+  // (except the ORION `page` image on desktop — the live page breaks at a phone's aspect ratio).
+  function renderProjectBlocks(el, p){
+    const mob = isMobile();
+    const hero = p.heroImage ? '<div class="pp-hero pp-bleed">'+pimg(p.heroImage,{eager:true,pos:true})+'</div>' : '';
+    const meta = [p.role, p.format, p.year].filter(Boolean).map(x=>'<span>'+esc(x)+'</span>').join('');
+    const head = '<header class="pp-head"><h1 class="proj-title">'+esc(p.title)+'</h1>'+
+      (meta?'<div class="proj-info">'+meta+'</div>':'')+
+      (p.logline?'<p class="logline">'+esc(p.logline)+'</p>':'')+
+      (p.headerNote?'<p class="pp-note">'+esc(p.headerNote)+'</p>':'')+'</header>';
+    const topics = (p.topics||[]).map(t=>{
+      const inset = !!t.insetPortraits;
+      const blocks = (t.blocks||[]).map(b=>{
+        if(b.imgs) return '<figure class="pp-group pp-bleed">'+b.imgs.map(im=>{
+            const tag = pimg(im, {cls: inset && isPortrait(im) ? 'pp-inset' : ''});
+            return (im.page && !mob) ? '<a class="pp-live" href="'+esc(im.page)+'" target="_blank" rel="noopener">'+tag+'<span>View live page ↗</span></a>' : tag;
+          }).join('')+(b.caption?'<figcaption>'+esc(b.caption)+'</figcaption>':'')+'</figure>';
+        if(b.text) return '<p class="pp-text">'+(b.lead?'<strong>'+esc(b.lead)+'</strong> ':'')+esc(b.text)+'</p>';
+        return '';
+      }).join('');
+      return '<section class="pp-topic" id="topic-'+esc(t.id)+'">'+
+        (t.key?'<div class="pp-key pp-bleed">'+pimg(t.key)+'</div>':'')+
+        '<div class="pp-thead">'+(t.slug?'<div class="pp-slug">'+esc(t.slug)+'</div>':'')+'<h2>'+esc(t.title)+'</h2></div>'+
+        blocks+'</section>';
+    }).join('');
+    const credits = (p.credits&&p.credits.length) ? '<section class="creditlist"><h2 class="block-h">Credits</h2><dl>'+
+      orderCredits(p.credits).map(c=>'<dt>'+esc(c.role)+'</dt><dd>'+esc(c.name)+'</dd>').join('')+'</dl></section>' : '';
+    el.innerHTML = '<article class="pp">'+hero+head+topics+credits+
+      '<a class="pp-back" href="production-design.html">← Back to Production Design</a></article>';
+    // #topic-<id> anchors (cheap; nothing on the page links to them yet)
+    const target = location.hash && el.querySelector(location.hash.replace(/[^#\w-]/g,''));
+    if(target) target.scrollIntoView();
+  }
 
   // desktop hero-strip paging (shell arrows #stripPrev/#stripNext). Mobile uses native CSS scroll → no-ops.
   function initStrip(){

@@ -293,6 +293,8 @@
   async function go(url, push){
     if(FILE){ showFileNotice(); return; }   // no fetch/pushState on file:// — bail (no reload loop)
     if(busy) return;
+    if(window.GKcontent && GKcontent.projectUrl) url = await GKcontent.projectUrl(url);   // unpublished project → the list
+    if(busy) return;
     const file=fileOf(url), from=bodyEl.dataset.page;
     // gallery-item + project re-render from the query (slug / i&n) → don't short-circuit same-file nav
     if(file===currentFile && from!=='home' && file!=='gallery-item.html' && file!=='project.html') return;

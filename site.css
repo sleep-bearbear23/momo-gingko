@@ -307,6 +307,41 @@ html.mob .ps-arrow{display:none;}   /* mobile = native swipe */
 .creditlist dl{display:grid;grid-template-columns:150px 1fr;gap:10px 20px;margin:0;font-size:14.5px;color:var(--ink);align-items:baseline;}
 .creditlist dt{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--taupe);}
 .creditlist dd{margin:0;}
+/* ---------- Project page, block layout (PDG rebuild R3.2) ----------
+   hero → header → topics (key · slugline · title · text / image-group blocks) → credits → back link.
+   One centred column on desktop; on mobile every image runs edge to edge (.pp-bleed). No borders, no viewer. */
+.pp{max-width:47.5rem;margin:0 auto;}
+.pp img{display:block;width:100%;height:auto;}
+.pp-hero{background:var(--leaf-black);overflow:hidden;}
+.pp-head{display:grid;gap:12px;padding-top:clamp(22px,3vw,34px);}
+.pp-head .proj-info,.pp-head .logline{margin:0;}
+.pp-head .logline{font-size:clamp(18px,1.7vw,21px);max-width:none;}
+.pp-note{margin:0;font-size:13px;line-height:1.5;color:var(--taupe);}
+.pp-topic{display:grid;gap:16px;padding-top:clamp(40px,5vw,60px);}
+.pp-topic + .pp-topic{margin-top:clamp(34px,4vw,52px);border-top:1px solid var(--line);}
+.pp-thead{display:grid;gap:3px;}
+.pp-slug{font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--taupe);}
+.pp-topic h2{margin:0;font-family:var(--serif);font-weight:600;font-size:clamp(24px,2.6vw,31px);line-height:1.2;color:var(--ink);}
+.pp-text{margin:0;max-width:42em;font-size:clamp(16px,1.2vw,17px);line-height:1.62;color:var(--ink);}
+.pp-group{display:grid;gap:4px;margin:0;}
+.pp-group .pp-inset{width:72%;margin-inline:auto;}             /* portrait graphics (insetPortraits topics) */
+.pp-group > * + .pp-inset,.pp-group > .pp-inset + *{margin-top:10px;}
+.pp-group figcaption{padding-top:6px;font-size:12.5px;line-height:1.45;color:var(--taupe);}
+.pp-live{position:relative;display:block;}                      /* ORION: desktop-only link to the live page */
+.pp-live span{position:absolute;top:10px;right:10px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--paper);background:rgba(10,10,10,.66);padding:6px 10px;border-radius:3px;transition:.2s;}
+.pp-live:hover span{background:var(--blush);}
+.pp .creditlist{padding-top:clamp(28px,4vw,44px);border-top:1px solid var(--line);}
+.pp-back{display:inline-block;margin-top:clamp(40px,6vw,64px);font-family:var(--mono);font-size:12px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink);border-bottom:1px solid var(--line);padding-bottom:3px;transition:.2s;}
+.pp-back:hover,.pp-back:active{color:var(--blush);border-color:var(--blush);}
+/* mobile: full-bleed images, 4:3 hero crop at heroImage.pos, captions back on the text margin */
+html.mob .pp{max-width:none;}
+html.mob .pp-bleed{margin-inline:calc(-1 * var(--pad));}
+html.mob .pp-hero{margin-top:-16px;aspect-ratio:4/3;}
+html.mob .pp-hero img{height:100%;object-fit:cover;}
+html.mob .pp-group figcaption{padding-inline:var(--pad);}
+
 /* "Check out next" — 3 recommended projects, one per row */
 .recommend{margin-top:clamp(44px,6vw,76px);}
 .rec-list{display:flex;flex-direction:column;gap:12px;margin-top:14px;}
