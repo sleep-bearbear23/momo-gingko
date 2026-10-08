@@ -208,6 +208,11 @@ html.mob .tile-info{opacity:1;}
 .filmo li span{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;
   color:var(--taupe);white-space:nowrap;}
 .filmo li a:hover{color:var(--blush);}
+@media(max-width:560px){          /* phones: year above its list, role under each title */
+  .filmo-grp{grid-template-columns:1fr;gap:12px;}
+  .filmo li{flex-direction:column;align-items:flex-start;gap:3px;}
+  .filmo li span{white-space:normal;}
+}
 
 /* ---------- Concept & Illustration masonry ---------- */
 /* JS masonry (content.js layoutCI): container is position-context, tiles absolutely placed with variable col-span */
@@ -234,6 +239,22 @@ html.mob .tile-info{opacity:1;}
 .credits .c-t{font-family:var(--serif);font-size:17px;color:var(--ink);}
 .credits .c-t a:hover{color:var(--blush);}
 .credits .c-r{color:var(--taupe);text-align:right;font-size:13.5px;}
+.positioning{margin:0 0 1.2em;max-width:60ch;font-family:var(--mono);font-size:12.5px;line-height:1.7;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--ink);}
+/* illustration strip (inside the bio, after the paragraph about drawing) — horizontal swipe row */
+.illo{margin:.4em 0 1.8em;}
+.illo-strip{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px;}
+.illo-strip::-webkit-scrollbar{height:0;}
+.illo-strip .tile{flex:0 0 auto;height:clamp(150px,20vw,220px);aspect-ratio:var(--ar);scroll-snap-align:start;}
+.illo-more{display:inline-block;margin-top:10px;font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;
+  text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:2px;}
+.illo-more:hover{color:var(--blush);border-color:var(--blush);}
+/* About filmography: collapsed to the latest year until "Show full filmography" */
+.filmo:not(.open) .filmo-x{display:none;}
+.filmo:not(.open) .filmo-grp:not(.filmo-x){border-bottom:1px solid var(--line);}
+.filmo-toggle{all:unset;display:inline-block;margin-top:18px;font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink);border:1.5px solid var(--ink);border-radius:999px;padding:10px 22px;transition:.2s;}
+.filmo-toggle:hover,.filmo-toggle:active{background:var(--blush);border-color:var(--blush);color:var(--paper);}
 .contact{display:flex;flex-wrap:wrap;gap:10px 26px;font-family:var(--mono);font-size:13px;letter-spacing:.04em;}
 .contact a{border-bottom:1px solid var(--line);padding-bottom:2px;transition:.2s;}
 .contact a:hover{color:var(--blush);border-color:var(--blush);}
@@ -286,6 +307,41 @@ html.mob .ps-arrow{display:none;}   /* mobile = native swipe */
 .creditlist dl{display:grid;grid-template-columns:150px 1fr;gap:10px 20px;margin:0;font-size:14.5px;color:var(--ink);align-items:baseline;}
 .creditlist dt{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--taupe);}
 .creditlist dd{margin:0;}
+/* ---------- Project page, block layout (PDG rebuild R3.2) ----------
+   hero → header → topics (key · slugline · title · text / image-group blocks) → credits → back link.
+   One centred column on desktop; on mobile every image runs edge to edge (.pp-bleed). No borders, no viewer. */
+.pp{max-width:47.5rem;margin:0 auto;}
+.pp img{display:block;width:100%;height:auto;}
+.pp-hero{background:var(--leaf-black);overflow:hidden;}
+.pp-head{display:grid;gap:12px;padding-top:clamp(22px,3vw,34px);}
+.pp-head .proj-info,.pp-head .logline{margin:0;}
+.pp-head .logline{font-size:clamp(18px,1.7vw,21px);max-width:none;}
+.pp-note{margin:0;font-size:13px;line-height:1.5;color:var(--taupe);}
+.pp-topic{display:grid;gap:16px;padding-top:clamp(40px,5vw,60px);}
+.pp-topic + .pp-topic{margin-top:clamp(34px,4vw,52px);border-top:1px solid var(--line);}
+.pp-thead{display:grid;gap:3px;}
+.pp-slug{font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--taupe);}
+.pp-topic h2{margin:0;font-family:var(--serif);font-weight:600;font-size:clamp(24px,2.6vw,31px);line-height:1.2;color:var(--ink);}
+.pp-text{margin:0;max-width:42em;font-size:clamp(16px,1.2vw,17px);line-height:1.62;color:var(--ink);}
+.pp-group{display:grid;gap:4px;margin:0;}
+.pp-group .pp-inset{width:72%;margin-inline:auto;}             /* portrait graphics (insetPortraits topics) */
+.pp-group > * + .pp-inset,.pp-group > .pp-inset + *{margin-top:10px;}
+.pp-group figcaption{padding-top:6px;font-size:12.5px;line-height:1.45;color:var(--taupe);}
+.pp-live{position:relative;display:block;}                      /* ORION: desktop-only link to the live page */
+.pp-live span{position:absolute;top:10px;right:10px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--paper);background:rgba(10,10,10,.66);padding:6px 10px;border-radius:3px;transition:.2s;}
+.pp-live:hover span{background:var(--blush);}
+.pp .creditlist{padding-top:clamp(28px,4vw,44px);border-top:1px solid var(--line);}
+.pp-back{display:inline-block;margin-top:clamp(40px,6vw,64px);font-family:var(--mono);font-size:12px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink);border-bottom:1px solid var(--line);padding-bottom:3px;transition:.2s;}
+.pp-back:hover,.pp-back:active{color:var(--blush);border-color:var(--blush);}
+/* mobile: full-bleed images, 4:3 hero crop at heroImage.pos, captions back on the text margin */
+html.mob .pp{max-width:none;}
+html.mob .pp-bleed{margin-inline:calc(-1 * var(--pad));}
+html.mob .pp-hero{margin-top:-16px;aspect-ratio:4/3;}
+html.mob .pp-hero img{height:100%;object-fit:cover;}
+html.mob .pp-group figcaption{padding-inline:var(--pad);}
+
 /* "Check out next" — 3 recommended projects, one per row */
 .recommend{margin-top:clamp(44px,6vw,76px);}
 .rec-list{display:flex;flex-direction:column;gap:12px;margin-top:14px;}
@@ -395,10 +451,21 @@ html.mob #mHome.framed::before, html.mob #mHome.framed::after{height:6vh;}
 
 /* card: title · full-bleed 16:9 image · passage · see-more button, staged in when active */
 .mcard{gap:clamp(7px,1.4vh,13px);}   /* tight → title sits close to the image, button not pushed low */
-.mcard .mcard-title,.mcard .mthumb,.mcard .mcard-note,.mcard .mmore{opacity:0;transform:translateY(16px);
+.mcard .mcard-title,.mcard .mthumb,.mcard .mcard-meta,.mcard .mcard-note,.mcard .mmore,.mcard .mgfx{opacity:0;transform:translateY(16px);
   transition:opacity .55s ease, transform .55s ease;}
 .mcard.active .mcard-title{opacity:1;transform:none;transition-delay:.4s;}                 /* title 0.4s after swipe-in */
-.mcard.active .mthumb,.mcard.active .mcard-note,.mcard.active .mmore{opacity:1;transform:none;transition-delay:.7s;} /* rest 0.3s after title */
+.mcard.active .mthumb,.mcard.active .mcard-meta,.mcard.active .mcard-note,.mcard.active .mmore,.mcard.active .mgfx{opacity:1;transform:none;transition-delay:.7s;} /* rest 0.3s after title */
+/* featured project card: serif text title (until a hand-drawn homeTitleImg exists) + mono role · year */
+.mcard-title.mcard-name{font-family:var(--serif);font-weight:600;font-size:clamp(30px,9vw,46px);line-height:1.05;
+  letter-spacing:-.01em;text-align:center;color:var(--ink);overflow:visible;}
+.mcard-meta{margin:0;padding:0 var(--pad);text-align:center;font-family:var(--mono);font-size:10.5px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--taupe);}
+/* graphics highlight card: a horizontal swipe strip of objects */
+.mgfx{display:flex;gap:10px;width:100%;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px var(--pad);box-sizing:border-box;}
+.mgfx::-webkit-scrollbar{height:0;}
+.mgfx-it{flex:0 0 auto;height:min(44vh,300px);position:relative;overflow:hidden;background:var(--tile);
+  border:2px solid var(--leaf-black);scroll-snap-align:center;}
+.mgfx-it>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
 /* title fills the frame width with just a small gap either side; JS sets a cropped aspect-ratio
    on the img (blank below the mark removed) and object-fit:cover keeps the mark, tight. */
 .mcard-title{margin:0;width:100%;max-width:none;padding:0 clamp(14px,4.5vw,32px);overflow:hidden;}

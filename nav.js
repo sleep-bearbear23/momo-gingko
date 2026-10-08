@@ -293,6 +293,8 @@
   async function go(url, push){
     if(FILE){ showFileNotice(); return; }   // no fetch/pushState on file:// — bail (no reload loop)
     if(busy) return;
+    if(window.GKcontent && GKcontent.projectUrl) url = await GKcontent.projectUrl(url);   // unpublished project → the list
+    if(busy) return;
     const file=fileOf(url), from=bodyEl.dataset.page;
     // gallery-item + project re-render from the query (slug / i&n) → don't short-circuit same-file nav
     if(file===currentFile && from!=='home' && file!=='gallery-item.html' && file!=='project.html') return;
@@ -369,7 +371,9 @@
   applyFrame('home');
   if(FILE){ showFileNotice(); }
   else {
-    const deep=new URLSearchParams(location.search).get('view');
-    if(deep){ history.replaceState({gk:1},'', 'index.html'); go(deep, true); }
+    // index.html?view=<file>&<rest> → go('<file>?<rest>') so ?slug= / ?sec= / ?i= survive the redirect
+    const q=new URLSearchParams(location.search), deep=q.get('view');
+    if(deep){ q.delete('view'); const rest=q.toString();
+      history.replaceState({gk:1},'', 'index.html'); go(deep + (rest?'?'+rest:''), true); }
   }
 })();
