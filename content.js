@@ -43,11 +43,12 @@
       (opts.pos&&o.pos?' style="object-position:'+esc(o.pos)+'"':'')+'>';
   }
   const isPortrait = o => { const a = String(o.aspect||'').split('/').map(Number); return a[1] > a[0]; };
-  // credit ordering: Artist (music video — top) → Director → Producer → Art department (Production Designer
+  // credit ordering: Artist (music video — top) → Director → Writer → Producer → Art department (Production Designer
   // above Art Director) → Costume (below the art dept) → everyone else. Stable within a rank (keeps entered order).
   const CREDIT_RANK = r => { const s=String(r||'').toLowerCase().trim();
     if(/\bartist\b/.test(s)) return -10;                       // Artist — above all (MV)
     if(/director/.test(s) && !/art director/.test(s) && !/assistant director/.test(s)) return 0;  // Director / Writer-Director (top)
+    if(/\bwriter\b|written by|screenplay/.test(s)) return 5;     // Writer — after the director, before the producers
     if(/producer/.test(s)) return 10;                          // Producer / Executive Producer
     if(/costume|wardrobe/.test(s)) return 30;                  // Costume — sits below the art department
     if(/production design/.test(s)) return 20;                 // art dept: Production Designer first
@@ -56,6 +57,8 @@
     if(/prop|scenic|graphic|set design|construction/.test(s)) return 23;
     return 40; };                                              // everyone else
   const orderCredits = list => (list||[]).map((c,i)=>({c,i})).sort((a,b)=>CREDIT_RANK(a.c.role)-CREDIT_RANK(b.c.role)||a.i-b.i).map(x=>x.c);
+  // Momo's own credits are picked out in --me (a deeper rose than --blush, which is too faint for text on paper)
+  const creditRow = c => '<dt>'+esc(c.role)+'</dt><dd'+(/\bmomo\b/i.test(c.name||'')?' class="me"':'')+'>'+esc(c.name)+'</dd>';
   const SECTION_LABEL = { 'film-stills':'Film Stills', 'prop-design':'Prop Design', 'elevations-previs':'Elevations & Previs',
     'poster':'Poster', 'social-marketing':'Social Marketing', 'graphic-design':'Prop Graphic Design',
     'illustration':'Illustration', 'costume':'Costume' };
@@ -121,7 +124,7 @@
       const diary = (p.diary&&p.diary.length) ? '<section class="diary"><h2 class="block-h">Production Diary</h2>'+
         p.diary.map(t=>'<p>'+esc(t)+'</p>').join('')+'</section>' : '';
       const credits = (p.credits&&p.credits.length) ? '<section class="creditlist"><h2 class="block-h">Credits</h2><dl>'+
-        orderCredits(p.credits).map(c=>'<dt>'+esc(c.role)+'</dt><dd>'+esc(c.name)+'</dd>').join('')+'</dl></section>' : '';
+        orderCredits(p.credits).map(creditRow).join('')+'</dl></section>' : '';
       const tabs = (p.tabs&&p.tabs.length) ? '<section class="tabs">'+
         p.tabs.map((t,ti)=>'<details class="tab"'+(ti===0?' open':'')+'><summary>'+esc(t.title)+'</summary><div class="tab-body"><div class="gallery g2">'+
           (t.items||[]).map((im,ii)=>{
@@ -460,7 +463,7 @@
         blocks+'</section>';
     }).join('');
     const credits = (p.credits&&p.credits.length) ? '<section class="creditlist"><h2 class="block-h">Credits</h2><dl>'+
-      orderCredits(p.credits).map(c=>'<dt>'+esc(c.role)+'</dt><dd>'+esc(c.name)+'</dd>').join('')+'</dl></section>' : '';
+      orderCredits(p.credits).map(creditRow).join('')+'</dl></section>' : '';
     // "← Back" to wherever the visitor came from (a home section or the list); a direct visit falls back to the list.
     // Shell: nav.js records the origin in window.GKorigin. Mobile: the referrer, and the link is a real history.back().
     let back = { href:'production-design.html', text:'← Back to Production Design', hist:false };

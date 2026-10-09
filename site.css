@@ -7,7 +7,7 @@
 
 :root{
   --paper:#FAF4EA; --ink:#332C25; --taupe:#6B6154;   /* text darkened for legibility */
-  --blush:#E4A9A4; --yellow:#EFE3B0; --line:#DDD2BE; --tile:#F0E8D6;
+  --blush:#E4A9A4; --me:#B5656A; --yellow:#EFE3B0; --line:#DDD2BE; --tile:#F0E8D6;
   --grey:#C7BDAC;                        /* faded section title */
   --leaf-black:#0a0a0a;                  /* frame + leaves: the black-leaf black */
   --serif:"Noto Serif TC", Georgia, "Songti SC", serif;
@@ -307,6 +307,7 @@ html.mob .ps-arrow{display:none;}   /* mobile = native swipe */
 .creditlist dl{display:grid;grid-template-columns:150px 1fr;gap:10px 20px;margin:0;font-size:14.5px;color:var(--ink);align-items:baseline;}
 .creditlist dt{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--taupe);}
 .creditlist dd{margin:0;}
+.creditlist dd.me{color:var(--me);font-weight:500;}   /* Momo's name, on every project page */
 /* ---------- Project page, block layout (PDG rebuild R3.2) ----------
    hero → header → topics (key · slugline · title · text / image-group blocks) → credits → back link.
    One centred column on desktop; on mobile every image runs edge to edge (.pp-bleed). No borders, no viewer. */
