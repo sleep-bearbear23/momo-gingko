@@ -587,8 +587,21 @@ body[data-page="home"].hp-dark :is(a,button,[role=button]){cursor:var(--cur-ligh
 html.mob body[data-page="home"], html.mob body[data-page="home"] *{cursor:auto !important;}
 @media (prefers-reduced-motion:reduce){ .hpanes,.hstrip,.htile,.hintro{transition-duration:.01s !important;transition-delay:0s !important;} #hCue b,#hDots button::after{animation-duration:.01s !important;} }
 
+/* ================= LEAF TEXTURES (R6.3) =================
+   Seamless 640px tiles (made at 2×): paper-leaves = the fillPaper() recipe, ink-leaves = the fillInk()/bed recipe.
+   They go on every surface that paints a SOLID paper or card-black fill — never where the desktop shell's canvas
+   already draws the leaf field behind transparent content. The ink tile moves with its card (a physical sheet). */
+.hp-paper,.hsec.habout,html.mob body.m-sub{background-color:var(--paper);
+  background-image:url("assets/textures/paper-leaves.jpg");
+  background-image:image-set(url("assets/textures/paper-leaves.webp") type("image/webp"),url("assets/textures/paper-leaves.jpg") type("image/jpeg"));
+  background-size:640px 640px;background-position:0 0;background-repeat:repeat;}
+.hcard{background-color:var(--leaf-black);
+  background-image:url("assets/textures/ink-leaves.jpg");
+  background-image:image-set(url("assets/textures/ink-leaves.webp") type("image/webp"),url("assets/textures/ink-leaves.jpg") type("image/jpeg"));
+  background-size:640px 640px;background-position:0 0;background-repeat:repeat;}
+
 /* ================= standalone subpage (mobile.js) ================= */
-html.mob body.m-sub{background:var(--paper);-webkit-overflow-scrolling:touch;}
+html.mob body.m-sub{-webkit-overflow-scrolling:touch;}   /* ground: the paper-leaf texture (LEAF TEXTURES above) */
 /* sticky sub-nav row (PD/Design) — WRAPS to keep every item in frame; NO back arrow */
 html.mob .m-subnav{position:sticky;top:0;z-index:30;background:var(--paper);border-bottom:1px solid var(--line);
   padding:calc(env(safe-area-inset-top) + 9px) var(--pad) 9px;}
