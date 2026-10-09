@@ -193,7 +193,8 @@
       pdsec.querySelector('.hback').addEventListener('click', ()=>showAll(false));
       pdsec.querySelector('.harr.l').addEventListener('click', ()=>step(-1));
       pdsec.querySelector('.harr.r').addEventListener('click', ()=>step(1)); }
-    setCards('cover', 0); pdGeometry(); paint();
+    setCards('cover', 0); pdGeometry(); paint(); fitMeta();
+    if(document.fonts && document.fonts.ready) document.fonts.ready.then(fitMeta);
     if(pending!==null){ const k = pending; pending = null; api.resume(k||null); }
   });
 
@@ -235,7 +236,12 @@
   cue.addEventListener('click', e=>{ if(entered){ e.stopPropagation(); next(); } });
   hp.addEventListener('click', e=>{ const a = e.target.closest('[data-go]'); if(!a) return; e.preventDefault();
     if(a.dataset.go==='about') aboutEl.scrollTo({top:0, behavior: reduce?'auto':'smooth'}); else go(at(a.dataset.go)); });
-  addEventListener('resize', ()=>{ pdGeometry(); if(allOpen()) paintCarousel(false); });
+  // phones: the mono role · year line must stay on ONE line; if the full line can't fit, fall back to "<first role> · <year>"
+  function fitMeta(){ hp.querySelectorAll('.hmono[data-short]').forEach(el=>{
+    if(!el.dataset.full) el.dataset.full = el.textContent;
+    el.textContent = el.dataset.full;
+    if(isPhone() && el.scrollWidth > el.clientWidth+1) el.textContent = el.dataset.short; }); }
+  addEventListener('resize', ()=>{ pdGeometry(); if(allOpen()) paintCarousel(false); fitMeta(); });
 
   const api = window.GKhome = {
     index: () => idx,
@@ -251,9 +257,13 @@
     }
   };
 
-  // phone, returning to the home in a session that already entered: no landing tap, back on the page you left
-  if(mobile && ss.get('gk-entered') && window.GK && GK.enterQuiet){
-    GK.enterQuiet(); entered = true; body.classList.add('hp-entered');
+  // No landing in two cases: (a) phone, returning to the home in a session that already entered → back on the page you
+  // left; (b) opened from the home-screen icon (standalone "app mode") → the cover in its calm state, one swipe from page 2.
+  const app = !!window.__GK_SKIP_LANDING;
+  if(mobile && (app || ss.get('gk-entered')) && window.GK && GK.enterQuiet){
+    GK.enterQuiet(); entered = true; body.classList.add('hp-entered'); ss.set('gk-entered','1');
     ready.then(()=>{ const i = boot ? at(boot) : 0; jump(i<0 ? 0 : i); });
+  } else if(app && !mobile && window.GK && GK.whenReady){
+    GK.whenReady(()=>ready.then(()=>api.resume(wantAbout() ? 'about' : null)));   // desktop app window: GK.home() cover
   }
 })();

@@ -9,20 +9,13 @@
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png"/>
 <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png"/>
 <link rel="apple-touch-icon" href="apple-touch-icon.png"/>
-<!-- home-screen shortcut ("app mode"): opened from the home-screen icon → straight to the project list, once per launch -->
+<!-- home-screen icon ("app mode"): opens the home like the browser does, but skips the black landing (home.js) -->
 <link rel="manifest" href="manifest.webmanifest"/>
 <meta name="theme-color" content="#FAF4EA"/>
 <meta name="mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-title" content="默默"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="default"/>
-<script>
-  (function(){ try{
-    var app = matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
-    if(app && !/[?&]view=/.test(location.search) && !sessionStorage.getItem('gk-app')){
-      sessionStorage.setItem('gk-app','1'); location.replace('production-design.html'); }
-  }catch(e){} })();
-</script>
 <!-- social share card -->
 <meta property="og:type" content="website"/>
 <meta property="og:title" content="默默 GINGKO — Momo Chuang"/>
@@ -38,6 +31,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;600&family=Spline+Sans:wght@400;500&family=Spline+Sans+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- the first scroll reveals the black card: have its leaf tile ready -->
+<link rel="preload" as="image" href="assets/textures/ink-leaves.webp" type="image/webp"/>
 <link rel="stylesheet" href="site.css"/>
 <script src="content.js"></script>
 <style>
@@ -574,6 +569,7 @@
     const u1=cursorURI(keyed,color,deg,CUR_S), u2=cursorURI(keyed,color,deg,CUR_S*2), h=Math.round(CUR_S/2);
     return '-webkit-image-set(url("'+u1+'") 1x, url("'+u2+'") 2x) '+h+' '+h+', auto';
   }
+  const readyCbs=[];   // GK.whenReady(fn): run once the sprites are baked (fillPaper / GK.home need them)
   function onAssetsReady(){
     assetsReady=true;
     paintBedScatter();                                 // texture the black bed now that sprites exist
@@ -582,7 +578,8 @@
     { const k=leafKeyed[Math.min(2,leafKeyed.length-1)]; if(k){ const c=document.createElement('canvas'); c.width=c.height=96;
         c.getContext('2d').drawImage(k,0,0,96,96); document.documentElement.style.setProperty('--hleaf','url("'+c.toDataURL()+'")'); } }
     if(mode==='paper') fillPaper();                    // enterQuiet() ran before the sprites were baked → paint the leaf field now
-    if(!activated && mode==='landing'){ icon.style.opacity='1'; hint.textContent=isMob()?'tap':'click'; hint.style.opacity='1'; }
+    if(!activated && mode==='landing' && !window.__GK_SKIP_LANDING){ icon.style.opacity='1'; hint.textContent=isMob()?'tap':'click'; hint.style.opacity='1'; }
+    readyCbs.splice(0).forEach(f=>{ try{ f(); }catch(e){} });
   }
 
   // ================= exposed API for the shell controller =================
@@ -646,6 +643,7 @@
       x.drawImage(k,S*0.06,S*0.06,S*0.88,S*0.88); const uri='url("'+c.toDataURL()+'")';   // full-res mask → crisp on retina
       icon.style.webkitMaskImage=uri; icon.style.maskImage=uri; },
     isLanding(){ return mode==='landing' && !activated; },
+    whenReady(f){ if(assetsReady) f(); else readyCbs.push(f); },
     // mobile, returning to the home in a session that already entered: straight to the paper field, no tap.
     enterQuiet(){ activated=true; mode='paper'; stage.classList.add('playing'); document.body.classList.add('playing','m-entered');
       icon.style.opacity=0; hint.style.opacity=0; logo.style.opacity=1;
@@ -658,7 +656,9 @@
 
   // boot: black screen shows a quiet "loading", then fades to "tap"/"click" once sprites are baked.
   // On mobile the same landing runs; tapping the icon blows the leaves away → white-leaf swipe home.
-  hint.textContent='loading'; hint.style.opacity='0.4'; icon.style.opacity='0';
+  // opened from the home-screen icon → no landing: home.js shows the cover in its calm state
+  try{ window.__GK_SKIP_LANDING = matchMedia('(display-mode: standalone)').matches || navigator.standalone === true; }catch(e){}
+  hint.textContent='loading'; hint.style.opacity=window.__GK_SKIP_LANDING?'0':'0.4'; icon.style.opacity='0';
   loadAssets();
   // orientation flip crosses the desktop/mobile boundary → reload into the right architecture
   MOBQ.addEventListener('change', ()=>location.reload());
