@@ -1671,579 +1671,230 @@
       ],
       "topics": [
         {
-          "id": "living-room",
-          "kind": "set",
-          "title": "The Living Room",
-          "slug": null,
-          "note": null,
-          "layout": null,
-          "items": [
+          "id": "the-house",
+          "title": "The House",
+          "blocks": [
             {
-              "src": "assets/work/sonata/P.jpg",
-              "thumb": "assets/work/sonata/P-thumb.jpg",
-              "aspect": "1800/1164",
-              "stage": "drawing",
-              "caption": "Three-quarter view",
-              "alt": "Sonata — Set Design - Three-quarter View",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/sonata/Q.jpg",
-              "thumb": "assets/work/sonata/Q-thumb.jpg",
-              "aspect": "1800/1164",
-              "stage": "drawing",
-              "caption": "Elevations",
-              "alt": "Sonata — Set Design - Elevations",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/sonata/T.jpg",
-              "thumb": "assets/work/sonata/T-thumb.jpg",
-              "aspect": "1800/1200",
-              "stage": "final",
-              "caption": "",
-              "alt": "Sonata — The Living Room",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/sonata/X.jpg",
-              "thumb": "assets/work/sonata/X-thumb.jpg",
-              "aspect": "1800/1200",
-              "stage": "final",
-              "caption": "",
-              "alt": "Sonata — The Living Room",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/sonata/W.jpg",
-              "thumb": "assets/work/sonata/W-thumb.jpg",
-              "aspect": "1800/1200",
-              "stage": "final",
-              "caption": "",
-              "alt": "Sonata — The Living Room",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/sonata/K.jpg",
-              "thumb": "assets/work/sonata/K-thumb.jpg",
-              "aspect": "1800/1200",
-              "stage": "onset",
-              "caption": "",
-              "alt": "Sonata — The Living Room",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/sonata/R.jpg",
-              "thumb": "assets/work/sonata/R-thumb.jpg",
-              "aspect": "1800/1200",
-              "stage": "onset",
-              "caption": "",
-              "alt": "Sonata — The Living Room",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/sonata/S.jpg",
-              "thumb": "assets/work/sonata/S-thumb.jpg",
-              "aspect": "1800/1200",
-              "stage": "onset",
-              "caption": "",
-              "alt": "Sonata — The Living Room",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/sonata/AC.jpg",
-              "thumb": "assets/work/sonata/AC-thumb.jpg",
-              "aspect": "1800/1200",
-              "stage": "onset",
-              "caption": "",
-              "alt": "Sonata — The Living Room",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/sonata/AH.jpg",
-              "thumb": "assets/work/sonata/AH-thumb.jpg",
-              "aspect": "1800/1200",
-              "stage": "onset",
-              "caption": "",
-              "alt": "Sonata — The Living Room",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/sonata/AF.jpg",
-              "thumb": "assets/work/sonata/AF-thumb.jpg",
-              "aspect": "1800/1200",
-              "stage": "onset",
-              "caption": "",
-              "alt": "Sonata — The Living Room",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/sonata/AE.jpg",
-              "thumb": "assets/work/sonata/AE-thumb.jpg",
-              "aspect": "1200/1800",
-              "stage": "onset",
-              "caption": "",
-              "alt": "Sonata — The Living Room",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/sonata/AD.jpg",
-              "thumb": "assets/work/sonata/AD-thumb.jpg",
-              "aspect": "1200/1800",
-              "stage": "onset",
-              "caption": "",
-              "alt": "Sonata — The Living Room",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/sonata/AG.jpg",
-              "thumb": "assets/work/sonata/AG-thumb.jpg",
-              "aspect": "1800/1200",
-              "stage": "onset",
-              "caption": "",
-              "alt": "Sonata — The Living Room",
-              "pos": "52.3% 81.7%",
-              "page": null,
-              "description": null
+              "text": "Sonata takes place in one Korean-American family home, and the design leans all the way into its clutter — the lived-in mess of a house three people have filled over years. I dressed it full: stacked mail and sheet music, medicine and tea sets, framed certificates and small violin trophies on every ledge, laundry drying on a rack in the middle of the living room. The mess isn't background; it holds the tangle between a mother and her two daughters, and the piano they all circle sits at the center of it."
             }
           ]
         },
         {
-          "id": "dining-room",
-          "kind": "set",
+          "id": "the-living-room",
+          "title": "The Living Room",
+          "key": {
+            "src": "assets/work/sonata/X.jpg",
+            "thumb": "assets/work/sonata/X-thumb.jpg",
+            "aspect": "1800/1200",
+            "alt": "Sonata — The Living Room"
+          },
+          "blocks": [
+            {
+              "imgs": [
+                {
+                  "src": "assets/work/sonata/P.jpg",
+                  "thumb": "assets/work/sonata/P-thumb.jpg",
+                  "aspect": "1800/1164",
+                  "alt": "Three-quarter view drawn for the living room set"
+                }
+              ],
+              "caption": "Three-quarter view drawn for the living room set."
+            },
+            {
+              "imgs": [
+                {
+                  "src": "assets/work/sonata/W.jpg",
+                  "thumb": "assets/work/sonata/W-thumb.jpg",
+                  "aspect": "1800/1200",
+                  "alt": "Laundry drying on a rack in the middle of the room"
+                },
+                {
+                  "src": "assets/work/sonata/AF.jpg",
+                  "thumb": "assets/work/sonata/AF-thumb.jpg",
+                  "aspect": "1800/1200",
+                  "alt": "The piano at its center"
+                }
+              ],
+              "caption": "Top to bottom: laundry drying on a rack in the middle of the room; the piano at its center."
+            }
+          ]
+        },
+        {
+          "id": "the-dining-room",
           "title": "The Dining Room",
-          "slug": null,
-          "note": null,
-          "layout": null,
-          "items": [
+          "key": {
+            "src": "assets/work/sonata/AK.jpg",
+            "thumb": "assets/work/sonata/AK-thumb.jpg",
+            "aspect": "1800/1200",
+            "alt": "Sonata — The Dining Room"
+          },
+          "blocks": [
             {
-              "src": "assets/work/sonata/AK.jpg",
-              "thumb": "assets/work/sonata/AK-thumb.jpg",
-              "aspect": "1800/1200",
-              "stage": "final",
-              "caption": "",
-              "alt": "Sonata — The Dining Room",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/sonata/AI.jpg",
-              "thumb": "assets/work/sonata/AI-thumb.jpg",
-              "aspect": "1800/1200",
-              "stage": "onset",
-              "caption": "",
-              "alt": "Sonata — The Dining Room",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/sonata/AL.jpg",
-              "thumb": "assets/work/sonata/AL-thumb.jpg",
-              "aspect": "1800/1200",
-              "stage": "onset",
-              "caption": "",
-              "alt": "Sonata — The Dining Room",
-              "pos": null,
-              "page": null,
-              "description": null
+              "imgs": [
+                {
+                  "src": "assets/work/sonata/AL.jpg",
+                  "thumb": "assets/work/sonata/AL-thumb.jpg",
+                  "aspect": "1800/1200",
+                  "alt": "The dining table, buried in books and papers"
+                }
+              ],
+              "caption": "The dining table, buried in books and papers."
             }
           ]
         },
         {
           "id": "mays-room",
-          "kind": "set",
           "title": "May's Room",
-          "slug": null,
-          "note": null,
-          "layout": null,
-          "items": [
+          "key": {
+            "src": "assets/work/sonata/G.jpg",
+            "thumb": "assets/work/sonata/G-thumb.jpg",
+            "aspect": "1800/1200",
+            "alt": "Sonata — May's Room"
+          },
+          "blocks": [
             {
-              "src": "assets/work/sonata/H.jpg",
-              "thumb": "assets/work/sonata/H-thumb.jpg",
-              "aspect": "1200/1800",
-              "stage": "final",
-              "caption": "",
-              "alt": "Sonata — May's Room",
-              "pos": null,
-              "page": null,
-              "description": null
+              "imgs": [
+                {
+                  "src": "assets/work/sonata/Q.jpg",
+                  "thumb": "assets/work/sonata/Q-thumb.jpg",
+                  "aspect": "1800/1164",
+                  "alt": "Elevations drawn for May's bedroom"
+                }
+              ],
+              "caption": "Elevations drawn for May's bedroom."
             },
             {
-              "src": "assets/work/sonata/G.jpg",
-              "thumb": "assets/work/sonata/G-thumb.jpg",
-              "aspect": "1800/1200",
-              "stage": "final",
-              "caption": "",
-              "alt": "Sonata — May's Room",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/sonata/L.jpg",
-              "thumb": "assets/work/sonata/L-thumb.jpg",
-              "aspect": "1800/1200",
-              "stage": "onset",
-              "caption": "",
-              "alt": "Sonata — May's Room",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/sonata/M.jpg",
-              "thumb": "assets/work/sonata/M-thumb.jpg",
-              "aspect": "1800/1200",
-              "stage": "onset",
-              "caption": "",
-              "alt": "Sonata — May's Room",
-              "pos": null,
-              "page": null,
-              "description": null
+              "imgs": [
+                {
+                  "src": "assets/work/sonata/H.jpg",
+                  "thumb": "assets/work/sonata/H-thumb.jpg",
+                  "aspect": "1200/1800",
+                  "alt": "A side table by the window: plants, pill bottles, a bowl"
+                }
+              ],
+              "caption": "A side table by the window: plants, pill bottles, a bowl."
             }
           ]
         },
         {
-          "id": "dressing",
-          "kind": "grid",
+          "id": "set-dressing",
           "title": "Set Dressing",
-          "slug": null,
-          "note": null,
-          "layout": null,
-          "items": [
+          "blocks": [
             {
-              "src": "assets/work/sonata/V.jpg",
-              "thumb": "assets/work/sonata/V-thumb.jpg",
-              "aspect": "1200/1800",
-              "stage": "final",
-              "caption": "",
-              "alt": "Sonata — Set Dressing",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/sonata/U.jpg",
-              "thumb": "assets/work/sonata/U-thumb.jpg",
-              "aspect": "1200/1800",
-              "stage": "final",
-              "caption": "",
-              "alt": "Sonata — Set Dressing",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/sonata/Y.jpg",
-              "thumb": "assets/work/sonata/Y-thumb.jpg",
-              "aspect": "1800/1200",
-              "stage": "final",
-              "caption": "",
-              "alt": "Sonata — Set Dressing",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/sonata/Z.jpg",
-              "thumb": "assets/work/sonata/Z-thumb.jpg",
-              "aspect": "1800/1200",
-              "stage": "final",
-              "caption": "",
-              "alt": "Sonata — Set Dressing",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/sonata/AB.jpg",
-              "thumb": "assets/work/sonata/AB-thumb.jpg",
-              "aspect": "1800/1200",
-              "stage": "final",
-              "caption": "",
-              "alt": "Sonata — Set Dressing",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/sonata/AJ.jpg",
-              "thumb": "assets/work/sonata/AJ-thumb.jpg",
-              "aspect": "1200/1800",
-              "stage": "final",
-              "caption": "",
-              "alt": "Sonata — Set Dressing",
-              "pos": null,
-              "page": null,
-              "description": null
+              "imgs": [
+                {
+                  "src": "assets/work/sonata/Z.jpg",
+                  "thumb": "assets/work/sonata/Z-thumb.jpg",
+                  "aspect": "1800/1200",
+                  "alt": "A Silver Bow Award and small violin trophies on the ledge"
+                },
+                {
+                  "src": "assets/work/sonata/AB.jpg",
+                  "thumb": "assets/work/sonata/AB-thumb.jpg",
+                  "aspect": "1800/1200",
+                  "alt": "Stacked mail"
+                },
+                {
+                  "src": "assets/work/sonata/AJ.jpg",
+                  "thumb": "assets/work/sonata/AJ-thumb.jpg",
+                  "aspect": "1200/1800",
+                  "alt": "Workbooks and pills on the table"
+                },
+                {
+                  "src": "assets/work/sonata/U.jpg",
+                  "thumb": "assets/work/sonata/U-thumb.jpg",
+                  "aspect": "1200/1800",
+                  "alt": "A tea set beside an open book"
+                },
+                {
+                  "src": "assets/work/sonata/E.jpg",
+                  "thumb": "assets/work/sonata/E-thumb.jpg",
+                  "aspect": "1800/1200",
+                  "alt": "Sticky notes in Korean"
+                }
+              ],
+              "caption": "Top to bottom: a Silver Bow Award and small violin trophies on the ledge; stacked mail; workbooks and pills on the table; a tea set beside an open book; sticky notes in Korean."
             }
           ]
         },
         {
-          "id": "objects",
-          "kind": "grid",
-          "title": "Objects",
-          "slug": null,
-          "note": null,
-          "layout": null,
-          "items": [
+          "id": "props-graphics",
+          "title": "Props & Graphics",
+          "insetPortraits": true,
+          "blocks": [
             {
-              "src": "assets/work/sonata/AM.jpg",
-              "thumb": "assets/work/sonata/AM-thumb.jpg",
-              "aspect": "1391/1800",
-              "stage": "graphic",
-              "caption": "",
-              "alt": "Sonata — graphic",
-              "pos": null,
-              "page": null,
-              "description": null
+              "imgs": [
+                {
+                  "src": "assets/work/sonata/AM.jpg",
+                  "thumb": "assets/work/sonata/AM-thumb.jpg",
+                  "aspect": "1391/1800",
+                  "alt": "Certificates for the family's walls"
+                },
+                {
+                  "src": "assets/work/sonata/AN.jpg",
+                  "thumb": "assets/work/sonata/AN-thumb.jpg",
+                  "aspect": "1800/1391",
+                  "alt": "Certificates for the family's walls"
+                },
+                {
+                  "src": "assets/work/sonata/AO.jpg",
+                  "thumb": "assets/work/sonata/AO-thumb.jpg",
+                  "aspect": "1800/1391",
+                  "alt": "Certificates for the family's walls"
+                }
+              ],
+              "caption": "Certificates for the family's walls."
             },
             {
-              "src": "assets/work/sonata/AN.jpg",
-              "thumb": "assets/work/sonata/AN-thumb.jpg",
-              "aspect": "1800/1391",
-              "stage": "graphic",
-              "caption": "",
-              "alt": "Sonata — graphic",
-              "pos": null,
-              "page": null,
-              "description": null
+              "imgs": [
+                {
+                  "src": "assets/work/sonata/AQ.jpg",
+                  "thumb": "assets/work/sonata/AQ-thumb.jpg",
+                  "aspect": "1800/900",
+                  "alt": "A prescription label for May"
+                }
+              ],
+              "caption": "A prescription label for May."
             },
             {
-              "src": "assets/work/sonata/AO.jpg",
-              "thumb": "assets/work/sonata/AO-thumb.jpg",
-              "aspect": "1800/1391",
-              "stage": "graphic",
-              "caption": "",
-              "alt": "Sonata — graphic",
-              "pos": null,
-              "page": null,
-              "description": null
+              "imgs": [
+                {
+                  "src": "assets/work/sonata/AS.jpg",
+                  "thumb": "assets/work/sonata/AS-thumb.jpg",
+                  "aspect": "1391/1800",
+                  "alt": "Magazine covers"
+                },
+                {
+                  "src": "assets/work/sonata/AT.jpg",
+                  "thumb": "assets/work/sonata/AT-thumb.jpg",
+                  "aspect": "1391/1800",
+                  "alt": "Magazine covers"
+                }
+              ],
+              "caption": "Magazine covers."
             },
             {
-              "src": "assets/work/sonata/AP.jpg",
-              "thumb": "assets/work/sonata/AP-thumb.jpg",
-              "aspect": "1800/1200",
-              "stage": "graphic",
-              "caption": "",
-              "alt": "Sonata — graphic",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/sonata/AQ.jpg",
-              "thumb": "assets/work/sonata/AQ-thumb.jpg",
-              "aspect": "1800/900",
-              "stage": "graphic",
-              "caption": "",
-              "alt": "Sonata — graphic",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/sonata/AR.jpg",
-              "thumb": "assets/work/sonata/AR-thumb.jpg",
-              "aspect": "1391/1800",
-              "stage": "graphic",
-              "caption": "",
-              "alt": "Sonata — graphic",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/sonata/AS.jpg",
-              "thumb": "assets/work/sonata/AS-thumb.jpg",
-              "aspect": "1391/1800",
-              "stage": "graphic",
-              "caption": "",
-              "alt": "Sonata — graphic",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/sonata/AT.jpg",
-              "thumb": "assets/work/sonata/AT-thumb.jpg",
-              "aspect": "1391/1800",
-              "stage": "graphic",
-              "caption": "",
-              "alt": "Sonata — graphic",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/sonata/AU.jpg",
-              "thumb": "assets/work/sonata/AU-thumb.jpg",
-              "aspect": "1391/1800",
-              "stage": "graphic",
-              "caption": "",
-              "alt": "Sonata — graphic",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/sonata/AV.jpg",
-              "thumb": "assets/work/sonata/AV-thumb.jpg",
-              "aspect": "1391/1800",
-              "stage": "graphic",
-              "caption": "",
-              "alt": "Sonata — graphic",
-              "pos": null,
-              "page": null,
-              "description": null
-            }
-          ]
-        },
-        {
-          "id": "bts",
-          "kind": "stills",
-          "title": "Behind the Scenes",
-          "slug": null,
-          "note": null,
-          "layout": null,
-          "items": [
-            {
-              "src": "assets/work/sonata/F.jpg",
-              "thumb": "assets/work/sonata/F-thumb.jpg",
-              "aspect": "1800/1200",
-              "stage": "onset",
-              "caption": "",
-              "alt": "Sonata — still",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/sonata/A.jpg",
-              "thumb": "assets/work/sonata/A-thumb.jpg",
-              "aspect": "1800/1350",
-              "stage": "onset",
-              "caption": "",
-              "alt": "Sonata — still",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/sonata/B.jpg",
-              "thumb": "assets/work/sonata/B-thumb.jpg",
-              "aspect": "1800/1350",
-              "stage": "onset",
-              "caption": "",
-              "alt": "Sonata — still",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/sonata/C.jpg",
-              "thumb": "assets/work/sonata/C-thumb.jpg",
-              "aspect": "1800/1202",
-              "stage": "onset",
-              "caption": "",
-              "alt": "Sonata — still",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/sonata/D.jpg",
-              "thumb": "assets/work/sonata/D-thumb.jpg",
-              "aspect": "1800/1202",
-              "stage": "onset",
-              "caption": "",
-              "alt": "Sonata — still",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/sonata/J.jpg",
-              "thumb": "assets/work/sonata/J-thumb.jpg",
-              "aspect": "1800/1200",
-              "stage": "onset",
-              "caption": "",
-              "alt": "Sonata — still",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/sonata/O.jpg",
-              "thumb": "assets/work/sonata/O-thumb.jpg",
-              "aspect": "1800/1200",
-              "stage": "onset",
-              "caption": "",
-              "alt": "Sonata — still",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/sonata/N.jpg",
-              "thumb": "assets/work/sonata/N-thumb.jpg",
-              "aspect": "1800/1200",
-              "stage": "onset",
-              "caption": "",
-              "alt": "Sonata — still",
-              "pos": "49.9% 66.3%",
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/sonata/E.jpg",
-              "thumb": "assets/work/sonata/E-thumb.jpg",
-              "aspect": "1800/1200",
-              "stage": "final",
-              "caption": "",
-              "alt": "Sonata — still",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/sonata/AA.jpg",
-              "thumb": "assets/work/sonata/AA-thumb.jpg",
-              "aspect": "1800/1200",
-              "stage": "final",
-              "caption": "",
-              "alt": "Sonata — still",
-              "pos": null,
-              "page": null,
-              "description": null
+              "imgs": [
+                {
+                  "src": "assets/work/sonata/AP.jpg",
+                  "thumb": "assets/work/sonata/AP-thumb.jpg",
+                  "aspect": "1800/1200",
+                  "alt": "Paintings for the house"
+                },
+                {
+                  "src": "assets/work/sonata/AU.jpg",
+                  "thumb": "assets/work/sonata/AU-thumb.jpg",
+                  "aspect": "1391/1800",
+                  "alt": "Paintings for the house"
+                },
+                {
+                  "src": "assets/work/sonata/AV.jpg",
+                  "thumb": "assets/work/sonata/AV-thumb.jpg",
+                  "aspect": "1391/1800",
+                  "alt": "Paintings for the house"
+                }
+              ],
+              "caption": "Paintings for the house."
             }
           ]
         }
@@ -2252,7 +1903,13 @@
       "constraint": "",
       "homePassage": "",
       "homeTitleImg": null,
-      "published": false
+      "published": true,
+      "heroImage": {
+        "src": "assets/work/sonata/T.jpg",
+        "thumb": "assets/work/sonata/T-thumb.jpg",
+        "aspect": "1800/1200",
+        "alt": "Sonata"
+      }
     },
     {
       "slug": "soup",
@@ -2603,359 +2260,217 @@
       ],
       "topics": [
         {
-          "id": "restaurant",
-          "kind": "set",
+          "id": "the-restaurant",
           "title": "The Restaurant",
-          "slug": null,
-          "note": "The restaurant in the script is a small, worn room — the kind a family keeps for three generations. What we found was the opposite: too big, too open, nothing that felt lived in. So we made it smaller. We built a wall.\n\nThe work split cleanly. I designed the structure — the beams and supports that had to stand on their own on set. Ariel, our production designer, designed the look and led the texturing: layer over layer until fresh drywall read as years, a plexiglass window cut in, graphics and props dressed across it until the seam was gone. By the end, the wall had always been there.",
-          "layout": null,
-          "items": [
+          "key": {
+            "src": "assets/work/soup/W.jpg",
+            "thumb": "assets/work/soup/W-thumb.jpg",
+            "aspect": "1800/1345",
+            "alt": "Soup 湯 — The Restaurant"
+          },
+          "blocks": [
             {
-              "src": "assets/work/soup/AA.jpg",
-              "thumb": "assets/work/soup/AA-thumb.jpg",
-              "aspect": "1800/1440",
-              "stage": "drawing",
-              "caption": "The wall — construction plan",
-              "alt": "Soup 湯 — The Wall - Construction Plan",
-              "pos": null,
-              "page": null,
-              "description": null
+              "text": "The restaurant in the script is a small, worn room — the kind a family keeps for three generations. What we found was the opposite: too big, too open, nothing that felt lived in. So we made it smaller. We built a wall."
             },
             {
-              "src": "assets/work/soup/I.jpg",
-              "thumb": "assets/work/soup/I-thumb.jpg",
-              "aspect": "1800/1352",
-              "stage": "final",
-              "caption": "",
-              "alt": "Soup 湯 — The Restaurant",
-              "pos": null,
-              "page": null,
-              "description": null
+              "imgs": [
+                {
+                  "src": "assets/work/soup/AA.jpg",
+                  "thumb": "assets/work/soup/AA-thumb.jpg",
+                  "aspect": "1800/1440",
+                  "alt": "Construction plan for the wall"
+                }
+              ],
+              "caption": "Construction plan for the wall."
             },
             {
-              "src": "assets/work/soup/J.jpg",
-              "thumb": "assets/work/soup/J-thumb.jpg",
-              "aspect": "1800/1352",
-              "stage": "final",
-              "caption": "",
-              "alt": "Soup 湯 — The Restaurant",
-              "pos": null,
-              "page": null,
-              "description": null
+              "text": "The work split cleanly. I designed the structure — the beams and supports that had to stand on their own on set. Ariel, our production designer, designed the look and led the texturing: layer over layer until fresh drywall read as years, a plexiglass window cut in, graphics and props dressed across it until the seam was gone. By the end, the wall had always been there."
             },
             {
-              "src": "assets/work/soup/Q.jpg",
-              "thumb": "assets/work/soup/Q-thumb.jpg",
-              "aspect": "1800/1345",
-              "stage": "final",
-              "caption": "",
-              "alt": "Soup 湯 — The Restaurant",
-              "pos": null,
-              "page": null,
-              "description": null
+              "imgs": [
+                {
+                  "src": "assets/work/soup/I.jpg",
+                  "thumb": "assets/work/soup/I-thumb.jpg",
+                  "aspect": "1800/1352",
+                  "alt": "The restaurant on screen"
+                },
+                {
+                  "src": "assets/work/soup/Q.jpg",
+                  "thumb": "assets/work/soup/Q-thumb.jpg",
+                  "aspect": "1800/1345",
+                  "alt": "The restaurant on screen"
+                },
+                {
+                  "src": "assets/work/soup/R.jpg",
+                  "thumb": "assets/work/soup/R-thumb.jpg",
+                  "aspect": "1800/1345",
+                  "alt": "The restaurant on screen"
+                },
+                {
+                  "src": "assets/work/soup/J.jpg",
+                  "thumb": "assets/work/soup/J-thumb.jpg",
+                  "aspect": "1800/1352",
+                  "alt": "The restaurant on screen"
+                }
+              ],
+              "caption": "The restaurant on screen."
             },
             {
-              "src": "assets/work/soup/R.jpg",
-              "thumb": "assets/work/soup/R-thumb.jpg",
-              "aspect": "1800/1345",
-              "stage": "final",
-              "caption": "",
-              "alt": "Soup 湯 — The Restaurant",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/soup/W.jpg",
-              "thumb": "assets/work/soup/W-thumb.jpg",
-              "aspect": "1800/1345",
-              "stage": "final",
-              "caption": "",
-              "alt": "Soup 湯 — The Restaurant",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/soup/Y.jpg",
-              "thumb": "assets/work/soup/Y-thumb.jpg",
-              "aspect": "1800/1345",
-              "stage": "final",
-              "caption": "",
-              "alt": "Soup 湯 — The Restaurant",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/soup/Z.jpg",
-              "thumb": "assets/work/soup/Z-thumb.jpg",
-              "aspect": "1800/1345",
-              "stage": "final",
-              "caption": "",
-              "alt": "Soup 湯 — The Restaurant",
-              "pos": null,
-              "page": null,
-              "description": null
+              "imgs": [
+                {
+                  "src": "assets/work/soup/Y.jpg",
+                  "thumb": "assets/work/soup/Y-thumb.jpg",
+                  "aspect": "1800/1345",
+                  "alt": "The lucky cat by the counter"
+                },
+                {
+                  "src": "assets/work/soup/Z.jpg",
+                  "thumb": "assets/work/soup/Z-thumb.jpg",
+                  "aspect": "1800/1345",
+                  "alt": "The tea service"
+                }
+              ],
+              "caption": "Top to bottom: the lucky cat by the counter; the tea service."
             }
           ]
         },
         {
-          "id": "apartment",
-          "kind": "set",
+          "id": "the-apartment",
           "title": "The Apartment",
-          "slug": null,
-          "note": null,
-          "layout": null,
-          "items": [
+          "key": {
+            "src": "assets/work/soup/S.jpg",
+            "thumb": "assets/work/soup/S-thumb.jpg",
+            "aspect": "1800/1345",
+            "alt": "Soup 湯 — The Apartment"
+          },
+          "blocks": [
             {
-              "src": "assets/work/soup/A.jpg",
-              "thumb": "assets/work/soup/A-thumb.jpg",
-              "aspect": "1800/1352",
-              "stage": "final",
-              "caption": "",
-              "alt": "Soup 湯 — The Apartment",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/soup/B.jpg",
-              "thumb": "assets/work/soup/B-thumb.jpg",
-              "aspect": "1800/1352",
-              "stage": "final",
-              "caption": "",
-              "alt": "Soup 湯 — The Apartment",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/soup/C.jpg",
-              "thumb": "assets/work/soup/C-thumb.jpg",
-              "aspect": "1800/1352",
-              "stage": "final",
-              "caption": "",
-              "alt": "Soup 湯 — The Apartment",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/soup/S.jpg",
-              "thumb": "assets/work/soup/S-thumb.jpg",
-              "aspect": "1800/1345",
-              "stage": "final",
-              "caption": "",
-              "alt": "Soup 湯 — The Apartment",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/soup/U.jpg",
-              "thumb": "assets/work/soup/U-thumb.jpg",
-              "aspect": "1800/1345",
-              "stage": "final",
-              "caption": "",
-              "alt": "Soup 湯 — The Apartment",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/soup/X.jpg",
-              "thumb": "assets/work/soup/X-thumb.jpg",
-              "aspect": "1800/1345",
-              "stage": "final",
-              "caption": "",
-              "alt": "Soup 湯 — The Apartment",
-              "pos": null,
-              "page": null,
-              "description": null
+              "imgs": [
+                {
+                  "src": "assets/work/soup/A.jpg",
+                  "thumb": "assets/work/soup/A-thumb.jpg",
+                  "aspect": "1800/1352",
+                  "alt": "The apartment"
+                },
+                {
+                  "src": "assets/work/soup/X.jpg",
+                  "thumb": "assets/work/soup/X-thumb.jpg",
+                  "aspect": "1800/1345",
+                  "alt": "The apartment"
+                },
+                {
+                  "src": "assets/work/soup/U.jpg",
+                  "thumb": "assets/work/soup/U-thumb.jpg",
+                  "aspect": "1800/1345",
+                  "alt": "The apartment"
+                },
+                {
+                  "src": "assets/work/soup/B.jpg",
+                  "thumb": "assets/work/soup/B-thumb.jpg",
+                  "aspect": "1800/1352",
+                  "alt": "The apartment"
+                }
+              ],
+              "caption": "The apartment."
             }
           ]
         },
         {
-          "id": "kitchen",
-          "kind": "set",
+          "id": "the-kitchen",
           "title": "The Kitchen",
-          "slug": null,
-          "note": null,
-          "layout": null,
-          "items": [
+          "key": {
+            "src": "assets/work/soup/D.jpg",
+            "thumb": "assets/work/soup/D-thumb.jpg",
+            "aspect": "1800/1352",
+            "alt": "Soup 湯 — The Kitchen"
+          },
+          "blocks": [
             {
-              "src": "assets/work/soup/D.jpg",
-              "thumb": "assets/work/soup/D-thumb.jpg",
-              "aspect": "1800/1352",
-              "stage": "final",
-              "caption": "",
-              "alt": "Soup 湯 — The Kitchen",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/soup/E.jpg",
-              "thumb": "assets/work/soup/E-thumb.jpg",
-              "aspect": "1800/1352",
-              "stage": "final",
-              "caption": "",
-              "alt": "Soup 湯 — The Kitchen",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/soup/F.jpg",
-              "thumb": "assets/work/soup/F-thumb.jpg",
-              "aspect": "1800/1352",
-              "stage": "final",
-              "caption": "",
-              "alt": "Soup 湯 — The Kitchen",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/soup/G.jpg",
-              "thumb": "assets/work/soup/G-thumb.jpg",
-              "aspect": "1800/1352",
-              "stage": "final",
-              "caption": "",
-              "alt": "Soup 湯 — The Kitchen",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/soup/H.jpg",
-              "thumb": "assets/work/soup/H-thumb.jpg",
-              "aspect": "1800/1352",
-              "stage": "final",
-              "caption": "",
-              "alt": "Soup 湯 — The Kitchen",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/soup/P.jpg",
-              "thumb": "assets/work/soup/P-thumb.jpg",
-              "aspect": "1800/1345",
-              "stage": "final",
-              "caption": "",
-              "alt": "Soup 湯 — The Kitchen",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/soup/V.jpg",
-              "thumb": "assets/work/soup/V-thumb.jpg",
-              "aspect": "1800/1345",
-              "stage": "final",
-              "caption": "",
-              "alt": "Soup 湯 — The Kitchen",
-              "pos": null,
-              "page": null,
-              "description": null
+              "imgs": [
+                {
+                  "src": "assets/work/soup/H.jpg",
+                  "thumb": "assets/work/soup/H-thumb.jpg",
+                  "aspect": "1800/1352",
+                  "alt": "The kitchen"
+                },
+                {
+                  "src": "assets/work/soup/P.jpg",
+                  "thumb": "assets/work/soup/P-thumb.jpg",
+                  "aspect": "1800/1345",
+                  "alt": "The kitchen"
+                },
+                {
+                  "src": "assets/work/soup/F.jpg",
+                  "thumb": "assets/work/soup/F-thumb.jpg",
+                  "aspect": "1800/1352",
+                  "alt": "The kitchen"
+                },
+                {
+                  "src": "assets/work/soup/V.jpg",
+                  "thumb": "assets/work/soup/V-thumb.jpg",
+                  "aspect": "1800/1345",
+                  "alt": "The kitchen"
+                }
+              ],
+              "caption": "The kitchen."
             }
           ]
         },
         {
-          "id": "soup",
-          "kind": "grid",
+          "id": "the-soup",
           "title": "The Soup",
-          "slug": null,
-          "note": null,
-          "layout": null,
-          "items": [
+          "blocks": [
             {
-              "src": "assets/work/soup/K.jpg",
-              "thumb": "assets/work/soup/K-thumb.jpg",
-              "aspect": "1800/1352",
-              "stage": "prop",
-              "caption": "",
-              "alt": "Soup 湯 — Prop - The Soup",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/soup/M.jpg",
-              "thumb": "assets/work/soup/M-thumb.jpg",
-              "aspect": "1800/1089",
-              "stage": "prop",
-              "caption": "",
-              "alt": "Soup 湯 — Prop - The Soup",
-              "pos": "50.7% 23.3%",
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/soup/T.jpg",
-              "thumb": "assets/work/soup/T-thumb.jpg",
-              "aspect": "1800/1345",
-              "stage": "prop",
-              "caption": "",
-              "alt": "Soup 湯 — Prop - The Soup",
-              "pos": null,
-              "page": null,
-              "description": null
+              "imgs": [
+                {
+                  "src": "assets/work/soup/K.jpg",
+                  "thumb": "assets/work/soup/K-thumb.jpg",
+                  "aspect": "1800/1352",
+                  "alt": "Meng Po's soup"
+                },
+                {
+                  "src": "assets/work/soup/T.jpg",
+                  "thumb": "assets/work/soup/T-thumb.jpg",
+                  "aspect": "1800/1345",
+                  "alt": "Meng Po's soup"
+                },
+                {
+                  "src": "assets/work/soup/M.jpg",
+                  "thumb": "assets/work/soup/M-thumb.jpg",
+                  "aspect": "1800/1089",
+                  "alt": "Meng Po's soup"
+                }
+              ],
+              "caption": "Meng Po's soup."
             }
           ]
         },
         {
-          "id": "liminal",
-          "kind": "set",
+          "id": "the-liminal-space",
           "title": "The Liminal Space",
-          "slug": null,
-          "note": null,
-          "layout": null,
-          "items": [
+          "key": {
+            "src": "assets/work/soup/L.jpg",
+            "thumb": "assets/work/soup/L-thumb.jpg",
+            "aspect": "1800/1089",
+            "alt": "Soup 湯 — The Liminal Space"
+          },
+          "blocks": [
             {
-              "src": "assets/work/soup/L.jpg",
-              "thumb": "assets/work/soup/L-thumb.jpg",
-              "aspect": "1800/1089",
-              "stage": "final",
-              "caption": "",
-              "alt": "Soup 湯 — The Liminal Space",
-              "pos": null,
-              "page": null,
-              "description": null
-            }
-          ]
-        },
-        {
-          "id": "frames",
-          "kind": "stills",
-          "title": "Frames",
-          "slug": null,
-          "note": null,
-          "layout": null,
-          "items": [
-            {
-              "src": "assets/work/soup/N.jpg",
-              "thumb": "assets/work/soup/N-thumb.jpg",
-              "aspect": "1800/1089",
-              "stage": "final",
-              "caption": "",
-              "alt": "Soup 湯 — still",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/soup/O.jpg",
-              "thumb": "assets/work/soup/O-thumb.jpg",
-              "aspect": "1800/1089",
-              "stage": "final",
-              "caption": "",
-              "alt": "Soup 湯 — still",
-              "pos": null,
-              "page": null,
-              "description": null
+              "imgs": [
+                {
+                  "src": "assets/work/soup/N.jpg",
+                  "thumb": "assets/work/soup/N-thumb.jpg",
+                  "aspect": "1800/1089",
+                  "alt": "Meng Po, and the offer to forget"
+                },
+                {
+                  "src": "assets/work/soup/O.jpg",
+                  "thumb": "assets/work/soup/O-thumb.jpg",
+                  "aspect": "1800/1089",
+                  "alt": "Meng Po, and the offer to forget"
+                }
+              ],
+              "caption": "Meng Po, and the offer to forget."
             }
           ]
         }
@@ -2964,7 +2479,13 @@
       "constraint": "",
       "homePassage": "",
       "homeTitleImg": null,
-      "published": false
+      "published": true,
+      "heroImage": {
+        "src": "assets/work/soup/I.jpg",
+        "thumb": "assets/work/soup/I-thumb.jpg",
+        "aspect": "1800/1352",
+        "alt": "Soup 湯"
+      }
     },
     {
       "slug": "antidote",
@@ -3222,187 +2743,109 @@
       ],
       "topics": [
         {
-          "id": "frames",
-          "kind": "stills",
-          "title": "Frames",
-          "slug": null,
-          "note": null,
-          "layout": null,
-          "items": [
+          "id": "costume",
+          "title": "Costume",
+          "blocks": [
             {
-              "src": "assets/work/antidote/A.jpg",
-              "thumb": "assets/work/antidote/A-thumb.jpg",
-              "aspect": "1800/1012",
-              "stage": "final",
-              "caption": "",
-              "alt": "Antidote — still",
-              "pos": null,
-              "page": null,
-              "description": null
+              "text": "Antidote unfolds in a single hospital ward — a sick boy and a worn-out stranger sharing a room while the boy's parents carry in the weight of the world outside. I designed the costumes to hold that split. The boy and the old man wear grounded, human color — warm reds and soft, desaturated earth tones, the palette of skin and of being cared for."
             },
             {
-              "src": "assets/work/antidote/B.jpg",
-              "thumb": "assets/work/antidote/B-thumb.jpg",
-              "aspect": "1800/1012",
-              "stage": "final",
-              "caption": "",
-              "alt": "Antidote — still",
-              "pos": null,
-              "page": null,
-              "description": null
+              "imgs": [
+                {
+                  "src": "assets/work/antidote/A.jpg",
+                  "thumb": "assets/work/antidote/A-thumb.jpg",
+                  "aspect": "1800/1012",
+                  "alt": "The boy in the gown, cut down from an adult one"
+                },
+                {
+                  "src": "assets/work/antidote/G.jpg",
+                  "thumb": "assets/work/antidote/G-thumb.jpg",
+                  "aspect": "1800/1012",
+                  "alt": "At his bedside"
+                },
+                {
+                  "src": "assets/work/antidote/H.jpg",
+                  "thumb": "assets/work/antidote/H-thumb.jpg",
+                  "aspect": "1800/1012",
+                  "alt": "The ward"
+                }
+              ],
+              "caption": "Top to bottom: the boy in the gown, cut down from an adult one; at his bedside; the ward."
             },
             {
-              "src": "assets/work/antidote/C.jpg",
-              "thumb": "assets/work/antidote/C-thumb.jpg",
-              "aspect": "1800/1012",
-              "stage": "final",
-              "caption": "",
-              "alt": "Antidote — still",
-              "pos": null,
-              "page": null,
-              "description": null
+              "text": "The parents were the variable. Their clothes shift with their state of mind across the film — cooling toward something harder and more capitalistic when the money takes hold of them, then warming and lightening in the moments they stop being a provider and a caretaker and become, again, just a mother and a father."
             },
             {
-              "src": "assets/work/antidote/D.jpg",
-              "thumb": "assets/work/antidote/D-thumb.jpg",
-              "aspect": "1800/1012",
-              "stage": "final",
-              "caption": "",
-              "alt": "Antidote — still",
-              "pos": null,
-              "page": null,
-              "description": null
+              "imgs": [
+                {
+                  "src": "assets/work/antidote/D.jpg",
+                  "thumb": "assets/work/antidote/D-thumb.jpg",
+                  "aspect": "1800/1012",
+                  "alt": "The mother"
+                },
+                {
+                  "src": "assets/work/antidote/J.jpg",
+                  "thumb": "assets/work/antidote/J-thumb.jpg",
+                  "aspect": "1800/1012",
+                  "alt": "A conversation in the hospital hallway"
+                }
+              ],
+              "caption": "Top to bottom: the mother; a conversation in the hospital hallway."
             },
             {
-              "src": "assets/work/antidote/E.jpg",
-              "thumb": "assets/work/antidote/E-thumb.jpg",
-              "aspect": "1800/1012",
-              "stage": "final",
-              "caption": "",
-              "alt": "Antidote — still",
-              "pos": null,
-              "page": null,
-              "description": null
+              "text": "The most deliberate piece was the jacket. People shed a jacket or pull one on as they enter or leave a room, but the gesture is also armor — putting it on raises a guard against the outside, taking it off lets it fall. And with nowhere to source a child's hospital gown, I made one: cutting an adult gown apart and sewing it back down to a boy's size."
             },
             {
-              "src": "assets/work/antidote/F.jpg",
-              "thumb": "assets/work/antidote/F-thumb.jpg",
-              "aspect": "1800/1012",
-              "stage": "final",
-              "caption": "",
-              "alt": "Antidote — still",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/antidote/G.jpg",
-              "thumb": "assets/work/antidote/G-thumb.jpg",
-              "aspect": "1800/1012",
-              "stage": "final",
-              "caption": "",
-              "alt": "Antidote — still",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/antidote/H.jpg",
-              "thumb": "assets/work/antidote/H-thumb.jpg",
-              "aspect": "1800/1012",
-              "stage": "final",
-              "caption": "",
-              "alt": "Antidote — still",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/antidote/I.jpg",
-              "thumb": "assets/work/antidote/I-thumb.jpg",
-              "aspect": "1800/1012",
-              "stage": "final",
-              "caption": "",
-              "alt": "Antidote — still",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/antidote/J.jpg",
-              "thumb": "assets/work/antidote/J-thumb.jpg",
-              "aspect": "1800/1012",
-              "stage": "final",
-              "caption": "",
-              "alt": "Antidote — still",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/antidote/K.jpg",
-              "thumb": "assets/work/antidote/K-thumb.jpg",
-              "aspect": "1800/1012",
-              "stage": "final",
-              "caption": "",
-              "alt": "Antidote — still",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/antidote/L.jpg",
-              "thumb": "assets/work/antidote/L-thumb.jpg",
-              "aspect": "1800/1012",
-              "stage": "final",
-              "caption": "",
-              "alt": "Antidote — still",
-              "pos": null,
-              "page": null,
-              "description": null
+              "imgs": [
+                {
+                  "src": "assets/work/antidote/E.jpg",
+                  "thumb": "assets/work/antidote/E-thumb.jpg",
+                  "aspect": "1800/1012",
+                  "alt": "The stranger with the boy"
+                },
+                {
+                  "src": "assets/work/antidote/I.jpg",
+                  "thumb": "assets/work/antidote/I-thumb.jpg",
+                  "aspect": "1800/1012",
+                  "alt": "The stranger, jacket on"
+                },
+                {
+                  "src": "assets/work/antidote/L.jpg",
+                  "thumb": "assets/work/antidote/L-thumb.jpg",
+                  "aspect": "1800/1012",
+                  "alt": "The two of them on a park bench"
+                }
+              ],
+              "caption": "Top to bottom: the stranger with the boy; the stranger, jacket on; the two of them on a park bench."
             }
           ]
         },
         {
-          "id": "wardrobe",
-          "kind": "grid",
-          "title": "Wardrobe",
-          "slug": null,
-          "note": "Antidote unfolds in a single hospital ward — a sick boy and a worn-out stranger sharing a room while the boy's parents carry in the weight of the world outside. I designed the costumes to hold that split. The boy and the old man wear grounded, human color — warm reds and soft, desaturated earth tones, the palette of skin and of being cared for.\n\nThe parents were the variable. Their clothes shift with their state of mind across the film — cooling toward something harder and more capitalistic when the money takes hold of them, then warming and lightening in the moments they stop being a provider and a caretaker and become, again, just a mother and a father.\n\nThe most deliberate piece was the jacket. People shed a jacket or pull one on as they enter or leave a room, but the gesture is also armor — putting it on raises a guard against the outside, taking it off lets it fall. And with nowhere to source a child's hospital gown, I made one: cutting an adult gown apart and sewing it back down to a boy's size.",
-          "layout": null,
-          "items": [
+          "id": "wardrobe-boards",
+          "title": "Wardrobe Boards",
+          "blocks": [
             {
-              "src": "assets/work/antidote/M.jpg",
-              "thumb": "assets/work/antidote/M-thumb.jpg",
-              "aspect": "1800/1536",
-              "stage": "reference",
-              "caption": "Lei",
-              "alt": "Antidote — Wardrobe — Lei",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/antidote/N.jpg",
-              "thumb": "assets/work/antidote/N-thumb.jpg",
-              "aspect": "1800/1622",
-              "stage": "reference",
-              "caption": "Lei",
-              "alt": "Antidote — Wardrobe — Lei",
-              "pos": null,
-              "page": null,
-              "description": null
-            },
-            {
-              "src": "assets/work/antidote/O.jpg",
-              "thumb": "assets/work/antidote/O-thumb.jpg",
-              "aspect": "1800/1007",
-              "stage": "reference",
-              "caption": "Blu",
-              "alt": "Antidote — Wardrobe — Blu",
-              "pos": null,
-              "page": null,
-              "description": null
+              "imgs": [
+                {
+                  "src": "assets/work/antidote/M.jpg",
+                  "thumb": "assets/work/antidote/M-thumb.jpg",
+                  "aspect": "1800/1536",
+                  "alt": "Wardrobe boards for Lei and Blu"
+                },
+                {
+                  "src": "assets/work/antidote/N.jpg",
+                  "thumb": "assets/work/antidote/N-thumb.jpg",
+                  "aspect": "1800/1622",
+                  "alt": "Wardrobe boards for Lei and Blu"
+                },
+                {
+                  "src": "assets/work/antidote/O.jpg",
+                  "thumb": "assets/work/antidote/O-thumb.jpg",
+                  "aspect": "1800/1007",
+                  "alt": "Wardrobe boards for Lei and Blu"
+                }
+              ],
+              "caption": "Wardrobe boards for Lei and Blu."
             }
           ]
         }
@@ -3411,7 +2854,13 @@
       "constraint": "",
       "homePassage": "",
       "homeTitleImg": null,
-      "published": false
+      "published": true,
+      "heroImage": {
+        "src": "assets/work/antidote/B.jpg",
+        "thumb": "assets/work/antidote/B-thumb.jpg",
+        "aspect": "1800/1012",
+        "alt": "Antidote"
+      }
     },
     {
       "slug": "on-the-river-bank",
