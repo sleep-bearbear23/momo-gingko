@@ -250,7 +250,7 @@
     // leaving the home from a section (not the cover): there are no black leaves to blow, so it's a
     // plain crossfade like inner→inner — the home sections fade out first.
     const homeDeep = from==='home' && window.GKhome && window.GKhome.index()>0;
-    if(homeDeep){ bodyEl.classList.add('hp-leaving'); await wait(200); }
+    if(homeDeep){ window.GK.paper(); bodyEl.classList.add('hp-leaving'); await wait(200); }   // canvas → quiet paper first, so the fade never shows the cover's falling leaves
     mount.classList.add('leaving');                 // fade current content out
     if(from!=='home') await wait(150);
     const page = await mountFragment(file);         // fills mount (hidden), sets chrome

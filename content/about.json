@@ -1,5 +1,5 @@
 {
-  "_note": "Single source for about.html AND the home page's About section (GKcontent.renderAbout). Empty strings / nulls are not rendered. `illustrations` ({src, thumb, aspect, alt, pos?}, in order) feeds the HOME Illustration section (needs at least 6; phone shows the first 6, desktop 12); every tile links to illustrationMore.url.",
+  "_note": "Single source for about.html AND the home page's About section (GKcontent.renderAbout). Empty strings / nulls are not rendered. `illustrations` ({src, thumb?, aspect, alt, pos?, video?:{webm,mp4}, poster?}, IN ORDER) feeds the HOME Illustration page: phones show 1–8 (fixed); desktop shows 1–28 and slowly cycles the rest in. Needs at least 8. A GIF keeps its .gif as `src` and adds `video` + `poster` (a small muted loop) — the home plays the video, never the GIF. Every tile links to illustrationMore.url.",
   "positioning": "",
   "bio": [
     "Hey, I’m Momo — an art director and production designer based in Los Angeles, working across vertical film, music video, and commercial shoots. I’ve worked both as a lead designer and as someone’s right-hand art director, bringing visions to life on set.",
@@ -12,7 +12,196 @@
     "thumb": "assets/about/portrait-thumb.jpg",
     "alt": "Momo Chuang"
   },
-  "illustrations": [],
+  "illustrations": [
+    {
+      "src": "assets/work/ci/L.jpg",
+      "thumb": "assets/work/ci/L-thumb.jpg",
+      "aspect": "1440/1800",
+      "alt": "Ecosystems of Public Bathroom"
+    },
+    {
+      "src": "assets/work/ci/AR.jpg",
+      "thumb": "assets/work/ci/AR-thumb.jpg",
+      "aspect": "1800/1012",
+      "alt": "North"
+    },
+    {
+      "src": "assets/work/ci/R.jpg",
+      "thumb": "assets/work/ci/R-thumb.jpg",
+      "aspect": "1391/1800",
+      "alt": "Responsibility"
+    },
+    {
+      "src": "assets/work/ci/AK.jpg",
+      "thumb": "assets/work/ci/AK-thumb.jpg",
+      "aspect": "1440/1800",
+      "alt": ""
+    },
+    {
+      "src": "assets/work/ci/BB.gif",
+      "aspect": "480/480",
+      "alt": "Companion",
+      "video": {
+        "webm": "assets/work/ci/BB.webm",
+        "mp4": "assets/work/ci/BB.mp4"
+      },
+      "poster": "assets/work/ci/BB-poster.jpg"
+    },
+    {
+      "src": "assets/work/ci/AQ.jpg",
+      "thumb": "assets/work/ci/AQ-thumb.jpg",
+      "aspect": "1800/900",
+      "alt": "Koi"
+    },
+    {
+      "src": "assets/work/ci/AT.jpg",
+      "thumb": "assets/work/ci/AT-thumb.jpg",
+      "aspect": "1440/1800",
+      "alt": "Snow White"
+    },
+    {
+      "src": "assets/work/ci/AV.jpg",
+      "thumb": "assets/work/ci/AV-thumb.jpg",
+      "aspect": "1012/1800",
+      "alt": "JINX - A Fan Art"
+    },
+    {
+      "src": "assets/work/ci/P.jpg",
+      "thumb": "assets/work/ci/P-thumb.jpg",
+      "aspect": "1349/1800",
+      "alt": "Photo Study"
+    },
+    {
+      "src": "assets/work/ci/BD.gif",
+      "aspect": "480/480",
+      "alt": "Ordinary",
+      "video": {
+        "webm": "assets/work/ci/BD.webm",
+        "mp4": "assets/work/ci/BD.mp4"
+      },
+      "poster": "assets/work/ci/BD-poster.jpg"
+    },
+    {
+      "src": "assets/work/ci/F.jpg",
+      "thumb": "assets/work/ci/F-thumb.jpg",
+      "aspect": "1440/1800",
+      "alt": "Brink of Dusk"
+    },
+    {
+      "src": "assets/work/ci/B.jpg",
+      "thumb": "assets/work/ci/B-thumb.jpg",
+      "aspect": "1440/1800",
+      "alt": "Meet Again"
+    },
+    {
+      "src": "assets/work/ci/AS.jpg",
+      "thumb": "assets/work/ci/AS-thumb.jpg",
+      "aspect": "1800/1440",
+      "alt": "Cafe Paris"
+    },
+    {
+      "src": "assets/work/ci/N.jpg",
+      "thumb": "assets/work/ci/N-thumb.jpg",
+      "aspect": "1440/1800",
+      "alt": "Drunken"
+    },
+    {
+      "src": "assets/work/ci/AF.jpg",
+      "thumb": "assets/work/ci/AF-thumb.jpg",
+      "aspect": "1800/1012",
+      "alt": ""
+    },
+    {
+      "src": "assets/work/ci/O.jpg",
+      "thumb": "assets/work/ci/O-thumb.jpg",
+      "aspect": "1440/1800",
+      "alt": "The Bathing Band"
+    },
+    {
+      "src": "assets/work/ci/AH.jpg",
+      "thumb": "assets/work/ci/AH-thumb.jpg",
+      "aspect": "1800/1440",
+      "alt": "Teen Girl's Bedroom"
+    },
+    {
+      "src": "assets/work/ci/AL.jpg",
+      "thumb": "assets/work/ci/AL-thumb.jpg",
+      "aspect": "1440/1800",
+      "alt": "Secret Moments"
+    },
+    {
+      "src": "assets/work/ci/J.jpg",
+      "thumb": "assets/work/ci/J-thumb.jpg",
+      "aspect": "1440/1800",
+      "alt": "Silent Night"
+    },
+    {
+      "src": "assets/work/ci/AD.jpg",
+      "thumb": "assets/work/ci/AD-thumb.jpg",
+      "aspect": "1800/1164",
+      "alt": ""
+    },
+    {
+      "src": "assets/work/ci/AW.jpg",
+      "thumb": "assets/work/ci/AW-thumb.jpg",
+      "aspect": "1440/1800",
+      "alt": "Alina - Expression Sheet"
+    },
+    {
+      "src": "assets/work/ci/AJ.jpg",
+      "thumb": "assets/work/ci/AJ-thumb.jpg",
+      "aspect": "1440/1800",
+      "alt": "Leap"
+    },
+    {
+      "src": "assets/work/ci/AY.jpg",
+      "thumb": "assets/work/ci/AY-thumb.jpg",
+      "aspect": "1800/1012",
+      "alt": "Shattered"
+    },
+    {
+      "src": "assets/work/ci/BA.jpg",
+      "thumb": "assets/work/ci/BA-thumb.jpg",
+      "aspect": "1440/1800",
+      "alt": "Departure"
+    },
+    {
+      "src": "assets/work/ci/AO.jpg",
+      "thumb": "assets/work/ci/AO-thumb.jpg",
+      "aspect": "1440/1800",
+      "alt": "SELF ESTEEM"
+    },
+    {
+      "src": "assets/work/ci/Q.jpg",
+      "thumb": "assets/work/ci/Q-thumb.jpg",
+      "aspect": "1800/1049",
+      "alt": ""
+    },
+    {
+      "src": "assets/work/ci/A.jpg",
+      "thumb": "assets/work/ci/A-thumb.jpg",
+      "aspect": "1440/1800",
+      "alt": "Figure Drawing"
+    },
+    {
+      "src": "assets/work/ci/AM.jpg",
+      "thumb": "assets/work/ci/AM-thumb.jpg",
+      "aspect": "1440/1800",
+      "alt": ""
+    },
+    {
+      "src": "assets/work/ci/M.jpg",
+      "thumb": "assets/work/ci/M-thumb.jpg",
+      "aspect": "1440/1800",
+      "alt": "Time Warp"
+    },
+    {
+      "src": "assets/work/ci/AZ.jpg",
+      "thumb": "assets/work/ci/AZ-thumb.jpg",
+      "aspect": "1440/1800",
+      "alt": "The Break Up"
+    }
+  ],
   "illustrationMore": {
     "label": "See more on Instagram",
     "url": "https://www.instagram.com/momobear.draws4916/"

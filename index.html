@@ -81,10 +81,10 @@
 
   <!-- home chrome -->
   <div id="logo"><img src="logo.png" alt="默默 GINGKO"/></div>
-  <!-- home scroll (desktop): sections 2–5 ride a transform pager over the leaf canvas; the cover IS the canvas + logo.
-       Built by home.js from content/home.json + projects.json + about.json. -->
-  <div id="hp" aria-label="Home sections"><div id="hpTrack"></div></div>
-  <button id="hCue" type="button" aria-label="Next section"><b>↓</b>scroll</button>
+  <!-- home pager (desktop + phone): the cover is the leaf canvas + #logo underneath; pages 2–5 and the two black
+       cards live in #hp, built by home.js from content/home.json + projects.json + about.json. -->
+  <div id="hp" aria-label="Home"></div>
+  <button id="hCue" type="button" aria-label="Next section"><span class="down"><b>↓</b>scroll</span><span class="up"><b>︿</b>swipe up</span></button>
   <nav id="hDots" aria-label="Sections"></nav>
   <div id="icon"></div>
   <div id="hint">click</div>
@@ -100,30 +100,6 @@
   <main id="mount"></main>
   <div id="footer"></div>
   <div id="copyright"><span>© 2025 默默 GINGKO. All rights reserved.</span></div>
-
-  <!-- ===== MOBILE HOME: vertical swipe (shown after the leaf-blow, on html.mob) ===== -->
-  <div id="mHome" aria-label="Home">
-    <section class="mslide mcover" data-key="cover">
-      <img class="mlogo" src="logo.png" alt="默默 GINGKO"/>
-      <div class="mswipe"><span class="mchev" aria-hidden="true">︿</span>swipe up</div>
-    </section>
-
-    <!-- sections 2–4 (highlights · production design · illustration) are inserted here by home.js -->
-
-    <!-- About: title → portrait → bio, all grouped (one tall section, free-scrolls) -->
-    <section class="mslide mabout-card" id="mAbout" data-key="about">
-      <h2 class="hsh" id="mAboutTitle">About</h2>
-      <div class="mabout-body"></div><!-- GKcontent.renderAbout(…, {inline:true}) -->
-    </section>
-
-    <footer class="mfoot">
-      <nav class="mfoot-nav">
-        <a data-scroll=".mcover">Home</a>
-        <a data-scroll="#mAbout">About</a>
-      </nav>
-      <span class="mfoot-cr">© 2025 默默 GINGKO</span>
-    </footer>
-  </div>
 
 <script>
   // ============ mobile flag (single source of truth for index.html + nav.js + site.css) ============
@@ -340,10 +316,10 @@
     if(activated || !assetsReady)return; activated=true;
     stage.classList.add('playing'); document.body.classList.add('playing');
     icon.style.opacity=0; hint.style.opacity=0;
-    if(isMob()){ mobileEnter(); return; }   // mobile: blow leaves away → reveal the white-leaf swipe home
-    logo.style.opacity=1;
+    logo.style.opacity=1;                               // dark ink: invisible on the black landing, shows as the field turns to paper
+    if(window.GKhome) window.GKhome.entered();          // the home pager unlocks (home.js)
+    if(isMob()){ mobileEnter(); return; }   // mobile: blow leaves away → the static white-leaf cover
     doOpen();
-    if(window.GKhome) window.GKhome.entered();          // desktop: dots + scroll cue appear, the pager unlocks
   }
   async function mobileEnter(){
     // simple entry: leaves fly outward from centre and OFF (they don't linger), while the black
@@ -602,6 +578,9 @@
     assetsReady=true;
     paintBedScatter();                                 // texture the black bed now that sprites exist
     window.GK.rollCursor(); window.GK.rollIcon();
+    // the home dots' "current" mark is a gingko-leaf stamp: one fixed leaf as a CSS mask (alpha-keyed, so it masks cleanly)
+    { const k=leafKeyed[Math.min(2,leafKeyed.length-1)]; if(k){ const c=document.createElement('canvas'); c.width=c.height=96;
+        c.getContext('2d').drawImage(k,0,0,96,96); document.documentElement.style.setProperty('--hleaf','url("'+c.toDataURL()+'")'); } }
     if(mode==='paper') fillPaper();                    // enterQuiet() ran before the sprites were baked → paint the leaf field now
     if(!activated && mode==='landing'){ icon.style.opacity='1'; hint.textContent=isMob()?'tap':'click'; hint.style.opacity='1'; }
   }
@@ -669,7 +648,7 @@
     isLanding(){ return mode==='landing' && !activated; },
     // mobile, returning to the home in a session that already entered: straight to the paper field, no tap.
     enterQuiet(){ activated=true; mode='paper'; stage.classList.add('playing'); document.body.classList.add('playing','m-entered');
-      icon.style.opacity=0; hint.style.opacity=0;
+      icon.style.opacity=0; hint.style.opacity=0; logo.style.opacity=1;
       if(assetsReady) fillPaper();                       // else: plain paper now, onAssetsReady() paints the leaf field
       else { basec.fillStyle=BASE+'1)'; basec.fillRect(0,0,W,H); } },
     debugCount(){ return leaves.length; },
