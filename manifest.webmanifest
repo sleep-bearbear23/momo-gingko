@@ -2,7 +2,7 @@
   "name": "默默 GINGKO",
   "short_name": "默默",
   "description": "Momo Chuang — art director and production designer, Los Angeles.",
-  "start_url": "production-design.html",
+  "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "background_color": "#FAF4EA",

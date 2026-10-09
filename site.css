@@ -511,8 +511,8 @@ body:not([data-page="home"]) .hsec,body.hp-leaving .hsec{pointer-events:none;}
 .hintro{grid-column:3/5;grid-row:3;display:grid;align-content:center;justify-items:center;gap:10px;text-align:center;color:var(--on-black);padding:0 12px;
   opacity:0;transform:translateY(8px);transition:opacity .4s ease,transform .4s ease;}
 .h-illustration.show .hintro{opacity:1;transform:none;transition-delay:.7s;}
-.hintro h2{margin:0;font-family:var(--serif);font-weight:600;font-size:clamp(24px,2.4cqw,34px);}
-.hintro p{margin:0;font-size:13.5px;line-height:1.5;color:var(--on-black-dim);max-width:34ch;}
+.hintro h2{margin:0;font-family:var(--serif);font-weight:600;font-size:clamp(24px,2.4cqw,34px);text-wrap:balance;}
+.hintro p{margin:0;font-size:13.5px;line-height:1.5;color:var(--on-black-dim);max-width:34ch;text-wrap:pretty;}
 .hintro a{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--on-black);border-bottom:1.5px solid var(--blush);padding-bottom:3px;}
 
 /* 5 · about: paper, free scroll; sits under the cards and is revealed by them */
@@ -527,15 +527,20 @@ body:not([data-page="home"]) .hsec,body.hp-leaving .hsec{pointer-events:none;}
   .hcard,.hpanes,.hbarprobe{--bar:15cqh;}
   .hsh{font-size:clamp(26px,7.4cqw,34px);}
   .h-highlights{padding-bottom:40px;}
-  .hfilms{grid-template-columns:min(100%,calc((100cqh - 290px) / 2 * 1.333));gap:18px;}
-  .hfilm{gap:6px;} .hfilm h3{font-size:21px;margin-top:2px;} .hfilm .hmono{font-size:9.5px;letter-spacing:.12em;}
+  /* highlights: images ALWAYS take the full content width. When two 4:3 frames + titles don't fit the visible height
+     (Safari with its toolbar showing, iPhone SE) the crop gets shorter — down to 16:9 — instead of the images narrowing. */
+  .hfilms{grid-template-columns:100%;width:100%;gap:16px;}
+  .hfilm{gap:6px;min-width:0;} .hfilm h3{font-size:21px;margin-top:2px;}
+  .hfilm .hph{aspect-ratio:auto;height:clamp(calc((100cqw - 32px) * .5625), calc((100cqh - 250px) / 2), calc((100cqw - 32px) * .75));}
+  .hfilm .hmono,.hpcard .hmono{font-size:9.5px;letter-spacing:.08em;white-space:nowrap;overflow:hidden;}   /* role · year on one line (home.js shortens it if it can't fit) */
   .hallhead .hsh{font-size:24px;}
   .harr{display:none;}
   .hccount{display:flex;justify-content:space-between;margin:2px 16px 0;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--taupe);}
   .hccount b{font-weight:500;color:var(--ink);}
   .hstrip.nudge{animation:hnudge 1.1s ease-in-out .5s 1;}
   .higrid{grid-template-columns:repeat(2,1fr);gap:3px;padding:3px 3px 34px;}
-  .hintro{grid-column:1/3;grid-row:3;}
+  .hintro{grid-column:1/3;grid-row:3;padding:0 24px;}
+  .hintro p{max-width:30ch;}
   .htile.dk{display:none;}
   .habout-in{padding:8cqh 16px 48px;}
 }

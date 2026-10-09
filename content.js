@@ -310,6 +310,8 @@
       const img = (o, sizes, pos, alt) => '<img src="'+esc(o.thumb||o.src)+'"'+(o.thumb?' srcset="'+esc(o.thumb)+' 640w, '+esc(o.src)+' 1800w" sizes="'+sizes+'"':'')+
         ' alt="'+esc(alt==null?(o.alt||''):alt)+'" decoding="async"'+((pos&&o.pos)?' style="object-position:'+esc(o.pos)+'"':'')+'>';
       const meta = p => [p.role,p.year].filter(Boolean).map(esc).join(' · ');
+      // phones keep role · year on one line; if it can't fit, home.js swaps in this shorter form (first role only)
+      const mono = p => '<span class="hmono" data-short="'+esc([String(p.role||'').split(' · ')[0],p.year].filter(Boolean).join(' · '))+'">'+meta(p)+'</span>';
       const pub = (d.projects||[]).filter(isPub).sort(byFeatured), pages = [];
 
       const films = pub.filter(isFeat).slice(0,2);
@@ -317,14 +319,14 @@
         head(h.highlights,'Project Highlights')+'<div class="hfilms">'+films.map(p=>{
           const im = p.heroImage || p.cover || {};
           return '<a class="hfilm" href="project.html?slug='+esc(p.slug)+'"><span class="hph">'+(im.src?img(im,'(max-width:600px) 92vw, 40vw',true):'')+'</span>'+
-            '<h3>'+esc(p.title)+'</h3><span class="hmono">'+meta(p)+'</span></a>';
+            '<h3>'+esc(p.title)+'</h3>'+mono(p)+'</a>';
         }).join('')+'</div>' });
 
       const pd = h.pdTeaser||{}, dr = pd.image||{};
       const ar = String(dr.aspect||'').split('/').map(Number);
       const card = (p, copy) => { const im = p.heroImage || p.cover || {};
         return '<a class="hpcard" href="project.html?slug='+esc(p.slug)+'"'+(copy!==1?' tabindex="-1" aria-hidden="true"':'')+'><span class="hph">'+(im.src?img(im,'(max-width:600px) 92vw, 62vw',true,''):'')+'</span>'+
-          '<h3>'+esc(p.title)+'</h3><span class="hmono">'+meta(p)+'</span></a>'; };
+          '<h3>'+esc(p.title)+'</h3>'+mono(p)+'</a>'; };
       pages.push({ key:'pd', name:'Production Design', count:pub.length, html:
         '<div class="hpanes"><div class="hpane">'+
           '<a class="hteaser" href="production-design.html">'+head(pd,'See more of my production design work!')+
