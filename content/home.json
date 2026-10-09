@@ -1,5 +1,5 @@
 {
-  "_note": "Home page sections (GKcontent.homeSections; same order on desktop + mobile): cover → highlights (projects.json `featured` 1, 2) → pdTeaser → illustration (about.json `illustrations`, skipped until it has 6) → about. Each section takes `title` and an optional `titleImg` (hand-drawn title PNG, replaces the serif text). `graphics` is unused for now (kept for a later card).",
+  "_note": "Home page (GKcontent.homeSections + home.js; same order on desktop + phone): cover → highlights (projects.json `featured` 1, 2; on black) → pdTeaser (paper between black bars; 'All projects →' opens a looping carousel of every published project) → illustration (about.json `illustrations`; on black; skipped until there are 8, cycled up to 28 on desktop) → about. Each section takes `title` and an optional `titleImg` (hand-drawn title PNG). illustration.intro = the one line in the grid's centre cell. `graphics` is unused for now.",
   "highlights": {
     "title": "Project Highlights",
     "titleImg": null
@@ -16,7 +16,8 @@
   },
   "illustration": {
     "title": "Illustration",
-    "titleImg": null
+    "titleImg": null,
+    "intro": "I started with drawing, both traditional and digital, long before I ever touched a film set."
   },
   "about": {
     "title": "About",

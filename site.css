@@ -408,82 +408,16 @@ body[data-page="gallery"] #mount{overflow:hidden;}
 /* ============================================================
    MOBILE  (html.mob — set by index.html matchMedia / mobile.js;
    also iPad-ish landscape, aspect ≤ 1.4)
-   index.html = a vertical SWIPE HOME on a static white-leaf field
-   (reached by the black leaf landing → tap → blow). Every section
-   is its own standalone scrolling subpage (built by mobile.js).
-   Desktop is untouched.
+   index.html = the same home pager as desktop (home.js), reached by the
+   black leaf landing → tap. Every other page is its own standalone
+   scrolling subpage (built by mobile.js).
    ============================================================ */
 html.mob, html.mob *{cursor:auto !important;}
 /* keep the leaf-canvas LANDING (#stage/#icon/#hint) on mobile; hide the rest of the desktop shell */
-html.mob #logo, html.mob .home-menu, html.mob .frame, html.mob #returnBtn, html.mob .strip-arrow,
+html.mob .frame, html.mob #returnBtn, html.mob .strip-arrow,
 html.mob #pageTitle, html.mob #sideMenu, html.mob #curtain, html.mob #mount, html.mob #footer, html.mob #copyright{display:none !important;}
 
-/* ================= swipe home (revealed after the leaf-blow: body.m-entered) ================= */
-#mHome{display:none;}
-html.mob #mHome{position:fixed;inset:0;z-index:50;background:transparent;   /* the pale leaf field shows through */
-  overflow-y:scroll;scroll-snap-type:y mandatory;-webkit-overflow-scrolling:touch;pointer-events:none;}
-/* revealed instantly with the crossfade — the dark-ink logo is hidden on the black, shown on the white */
-html.mob body.m-entered #mHome{display:block;pointer-events:auto;}
-html.mob #mHome::-webkit-scrollbar{width:0;height:0;}
-.mslide{scroll-snap-align:start;scroll-snap-stop:always;
-  min-height:100vh;min-height:100svh;height:100vh;height:100svh;position:relative;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  padding:calc(env(safe-area-inset-top) + 7vh) 0 calc(env(safe-area-inset-bottom) + 7vh);}
-/* cover: 默默 logo + swipe cue */
-.mcover .mlogo{width:min(58vw,320px);height:auto;display:block;}
-.mswipe{position:absolute;left:0;right:0;bottom:calc(env(safe-area-inset-bottom) + 5vh);text-align:center;
-  font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--taupe);}
-.mswipe .mchev{display:block;font-size:18px;line-height:1;margin-bottom:4px;animation:mbounce 1.9s ease-in-out infinite;}
-@keyframes mbounce{0%,100%{transform:translateY(3px);opacity:.45;}50%{transform:translateY(-4px);opacity:1;}}
-
-/* up/down nav arrows (sit in the black border zones on cards) */
-.mnav{position:absolute;left:50%;transform:translateX(-50%);background:none;border:0;z-index:54;
-  font-family:var(--mono);font-size:19px;line-height:1;color:var(--paper);padding:9px 24px;}
-.mnav-up{top:calc(env(safe-area-inset-top) + 1.3vh);}
-.mnav-down{bottom:calc(env(safe-area-inset-bottom) + 1.3vh);}
-.mnav:active{color:var(--blush);}
-
-/* card: title · full-bleed 16:9 image · passage · see-more button, staged in when active */
-.mcard{gap:clamp(7px,1.4vh,13px);}   /* tight → title sits close to the image, button not pushed low */
-.mcard .mcard-title,.mcard .mthumb,.mcard .mcard-meta,.mcard .mcard-note,.mcard .mmore,.mcard .mgfx{opacity:0;transform:translateY(16px);
-  transition:opacity .55s ease, transform .55s ease;}
-.mcard.active .mcard-title{opacity:1;transform:none;transition-delay:.4s;}                 /* title 0.4s after swipe-in */
-.mcard.active .mthumb,.mcard.active .mcard-meta,.mcard.active .mcard-note,.mcard.active .mmore,.mcard.active .mgfx{opacity:1;transform:none;transition-delay:.7s;} /* rest 0.3s after title */
-/* featured project card: serif text title (until a hand-drawn homeTitleImg exists) + mono role · year */
-.mcard-title.mcard-name{font-family:var(--serif);font-weight:600;font-size:clamp(30px,9vw,46px);line-height:1.05;
-  letter-spacing:-.01em;text-align:center;color:var(--ink);overflow:visible;}
-.mcard-meta{margin:0;padding:0 var(--pad);text-align:center;font-family:var(--mono);font-size:10.5px;
-  letter-spacing:.16em;text-transform:uppercase;color:var(--taupe);}
-/* graphics highlight card: a horizontal swipe strip of objects */
-.mgfx{display:flex;gap:10px;width:100%;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px var(--pad);box-sizing:border-box;}
-.mgfx::-webkit-scrollbar{height:0;}
-.mgfx-it{flex:0 0 auto;height:min(44vh,300px);position:relative;overflow:hidden;background:var(--tile);
-  border:2px solid var(--leaf-black);scroll-snap-align:center;}
-.mgfx-it>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
-/* title fills the frame width with just a small gap either side; JS sets a cropped aspect-ratio
-   on the img (blank below the mark removed) and object-fit:cover keeps the mark, tight. */
-.mcard-title{margin:0;width:100%;max-width:none;padding:0 clamp(14px,4.5vw,32px);overflow:hidden;}
-.mcard-title img{width:100%;height:auto;display:block;object-fit:cover;object-position:top center;}
-/* full-bleed 16:9 image, flush to the screen's left + right edges */
-.mthumb{display:block;width:100%;aspect-ratio:16/9;background:var(--tile);position:relative;overflow:hidden;
-  border-top:2px solid var(--leaf-black);border-bottom:2px solid var(--leaf-black);}
-.mthumb:active{opacity:.9;}
-.mcard-note{margin:0;padding:0 var(--pad);max-width:min(90vw,560px);text-align:center;
-  font-family:var(--sans);font-size:14.5px;line-height:1.5;color:#4a4139;}
-/* see more → a button */
-.mmore{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);
-  border:1.5px solid var(--ink);border-radius:999px;padding:11px 28px;background:transparent;}
-.mmore:active{background:var(--blush);border-color:var(--blush);color:var(--paper);}
-.mreadmore{position:absolute;bottom:calc(env(safe-area-inset-bottom) + 1.2vh);left:50%;transform:translateX(-50%);
-  z-index:54;background:none;border:0;display:flex;flex-direction:column-reverse;align-items:center;gap:2px;
-  font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--paper);}
-.mreadmore .mchev-d{font-size:15px;animation:mbounce 1.9s ease-in-out infinite;}
-
-/* About: title → portrait → bio grouped at the top of one tall section (free-scrolls under mandatory snap) */
-html.mob .mabout-card{justify-content:flex-start;align-items:center;height:auto;min-height:100vh;
-  padding:calc(env(safe-area-inset-top) + 8vh) var(--pad) 9vh;gap:clamp(16px,2.6vh,26px);}
-html.mob .mabout-title{width:100%;max-width:none;padding:0;overflow:hidden;}
-html.mob .mabout-title img{width:100%;height:auto;display:block;object-fit:cover;object-position:top center;}
+/* About body (home About page on phones + shared bits) */
 html.mob .mabout-body{width:100%;max-width:560px;margin:0 auto;}
 html.mob .mabout-body .mportrait{width:min(64vw,290px);aspect-ratio:4/5;margin:0 auto clamp(18px,3vh,30px);
   position:relative;overflow:hidden;background:var(--tile);border:2.5px solid var(--leaf-black);border-radius:2px;}
@@ -500,87 +434,150 @@ html.mob .mabout-body .about-block{margin-top:clamp(28px,5vh,50px);}
 .mfoot-nav a:active{color:var(--blush);}
 .mfoot-cr{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(250,244,234,.45);}
 
-/* ================= HOME SCROLL (PDG rebuild R4) — sections shared by desktop + mobile =================
-   Each section (.hs) is a size container, so everything inside is sized from the section's own width AND
-   height (cqw / cqh) and fits one screen without inner scrolling. @container switches the phone layout.
-   Desktop: #hp is a transform pager over the leaf canvas (home.js). Mobile: .hs sections are #mHome slides. */
-#hp{position:fixed;inset:0;z-index:10;overflow:hidden;pointer-events:none;transition:opacity .22s ease;}
-#hpTrack{position:absolute;inset:0;transition:transform .85s cubic-bezier(.65,0,.3,1);will-change:transform;}
-#hpTrack .hs{position:absolute;left:0;right:0;height:100%;pointer-events:auto;}
-#hpTrack .hs-cover{pointer-events:none;}                       /* the cover is the canvas + #logo underneath */
-body:not([data-page="home"]) #hp,body.hp-leaving #hp,html.mob #hp{opacity:0;visibility:hidden;pointer-events:none;}
-body:not([data-page="home"]) #hpTrack .hs,body.hp-leaving #hpTrack .hs{pointer-events:none;}
-.hs{container:hs / size;}
-.hs-in{height:100%;box-sizing:border-box;padding:8cqh clamp(16px,4cqw,64px);display:flex;flex-direction:column;
-  align-items:center;justify-content:center;gap:clamp(14px,2.6cqh,28px);}
-.hsh{margin:0;font-family:var(--serif);font-weight:600;color:var(--ink);text-align:center;text-wrap:balance;
-  font-size:clamp(28px,3.4cqw,46px);line-height:1.1;letter-spacing:-.01em;max-width:22ch;}
+/* ================= HOME PAGER (PDG rebuild R4 + R5) — desktop and phone =================
+   #hp is the "device": a size container, so everything inside is sized from the screen's own width AND
+   height (cqw / cqh) and each page fits one screen. The cover (leaf canvas + #logo + #hCue) sits UNDER
+   #hp and never moves; two black cards (A, B) do the travelling; content fades onto its own ground.
+   Stack inside #hp: paper / about (1) < cards (2) < content (3). Dots sit outside, above everything.
+   Behaviour + timings: home.js (copied from _planning/pdg-rebuild/prototype-home-v4.html). */
+#hp{position:fixed;inset:0;z-index:10;overflow:hidden;overflow:clip;container:dev / size;pointer-events:none;
+  --bar:clamp(52px,11cqh,120px);--on-black:#F3ECE0;--on-black-dim:#B6AB9A;color:var(--ink);transition:opacity .22s ease;}
+body:not([data-page="home"]) #hp,body.hp-leaving #hp{opacity:0;visibility:hidden;}
+.hbarprobe{position:absolute;height:var(--bar);width:0;visibility:hidden;}
+.hp-paper{position:absolute;inset:0;z-index:0;background:var(--paper);visibility:hidden;}
+body.hp-coveroff .hp-paper{visibility:visible;}                    /* pages 3–5: plain paper hides the cover */
+body.hp-coveroff #logo,body.hp-leaving #logo{opacity:0 !important;transition:none !important;}
+.hsec{position:absolute;inset:0;box-sizing:border-box;padding-inline:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:clamp(14px,2.6cqh,28px);z-index:3;opacity:0;visibility:hidden;}
+.hsec.on{opacity:1;visibility:visible;pointer-events:auto;}
+body:not([data-page="home"]) .hsec,body.hp-leaving .hsec{pointer-events:none;}
+.hcard{position:absolute;left:0;right:0;top:0;height:100%;background:var(--leaf-black);z-index:2;transform:translateY(100%);will-change:transform;}
+
+.hsh{margin:0;font-family:var(--serif);font-weight:600;text-align:center;text-wrap:balance;font-size:clamp(28px,3.4cqw,46px);line-height:1.1;letter-spacing:-.01em;max-width:24ch;}
 .hsh-img{max-width:none;} .hsh-img img{display:block;width:auto;height:auto;max-width:min(80cqw,640px);max-height:16cqh;}  /* hand-drawn title hook */
-.hmono{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--taupe);}
+.hmono{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;}
 .hpill{display:inline-block;font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);
-  border:1.5px solid var(--ink);border-radius:999px;padding:11px 28px;transition:.2s;}
-/* 2 · project highlights: two films side by side (stacked on a phone) */
+  border:1.5px solid var(--ink);border-radius:999px;padding:11px 28px;background:transparent;transition:background-color .2s,border-color .2s,color .2s;}
+.hph{display:block;overflow:hidden;}
+.hph img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
+
+/* 2 · project highlights, on black */
+.h-highlights{color:var(--on-black);}
 .hfilms{display:grid;grid-template-columns:repeat(2,min(40cqw,calc((100cqh - 270px) * 1.333)));gap:clamp(22px,3.4cqw,56px);}
 .hfilm{display:grid;gap:8px;color:inherit;}
-.hph{display:block;aspect-ratio:4/3;overflow:hidden;border:2px solid var(--leaf-black);background:var(--tile);}
-.hph img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
-.hfilm h3{margin:6px 0 0;font-family:var(--serif);font-weight:600;font-size:clamp(20px,1.9cqw,28px);line-height:1.15;color:var(--ink);transition:color .2s;}
-.hfilm:hover .hph img{transform:scale(1.03);} .hfilm:hover h3{color:var(--blush);}
-/* 3 · production design teaser: the whole section is one link */
-.hpd{display:flex;flex-direction:column;align-items:center;gap:clamp(14px,2.6cqh,28px);color:inherit;}
-.hdraw{display:block;border:2px solid var(--leaf-black);background:#fff;}
-.hdraw img{display:block;width:auto;height:auto;max-height:50cqh;max-width:min(62cqw,900px);}
-.hpd:hover .hpill{background:var(--blush);border-color:var(--blush);color:var(--paper);}
-/* 4 · illustration: 4:5 tiles, every one opens Instagram */
-.hillo{display:grid;grid-template-columns:repeat(4,min(14cqw,calc((100cqh - 300px) / 3 * .8)));gap:clamp(8px,1.1cqw,16px);}
-.hillo a{display:block;aspect-ratio:4/5;overflow:hidden;border:1.5px solid var(--leaf-black);background:var(--tile);}
-.hillo img{display:block;width:100%;height:100%;object-fit:cover;}
-.hillo a:hover{outline:2px solid var(--blush);outline-offset:-2px;}
-.hig{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);
-  border-bottom:1.5px solid var(--blush);padding-bottom:3px;}
-/* 5 · about (desktop): the one section that scrolls freely */
-.hs-about{overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;}
-.hs-about-in{width:100%;max-width:640px;box-sizing:border-box;margin:0 auto;padding:10vh 16px 12vh;display:grid;gap:clamp(18px,3vh,30px);justify-items:center;}
-.hs-about-in .mabout-body{width:100%;}
-.hs-about .mportrait{width:min(240px,56vw);aspect-ratio:4/5;margin:0 auto clamp(18px,3vh,30px);position:relative;overflow:hidden;
+.hfilm .hph{aspect-ratio:4/3;background:#1a1816;}
+.hfilm h3{margin:6px 0 0;font-family:var(--serif);font-weight:600;font-size:clamp(20px,1.9cqw,28px);line-height:1.15;transition:color .2s;}
+.hfilm .hmono{color:var(--on-black-dim);}
+.hfilm:hover .hph img,.hpcard:hover .hph img{transform:scale(1.03);} .hfilm:hover h3,.hpcard:hover h3{color:var(--blush);}
+
+/* 3 · production design: paper between thick black bars; teaser ⇄ all projects */
+.h-pd{padding:0;overflow:hidden;overflow:clip;}
+.hpanes{position:absolute;left:0;right:0;top:var(--bar);bottom:var(--bar);display:flex;width:200%;transition:transform .65s cubic-bezier(.6,0,.2,1);}
+.hpanes.all{transform:translateX(-50%);}
+.hpane{flex:0 0 50%;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(12px,2.2cqh,24px);min-width:0;padding-inline:16px;}
+.hteaser{display:flex;flex-direction:column;align-items:center;gap:clamp(12px,2.2cqh,24px);color:inherit;}
+.hteaser .hdraw{display:block;width:var(--dw);height:var(--dh);object-fit:cover;border:2px solid var(--leaf-black);background:#fff;box-sizing:border-box;}
+.hteaser:hover .hpill{background:var(--blush);border-color:var(--blush);color:var(--paper);}
+.hallpane{padding-inline:0;align-items:stretch;overflow:hidden;overflow:clip;}
+.hallhead{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-left:calc(var(--side) + var(--lead));width:var(--dw);}
+.hallhead .hsh{text-align:left;font-size:clamp(24px,2.6cqw,36px);}
+.hpcount{color:var(--taupe);vertical-align:middle;}
+.hback{background:none;border:0;color:var(--taupe);padding:6px 0;white-space:nowrap;transition:color .2s;}
+.hback:hover{color:var(--ink);}
+.hcarousel{position:relative;width:100%;box-sizing:border-box;padding-inline:var(--side);}
+.hviewport{overflow:hidden;overflow:clip;}
+.hstrip{display:flex;gap:var(--gap);will-change:transform;}
+.hccount{display:none;}
+.hpcard{flex:0 0 var(--dw);display:grid;gap:6px;color:inherit;}
+.hpcard .hph{width:var(--dw);height:var(--dh);border:2px solid var(--leaf-black);background:var(--tile);box-sizing:border-box;}
+.hpcard h3{margin:4px 0 0;font-family:var(--serif);font-weight:600;font-size:clamp(19px,1.7cqw,25px);transition:color .2s;}
+.hpcard .hmono{color:var(--taupe);font-size:10.5px;}
+.harr{position:absolute;top:calc(var(--dh) / 2);transform:translateY(-50%);width:46px;height:46px;padding:0;border-radius:50%;border:1.5px solid var(--ink);
+  background:var(--paper);color:var(--ink);font-size:19px;line-height:1;display:grid;place-items:center;z-index:2;transition:background-color .2s,border-color .2s,color .2s;}
+.harr.l{left:calc(var(--side) - 46px - 18px);} .harr.r{right:calc(var(--side) - 46px - 18px);}
+.harr:hover{background:var(--blush);border-color:var(--blush);color:var(--paper);}
+
+/* 4 · illustration, on black: full-screen grid, the centre cell holds the intro */
+.h-illustration{padding:0;}
+.higrid{position:absolute;inset:0;display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(5,1fr);gap:4px;padding:4px clamp(44px,4.2cqw,64px);}
+.htile{display:block;overflow:hidden;background:#1a1816;min-width:0;min-height:0;opacity:0;transform:translate(var(--ox),var(--oy)) scale(.2);
+  transition:transform .55s cubic-bezier(.2,.9,.25,1.1) var(--d),opacity .28s ease var(--d);}
+.htile img{display:block;width:100%;height:100%;object-fit:cover;}
+.htile:hover{outline:2px solid var(--blush);outline-offset:-2px;}
+.h-illustration.show .htile{opacity:1;transform:none;}
+.h-illustration.locked .htile,.h-illustration.locked .hintro{transition:none;}
+.hintro{grid-column:3/5;grid-row:3;display:grid;align-content:center;justify-items:center;gap:10px;text-align:center;color:var(--on-black);padding:0 12px;
+  opacity:0;transform:translateY(8px);transition:opacity .4s ease,transform .4s ease;}
+.h-illustration.show .hintro{opacity:1;transform:none;transition-delay:.7s;}
+.hintro h2{margin:0;font-family:var(--serif);font-weight:600;font-size:clamp(24px,2.4cqw,34px);}
+.hintro p{margin:0;font-size:13.5px;line-height:1.5;color:var(--on-black-dim);max-width:34ch;}
+.hintro a{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--on-black);border-bottom:1.5px solid var(--blush);padding-bottom:3px;}
+
+/* 5 · about: paper, free scroll; sits under the cards and is revealed by them */
+.hsec.habout{z-index:1;display:block;padding:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;background:var(--paper);}
+.habout-in{width:100%;max-width:640px;box-sizing:border-box;margin:0 auto;padding:10cqh 16px 12cqh;display:grid;gap:clamp(18px,3cqh,30px);justify-items:center;}
+.habout-in .mabout-body{width:100%;max-width:none;}
+.habout .mportrait{width:min(240px,56cqw);aspect-ratio:4/5;margin:0 auto clamp(18px,3cqh,30px);position:relative;overflow:hidden;
   background:var(--tile);border:2.5px solid var(--leaf-black);border-radius:2px;}
-.hs-about .bio p{max-width:none;}
-@container hs (max-width:600px){                               /* phone layout */
-  .hs-in{padding:7cqh 16px;}
+.habout .bio p{max-width:none;}
+
+@container dev (max-width:600px){                                   /* phone layout */
+  .hcard,.hpanes,.hbarprobe{--bar:15cqh;}
   .hsh{font-size:clamp(26px,7.4cqw,34px);}
-  .hfilms{grid-template-columns:min(100%,calc((100cqh - 250px) / 2 * 1.333));gap:20px;}
-  .hfilm{gap:6px;} .hfilm h3{font-size:21px;margin-top:2px;}
-  .hfilm .hmono{font-size:9.5px;letter-spacing:.12em;}
-  .hdraw img{max-width:100%;max-height:46cqh;}
-  .hillo{grid-template-columns:repeat(2,min(40cqw,calc((100cqh - 270px) / 3 * .8)));gap:10px;}
-  .hillo a:nth-child(n+7){display:none;}
+  .h-highlights{padding-bottom:40px;}
+  .hfilms{grid-template-columns:min(100%,calc((100cqh - 290px) / 2 * 1.333));gap:18px;}
+  .hfilm{gap:6px;} .hfilm h3{font-size:21px;margin-top:2px;} .hfilm .hmono{font-size:9.5px;letter-spacing:.12em;}
+  .hallhead .hsh{font-size:24px;}
+  .harr{display:none;}
+  .hccount{display:flex;justify-content:space-between;margin:2px 16px 0;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--taupe);}
+  .hccount b{font-weight:500;color:var(--ink);}
+  .hstrip.nudge{animation:hnudge 1.1s ease-in-out .5s 1;}
+  .higrid{grid-template-columns:repeat(2,1fr);gap:3px;padding:3px 3px 34px;}
+  .hintro{grid-column:1/3;grid-row:3;}
+  .htile.dk{display:none;}
+  .habout-in{padding:8cqh 16px 48px;}
 }
-/* mobile slides: the section fills the snap slide (no .mslide padding / centring of its own) */
-html.mob .mslide.hs{display:block;padding:0;}
-html.mob .mabout-card > .hsh{margin:0 auto;}
-/* ↓ scroll cue under the logo (desktop cover). White + difference → reads on the black landing field and on paper */
-#hCue{position:fixed;left:50%;bottom:6vh;transform:translateX(-50%);z-index:12;display:grid;justify-items:center;gap:6px;
-  background:none;border:0;padding:8px 18px;font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;
-  color:#fff;mix-blend-mode:difference;transition:opacity .4s ease;}
+@keyframes hnudge{0%,100%{translate:0;}35%{translate:-34px;}60%{translate:-34px;}}
+.habout .mfoot{margin:0;}
+
+/* cover furniture (under #hp, so card A simply covers it): the logo on phones, and the scroll cue.
+   White + difference → the cue reads on the black landing field and on paper. */
+html.mob #logo img{width:min(58vw,320px);}
+#hCue{position:fixed;left:50%;bottom:6vh;transform:translateX(-50%);z-index:6;background:none;border:0;padding:8px 18px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#fff;mix-blend-mode:difference;transition:opacity .4s ease;}
+#hCue span{display:grid;justify-items:center;gap:6px;}
 #hCue b{font-weight:400;font-size:20px;line-height:1;animation:hbob 1.9s ease-in-out infinite;}
+#hCue .up,html.mob #hCue .down{display:none;} html.mob #hCue .up{display:grid;}
 @keyframes hbob{0%,100%{transform:translateY(-3px);opacity:.5;}50%{transform:translateY(4px);opacity:1;}}
-body:not(.hp-entered) #hCue,body.hp-in #hCue,body:not([data-page="home"]) #hCue,html.mob #hCue{opacity:0;pointer-events:none;}
-/* section dots, right edge: current = filled. Hidden on the first-visit landing and off the home */
-#hDots{position:fixed;right:clamp(12px,1.8vw,30px);top:50%;transform:translateY(-50%);z-index:44;display:grid;gap:14px;
-  mix-blend-mode:difference;transition:opacity .4s ease;}
-#hDots button{position:relative;width:10px;height:10px;padding:0;border-radius:50%;border:1.5px solid #fff;background:transparent;box-sizing:border-box;}
-#hDots button[aria-current="true"]{background:#fff;}
-#hDots button span{position:absolute;right:20px;top:50%;transform:translateY(-50%);white-space:nowrap;font-family:var(--mono);font-size:10px;
-  letter-spacing:.14em;text-transform:uppercase;color:#fff;opacity:0;pointer-events:none;transition:opacity .2s;}
-#hDots button:hover span,#hDots button:focus-visible span{opacity:1;}
-body:not(.hp-entered) #hDots,body:not([data-page="home"]) #hDots,body.hp-leaving #hDots{opacity:0;pointer-events:none;}
-html.mob #hDots{right:4px;gap:11px;z-index:56;}
-html.mob #hDots button{width:8px;height:8px;} html.mob #hDots button span{display:none;}
-html.mob body.m-entered[data-page="home"] #hDots{opacity:1;pointer-events:auto;}
-/* cursor: none on the cover (the leaves are the pointer); the leaf cursor on sections 2–5 */
+body:not(.hp-entered) #hCue,body:not([data-page="home"]) #hCue,body.hp-coveroff #hCue,body.hp-leaving #hCue{opacity:0;visibility:hidden;pointer-events:none;}
+body.hp-in #hCue{pointer-events:none;}                              /* under the card: not clickable through it */
+
+/* dots: rings; the current one is a gingko-leaf stamp. Hidden on the cover (and the landing). */
+#hDots{position:fixed;right:clamp(12px,1.8vw,30px);top:50%;transform:translateY(-50%);z-index:44;display:grid;gap:14px;justify-items:center;
+  mix-blend-mode:difference;transition:opacity .3s ease;}
+#hDots button{position:relative;width:18px;height:18px;padding:0;border:0;background:none;display:grid;place-items:center;}
+#hDots button::before{content:"";width:8px;height:8px;border-radius:50%;border:1.5px solid #fff;box-sizing:border-box;transition:opacity .2s;}
+#hDots button::after{content:"";position:absolute;inset:-2px;background:#fff;-webkit-mask:var(--hleaf) center/contain no-repeat;mask:var(--hleaf) center/contain no-repeat;
+  opacity:0;transform:rotate(var(--rot,-18deg)) scale(1.7);}
+#hDots button[aria-current="true"]::before{opacity:0;}
+#hDots button[aria-current="true"]::after{animation:hstamp .36s cubic-bezier(.3,1.4,.5,1) forwards;}
+@keyframes hstamp{0%{opacity:0;transform:rotate(var(--rot,-18deg)) scale(1.8);}60%{opacity:1;transform:rotate(var(--rot,-18deg)) scale(.86);}100%{opacity:1;transform:rotate(var(--rot,-18deg)) scale(1);}}
+#hDots .lab{position:absolute;right:26px;top:50%;transform:translateY(-50%);white-space:nowrap;font-family:var(--mono);font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;color:#fff;opacity:0;pointer-events:none;transition:opacity .2s;}
+#hDots button:hover .lab,#hDots button:focus-visible .lab{opacity:1;}
+body:not(.hp-entered) #hDots,body:not(.hp-in) #hDots,body:not([data-page="home"]) #hDots,body.hp-leaving #hDots{opacity:0;pointer-events:none;}
+@media (max-width:600px){                                           /* phone: a row at the bottom — inside the bar on page 3, in the strip on page 4 */
+  #hDots{top:auto;bottom:calc(12px + env(safe-area-inset-bottom,0px));right:auto;left:50%;transform:translateX(-50%);grid-auto-flow:column;gap:10px;}
+  #hDots .lab{display:none;}
+  body.hp-about #hDots{opacity:0;pointer-events:none;}             /* About is the last page; the dots would sit on its text */
+}
+/* cursor: none on the cover (the leaves are the pointer); leaf cursor on pages 2–5, the pale one on the black pages */
 body[data-page="home"].hp-in, body[data-page="home"].hp-in *{cursor:var(--cur-dark) !important;}
 body[data-page="home"].hp-in :is(a,button,[role=button]){cursor:var(--cur-dark-tilt) !important;}
-@media (prefers-reduced-motion:reduce){ #hpTrack,#logo{transition:none !important;} #hCue b{animation:none;} }
+body[data-page="home"].hp-dark, body[data-page="home"].hp-dark *{cursor:var(--cur-light) !important;}
+body[data-page="home"].hp-dark :is(a,button,[role=button]){cursor:var(--cur-light-tilt) !important;}
+html.mob body[data-page="home"], html.mob body[data-page="home"] *{cursor:auto !important;}
+@media (prefers-reduced-motion:reduce){ .hpanes,.hstrip,.htile,.hintro{transition-duration:.01s !important;transition-delay:0s !important;} #hCue b,#hDots button::after{animation-duration:.01s !important;} }
 
 /* ================= standalone subpage (mobile.js) ================= */
 html.mob body.m-sub{background:var(--paper);-webkit-overflow-scrolling:touch;}

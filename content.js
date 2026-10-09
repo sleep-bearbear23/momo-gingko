@@ -295,36 +295,58 @@
         : '<div class="about"><div class="about-grid">'+pic+'<div class="about-text">'+pos+bio+'</div></div>'+filmo+contact+'</div>';
       await this.renderFilmography(el.querySelector('.filmo'), {collapse:true});
     },
-    // Home page sections 2–4 (PDG rebuild R4.1), as [{key, name, html}] — the SAME markup on desktop (the
-    // pager in home.js) and mobile (#mHome slides). Cover and About are built by home.js around these.
-    //   highlights   — the two `featured` films: 4:3 hero crop, title, role · year. Nothing else.
-    //   pd           — one link to the project list: heading, one drawing, "All projects →".
-    //   illustration — about.json `illustrations` as 4:5 tiles, every tile → Instagram. Skipped below 6.
+    // Home page content for pages 2–4 (PDG rebuild R4 + R5), as { pages:[{key, name, html}], about, drawAR }.
+    // The same markup serves desktop and phone; home.js owns the black-card pager and all behaviour.
+    //   highlights   — on black: the two `featured` films (4:3 hero crop, title, role · year).
+    //   pd           — paper between bars: teaser (heading, drawing, "All projects →") + a second pane with a
+    //                  looping carousel of every published project (3 copies of the list; home.js lives in the middle one).
+    //   illustration — on black: 6×5 grid (28 tiles + intro) on desktop, 2×5 (8 tiles) on the phone; every tile
+    //                  → Instagram. Needs 8 illustrations in about.json; fewer → the page is skipped. 8–27 → cycled.
     async homeSections(){
       const [d, h, a] = await Promise.all([load('content/projects.json'), load('content/home.json').catch(()=>({})), load('content/about.json').catch(()=>({}))]);
-      const head = (o, fallback) => { o = o||{}; const t = o.title || fallback;
-        return o.titleImg ? '<h2 class="hsh hsh-img"><img src="'+esc(o.titleImg)+'" alt="'+esc(t)+'"></h2>' : '<h2 class="hsh">'+esc(t)+'</h2>'; };
-      const img = (o, sizes, pos) => '<img src="'+esc(o.thumb||o.src)+'"'+(o.thumb?' srcset="'+esc(o.thumb)+' 640w, '+esc(o.src)+' 1800w" sizes="'+sizes+'"':'')+
-        ' alt="'+esc(o.alt||'')+'" decoding="async"'+((pos&&o.pos)?' style="object-position:'+esc(o.pos)+'"':'')+'>';
-      const out = [];
-      const films = (d.projects||[]).filter(p=>isPub(p) && isFeat(p)).sort(byFeatured).slice(0,2);
-      if(films.length) out.push({ key:'highlights', name:(h.highlights||{}).title||'Project Highlights', html:
+      const head = (o, fallback, extra) => { o = o||{}; const t = o.title || fallback;
+        return o.titleImg ? '<h2 class="hsh hsh-img"><img src="'+esc(o.titleImg)+'" alt="'+esc(t)+'"></h2>' : '<h2 class="hsh">'+esc(t)+(extra||'')+'</h2>'; };
+      const img = (o, sizes, pos, alt) => '<img src="'+esc(o.thumb||o.src)+'"'+(o.thumb?' srcset="'+esc(o.thumb)+' 640w, '+esc(o.src)+' 1800w" sizes="'+sizes+'"':'')+
+        ' alt="'+esc(alt==null?(o.alt||''):alt)+'" decoding="async"'+((pos&&o.pos)?' style="object-position:'+esc(o.pos)+'"':'')+'>';
+      const meta = p => [p.role,p.year].filter(Boolean).map(esc).join(' · ');
+      const pub = (d.projects||[]).filter(isPub).sort(byFeatured), pages = [];
+
+      const films = pub.filter(isFeat).slice(0,2);
+      if(films.length) pages.push({ key:'highlights', name:(h.highlights||{}).title||'Project Highlights', html:
         head(h.highlights,'Project Highlights')+'<div class="hfilms">'+films.map(p=>{
           const im = p.heroImage || p.cover || {};
-          return '<a class="hfilm" href="project.html?slug='+esc(p.slug)+'"><span class="hph">'+(im.src?img(im,'(max-width:820px) 92vw, 40vw',true):'')+'</span>'+
-            '<h3>'+esc(p.title)+'</h3><span class="hmono">'+[p.role,p.year].filter(Boolean).map(esc).join(' · ')+'</span></a>';
+          return '<a class="hfilm" href="project.html?slug='+esc(p.slug)+'"><span class="hph">'+(im.src?img(im,'(max-width:600px) 92vw, 40vw',true):'')+'</span>'+
+            '<h3>'+esc(p.title)+'</h3><span class="hmono">'+meta(p)+'</span></a>';
         }).join('')+'</div>' });
-      const pd = h.pdTeaser||{};
-      out.push({ key:'pd', name:'Production Design', html:
-        '<a class="hpd" href="production-design.html">'+head(pd,'See more of my production design work!')+
-        (pd.image&&pd.image.src?'<span class="hdraw">'+img(pd.image,'(max-width:820px) 92vw, 62vw')+'</span>':'')+
-        '<span class="hpill">All projects →</span></a>' });
-      const illos = (a.illustrations||[]).filter(x=>x && x.src).slice(0,12), ig = (a.illustrationMore||{}).url;
-      if(illos.length >= 6 && ig) out.push({ key:'illustration', name:(h.illustration||{}).title||'Illustration', html:
-        head(h.illustration,'Illustration')+'<div class="hillo">'+illos.map(it=>
-          '<a href="'+esc(ig)+'" target="_blank" rel="noopener" aria-label="'+esc((it.alt||'Illustration')+', opens Instagram')+'">'+img(it,'(max-width:820px) 40vw, 14vw',true)+'</a>').join('')+'</div>'+
-        '<a class="hig" href="'+esc(ig)+'" target="_blank" rel="noopener">'+esc((a.illustrationMore||{}).label||'See more on Instagram')+' ↗</a>' });
-      return { sections: out, about: h.about||{} };
+
+      const pd = h.pdTeaser||{}, dr = pd.image||{};
+      const ar = String(dr.aspect||'').split('/').map(Number);
+      const card = (p, copy) => { const im = p.heroImage || p.cover || {};
+        return '<a class="hpcard" href="project.html?slug='+esc(p.slug)+'"'+(copy!==1?' tabindex="-1" aria-hidden="true"':'')+'><span class="hph">'+(im.src?img(im,'(max-width:600px) 92vw, 62vw',true,''):'')+'</span>'+
+          '<h3>'+esc(p.title)+'</h3><span class="hmono">'+meta(p)+'</span></a>'; };
+      pages.push({ key:'pd', name:'Production Design', count:pub.length, html:
+        '<div class="hpanes"><div class="hpane">'+
+          '<a class="hteaser" href="production-design.html">'+head(pd,'See more of my production design work!')+
+          (dr.src?img(dr,'(max-width:600px) 92vw, 62vw').replace('<img ','<img class="hdraw" '):'')+'<span class="hpill">All projects →</span></a></div>'+
+        '<div class="hpane hallpane" aria-label="All projects">'+
+          '<div class="hallhead">'+head({title:'All projects'},'All projects',' <span class="hmono hpcount">'+pub.length+'</span>')+'<button class="hback hmono" type="button">← Back</button></div>'+
+          '<div class="hcarousel"><div class="hviewport"><div class="hstrip">'+[0,1,2].map(c=>pub.map(p=>card(p,c)).join('')).join('')+'</div></div>'+
+          '<div class="hccount"><span><b class="hcnow">1</b> / '+pub.length+'</span><span>Swipe ‹ ›</span></div>'+
+          '<button class="harr l" type="button" aria-label="Previous project">‹</button><button class="harr r" type="button" aria-label="Next project">›</button></div>'+
+        '</div></div>' });
+
+      const illos = (a.illustrations||[]).filter(x=>x && x.src), ig = (a.illustrationMore||{}).url, il = h.illustration||{};
+      if(illos.length >= 8 && ig){
+        const rnd = (lo,hi) => lo + Math.random()*(hi-lo), tiles = [];
+        for(let i=0;i<28;i++){ const it = illos[i % illos.length];      // fewer than 28 → cycle through the list in order
+          tiles.push('<a class="htile'+(i>=8?' dk':'')+'" href="'+esc(ig)+'" target="_blank" rel="noopener" aria-label="'+esc((it.alt||'Illustration '+(i+1))+', opens Instagram')+'"'+
+            ' style="--d:'+(Math.random()*.45).toFixed(2)+'s;--ox:'+rnd(-18,18).toFixed(0)+'px;--oy:'+rnd(-18,18).toFixed(0)+'px">'+img(it,'(max-width:600px) 50vw, 16vw',true,'')+'</a>'); }
+        const handle = '@' + String(ig).replace(/\/+$/,'').split('/').pop();
+        pages.push({ key:'illustration', name:il.title||'Illustration', html:
+          '<div class="higrid">'+tiles.join('')+'<div class="hintro"><h2>'+esc(il.title||'Illustration')+'</h2>'+(il.intro?'<p>'+esc(il.intro)+'</p>':'')+
+          '<a href="'+esc(ig)+'" target="_blank" rel="noopener">'+esc(handle)+' ↗</a></div></div>' });
+      }
+      return { pages, about: h.about||{}, drawAR: (ar[0]&&ar[1]) ? ar[0]/ar[1] : 1100/712 };
     },
     // the gallery viewer — reads ?work=&set=hero|<tabIndex>&i=&n=  OR  ?section=<key>&i=&n=.
     // Real image, pages the set; caption auto-derived; the project name LINKS to the project when published.
