@@ -301,7 +301,8 @@
     //   pd           — paper between bars: teaser (heading, drawing, "All projects →") + a second pane with a
     //                  looping carousel of every published project (3 copies of the list; home.js lives in the middle one).
     //   illustration — on black: 6×5 grid (28 tiles + intro) on desktop, 2×5 (8 tiles) on the phone; every tile
-    //                  → Instagram. Needs 8 illustrations in about.json; fewer → the page is skipped. 8–27 → cycled.
+    //                  → Instagram. Needs 8 illustrations in about.json; fewer → the page is skipped. Phone = 1–8;
+    //                  desktop = 1–28, the rest cycle in (home.js). A GIF plays as its small `video` loop.
     async homeSections(){
       const [d, h, a] = await Promise.all([load('content/projects.json'), load('content/home.json').catch(()=>({})), load('content/about.json').catch(()=>({}))]);
       const head = (o, fallback, extra) => { o = o||{}; const t = o.title || fallback;
@@ -335,14 +336,20 @@
           '<button class="harr l" type="button" aria-label="Previous project">‹</button><button class="harr r" type="button" aria-label="Next project">›</button></div>'+
         '</div></div>' });
 
+      // Tiles are rendered EMPTY; home.js fills them from `media` once the visitor heads down the page (30 thumbs are
+      // ~2 MB — too much for the first load on weak data), and on desktop cycles the pictures beyond the 28th in.
       const illos = (a.illustrations||[]).filter(x=>x && x.src), ig = (a.illustrationMore||{}).url, il = h.illustration||{};
       if(illos.length >= 8 && ig){
-        const rnd = (lo,hi) => lo + Math.random()*(hi-lo), tiles = [];
-        for(let i=0;i<28;i++){ const it = illos[i % illos.length];      // fewer than 28 → cycle through the list in order
-          tiles.push('<a class="htile'+(i>=8?' dk':'')+'" href="'+esc(ig)+'" target="_blank" rel="noopener" aria-label="'+esc((it.alt||'Illustration '+(i+1))+', opens Instagram')+'"'+
-            ' style="--d:'+(Math.random()*.45).toFixed(2)+'s;--ox:'+rnd(-18,18).toFixed(0)+'px;--oy:'+rnd(-18,18).toFixed(0)+'px">'+img(it,'(max-width:600px) 50vw, 16vw',true,'')+'</a>'); }
+        const rnd = (lo,hi) => lo + Math.random()*(hi-lo), pos = it => it.pos ? ' style="object-position:'+esc(it.pos)+'"' : '';
+        const media = illos.map((it,i)=>({ label: (it.alt||'Illustration '+(i+1))+', opens Instagram', html: it.video
+          ? '<video autoplay muted loop playsinline preload="metadata"'+(it.poster?' poster="'+esc(it.poster)+'"':'')+pos(it)+'>'+
+            (it.video.webm?'<source src="'+esc(it.video.webm)+'" type="video/webm">':'')+(it.video.mp4?'<source src="'+esc(it.video.mp4)+'" type="video/mp4">':'')+'</video>'
+          : '<img src="'+esc(it.thumb||it.src)+'" alt="" decoding="async"'+pos(it)+'>' }));
+        const tiles = [];
+        for(let i=0;i<28;i++) tiles.push('<a class="htile'+(i>=8?' dk':'')+'" data-m="'+(i % illos.length)+'" href="'+esc(ig)+'" target="_blank" rel="noopener" aria-label="'+esc(media[i % illos.length].label)+'"'+
+          ' style="--d:'+(Math.random()*.45).toFixed(2)+'s;--ox:'+rnd(-18,18).toFixed(0)+'px;--oy:'+rnd(-18,18).toFixed(0)+'px"></a>');
         const handle = '@' + String(ig).replace(/\/+$/,'').split('/').pop();
-        pages.push({ key:'illustration', name:il.title||'Illustration', html:
+        pages.push({ key:'illustration', name:il.title||'Illustration', media, html:
           '<div class="higrid">'+tiles.join('')+'<div class="hintro"><h2>'+esc(il.title||'Illustration')+'</h2>'+(il.intro?'<p>'+esc(il.intro)+'</p>':'')+
           '<a href="'+esc(ig)+'" target="_blank" rel="noopener">'+esc(handle)+' ↗</a></div></div>' });
       }

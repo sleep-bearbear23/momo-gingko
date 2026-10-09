@@ -39,6 +39,7 @@
   let pages = [{key:'cover', name:'Cover', el:null}], N = 1;
   let idx = 0, entered = false, busy = false, blown = false, timers = [], pending = null;
   let pdsec = null, panes = null, strip = null, ilsec = null, NP = 0, ci = 0, stepping = false, drawAR = 1100/712;
+  let ilMedia = [], ilQueue = [], ilFilled = false, ilHover = false;
   const keyOf = i => (pages[i]||{}).key, elOf = i => (pages[i]||{}).el, at = k => pages.findIndex(p=>p.key===k);
   const later = (f,t) => timers.push(setTimeout(f, T(t)));
 
@@ -65,6 +66,23 @@
   const allOpen = () => !!panes && panes.classList.contains('all');
   function showAll(on){ if(!panes) return; panes.classList.toggle('all', on);
     if(on){ ci = NP; paintCarousel(false); strip.classList.remove('nudge'); if(isPhone()){ strip.offsetWidth; strip.classList.add('nudge'); } } }
+
+  /* ---------- page 4: fill the tiles late, and (desktop) cycle the rest of the pictures in ---------- */
+  // Tiles start empty: the thumbs are fetched once the visitor leaves the cover, not on first load. Phones fill 1–8 only.
+  function fillTiles(){ if(ilFilled || !ilsec) return; ilFilled = true;
+    ilsec.querySelectorAll('.htile').forEach(t=>{ if(isPhone() && t.classList.contains('dk')) return; t.innerHTML = ilMedia[+t.dataset.m].html; }); }
+  // About every 4s one random tile crossfades (0.6s) to the next picture not on screen; the one it replaced goes to the
+  // back of the queue, so every pick appears over time. Desktop only, only while page 4 is current and settled, and
+  // paused while the pointer is over the grid, the tab is hidden, or reduced motion is on.
+  function cycleTile(){
+    if(!ilsec || !ilQueue.length || reduce || isPhone() || ilHover || busy || document.hidden || !onHome() || keyOf(idx)!=='illustration' || !ilsec.classList.contains('show')) return;
+    const tiles = [...ilsec.querySelectorAll('.htile')].filter(t=>!t.querySelector('.hin')), t = tiles[(Math.random()*tiles.length)|0]; if(!t) return;
+    const m = ilQueue.shift(), old = t.firstElementChild, was = +t.dataset.m;
+    t.insertAdjacentHTML('beforeend', ilMedia[m].html); const inc = t.lastElementChild; inc.classList.add('hin'); inc.offsetHeight; inc.classList.add('go');
+    t.dataset.m = m; t.setAttribute('aria-label', ilMedia[m].label); ilQueue.push(was);
+    setTimeout(()=>{ if(old) old.remove(); inc.classList.remove('hin','go'); }, 650);
+  }
+  setInterval(cycleTile, 4000);
 
   /* ---------- choreography ---------- */
   const CARD = { cover:['100%','100%'], highlights:['0%','100%'], pd:['calc(-100% + var(--bar))','calc(100% - var(--bar))'],
@@ -94,6 +112,7 @@
     body.classList.toggle('hp-dark', k==='highlights' || k==='illustration');// black page → light cursor
     dots.querySelectorAll('button').forEach((b,i)=>b.setAttribute('aria-current', i===idx));
     if(entered && k) ss.set(SECKEY, k);
+    if(idx>0) fillTiles();
   }
   const aboutOn = () => { aboutEl.classList.add('on'); aboutEl.style.opacity = 1; aboutEl.style.transform = 'none'; };
 
@@ -165,6 +184,10 @@
     N = pages.length;
     dots.innerHTML = pages.map((p,i)=>'<button type="button" data-i="'+i+'" aria-label="'+esc(p.name)+'" style="--rot:'+ROT[i%ROT.length]+'deg"><span class="lab">'+esc(p.name)+'</span></button>').join('');
     pdsec = hp.querySelector('.h-pd'); ilsec = hp.querySelector('.h-illustration');
+    if(ilsec){ ilMedia = (d.pages.find(p=>p.key==='illustration')||{}).media || [];
+      ilQueue = ilMedia.map((m,i)=>i).slice(28);              // the pictures beyond the 28 tiles wait here
+      const grid = ilsec.querySelector('.higrid');
+      grid.addEventListener('pointerenter', ()=>{ ilHover = true; }); grid.addEventListener('pointerleave', ()=>{ ilHover = false; }); }
     if(pdsec){ panes = pdsec.querySelector('.hpanes'); strip = pdsec.querySelector('.hstrip'); NP = (d.pages.find(p=>p.key==='pd')||{}).count || 0; ci = NP;
       pdsec.querySelector('.hteaser').addEventListener('click', e=>{ e.preventDefault(); showAll(true); });   // slides the pane; no page load
       pdsec.querySelector('.hback').addEventListener('click', ()=>showAll(false));
