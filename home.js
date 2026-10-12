@@ -259,10 +259,19 @@
 
   // No landing in two cases: (a) phone, returning to the home in a session that already entered → back on the page you
   // left; (b) opened from the home-screen icon (standalone "app mode") → the cover in its calm state, one swipe from page 2.
+  // phones: pages are real loads, so the home fades to black before a link leaves it, and fades in when it is returned to
+  const black = document.getElementById('blackout');
+  if(mobile && black){
+    hp.addEventListener('click', e=>{ if(e.defaultPrevented) return; const a = e.target.closest('a[href]'); if(!a) return;
+      const raw = a.getAttribute('href'); if(!raw || raw[0]==='#' || (a.target && a.target!=='_self') || a.origin!==location.origin) return;
+      e.preventDefault(); black.classList.add('on'); setTimeout(()=>{ location.href = a.href; }, reduce ? 0 : 250); });
+    addEventListener('pageshow', e=>{ if(e.persisted) black.classList.remove('on'); });
+  }
   const app = !!window.__GK_SKIP_LANDING;
   if(mobile && (app || ss.get('gk-entered')) && window.GK && GK.enterQuiet){
+    if(black){ black.style.transition = 'none'; black.classList.add('on'); black.offsetHeight; black.style.transition = ''; }   // arrive under black…
     GK.enterQuiet(); entered = true; body.classList.add('hp-entered'); ss.set('gk-entered','1');
-    ready.then(()=>{ const i = boot ? at(boot) : 0; jump(i<0 ? 0 : i); });
+    ready.then(()=>{ const i = boot ? at(boot) : 0; jump(i<0 ? 0 : i); if(black) black.classList.remove('on'); });              // …and fade in on the page you left
   } else if(app && !mobile && window.GK && GK.whenReady){
     GK.whenReady(()=>ready.then(()=>api.resume(wantAbout() ? 'about' : null)));   // desktop app window: GK.home() cover
   }

@@ -33,7 +33,6 @@
   }
 
   const copyright = document.getElementById('copyright');
-  const curtain = document.getElementById('curtain');
   // border footer = Home · About. "About" is the home's last section (index.html#about → GKhome.resume('about')).
   const FOOTER = `<a href="index.html">Home</a>`+
                  `<a href="index.html#about">About</a>`;
@@ -135,7 +134,7 @@
     }
     mount.scrollTop=0; fadeTitle();
     // a project's return button goes back to where it was opened from (a home section or the list)
-    const origin = page==='project' ? window.GKorigin : null;
+    const origin = (page==='project' || page==='stills') ? window.GKorigin : null;
     ret.setAttribute('href', origin || b.dataset.parent || 'index.html');
     ret.textContent = origin ? '← back' : (b.dataset.back || '← back');
     ret.hidden = (page==='home'||page==='gallery');
@@ -171,51 +170,31 @@
     return doc.body.dataset.page || 'menu';
   }
 
-  // ---------- transitions ----------
-  function warpLogo(){ const l=document.getElementById('logo');
-    if(l){ l.style.opacity='0'; l.style.transform='translate(-50%,-50%) scale(.4)'; } }
+  // ---------- transitions (R7.5) ----------
+  // EVERY page-to-page navigation is the same move: the current page fades to black (#blackout, leaf-printed,
+  // ~250ms ease-in), the content is swapped underneath with nothing animating, and the new page fades in from black
+  // (~350ms ease-out). Not covered: gallery next/prev paging (in place, below) and the home's own section
+  // choreography (home.js). The old per-route sequences (leaf blow, border crop, paper curtain, tile fly-off) are gone.
+  const black = document.getElementById('blackout');
+  async function blackIn(){ black.classList.add('on'); await wait(260); }
+  async function blackOut(){ black.classList.remove('on'); await wait(350); }
+  // under the black the frame edges SNAP to the new page's geometry (their CSS transition is for window resizes)
+  function snapFrame(page){ root.classList.add('frame-snap'); applyFrame(page); void mount.offsetHeight; setTimeout(()=>root.classList.remove('frame-snap'), 80); }
+  function warpLogo(){ }   // stub: Momo's future 默默 → gingko warp (Procreate asset) starts from #logo
   function restoreHomeChrome(){
-    const l=document.getElementById('logo'); if(l) l.style.transform='translate(-50%,-50%)';   // GKhome.resume() then places it for the section
+    const l=document.getElementById('logo'); if(l) l.style.transform='translate(-50%,-50%)';
   }
 
-  function hideChrome(){ title.style.opacity='0'; side.style.opacity='0'; }
-  // border is already in place → fade in title + submenu, THEN content last (steps overlap)
-  async function stagedReveal(){
-    await wait(90);
-    title.style.opacity=''; side.style.opacity='';
-    await wait(150);
-    mount.classList.remove('leaving');
-  }
-
-  // `key` = a section to land on (e.g. 'about'); otherwise the section the visitor left.
+  // `key` = a home page to land on (e.g. 'about'); otherwise the page the visitor left.
   async function toHome(key){
-    const from=bodyEl.dataset.page;
-    if(from!=='home'){ mount.classList.add('leaving'); await wait(200); }
+    if(bodyEl.dataset.page!=='home') await blackIn();
     bodyEl.dataset.page='home'; ret.hidden=true;
     title.hidden=true; title.style.opacity=''; side.hidden=true; foot.style.opacity=''; copyright.style.opacity='';
-    applyFrame('home');
+    snapFrame('home');
     restoreHomeChrome();
-    if(window.GKhome) window.GKhome.resume(key); else window.GK.home();   // canvas: cover → GK.home(), a section → GK.paper()
-    mount.innerHTML=''; mount.classList.remove('leaving'); document.title='默默 GINGKO';
-  }
-
-  // any non-gallery page → gallery: footer out early, border closes to black,
-  // then ~0.5s later the image + UIs fade in.
-  async function enterGallery(file){
-    foot.style.opacity='0'; copyright.style.opacity='0';   // border chrome fades out first
-    mount.classList.add('leaving');
-    await wait(160);
-    const page = await mountFragment(file);
-    galleryOrigin = currentUrl;                // full URL (incl. ?slug=) so Close returns to the exact page
-    bodyEl.dataset.page='gallery'; ret.hidden=true; title.hidden=true; side.hidden=true;
-    // TOP + BOTTOM bars only crop in until the screen is black (bs stays 0)
-    root.style.setProperty('--bt',(innerHeight/2)+'px'); root.style.setProperty('--bs','0px');
-    await wait(340);                           // bars meet in the middle
-    window.GK.ink();                           // black-leaf texture behind the black
-    applyFrame('gallery');                     // retract bars → texture revealed
-    await wait(170);                           // shortly after → image + UIs fade in
-    mount.classList.remove('leaving');
-    return page;
+    if(window.GKhome) window.GKhome.resume(key); else window.GK.home();   // canvas: cover → GK.home(), a page → GK.paper()
+    mount.innerHTML=''; document.title='默默 GINGKO';
+    await blackOut();
   }
 
   // (re-)render the gallery item from the URL via the content layer (real image + auto caption)
@@ -238,58 +217,29 @@
   async function toPage(file){
     const from=bodyEl.dataset.page;
     bodyEl.classList.add('entered');                // → switches on the leaf cursor
-    if(file==='gallery-item.html' && from!=='gallery') return enterGallery(file);
-    if(file==='gallery-item.html' && from==='gallery'){   // popstate between items
+    if(file==='gallery-item.html' && from==='gallery'){   // popstate between items: in-place paging, no page transition
       const item=mount.querySelector('#galleryRoot .item');
       if(item) item.classList.add('paging');
       await wait(300); await renderGalleryItem();
       const m=mount.querySelector('.item-media'); if(m){ m.style.opacity='0'; requestAnimationFrame(()=>{ m.style.opacity=''; }); }
       return 'gallery';
     }
-
-    // leaving the home from a section (not the cover): there are no black leaves to blow, so it's a
-    // plain crossfade like inner→inner — the home sections fade out first.
-    const homeDeep = from==='home' && window.GKhome && window.GKhome.index()>0;
-    if(homeDeep){ window.GK.paper(); bodyEl.classList.add('hp-leaving'); await wait(200); }   // canvas → quiet paper first, so the fade never shows the cover's falling leaves
-    mount.classList.add('leaving');                 // fade current content out
-    if(from!=='home') await wait(150);
-    const page = await mountFragment(file);         // fills mount (hidden), sets chrome
-    hideChrome();
-
-    if(from==='home' && !homeDeep){
-      // signature (deep link straight from the landing): warp stub; border comes in IMMEDIATELY.
-      // Keep data-page=home through the blow so the home menu/logo actually animate
-      // out (the [data-page] CSS would otherwise snap them hidden); flip afterwards.
-      warpLogo();
-      applyFrame(page);                             // border in immediately (explicit page)
-      await window.GK.blowAway();                    // leaves fly off + white field expands
-      window.GK.paper();
-      bodyEl.dataset.page=page; ret.hidden=false;   // now inner chrome is eligible for stagedReveal
-    } else if(from==='gallery'){
-      // leaving the gallery: crossfade the whole background to the white-leaf field via a
-      // paper curtain (a plain fade, no spread), THEN crop the border back in.
-      curtain.classList.add('on');                  // paper fades in over the ink
-      await wait(370);
-      window.GK.paper();                            // swap canvas to white-leaf (clears ink → no black gaps)
-      foot.style.opacity=''; copyright.style.opacity='';
-      bodyEl.dataset.page=page; ret.hidden=false;
-      applyFrame(page);                             // border crops in behind the curtain
-      await wait(40);
-      curtain.classList.remove('on');               // curtain fades out → white-leaf canvas revealed
+    await blackIn();
+    const page = await mountFragment(file);         // fills mount + sets chrome, under the black
+    if(page==='gallery'){
+      galleryOrigin = currentUrl;                   // full URL (incl. ?slug=) so Close returns to the exact page
+      title.hidden=true; side.hidden=true; foot.style.opacity='0'; copyright.style.opacity='0';
+      window.GK.ink();                              // black-leaf field behind the image
     } else {
       window.GK.paper();
-      foot.style.opacity=''; copyright.style.opacity='';   // restore border chrome
-      bodyEl.dataset.page=page; ret.hidden=false;
-      applyFrame(page);
-      bodyEl.classList.remove('hp-leaving');
+      foot.style.opacity=''; copyright.style.opacity='';
     }
-
-    applyTitleOffset();                             // now #mount has its final height
-    await stagedReveal();                           // title+side, then content last
-    // The C&I masonry packs against #mount's width, but the border frame keeps animating for
-    // ~380ms after applyFrame — so re-pack once it has settled (fixes a broken grid on return
-    // from a gallery-item, where the mount shrinks back to its framed width behind us).
-    if(window.GKcontent && GKcontent.relayout){ setTimeout(()=>GKcontent.relayout(), 420); }
+    bodyEl.dataset.page=page;
+    snapFrame(page);
+    applyTitleOffset();                             // #mount has its final height now
+    title.style.opacity=''; side.style.opacity=''; mount.classList.remove('leaving'); bodyEl.classList.remove('hp-leaving');
+    if(window.GKcontent && GKcontent.relayout){ GKcontent.relayout(); setTimeout(()=>GKcontent.relayout(), 200); }   // C&I masonry packs against the framed width
+    await blackOut();
     return page;
   }
 
@@ -300,7 +250,7 @@
     if(busy) return;
     const file=fileOf(url), from=bodyEl.dataset.page;
     // remember where a project was opened from, so its back links return there (R4.6). A deep link has no origin.
-    if(file==='project.html' && currentFile!=='project.html' && currentFile!=='gallery-item.html')
+    if((file==='project.html' || file==='film-stills.html') && currentFile!=='project.html' && currentFile!=='film-stills.html' && currentFile!=='gallery-item.html')
       window.GKorigin = (from==='home' && currentFile==='index.html' && !window.GKhome.index()) ? null : (currentFile==='index.html' ? 'index.html' : currentUrl);
     // gallery-item + project re-render from the query (slug / i&n) → don't short-circuit same-file nav
     if(file===currentFile && from!=='home' && file!=='gallery-item.html' && file!=='project.html') return;
@@ -334,9 +284,6 @@
       a.classList.add('flash'); setTimeout(()=>a.classList.remove('flash'), 60);
       pageGallery(a.href); return;
     }
-    // clicking a gallery tile: the tile itself flies off (overlay clone, independent of the
-    // page transition — timing unchanged)
-    if(a.classList.contains('tile') && bodyEl.dataset.page!=='gallery') flyAway(a);
     go(a.href, true);
   });
   document.addEventListener('keydown', function(e){
@@ -345,22 +292,6 @@
     else if(e.key==='ArrowLeft'){ const p=mount.querySelector('.item-prev'); if(p) p.click(); }
     else if(e.key==='Escape'){ go(galleryOrigin, true); }
   });
-  // clone a clicked tile into a fixed overlay that spins and shoots out of frame.
-  // z-index sits BELOW the border frame (z40) so the closing black bars pass over it.
-  function flyAway(tile){
-    const r=tile.getBoundingClientRect();
-    const c=tile.cloneNode(true);
-    c.classList.add('fly'); c.removeAttribute('href');
-    c.style.cssText='position:fixed;margin:0;z-index:35;pointer-events:none;left:'+r.left+'px;top:'+
-      r.top+'px;width:'+r.width+'px;height:'+r.height+'px;';
-    document.body.appendChild(c);
-    const dir=Math.random()<0.5?1:-1;
-    requestAnimationFrame(()=>requestAnimationFrame(()=>{
-      c.style.transform='translate('+((Math.random()-0.5)*280)+'px,'+(-(720+Math.random()*300))+
-        'px) rotate('+(dir*(210+Math.random()*170))+'deg) scale(.6)';
-    }));
-    setTimeout(()=>c.remove(), 400);
-  }
   // random "knock" (offset + rotate) each time the cursor enters a tile
   document.addEventListener('mouseover', function(e){
     const t=e.target.closest && e.target.closest('.tile');

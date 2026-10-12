@@ -428,7 +428,7 @@ html.mob .mabout-body .bio p.lede{color:#4a4139;}
 html.mob .mabout-body .about-block{margin-top:clamp(28px,5vh,50px);}
 
 /* footer (on the home AND every subpage) — black bar, cross-nav */
-.mfoot{scroll-snap-align:start;background:var(--leaf-black);color:rgba(250,244,234,.82);
+.mfoot{color:rgba(250,244,234,.82);
   padding:calc(6vh) var(--pad) calc(env(safe-area-inset-bottom) + 5vh);}
 .mfoot-nav{display:flex;flex-direction:column;gap:14px;margin-bottom:26px;}
 .mfoot-nav a{font-family:var(--mono);font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(250,244,234,.86);}
@@ -589,16 +589,33 @@ html.mob body[data-page="home"], html.mob body[data-page="home"] *{cursor:auto !
 
 /* ================= LEAF TEXTURES (R6.3) =================
    Seamless 640px tiles (made at 2×): paper-leaves = the fillPaper() recipe, ink-leaves = the fillInk()/bed recipe.
-   They go on every surface that paints a SOLID paper or card-black fill — never where the desktop shell's canvas
+   They go on every surface that paints a SOLID paper or black fill (cards, frame bars, footers, the blackout) — never where the desktop shell's canvas
    already draws the leaf field behind transparent content. The ink tile moves with its card (a physical sheet). */
 .hp-paper,.hsec.habout,html.mob body.m-sub{background-color:var(--paper);
   background-image:url("assets/textures/paper-leaves.jpg");
   background-image:image-set(url("assets/textures/paper-leaves.webp") type("image/webp"),url("assets/textures/paper-leaves.jpg") type("image/jpeg"));
   background-size:640px 640px;background-position:0 0;background-repeat:repeat;}
-.hcard{background-color:var(--leaf-black);
+.hcard,.frame i,#blackout,.mfoot,html.mob body.m-sub[data-page="gallery"],html.mob body.m-sub::after{background-color:var(--leaf-black);
   background-image:url("assets/textures/ink-leaves.jpg");
   background-image:image-set(url("assets/textures/ink-leaves.webp") type("image/webp"),url("assets/textures/ink-leaves.jpg") type("image/jpeg"));
   background-size:640px 640px;background-position:0 0;background-repeat:repeat;}
+
+/* the frame's four edges are separate boxes: a viewport-fixed tile keeps the print continuous across them */
+.frame i{background-attachment:fixed;}
+html.frame-snap .frame i{transition:none !important;}             /* under the blackout the frame snaps to the new page */
+
+/* ================= PAGE TRANSITIONS (R7.5): fade to black, swap, fade in =================
+   Desktop shell + mobile home: #blackout (nav.js / home.js). Mobile subpages are real page loads, so each one
+   starts under a black ::after that mobile.js fades out (.m-in), and fades back in before leaving (.m-out). */
+#blackout{position:fixed;inset:0;z-index:60;pointer-events:none;opacity:0;transition:opacity .35s ease-out;}
+#blackout.on{opacity:1;transition:opacity .25s ease-in;}
+@media (max-aspect-ratio:7/5),(max-width:820px){
+  body[data-page]:not(.shell)::after{content:"";position:fixed;inset:0;z-index:90;pointer-events:none;opacity:1;transition:opacity .35s ease-out;
+    background-color:var(--leaf-black);background-image:url("assets/textures/ink-leaves.jpg");background-size:640px 640px;}
+  body[data-page]:not(.shell).m-in::after{opacity:0;}
+  body[data-page]:not(.shell).m-in.m-out::after{opacity:1;transition:opacity .25s ease-in;}
+}
+@media (prefers-reduced-motion:reduce){ #blackout,#blackout.on,body[data-page]:not(.shell)::after{transition-duration:.01s !important;} }
 
 /* ================= standalone subpage (mobile.js) ================= */
 html.mob body.m-sub{-webkit-overflow-scrolling:touch;}   /* ground: the paper-leaf texture (LEAF TEXTURES above) */
@@ -628,7 +645,7 @@ html.mob body.m-sub .ps-img{height:min(46vh,64vw);scroll-snap-align:center;}
 html.mob body.m-sub .proj{max-width:none;}
 
 /* gallery-item subpage: full-screen black viewer, swipe to page */
-html.mob body.m-sub[data-page="gallery"]{overflow:hidden;background:#0a0a0a;}
+html.mob body.m-sub[data-page="gallery"]{overflow:hidden;}   /* ground: the ink-leaf texture (LEAF TEXTURES) */
 html.mob body.m-sub[data-page="gallery"] .view-root{padding:0;}
 html.mob body.m-sub[data-page="gallery"] .item{position:fixed;inset:0;}
 html.mob .item-media{width:min(92vw,64vh);height:auto;max-width:none;max-height:none;}
