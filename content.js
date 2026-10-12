@@ -37,7 +37,7 @@
     opts = opts||{};
     const a = String(o.aspect||'').split('/').map(Number), w = a[0]||0, h = a[1]||0;
     return '<img'+(opts.cls?' class="'+opts.cls+'"':'')+' src="'+esc(o.src)+'"'+
-      (o.thumb?' srcset="'+esc(o.thumb)+' 640w, '+esc(o.src)+' 1800w" sizes="(max-width:820px) 100vw, 760px"':'')+
+      (o.thumb?' srcset="'+esc(o.thumb)+' 640w, '+esc(o.src)+' '+(w||1800)+'w" sizes="(max-width:820px) 100vw, 760px"':'')+
       (w&&h?' width="'+w+'" height="'+h+'"':'')+' alt="'+esc(o.alt||'')+'"'+
       (opts.eager?' fetchpriority="high"':' loading="lazy"')+' decoding="async"'+
       (opts.pos&&o.pos?' style="object-position:'+esc(o.pos)+'"':'')+'>';
@@ -118,7 +118,7 @@
         ['format','year','productionCo'].map(k=>p[k]?'<span>'+esc(p[k])+'</span>':'').join('')+
         (p.role?'<span>Role — '+esc(p.role)+'</span>':'')+'</div>';
       const awards = (p.awards&&p.awards.length) ? '<div class="stamps" aria-label="Awards">'+
-        p.awards.map(a=>'<span class="stamp">'+esc(a.name)+(a.note?'<br>'+esc(a.note):'')+'</span>').join('')+'</div>' : '';
+        p.awards.map(a=>typeof a==='string' ? '<span class="stamp">'+esc(a)+'</span>' : '<span class="stamp">'+esc(a.name)+(a.note?'<br>'+esc(a.note):'')+'</span>').join('')+'</div>' : '';
       const links = (p.links&&p.links.length) ? '<div class="social">'+
         p.links.map(l=>'<a href="'+esc(l.url||'#')+'">'+esc(l.label)+'</a>').join('')+'</div>' : '';
       const diary = (p.diary&&p.diary.length) ? '<section class="diary"><h2 class="block-h">Production Diary</h2>'+
@@ -446,6 +446,7 @@
     const head = '<header class="pp-head"><h1 class="proj-title">'+esc(p.title)+'</h1>'+
       (meta?'<div class="proj-info">'+meta+'</div>':'')+
       (p.logline?'<p class="logline">'+esc(p.logline)+'</p>':'')+
+      ((p.awards||[]).length?'<ul class="pp-awards" aria-label="Awards">'+p.awards.map(a=>'<li>'+esc(typeof a==='string'?a:[a.name,a.note].filter(Boolean).join(' — '))+'</li>').join('')+'</ul>':'')+
       (p.headerNote?'<p class="pp-note">'+esc(p.headerNote)+'</p>':'')+'</header>';
     const topics = (p.topics||[]).map(t=>{
       const inset = !!t.insetPortraits;
@@ -454,6 +455,8 @@
             const tag = pimg(im, {cls: inset && isPortrait(im) ? 'pp-inset' : ''});
             return (im.page && !mob) ? '<a class="pp-live" href="'+esc(im.page)+'" target="_blank" rel="noopener">'+tag+'<span>View live page ↗</span></a>' : tag;
           }).join('')+(b.caption?'<figcaption>'+esc(b.caption)+'</figcaption>':'')+'</figure>';
+        if(b.link) return '<p class="pp-link"><a href="'+esc(b.link)+'"'+(mob?'':' target="_blank" rel="noopener"')+'>'+esc(b.label||b.link)+' ↗</a>'+
+          (b.note?'<span class="pp-link-note">'+esc(b.note)+'</span>':'')+'</p>';
         if(b.text) return '<p class="pp-text">'+(b.lead?'<strong>'+esc(b.lead)+'</strong> ':'')+esc(b.text)+'</p>';
         return '';
       }).join('');

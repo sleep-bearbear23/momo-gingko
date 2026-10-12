@@ -3768,6 +3768,202 @@
         "alt": "The sun through Emily's window",
         "pos": "44% 50%"
       }
+    },
+    {
+      "slug": "stem",
+      "title": "Stem",
+      "type": "Art Direction",
+      "cover": {
+        "src": "assets/work/stem/A.jpg",
+        "thumb": "assets/work/stem/A-thumb.jpg",
+        "aspect": "1206/715",
+        "alt": "Stem",
+        "pos": "50% 40%",
+        "label": "stem"
+      },
+      "format": "Short Film",
+      "year": "2025",
+      "month": "08",
+      "productionCo": "",
+      "role": "Art Director",
+      "logline": "Seoul, 2005. A newly pregnant junior researcher in a celebrated stem-cell lab finds that the DNA behind her mentor's breakthrough doesn't match — and has to decide what the truth is worth.",
+      "awards": [
+        "Official Selection — Telluride Film Festival",
+        "Semi-Finalist — Student Academy Awards",
+        "2024 Alfred P. Sloan Production Grant"
+      ],
+      "links": [],
+      "diary": [],
+      "credits": [
+        {
+          "role": "Director",
+          "name": "Daeil Kim"
+        },
+        {
+          "role": "Writer",
+          "name": "Daeil Kim"
+        },
+        {
+          "role": "Producer",
+          "name": "Qingyi Song, Justin Nguyen, Jenny Kim"
+        },
+        {
+          "role": "Production Designer",
+          "name": "Yun Gu"
+        },
+        {
+          "role": "Art Director",
+          "name": "Yu-Cheng (Momo) Chuang"
+        }
+      ],
+      "hero": [],
+      "tabs": [],
+      "topics": [
+        {
+          "id": "the-lab",
+          "title": "The Lab",
+          "key": {
+            "src": "assets/work/stem/B.jpg",
+            "thumb": "assets/work/stem/B-thumb.jpg",
+            "aspect": "1206/721",
+            "alt": "Stem — The Lab"
+          },
+          "blocks": [
+            {
+              "imgs": [
+                {
+                  "src": "assets/work/stem/C.jpg",
+                  "thumb": "assets/work/stem/C-thumb.jpg",
+                  "aspect": "1206/715",
+                  "alt": "Do-Hee at her workstation"
+                },
+                {
+                  "src": "assets/work/stem/D.jpg",
+                  "thumb": "assets/work/stem/D-thumb.jpg",
+                  "aspect": "1206/725",
+                  "alt": "The washroom"
+                }
+              ],
+              "caption": "Top to bottom: Do-Hee at her workstation; the washroom."
+            }
+          ]
+        },
+        {
+          "id": "the-hospital",
+          "title": "The Hospital",
+          "key": {
+            "src": "assets/work/stem/E.jpg",
+            "thumb": "assets/work/stem/E-thumb.jpg",
+            "aspect": "1206/722",
+            "alt": "Stem — The Hospital"
+          },
+          "blocks": [
+            {
+              "imgs": [
+                {
+                  "src": "assets/work/stem/F.jpg",
+                  "thumb": "assets/work/stem/F-thumb.jpg",
+                  "aspect": "1206/718",
+                  "alt": "Dr. Park and the press in the ward"
+                },
+                {
+                  "src": "assets/work/stem/G.jpg",
+                  "thumb": "assets/work/stem/G-thumb.jpg",
+                  "aspect": "1206/722",
+                  "alt": "The bench outside"
+                }
+              ],
+              "caption": "Top to bottom: Dr. Park and the press in the ward; the bench outside."
+            }
+          ]
+        },
+        {
+          "id": "the-press",
+          "title": "The Press",
+          "key": {
+            "src": "assets/work/stem/H.jpg",
+            "thumb": "assets/work/stem/H-thumb.jpg",
+            "aspect": "1206/727",
+            "alt": "Stem — The Press"
+          },
+          "blocks": [
+            {
+              "imgs": [
+                {
+                  "src": "assets/work/stem/I.jpg",
+                  "thumb": "assets/work/stem/I-thumb.jpg",
+                  "aspect": "1206/719",
+                  "alt": "Through the camcorder"
+                }
+              ],
+              "caption": "Through the camcorder."
+            }
+          ]
+        },
+        {
+          "id": "the-apartment",
+          "title": "The Apartment",
+          "key": {
+            "src": "assets/work/stem/J.jpg",
+            "thumb": "assets/work/stem/J-thumb.jpg",
+            "aspect": "1206/725",
+            "alt": "Stem — The Apartment"
+          },
+          "blocks": []
+        },
+        {
+          "id": "genesnip",
+          "title": "GeneSnip",
+          "blocks": [
+            {
+              "text": "GeneSnip is the lab software Do-Hee works in: a DNA sequence data interface that compares a patient's sequence against a reference, base by base. In the film, it's the tool she uses to alter the patient's DNA sequence information. I designed and built it as a working web app rather than a playback graphic, so every part of it actually runs."
+            },
+            {
+              "imgs": [
+                {
+                  "src": "assets/work/stem/K.jpg",
+                  "thumb": "assets/work/stem/K-thumb.jpg",
+                  "aspect": "1800/1013",
+                  "alt": "A mismatched position selected: the diagnosis panel reports the reference and query reads, the error, and the match status"
+                }
+              ],
+              "caption": "A mismatched position selected: the diagnosis panel reports the reference and query reads, the error, and the match status."
+            },
+            {
+              "text": "The screen holds the patient's file, a sequence match table that flags every mismatched position, a chromatogram of the reads, and running figures for Hamming distance, error rate and percent identity. Any base can be edited, and every edit triggers a Manual Modification Alert warning that the change may falsify results."
+            },
+            {
+              "imgs": [
+                {
+                  "src": "assets/work/stem/L.jpg",
+                  "thumb": "assets/work/stem/L-thumb.jpg",
+                  "aspect": "1800/1013",
+                  "alt": "Editing a base: the Manual Modification Alert"
+                }
+              ],
+              "caption": "Editing a base: the Manual Modification Alert."
+            },
+            {
+              "link": "genesnip/",
+              "label": "View the live interface",
+              "note": "Best viewed on desktop"
+            }
+          ]
+        }
+      ],
+      "featured": null,
+      "constraint": "",
+      "homePassage": "",
+      "homeTitleImg": null,
+      "published": true,
+      "headerNote": "",
+      "heroImage": {
+        "src": "assets/work/stem/A.jpg",
+        "thumb": "assets/work/stem/A-thumb.jpg",
+        "aspect": "1206/715",
+        "alt": "Stem",
+        "pos": "50% 40%"
+      }
     }
   ]
 }
