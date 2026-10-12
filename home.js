@@ -278,9 +278,10 @@
   }
   const app = !!window.__GK_SKIP_LANDING;
   if(mobile && (app || ss.get('gk-entered')) && window.GK && GK.enterQuiet){
+    body.classList.add('gk-swap');                                                                                                 // nothing but the black may fade
     if(black){ black.style.transition = 'none'; black.classList.add('on'); black.offsetHeight; black.style.transition = ''; }   // arrive under black…
     GK.enterQuiet(); entered = true; body.classList.add('hp-entered'); ss.set('gk-entered','1');
-    ready.then(()=>{ const i = boot ? at(boot) : 0; jump(i<0 ? 0 : i); if(black) black.classList.remove('on'); });              // …and fade in on the page you left
+    ready.then(()=>{ const i = boot ? at(boot) : 0; jump(i<0 ? 0 : i); void body.offsetHeight; body.classList.remove('gk-swap'); if(black) black.classList.remove('on'); });   // …and fade in on the page you left
   } else if(app && !mobile && window.GK && GK.whenReady){
     GK.whenReady(()=>ready.then(()=>api.resume(wantAbout() ? 'about' : null)));   // desktop app window: GK.home() cover
   }
