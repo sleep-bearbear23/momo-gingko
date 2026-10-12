@@ -134,7 +134,7 @@
     }
     mount.scrollTop=0; fadeTitle();
     // a project's return button goes back to where it was opened from (a home section or the list)
-    const origin = (page==='project' || page==='stills') ? window.GKorigin : null;
+    const origin = page==='project' ? window.GKorigin : null;   // project.html and film-stills.html (both data-page="project")
     ret.setAttribute('href', origin || b.dataset.parent || 'index.html');
     ret.textContent = origin ? '← back' : (b.dataset.back || '← back');
     ret.hidden = (page==='home'||page==='gallery');
