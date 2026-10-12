@@ -176,10 +176,27 @@
   // (~350ms ease-out). Not covered: gallery next/prev paging (in place, below) and the home's own section
   // choreography (home.js). The old per-route sequences (leaf blow, border crop, paper curtain, tile fly-off) are gone.
   const black = document.getElementById('blackout');
-  async function blackIn(){ black.classList.add('on'); await wait(260); }
-  async function blackOut(){ black.classList.remove('on'); await wait(350); }
-  // under the black the frame edges SNAP to the new page's geometry (their CSS transition is for window resizes)
-  function snapFrame(page){ root.classList.add('frame-snap'); applyFrame(page); void mount.offsetHeight; setTimeout(()=>root.classList.remove('frame-snap'), 80); }
+  // RULE: only the blackout fades. Everything that belongs to the outgoing page must be fully hidden, with NO transition,
+  // before the black lifts; the incoming page must already be at rest. So:
+  //  · blackIn() resolves when the black is REALLY opaque (transitionend, not a fixed delay — a late first frame used to
+  //    let the swap happen at ~90% black), then sets body.gk-swap, which switches off every other transition (site.css);
+  //  · the swap happens; blackOut() forces a reflow so the new styles are applied with no transition, clears gk-swap, lifts.
+  function blackIn(){
+    return new Promise(res=>{
+      let done=false; const fin=()=>{ if(done) return; done=true; black.removeEventListener('transitionend', onEnd); bodyEl.classList.add('gk-swap'); res(); };
+      const onEnd=e=>{ if(e.target===black && e.propertyName==='opacity') fin(); };
+      black.addEventListener('transitionend', onEnd);
+      black.classList.add('on');
+      if(reduce || getComputedStyle(black).opacity==='1') return fin();
+      setTimeout(fin, 600);                                   // safety net (e.g. a throttled tab never fires transitionend)
+    });
+  }
+  async function blackOut(){
+    void bodyEl.offsetHeight;                                 // apply the swapped state NOW, transition-free…
+    await new Promise(r=>setTimeout(r, 34));                  // …let it paint under the black…
+    bodyEl.classList.remove('gk-swap'); black.classList.remove('on'); await wait(350);   // …then only the black fades
+  }
+  function snapFrame(page){ applyFrame(page); }               // the frame snaps under the black (gk-swap); its transition is for resizes
   function warpLogo(){ }   // stub: Momo's future 默默 → gingko warp (Procreate asset) starts from #logo
   function restoreHomeChrome(){
     const l=document.getElementById('logo'); if(l) l.style.transform='translate(-50%,-50%)';
