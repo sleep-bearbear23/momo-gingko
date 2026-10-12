@@ -1,0 +1,469 @@
+{
+  "_note": "The Film Stills page (film-stills.html → GKcontent.renderFilmStills): stills from films without a page of their own, stacked one by one IN THIS ORDER (the films are deliberately interleaved). No captions, grouping or film names on the page; `alt` carries the film. Reached only from the end card of the home's All-projects carousel.",
+  "title": "Film Stills",
+  "intro": "Stills from other films I've worked on that don't have a page of their own here.",
+  "stills": [
+    {
+      "src": "assets/work/ghost-mv/A.jpg",
+      "thumb": "assets/work/ghost-mv/A-thumb.jpg",
+      "aspect": "1800/949",
+      "alt": "Still from Ghost"
+    },
+    {
+      "src": "assets/work/film-stills/02.jpg",
+      "thumb": "assets/work/film-stills/02-thumb.jpg",
+      "aspect": "1800/867",
+      "alt": "Still from Vault of Unforeseen"
+    },
+    {
+      "src": "assets/work/film-stills/03.jpg",
+      "thumb": "assets/work/film-stills/03-thumb.jpg",
+      "aspect": "1080/450",
+      "alt": "Still from Eternal Pigeon"
+    },
+    {
+      "src": "assets/work/mama-mv/A.jpg",
+      "thumb": "assets/work/mama-mv/A-thumb.jpg",
+      "aspect": "1800/1251",
+      "alt": "Still from Mama"
+    },
+    {
+      "src": "assets/work/film-stills/05.jpg",
+      "thumb": "assets/work/film-stills/05-thumb.jpg",
+      "aspect": "1800/944",
+      "alt": "Still from Ava"
+    },
+    {
+      "src": "assets/work/film-stills/06.jpg",
+      "thumb": "assets/work/film-stills/06-thumb.jpg",
+      "aspect": "1800/945",
+      "alt": "Still from Obligatory"
+    },
+    {
+      "src": "assets/work/film-stills/07.jpg",
+      "thumb": "assets/work/film-stills/07-thumb.jpg",
+      "aspect": "1800/908",
+      "alt": "Still from Anywhere the Wind Blows"
+    },
+    {
+      "src": "assets/work/ghost-mv/B.jpg",
+      "thumb": "assets/work/ghost-mv/B-thumb.jpg",
+      "aspect": "1800/949",
+      "alt": "Still from Ghost"
+    },
+    {
+      "src": "assets/work/film-stills/09.jpg",
+      "thumb": "assets/work/film-stills/09-thumb.jpg",
+      "aspect": "1800/867",
+      "alt": "Still from Vault of Unforeseen"
+    },
+    {
+      "src": "assets/work/film-stills/10.jpg",
+      "thumb": "assets/work/film-stills/10-thumb.jpg",
+      "aspect": "1080/450",
+      "alt": "Still from Eternal Pigeon"
+    },
+    {
+      "src": "assets/work/mama-mv/B.jpg",
+      "thumb": "assets/work/mama-mv/B-thumb.jpg",
+      "aspect": "1800/1251",
+      "alt": "Still from Mama"
+    },
+    {
+      "src": "assets/work/film-stills/12.jpg",
+      "thumb": "assets/work/film-stills/12-thumb.jpg",
+      "aspect": "1800/944",
+      "alt": "Still from Ava"
+    },
+    {
+      "src": "assets/work/film-stills/13.jpg",
+      "thumb": "assets/work/film-stills/13-thumb.jpg",
+      "aspect": "1800/942",
+      "alt": "Still from Obligatory"
+    },
+    {
+      "src": "assets/work/film-stills/14.jpg",
+      "thumb": "assets/work/film-stills/14-thumb.jpg",
+      "aspect": "1800/905",
+      "alt": "Still from Anywhere the Wind Blows"
+    },
+    {
+      "src": "assets/work/ghost-mv/C.jpg",
+      "thumb": "assets/work/ghost-mv/C-thumb.jpg",
+      "aspect": "1800/949",
+      "alt": "Still from Ghost"
+    },
+    {
+      "src": "assets/work/film-stills/16.jpg",
+      "thumb": "assets/work/film-stills/16-thumb.jpg",
+      "aspect": "1800/867",
+      "alt": "Still from Vault of Unforeseen"
+    },
+    {
+      "src": "assets/work/film-stills/17.jpg",
+      "thumb": "assets/work/film-stills/17-thumb.jpg",
+      "aspect": "1080/450",
+      "alt": "Still from Eternal Pigeon"
+    },
+    {
+      "src": "assets/work/mama-mv/C.jpg",
+      "thumb": "assets/work/mama-mv/C-thumb.jpg",
+      "aspect": "1800/1251",
+      "alt": "Still from Mama"
+    },
+    {
+      "src": "assets/work/film-stills/19.jpg",
+      "thumb": "assets/work/film-stills/19-thumb.jpg",
+      "aspect": "1800/944",
+      "alt": "Still from Ava"
+    },
+    {
+      "src": "assets/work/film-stills/20.jpg",
+      "thumb": "assets/work/film-stills/20-thumb.jpg",
+      "aspect": "1800/943",
+      "alt": "Still from Obligatory"
+    },
+    {
+      "src": "assets/work/film-stills/21.jpg",
+      "thumb": "assets/work/film-stills/21-thumb.jpg",
+      "aspect": "1800/904",
+      "alt": "Still from Anywhere the Wind Blows"
+    },
+    {
+      "src": "assets/work/ghost-mv/D.jpg",
+      "thumb": "assets/work/ghost-mv/D-thumb.jpg",
+      "aspect": "1800/949",
+      "alt": "Still from Ghost"
+    },
+    {
+      "src": "assets/work/film-stills/23.jpg",
+      "thumb": "assets/work/film-stills/23-thumb.jpg",
+      "aspect": "1800/867",
+      "alt": "Still from Vault of Unforeseen"
+    },
+    {
+      "src": "assets/work/film-stills/24.jpg",
+      "thumb": "assets/work/film-stills/24-thumb.jpg",
+      "aspect": "1080/450",
+      "alt": "Still from Eternal Pigeon"
+    },
+    {
+      "src": "assets/work/mama-mv/D.jpg",
+      "thumb": "assets/work/mama-mv/D-thumb.jpg",
+      "aspect": "1800/1251",
+      "alt": "Still from Mama"
+    },
+    {
+      "src": "assets/work/film-stills/26.jpg",
+      "thumb": "assets/work/film-stills/26-thumb.jpg",
+      "aspect": "1800/944",
+      "alt": "Still from Ava"
+    },
+    {
+      "src": "assets/work/film-stills/27.jpg",
+      "thumb": "assets/work/film-stills/27-thumb.jpg",
+      "aspect": "1800/943",
+      "alt": "Still from Obligatory"
+    },
+    {
+      "src": "assets/work/film-stills/28.jpg",
+      "thumb": "assets/work/film-stills/28-thumb.jpg",
+      "aspect": "1800/905",
+      "alt": "Still from Anywhere the Wind Blows"
+    },
+    {
+      "src": "assets/work/film-stills/29.jpg",
+      "thumb": "assets/work/film-stills/29-thumb.jpg",
+      "aspect": "1800/867",
+      "alt": "Still from Vault of Unforeseen"
+    },
+    {
+      "src": "assets/work/film-stills/30.jpg",
+      "thumb": "assets/work/film-stills/30-thumb.jpg",
+      "aspect": "1080/450",
+      "alt": "Still from Eternal Pigeon"
+    },
+    {
+      "src": "assets/work/mama-mv/E.jpg",
+      "thumb": "assets/work/mama-mv/E-thumb.jpg",
+      "aspect": "1800/1251",
+      "alt": "Still from Mama"
+    },
+    {
+      "src": "assets/work/film-stills/32.jpg",
+      "thumb": "assets/work/film-stills/32-thumb.jpg",
+      "aspect": "1800/944",
+      "alt": "Still from Ava"
+    },
+    {
+      "src": "assets/work/film-stills/33.jpg",
+      "thumb": "assets/work/film-stills/33-thumb.jpg",
+      "aspect": "1800/947",
+      "alt": "Still from Obligatory"
+    },
+    {
+      "src": "assets/work/film-stills/34.jpg",
+      "thumb": "assets/work/film-stills/34-thumb.jpg",
+      "aspect": "1800/903",
+      "alt": "Still from Anywhere the Wind Blows"
+    },
+    {
+      "src": "assets/work/film-stills/35.jpg",
+      "thumb": "assets/work/film-stills/35-thumb.jpg",
+      "aspect": "1800/867",
+      "alt": "Still from Vault of Unforeseen"
+    },
+    {
+      "src": "assets/work/film-stills/36.jpg",
+      "thumb": "assets/work/film-stills/36-thumb.jpg",
+      "aspect": "1080/450",
+      "alt": "Still from Eternal Pigeon"
+    },
+    {
+      "src": "assets/work/mama-mv/F.jpg",
+      "thumb": "assets/work/mama-mv/F-thumb.jpg",
+      "aspect": "1800/1251",
+      "alt": "Still from Mama"
+    },
+    {
+      "src": "assets/work/film-stills/38.jpg",
+      "thumb": "assets/work/film-stills/38-thumb.jpg",
+      "aspect": "1800/944",
+      "alt": "Still from Ava"
+    },
+    {
+      "src": "assets/work/film-stills/39.jpg",
+      "thumb": "assets/work/film-stills/39-thumb.jpg",
+      "aspect": "1800/944",
+      "alt": "Still from Obligatory"
+    },
+    {
+      "src": "assets/work/film-stills/40.jpg",
+      "thumb": "assets/work/film-stills/40-thumb.jpg",
+      "aspect": "1800/902",
+      "alt": "Still from Anywhere the Wind Blows"
+    },
+    {
+      "src": "assets/work/film-stills/41.jpg",
+      "thumb": "assets/work/film-stills/41-thumb.jpg",
+      "aspect": "1800/867",
+      "alt": "Still from Vault of Unforeseen"
+    },
+    {
+      "src": "assets/work/film-stills/42.jpg",
+      "thumb": "assets/work/film-stills/42-thumb.jpg",
+      "aspect": "1080/450",
+      "alt": "Still from Eternal Pigeon"
+    },
+    {
+      "src": "assets/work/mama-mv/G.jpg",
+      "thumb": "assets/work/mama-mv/G-thumb.jpg",
+      "aspect": "1800/1251",
+      "alt": "Still from Mama"
+    },
+    {
+      "src": "assets/work/film-stills/44.jpg",
+      "thumb": "assets/work/film-stills/44-thumb.jpg",
+      "aspect": "1800/944",
+      "alt": "Still from Ava"
+    },
+    {
+      "src": "assets/work/film-stills/45.jpg",
+      "thumb": "assets/work/film-stills/45-thumb.jpg",
+      "aspect": "1800/945",
+      "alt": "Still from Obligatory"
+    },
+    {
+      "src": "assets/work/film-stills/46.jpg",
+      "thumb": "assets/work/film-stills/46-thumb.jpg",
+      "aspect": "1800/867",
+      "alt": "Still from Vault of Unforeseen"
+    },
+    {
+      "src": "assets/work/film-stills/47.jpg",
+      "thumb": "assets/work/film-stills/47-thumb.jpg",
+      "aspect": "1080/450",
+      "alt": "Still from Eternal Pigeon"
+    },
+    {
+      "src": "assets/work/mama-mv/H.jpg",
+      "thumb": "assets/work/mama-mv/H-thumb.jpg",
+      "aspect": "1800/1251",
+      "alt": "Still from Mama"
+    },
+    {
+      "src": "assets/work/film-stills/49.jpg",
+      "thumb": "assets/work/film-stills/49-thumb.jpg",
+      "aspect": "1800/944",
+      "alt": "Still from Ava"
+    },
+    {
+      "src": "assets/work/film-stills/50.jpg",
+      "thumb": "assets/work/film-stills/50-thumb.jpg",
+      "aspect": "1800/945",
+      "alt": "Still from Obligatory"
+    },
+    {
+      "src": "assets/work/film-stills/51.jpg",
+      "thumb": "assets/work/film-stills/51-thumb.jpg",
+      "aspect": "1080/450",
+      "alt": "Still from Eternal Pigeon"
+    },
+    {
+      "src": "assets/work/mama-mv/I.jpg",
+      "thumb": "assets/work/mama-mv/I-thumb.jpg",
+      "aspect": "1800/1251",
+      "alt": "Still from Mama"
+    },
+    {
+      "src": "assets/work/film-stills/53.jpg",
+      "thumb": "assets/work/film-stills/53-thumb.jpg",
+      "aspect": "1800/944",
+      "alt": "Still from Ava"
+    },
+    {
+      "src": "assets/work/film-stills/54.jpg",
+      "thumb": "assets/work/film-stills/54-thumb.jpg",
+      "aspect": "1800/944",
+      "alt": "Still from Obligatory"
+    },
+    {
+      "src": "assets/work/film-stills/55.jpg",
+      "thumb": "assets/work/film-stills/55-thumb.jpg",
+      "aspect": "1080/450",
+      "alt": "Still from Eternal Pigeon"
+    },
+    {
+      "src": "assets/work/mama-mv/J.jpg",
+      "thumb": "assets/work/mama-mv/J-thumb.jpg",
+      "aspect": "1800/1251",
+      "alt": "Still from Mama"
+    },
+    {
+      "src": "assets/work/film-stills/57.jpg",
+      "thumb": "assets/work/film-stills/57-thumb.jpg",
+      "aspect": "1800/943",
+      "alt": "Still from Obligatory"
+    },
+    {
+      "src": "assets/work/film-stills/58.jpg",
+      "thumb": "assets/work/film-stills/58-thumb.jpg",
+      "aspect": "1080/450",
+      "alt": "Still from Eternal Pigeon"
+    },
+    {
+      "src": "assets/work/mama-mv/K.jpg",
+      "thumb": "assets/work/mama-mv/K-thumb.jpg",
+      "aspect": "1800/1251",
+      "alt": "Still from Mama"
+    },
+    {
+      "src": "assets/work/film-stills/60.jpg",
+      "thumb": "assets/work/film-stills/60-thumb.jpg",
+      "aspect": "1800/943",
+      "alt": "Still from Obligatory"
+    },
+    {
+      "src": "assets/work/film-stills/61.jpg",
+      "thumb": "assets/work/film-stills/61-thumb.jpg",
+      "aspect": "1080/450",
+      "alt": "Still from Eternal Pigeon"
+    },
+    {
+      "src": "assets/work/mama-mv/L.jpg",
+      "thumb": "assets/work/mama-mv/L-thumb.jpg",
+      "aspect": "1800/1251",
+      "alt": "Still from Mama"
+    },
+    {
+      "src": "assets/work/film-stills/63.jpg",
+      "thumb": "assets/work/film-stills/63-thumb.jpg",
+      "aspect": "1800/943",
+      "alt": "Still from Obligatory"
+    },
+    {
+      "src": "assets/work/film-stills/64.jpg",
+      "thumb": "assets/work/film-stills/64-thumb.jpg",
+      "aspect": "1080/450",
+      "alt": "Still from Eternal Pigeon"
+    },
+    {
+      "src": "assets/work/mama-mv/M.jpg",
+      "thumb": "assets/work/mama-mv/M-thumb.jpg",
+      "aspect": "1800/1251",
+      "alt": "Still from Mama"
+    },
+    {
+      "src": "assets/work/film-stills/66.jpg",
+      "thumb": "assets/work/film-stills/66-thumb.jpg",
+      "aspect": "1800/945",
+      "alt": "Still from Obligatory"
+    },
+    {
+      "src": "assets/work/film-stills/67.jpg",
+      "thumb": "assets/work/film-stills/67-thumb.jpg",
+      "aspect": "1080/450",
+      "alt": "Still from Eternal Pigeon"
+    },
+    {
+      "src": "assets/work/mama-mv/N.jpg",
+      "thumb": "assets/work/mama-mv/N-thumb.jpg",
+      "aspect": "1800/1251",
+      "alt": "Still from Mama"
+    },
+    {
+      "src": "assets/work/film-stills/69.jpg",
+      "thumb": "assets/work/film-stills/69-thumb.jpg",
+      "aspect": "1800/945",
+      "alt": "Still from Obligatory"
+    },
+    {
+      "src": "assets/work/film-stills/70.jpg",
+      "thumb": "assets/work/film-stills/70-thumb.jpg",
+      "aspect": "1080/450",
+      "alt": "Still from Eternal Pigeon"
+    },
+    {
+      "src": "assets/work/film-stills/71.jpg",
+      "thumb": "assets/work/film-stills/71-thumb.jpg",
+      "aspect": "1800/946",
+      "alt": "Still from Obligatory"
+    },
+    {
+      "src": "assets/work/film-stills/72.jpg",
+      "thumb": "assets/work/film-stills/72-thumb.jpg",
+      "aspect": "1080/450",
+      "alt": "Still from Eternal Pigeon"
+    },
+    {
+      "src": "assets/work/film-stills/73.jpg",
+      "thumb": "assets/work/film-stills/73-thumb.jpg",
+      "aspect": "1080/450",
+      "alt": "Still from Eternal Pigeon"
+    },
+    {
+      "src": "assets/work/film-stills/74.jpg",
+      "thumb": "assets/work/film-stills/74-thumb.jpg",
+      "aspect": "1080/450",
+      "alt": "Still from Eternal Pigeon"
+    },
+    {
+      "src": "assets/work/film-stills/75.jpg",
+      "thumb": "assets/work/film-stills/75-thumb.jpg",
+      "aspect": "1080/450",
+      "alt": "Still from Eternal Pigeon"
+    },
+    {
+      "src": "assets/work/film-stills/76.jpg",
+      "thumb": "assets/work/film-stills/76-thumb.jpg",
+      "aspect": "1080/450",
+      "alt": "Still from Eternal Pigeon"
+    },
+    {
+      "src": "assets/work/film-stills/77.jpg",
+      "thumb": "assets/work/film-stills/77-thumb.jpg",
+      "aspect": "1080/450",
+      "alt": "Still from Eternal Pigeon"
+    }
+  ]
+}

@@ -318,13 +318,22 @@ html.mob .ps-arrow{display:none;}   /* mobile = native swipe */
 .pp-head .proj-info,.pp-head .logline{margin:0;}
 .pp-head .logline{font-size:clamp(18px,1.7vw,21px);max-width:none;}
 .pp-note{margin:0;font-size:13px;line-height:1.5;color:var(--taupe);}
+/* awards (light pages): a small mono list on a blush rule. No yellow highlight anywhere on the site (--yellow stays defined, unused). */
+.pp-awards{list-style:none;margin:2px 0 0;padding:0 0 0 12px;border-left:2px solid var(--blush);display:grid;gap:3px;
+  font-family:var(--mono);font-size:10.5px;line-height:1.5;letter-spacing:.07em;text-transform:uppercase;color:var(--ink);}
 .pp-topic{display:grid;gap:16px;padding-top:clamp(40px,5vw,60px);}
 .pp-topic + .pp-topic{margin-top:clamp(34px,4vw,52px);border-top:1px solid var(--line);}
 .pp-thead{display:grid;gap:3px;}
 .pp-slug{font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--taupe);}
 .pp-topic h2{margin:0;font-family:var(--serif);font-weight:600;font-size:clamp(24px,2.6vw,31px);line-height:1.2;color:var(--ink);}
 .pp-text{margin:0;max-width:42em;font-size:clamp(16px,1.2vw,17px);line-height:1.62;color:var(--ink);}
+/* link block: an inline mono link (blush underline, ↗) with a small note under it */
+.pp-link{margin:0;display:grid;gap:6px;justify-items:start;}
+.pp-link a{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);border-bottom:1px solid var(--blush);padding-bottom:2px;transition:color .2s;}
+.pp-link a:hover{color:var(--me);}
+.pp-link-note{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--taupe);}
 .pp-group{display:grid;gap:4px;margin:0;}
+.pp-stills .pp-head{padding-top:0;margin-bottom:clamp(22px,3vw,34px);} html.mob .pp-stills .pp-head{padding-top:6px;}   /* Film Stills: no hero above the title */
 .pp-group .pp-inset{width:72%;margin-inline:auto;}             /* portrait graphics (insetPortraits topics) */
 .pp-group > * + .pp-inset,.pp-group > .pp-inset + *{margin-top:10px;}
 .pp-group figcaption{padding-top:6px;font-size:12.5px;line-height:1.45;color:var(--taupe);}
@@ -428,7 +437,7 @@ html.mob .mabout-body .bio p.lede{color:#4a4139;}
 html.mob .mabout-body .about-block{margin-top:clamp(28px,5vh,50px);}
 
 /* footer (on the home AND every subpage) — black bar, cross-nav */
-.mfoot{scroll-snap-align:start;background:var(--leaf-black);color:rgba(250,244,234,.82);
+.mfoot{color:rgba(250,244,234,.82);
   padding:calc(6vh) var(--pad) calc(env(safe-area-inset-bottom) + 5vh);}
 .mfoot-nav{display:flex;flex-direction:column;gap:14px;margin-bottom:26px;}
 .mfoot-nav a{font-family:var(--mono);font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(250,244,234,.86);}
@@ -482,17 +491,20 @@ body:not([data-page="home"]) .hsec,body.hp-leaving .hsec{pointer-events:none;}
 .hallpane{padding-inline:0;align-items:stretch;overflow:hidden;overflow:clip;}
 .hallhead{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-left:calc(var(--side) + var(--lead));width:var(--dw);}
 .hallhead .hsh{text-align:left;font-size:clamp(24px,2.6cqw,36px);}
-.hpcount{color:var(--taupe);vertical-align:middle;}
 .hback{background:none;border:0;color:var(--taupe);padding:6px 0;white-space:nowrap;transition:color .2s;}
 .hback:hover{color:var(--ink);}
 .hcarousel{position:relative;width:100%;box-sizing:border-box;padding-inline:var(--side);}
 .hviewport{overflow:hidden;overflow:clip;}
 .hstrip{display:flex;gap:var(--gap);will-change:transform;}
-.hccount{display:none;}
 .hpcard{flex:0 0 var(--dw);display:grid;gap:6px;color:inherit;}
 .hpcard .hph{width:var(--dw);height:var(--dh);border:2px solid var(--leaf-black);background:var(--tile);box-sizing:border-box;}
 .hpcard h3{margin:4px 0 0;font-family:var(--serif);font-weight:600;font-size:clamp(19px,1.7cqw,25px);transition:color .2s;}
 .hpcard .hmono{color:var(--taupe);font-size:10.5px;}
+/* end card: the same box + border as a project card, but transparent (paper leaves show through) and no image */
+.hpcard.hendcard{cursor:default;}
+.hendcard .hph{background:transparent;display:grid;place-content:center;justify-items:center;gap:clamp(14px,2.4cqh,24px);text-align:center;padding:16px;}
+.hendcard b{font-family:var(--serif);font-weight:600;font-size:clamp(22px,2.4cqw,34px);line-height:1.15;color:var(--ink);text-wrap:balance;}
+.hendcard .hpill:hover{background:var(--blush);border-color:var(--blush);color:var(--paper);}
 .harr{position:absolute;top:calc(var(--dh) / 2);transform:translateY(-50%);width:46px;height:46px;padding:0;border-radius:50%;border:1.5px solid var(--ink);
   background:var(--paper);color:var(--ink);font-size:19px;line-height:1;display:grid;place-items:center;z-index:2;transition:background-color .2s,border-color .2s,color .2s;}
 .harr.l{left:calc(var(--side) - 46px - 18px);} .harr.r{right:calc(var(--side) - 46px - 18px);}
@@ -536,16 +548,12 @@ body:not([data-page="home"]) .hsec,body.hp-leaving .hsec{pointer-events:none;}
   .hfilm .hmono,.hpcard .hmono{font-size:9.5px;letter-spacing:.08em;white-space:nowrap;overflow:hidden;}   /* role · year on one line (home.js shortens it if it can't fit) */
   .hallhead .hsh{font-size:24px;}
   .harr{display:none;}
-  .hccount{display:flex;justify-content:space-between;margin:2px 16px 0;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--taupe);}
-  .hccount b{font-weight:500;color:var(--ink);}
-  .hstrip.nudge{animation:hnudge 1.1s ease-in-out .5s 1;}
   .higrid{grid-template-columns:repeat(2,1fr);gap:3px;padding:3px 3px 34px;}
   .hintro{grid-column:1/3;grid-row:3;padding:0 24px;}
   .hintro p{max-width:30ch;}
   .htile.dk{display:none;}
   .habout-in{padding:8cqh 16px 48px;}
 }
-@keyframes hnudge{0%,100%{translate:0;}35%{translate:-34px;}60%{translate:-34px;}}
 .habout .mfoot{margin:0;}
 
 /* cover furniture (under #hp, so card A simply covers it): the logo on phones, and the scroll cue.
@@ -589,16 +597,33 @@ html.mob body[data-page="home"], html.mob body[data-page="home"] *{cursor:auto !
 
 /* ================= LEAF TEXTURES (R6.3) =================
    Seamless 640px tiles (made at 2×): paper-leaves = the fillPaper() recipe, ink-leaves = the fillInk()/bed recipe.
-   They go on every surface that paints a SOLID paper or card-black fill — never where the desktop shell's canvas
+   They go on every surface that paints a SOLID paper or black fill (cards, frame bars, footers, the blackout) — never where the desktop shell's canvas
    already draws the leaf field behind transparent content. The ink tile moves with its card (a physical sheet). */
 .hp-paper,.hsec.habout,html.mob body.m-sub{background-color:var(--paper);
   background-image:url("assets/textures/paper-leaves.jpg");
   background-image:image-set(url("assets/textures/paper-leaves.webp") type("image/webp"),url("assets/textures/paper-leaves.jpg") type("image/jpeg"));
   background-size:640px 640px;background-position:0 0;background-repeat:repeat;}
-.hcard{background-color:var(--leaf-black);
+.hcard,.frame i,#blackout,.mfoot,html.mob body.m-sub[data-page="gallery"],html.mob body.m-sub::after{background-color:var(--leaf-black);
   background-image:url("assets/textures/ink-leaves.jpg");
   background-image:image-set(url("assets/textures/ink-leaves.webp") type("image/webp"),url("assets/textures/ink-leaves.jpg") type("image/jpeg"));
   background-size:640px 640px;background-position:0 0;background-repeat:repeat;}
+
+/* the frame's four edges are separate boxes: a viewport-fixed tile keeps the print continuous across them */
+.frame i{background-attachment:fixed;}
+html.frame-snap .frame i{transition:none !important;}             /* under the blackout the frame snaps to the new page */
+
+/* ================= PAGE TRANSITIONS (R7.5): fade to black, swap, fade in =================
+   Desktop shell + mobile home: #blackout (nav.js / home.js). Mobile subpages are real page loads, so each one
+   starts under a black ::after that mobile.js fades out (.m-in), and fades back in before leaving (.m-out). */
+#blackout{position:fixed;inset:0;z-index:60;pointer-events:none;opacity:0;transition:opacity .35s ease-out;}
+#blackout.on{opacity:1;transition:opacity .25s ease-in;}
+@media (max-aspect-ratio:7/5),(max-width:820px){
+  body[data-page]:not(.shell)::after{content:"";position:fixed;inset:0;z-index:90;pointer-events:none;opacity:1;transition:opacity .35s ease-out;
+    background-color:var(--leaf-black);background-image:url("assets/textures/ink-leaves.jpg");background-size:640px 640px;}
+  body[data-page]:not(.shell).m-in::after{opacity:0;}
+  body[data-page]:not(.shell).m-in.m-out::after{opacity:1;transition:opacity .25s ease-in;}
+}
+@media (prefers-reduced-motion:reduce){ #blackout,#blackout.on,body[data-page]:not(.shell)::after{transition-duration:.01s !important;} }
 
 /* ================= standalone subpage (mobile.js) ================= */
 html.mob body.m-sub{-webkit-overflow-scrolling:touch;}   /* ground: the paper-leaf texture (LEAF TEXTURES above) */
@@ -628,7 +653,7 @@ html.mob body.m-sub .ps-img{height:min(46vh,64vw);scroll-snap-align:center;}
 html.mob body.m-sub .proj{max-width:none;}
 
 /* gallery-item subpage: full-screen black viewer, swipe to page */
-html.mob body.m-sub[data-page="gallery"]{overflow:hidden;background:#0a0a0a;}
+html.mob body.m-sub[data-page="gallery"]{overflow:hidden;}   /* ground: the ink-leaf texture (LEAF TEXTURES) */
 html.mob body.m-sub[data-page="gallery"] .view-root{padding:0;}
 html.mob body.m-sub[data-page="gallery"] .item{position:fixed;inset:0;}
 html.mob .item-media{width:min(92vw,64vh);height:auto;max-width:none;max-height:none;}

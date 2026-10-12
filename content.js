@@ -37,7 +37,7 @@
     opts = opts||{};
     const a = String(o.aspect||'').split('/').map(Number), w = a[0]||0, h = a[1]||0;
     return '<img'+(opts.cls?' class="'+opts.cls+'"':'')+' src="'+esc(o.src)+'"'+
-      (o.thumb?' srcset="'+esc(o.thumb)+' 640w, '+esc(o.src)+' 1800w" sizes="(max-width:820px) 100vw, 760px"':'')+
+      (o.thumb?' srcset="'+esc(o.thumb)+' 640w, '+esc(o.src)+' '+(w||1800)+'w" sizes="(max-width:820px) 100vw, 760px"':'')+
       (w&&h?' width="'+w+'" height="'+h+'"':'')+' alt="'+esc(o.alt||'')+'"'+
       (opts.eager?' fetchpriority="high"':' loading="lazy"')+' decoding="async"'+
       (opts.pos&&o.pos?' style="object-position:'+esc(o.pos)+'"':'')+'>';
@@ -118,7 +118,7 @@
         ['format','year','productionCo'].map(k=>p[k]?'<span>'+esc(p[k])+'</span>':'').join('')+
         (p.role?'<span>Role — '+esc(p.role)+'</span>':'')+'</div>';
       const awards = (p.awards&&p.awards.length) ? '<div class="stamps" aria-label="Awards">'+
-        p.awards.map(a=>'<span class="stamp">'+esc(a.name)+(a.note?'<br>'+esc(a.note):'')+'</span>').join('')+'</div>' : '';
+        p.awards.map(a=>typeof a==='string' ? '<span class="stamp">'+esc(a)+'</span>' : '<span class="stamp">'+esc(a.name)+(a.note?'<br>'+esc(a.note):'')+'</span>').join('')+'</div>' : '';
       const links = (p.links&&p.links.length) ? '<div class="social">'+
         p.links.map(l=>'<a href="'+esc(l.url||'#')+'">'+esc(l.label)+'</a>').join('')+'</div>' : '';
       const diary = (p.diary&&p.diary.length) ? '<section class="diary"><h2 class="block-h">Production Diary</h2>'+
@@ -270,6 +270,19 @@
         btn.textContent = open ? 'Show less' : 'Show full filmography ('+rows.length+')';
       });
     },
+    // Film Stills (R7.3) — content/film-stills.json: a title, one line, then every still stacked one by one at the
+    // content-column width. No captions, grouping or film names (alt carries the film). For looking, not reading.
+    // Reached only from the end card of the home's All-projects carousel; not in the Filmography or any list.
+    async renderFilmStills(el){
+      if(!el) return;
+      const d = await load('content/film-stills.json'), back = backInfo({ href:'index.html', text:'← Back' });
+      document.title = (d.title||'Film Stills') + ' — 默默 GINGKO';
+      el.innerHTML = '<article class="pp pp-stills"><header class="pp-head"><h1 class="proj-title">'+esc(d.title||'Film Stills')+'</h1>'+
+        (d.intro?'<p class="logline">'+esc(d.intro)+'</p>':'')+'</header>'+
+        '<figure class="pp-group pp-bleed">'+(d.stills||[]).map((im,i)=>pimg(im,{eager:i<2})).join('')+'</figure>'+
+        '<a class="pp-back" href="'+esc(back.href)+'">'+back.text+'</a></article>';
+      wireBack(el, back);
+    },
     // About — content/about.json. Renders into about.html (desktop shell + mobile subpage) AND the inline
     // About section of the home page (opts.inline: desktop pager + mobile swipe; .mportrait / .mabout-body styling).
     // Empty fields are skipped: no positioning line, no contact link until filled. (Illustrations show on the home.)
@@ -302,7 +315,7 @@
     // The same markup serves desktop and phone; home.js owns the black-card pager and all behaviour.
     //   highlights   — on black: the two `featured` films (4:3 hero crop, title, role · year).
     //   pd           — paper between bars: teaser (heading, drawing, "All projects →") + a second pane with a
-    //                  looping carousel of every published project (3 copies of the list; home.js lives in the middle one).
+    //                  looping carousel (home.json `carousel` order + an end card to Film Stills; 3 copies, home.js lives in the middle one).
     //   illustration — on black: 6×5 grid (28 tiles + intro) on desktop, 2×5 (8 tiles) on the phone; every tile
     //                  → Instagram. Needs 8 illustrations in about.json; fewer → the page is skipped. Phone = 1–8;
     //                  desktop = 1–28, the rest cycle in (home.js). A GIF plays as its small `video` loop.
@@ -330,14 +343,20 @@
       const card = (p, copy) => { const im = p.heroImage || p.cover || {};
         return '<a class="hpcard" href="project.html?slug='+esc(p.slug)+'"'+(copy!==1?' tabindex="-1" aria-hidden="true"':'')+'><span class="hph">'+(im.src?img(im,'(max-width:600px) 92vw, 62vw',true,''):'')+'</span>'+
           '<h3>'+esc(p.title)+'</h3>'+mono(p)+'</a>'; };
-      pages.push({ key:'pd', name:'Production Design', count:pub.length, html:
+      // carousel = home.json `carousel.order` (slugs, published only; anything published but unlisted follows), then the END CARD:
+      // same box and border as a project card but transparent (the paper texture shows through), no image, no title under it —
+      // just a line and a pill to the Film Stills page. Only the pill is a link.
+      const car = h.carousel||{}, ord = car.order||[];
+      const list = ord.map(sl=>pub.find(p=>p.slug===sl)).filter(Boolean).concat(pub.filter(p=>ord.indexOf(p.slug)<0));
+      const ec = car.endCard, endCard = copy => ec ? '<div class="hpcard hendcard"'+(copy!==1?' aria-hidden="true"':'')+'><span class="hph"><b>'+esc(ec.text)+'</b>'+
+        '<a class="hpill" href="'+esc(ec.href)+'"'+(copy!==1?' tabindex="-1"':'')+'>'+esc(ec.button)+'</a></span></div>' : '';
+      pages.push({ key:'pd', name:'Production Design', count:list.length+(ec?1:0), start:Math.max(0, Math.min(list.length-1, car.start|0)), html:
         '<div class="hpanes"><div class="hpane">'+
           '<a class="hteaser" href="production-design.html">'+head(pd,'See more of my production design work!')+
           (dr.src?img(dr,'(max-width:600px) 92vw, 62vw').replace('<img ','<img class="hdraw" '):'')+'<span class="hpill">All projects →</span></a></div>'+
         '<div class="hpane hallpane" aria-label="All projects">'+
-          '<div class="hallhead">'+head({title:'All projects'},'All projects',' <span class="hmono hpcount">'+pub.length+'</span>')+'<button class="hback hmono" type="button">← Back</button></div>'+
-          '<div class="hcarousel"><div class="hviewport"><div class="hstrip">'+[0,1,2].map(c=>pub.map(p=>card(p,c)).join('')).join('')+'</div></div>'+
-          '<div class="hccount"><span><b class="hcnow">1</b> / '+pub.length+'</span><span>Swipe ‹ ›</span></div>'+
+          '<div class="hallhead">'+head({title:'All projects'},'All projects')+'<button class="hback hmono" type="button">← Back</button></div>'+
+          '<div class="hcarousel"><div class="hviewport"><div class="hstrip">'+[0,1,2].map(c=>list.map(p=>card(p,c)).join('')+endCard(c)).join('')+'</div></div>'+
           '<button class="harr l" type="button" aria-label="Previous project">‹</button><button class="harr r" type="button" aria-label="Next project">›</button></div>'+
         '</div></div>' });
 
@@ -436,6 +455,18 @@
     }
   };
 
+  // "← Back" to wherever the visitor came from (a home page or the list); a direct visit gets `fallback`.
+  // Shell: nav.js records the origin in window.GKorigin. Mobile: the referrer, and the link is a real history.back().
+  function backInfo(fallback){
+    if(window.__SHELL__){ return window.GKorigin ? { href:window.GKorigin, text:'← Back', hist:false } : Object.assign({hist:false}, fallback); }
+    try{ const r = document.referrer && new URL(document.referrer);
+      if(r && r.origin===location.origin && /(\/|index\.html|production-design\.html)$/.test(r.pathname) && history.length>1) return { href:r.pathname+r.search, text:'← Back', hist:true };
+    }catch(e){}
+    return Object.assign({hist:false}, fallback);
+  }
+  function wireBack(el, back){ const a = el.querySelector('.pp-back');
+    if(a && back.hist) a.addEventListener('click', e=>{ e.preventDefault(); history.back(); }); }
+
   // Project page (PDG rebuild R3.2): hero → header → topics (key · slugline · title · alternating text /
   // image-group blocks) → credits → back link. No viewer, no stage tags, no chips; images aren't links
   // (except the ORION `page` image on desktop — the live page breaks at a phone's aspect ratio).
@@ -446,6 +477,7 @@
     const head = '<header class="pp-head"><h1 class="proj-title">'+esc(p.title)+'</h1>'+
       (meta?'<div class="proj-info">'+meta+'</div>':'')+
       (p.logline?'<p class="logline">'+esc(p.logline)+'</p>':'')+
+      ((p.awards||[]).length?'<ul class="pp-awards" aria-label="Awards">'+p.awards.map(a=>'<li>'+esc(typeof a==='string'?a:[a.name,a.note].filter(Boolean).join(' — '))+'</li>').join('')+'</ul>':'')+
       (p.headerNote?'<p class="pp-note">'+esc(p.headerNote)+'</p>':'')+'</header>';
     const topics = (p.topics||[]).map(t=>{
       const inset = !!t.insetPortraits;
@@ -454,6 +486,8 @@
             const tag = pimg(im, {cls: inset && isPortrait(im) ? 'pp-inset' : ''});
             return (im.page && !mob) ? '<a class="pp-live" href="'+esc(im.page)+'" target="_blank" rel="noopener">'+tag+'<span>View live page ↗</span></a>' : tag;
           }).join('')+(b.caption?'<figcaption>'+esc(b.caption)+'</figcaption>':'')+'</figure>';
+        if(b.link) return '<p class="pp-link"><a href="'+esc(b.link)+'"'+(mob?'':' target="_blank" rel="noopener"')+'>'+esc(b.label||b.link)+' ↗</a>'+
+          (b.note?'<span class="pp-link-note">'+esc(b.note)+'</span>':'')+'</p>';
         if(b.text) return '<p class="pp-text">'+(b.lead?'<strong>'+esc(b.lead)+'</strong> ':'')+esc(b.text)+'</p>';
         return '';
       }).join('');
@@ -464,16 +498,10 @@
     }).join('');
     const credits = (p.credits&&p.credits.length) ? '<section class="creditlist"><h2 class="block-h">Credits</h2><dl>'+
       orderCredits(p.credits).map(creditRow).join('')+'</dl></section>' : '';
-    // "← Back" to wherever the visitor came from (a home section or the list); a direct visit falls back to the list.
-    // Shell: nav.js records the origin in window.GKorigin. Mobile: the referrer, and the link is a real history.back().
-    let back = { href:'production-design.html', text:'← Back to Production Design', hist:false };
-    if(window.__SHELL__){ if(window.GKorigin) back = { href:window.GKorigin, text:'← Back', hist:false }; }
-    else { try{ const r = document.referrer && new URL(document.referrer);
-      if(r && r.origin===location.origin && /(\/|index\.html|production-design\.html)$/.test(r.pathname) && history.length>1) back = { href:r.pathname+r.search, text:'← Back', hist:true };
-    }catch(e){} }
+    const back = backInfo({ href:'production-design.html', text:'← Back to Production Design' });
     el.innerHTML = '<article class="pp">'+hero+head+topics+credits+
       '<a class="pp-back" href="'+esc(back.href)+'">'+back.text+'</a></article>';
-    if(back.hist) el.querySelector('.pp-back').addEventListener('click', e=>{ e.preventDefault(); history.back(); });
+    wireBack(el, back);
     // #topic-<id> anchors (cheap; nothing on the page links to them yet)
     const target = location.hash && el.querySelector(location.hash.replace(/[^#\w-]/g,''));
     if(target) target.scrollIntoView();

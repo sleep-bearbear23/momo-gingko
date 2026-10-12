@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Film Stills — 默默 GINGKO</title>
+<link rel="manifest" href="manifest.webmanifest"/>
+<link rel="apple-touch-icon" href="apple-touch-icon.png"/>
+<meta name="theme-color" content="#FAF4EA"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-title" content="默默"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="default"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;600&family=Spline+Sans:wght@400;500&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css"/>
+<script src="content.js"></script>
+</head>
+<body data-page="project" data-parent="index.html" data-back="← back">
+<main class="view-root">
+  <!-- Film Stills: stills from films without a page of their own (content/film-stills.json). Laid out like a project
+       page (same frame + column). The only way in is the end card of the home's All-projects carousel. -->
+  <div id="stillsRoot"></div>
+  <script>window.GKcontent && GKcontent.renderFilmStills(document.getElementById('stillsRoot'));</script>
+</main>
+<script src="mobile.js"></script>
+</body>
+</html>

@@ -25,6 +25,21 @@
 
   var root = document.documentElement; root.classList.add('mob');
   var b = document.body; b.classList.add('m-sub');
+
+  // ---- page transitions: the page loads under black (site.css ::after) and fades in; links fade to black first ----
+  var reduceM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  requestAnimationFrame(function(){ requestAnimationFrame(function(){ b.classList.add('m-in'); }); });
+  setTimeout(function(){ b.classList.add('m-in'); }, 400);                       // safety net if rAF is throttled
+  addEventListener('pageshow', function(e){ if(e.persisted){ b.classList.remove('m-out'); b.classList.add('m-in'); } });
+  document.addEventListener('click', function(e){
+    if(e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    var a = e.target.closest && e.target.closest('a[href]'); if(!a) return;
+    var raw = a.getAttribute('href');
+    if(!raw || raw.charAt(0)==='#' || /^(mailto:|tel:|javascript:)/.test(raw) || (a.target && a.target!=='_self') || a.origin!==location.origin) return;
+    if(b.dataset.page==='gallery' && (a.classList.contains('item-next') || a.classList.contains('item-prev'))) return;   // paging stays as it is
+    e.preventDefault(); b.classList.add('m-out');
+    setTimeout(function(){ location.href = a.href; }, reduceM ? 0 : 250);
+  });
   var page = b.dataset.page || 'menu';
   MQ.addEventListener('change', function(){ location.reload(); });
 

@@ -38,7 +38,7 @@
 
   let pages = [{key:'cover', name:'Cover', el:null}], N = 1;
   let idx = 0, entered = false, busy = false, blown = false, timers = [], pending = null;
-  let pdsec = null, panes = null, strip = null, ilsec = null, NP = 0, ci = 0, stepping = false, drawAR = 1100/712;
+  let pdsec = null, panes = null, strip = null, ilsec = null, NP = 0, START = 0, ci = 0, stepping = false, drawAR = 1100/712;
   let ilMedia = [], ilQueue = [], ilFilled = false, ilHover = false;
   const keyOf = i => (pages[i]||{}).key, elOf = i => (pages[i]||{}).el, at = k => pages.findIndex(p=>p.key===k);
   const later = (f,t) => timers.push(setTimeout(f, T(t)));
@@ -59,13 +59,22 @@
   // infinite loop: three copies of the list; we live in the middle copy and jump silently when we drift out of it
   function paintCarousel(anim){ if(!strip) return; const g = pdGeometry();
     strip.style.transition = anim ? 'transform '+T(560)+'ms cubic-bezier(.6,0,.2,1)' : 'none';
-    strip.style.transform = 'translateX('+(g.lead - ci*(g.w+g.gap))+'px)';
-    const now = pdsec.querySelector('.hcnow'); if(now) now.textContent = ((ci%NP)+NP)%NP+1; }
+    strip.style.transform = 'translateX('+(g.lead - ci*(g.w+g.gap))+'px)'; }
   function step(d){ if(stepping || !NP) return; stepping = true; ci += d; paintCarousel(true);
     setTimeout(()=>{ if(ci>=2*NP) ci -= NP; if(ci<NP) ci += NP; paintCarousel(false); stepping = false; }, T(580)); }
   const allOpen = () => !!panes && panes.classList.contains('all');
-  function showAll(on){ if(!panes) return; panes.classList.toggle('all', on);
-    if(on){ ci = NP; paintCarousel(false); strip.classList.remove('nudge'); if(isPhone()){ strip.offsetWidth; strip.classList.add('nudge'); } } }
+  // Opening the All-projects pane (copied from the R7 prototype's showAll): the frame slides in while the row inside it
+  // is ALREADY gliding — set to the first card with no transition, then, in the same frame the pane starts moving, glide
+  // to the start card (Stem) over 1400ms. The first card is never seen standing still. Arrows / swipe are locked until it
+  // lands. Identical on desktop and phone; Back → reopen replays it. Reduced motion: jump straight to the start card.
+  let glideT = 0;
+  function showAll(on){ if(!panes) return; panes.classList.toggle('all', on); clearTimeout(glideT);
+    if(!on){ stepping = false; return; }
+    if(reduce){ ci = NP+START; paintCarousel(false); stepping = false; return; }
+    ci = NP; paintCarousel(false); stepping = true;
+    const g = pdGeometry(); strip.offsetWidth; ci = NP+START;
+    strip.style.transition = 'transform 1400ms cubic-bezier(.33,.33,.2,1)'; strip.style.transform = 'translateX('+(g.lead - ci*(g.w+g.gap))+'px)';
+    glideT = setTimeout(()=>{ stepping = false; }, 1420); }
 
   /* ---------- page 4: fill the tiles late, and (desktop) cycle the rest of the pictures in ---------- */
   // Tiles start empty: the thumbs are fetched once the visitor leaves the cover, not on first load. Phones fill 1–8 only.
@@ -188,7 +197,7 @@
       ilQueue = ilMedia.map((m,i)=>i).slice(28);              // the pictures beyond the 28 tiles wait here
       const grid = ilsec.querySelector('.higrid');
       grid.addEventListener('pointerenter', ()=>{ ilHover = true; }); grid.addEventListener('pointerleave', ()=>{ ilHover = false; }); }
-    if(pdsec){ panes = pdsec.querySelector('.hpanes'); strip = pdsec.querySelector('.hstrip'); NP = (d.pages.find(p=>p.key==='pd')||{}).count || 0; ci = NP;
+    if(pdsec){ panes = pdsec.querySelector('.hpanes'); strip = pdsec.querySelector('.hstrip'); { const pg = d.pages.find(p=>p.key==='pd')||{}; NP = pg.count||0; START = pg.start||0; } ci = NP+START;
       pdsec.querySelector('.hteaser').addEventListener('click', e=>{ e.preventDefault(); showAll(true); });   // slides the pane; no page load
       pdsec.querySelector('.hback').addEventListener('click', ()=>showAll(false));
       pdsec.querySelector('.harr.l').addEventListener('click', ()=>step(-1));
@@ -259,10 +268,19 @@
 
   // No landing in two cases: (a) phone, returning to the home in a session that already entered → back on the page you
   // left; (b) opened from the home-screen icon (standalone "app mode") → the cover in its calm state, one swipe from page 2.
+  // phones: pages are real loads, so the home fades to black before a link leaves it, and fades in when it is returned to
+  const black = document.getElementById('blackout');
+  if(mobile && black){
+    hp.addEventListener('click', e=>{ if(e.defaultPrevented) return; const a = e.target.closest('a[href]'); if(!a) return;
+      const raw = a.getAttribute('href'); if(!raw || raw[0]==='#' || (a.target && a.target!=='_self') || a.origin!==location.origin) return;
+      e.preventDefault(); black.classList.add('on'); setTimeout(()=>{ location.href = a.href; }, reduce ? 0 : 250); });
+    addEventListener('pageshow', e=>{ if(e.persisted) black.classList.remove('on'); });
+  }
   const app = !!window.__GK_SKIP_LANDING;
   if(mobile && (app || ss.get('gk-entered')) && window.GK && GK.enterQuiet){
+    if(black){ black.style.transition = 'none'; black.classList.add('on'); black.offsetHeight; black.style.transition = ''; }   // arrive under black…
     GK.enterQuiet(); entered = true; body.classList.add('hp-entered'); ss.set('gk-entered','1');
-    ready.then(()=>{ const i = boot ? at(boot) : 0; jump(i<0 ? 0 : i); });
+    ready.then(()=>{ const i = boot ? at(boot) : 0; jump(i<0 ? 0 : i); if(black) black.classList.remove('on'); });              // …and fade in on the page you left
   } else if(app && !mobile && window.GK && GK.whenReady){
     GK.whenReady(()=>ready.then(()=>api.resume(wantAbout() ? 'about' : null)));   // desktop app window: GK.home() cover
   }

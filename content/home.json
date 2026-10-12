@@ -27,5 +27,22 @@
     "title": "Objects & Graphics",
     "note": "",
     "items": []
+  },
+  "carousel": {
+    "order": [
+      "before-sunrise",
+      "how-can-i-not-forget",
+      "stem",
+      "on-the-river-bank",
+      "antidote",
+      "sonata",
+      "soup"
+    ],
+    "start": 2,
+    "endCard": {
+      "text": "More stills from other films!",
+      "button": "View stills →",
+      "href": "film-stills.html"
+    }
   }
 }
